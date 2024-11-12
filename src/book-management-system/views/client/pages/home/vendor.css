@@ -1,0 +1,36 @@
+.vendors h2 {
+    font-size: 30px;
+    font-weight: 630;
+    margin-top: 15px;
+    margin-bottom: 35px;
+}
+.vendor-list {
+    margin-top: 20px;
+}
+.vendor-item {
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+}
+.vendor-item img {
+    width: 70px;
+    height: 70px;
+    border-radius: 15px;
+    margin-right: 10px;
+}
+.vendor-info {
+    width: 80%;
+}
+.vendor-info h3 {
+    font-size: 16px;
+    font-weight: 500;
+    margin: 0;
+}
+.vendor-info span {
+    margin: 5px 0;
+    font-size: 14px;
+    color: #666;
+}
+.vendor-info .rating {
+    color: lightsalmon;
+}

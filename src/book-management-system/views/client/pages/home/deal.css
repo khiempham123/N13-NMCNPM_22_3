@@ -3,15 +3,15 @@
     
 }
 .deals h1 {
-    font-size: 24px;
+    font-size: 50px;
     font-weight: 700;
 }
 .timer {
     display: inline-block;
-    background-color: #FFD700;
+    background-color: #e4b71d;  
     padding: 10px 20px;
     border-radius: 20px;
-    font-size: 18px;
+    font-size: 25px;
     font-weight: 500;
     margin-left: 10px;
 }
@@ -20,18 +20,18 @@
     border-radius: 10px;
     padding: 20px;
     margin-top: 20px;
-    height: 500px;
-    width: 800px;
+    height: 700px;
+    width: 900px;
 }
 .deal-item {
     display: flex;
-    height: 200px;
+    height: 300px;
     justify-content: space-between;
     margin-bottom: 20px;
 }
 .deal-item img {
-    width: 150px;
-    height: 200px;
+    width: 200px;
+    height: 300px;
     border-radius: 10px;
 }
 .deal-info {
