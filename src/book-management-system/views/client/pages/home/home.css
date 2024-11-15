@@ -1,0 +1,118 @@
+.custom-link {
+    border-radius: 30px; 
+    padding: 10px;
+}
+.nav-item{
+    color:black;
+    font-size: 20px;
+    font-weight: 500;
+}
+.nav-item:hover {
+    color: orangered
+}
+
+.dropdown-divider-customer {
+    width: 90%;
+    margin: 0.5rem auto; 
+}
+.text-center i{
+    font-size: 30px;
+    color: orangered;
+}
+
+
+.footer {
+    background-color: #1c1c1c;
+    color: #fff;
+    padding: 40px 0;
+}
+.footer .container {
+    display: flex;
+    justify-content: space-around;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+.footer .column {
+    flex: 1;
+    padding: 0 20px;
+}
+.footer .column h3 {
+    font-size: 18px;
+    margin-bottom: 20px;
+}
+.footer .column p,
+.footer .column a {
+    font-size: 14px;
+    color: #b3b3b3;
+    text-decoration: none;
+    line-height: 1.6;
+}
+.footer .column a:hover {
+    color: #fff;
+}
+.footer .contact-info p {
+    margin: 5px 0;
+}
+.footer .contact-info a {
+    display: block;
+    margin-top: 10px;
+}
+.footer .logo {
+    text-align: center;
+}
+.footer .logo h2 {
+    font-size: 24px;
+    color: #ff5e3a;
+    margin-bottom: 10px;
+}
+.footer .logo p {
+    font-size: 14px;
+    color: #b3b3b3;
+}
+.footer .logo .social-icons {
+    margin-top: 20px;
+}
+.footer .logo .social-icons a {
+    color: #b3b3b3;
+    margin: 0 10px;
+    font-size: 18px;
+}
+.footer .logo .social-icons a:hover {
+    color: #ff5e3a;
+}
+.footer .bottom-bar {
+    padding: 10px 0;
+    text-align: center;
+    font-size: 14px;
+    color: #b3b3b3;
+    display: flex;
+    justify-content: space-around;
+}
+.footer .bottom-bar a {
+    color: #ff5e3a;
+    text-decoration: none;
+}
+.footer .bottom-bar .payment-icons img {
+    margin: 0 5px;
+    vertical-align: middle;
+}
+.custom-card-footer {
+    background-color: #1c1c1c; /* Màu nền tùy chỉnh */
+    color: white; /* Màu chữ */
+}
+
+.custom-card-footer .navbar {
+    background-color: #1c1c1c; /* Màu nền của navbar */
+}
+
+.custom-card-footer .navbar-brand,
+.custom-card-footer .nav-link,
+.custom-card-footer .fa-phone {
+    color: white; /* Màu chữ của các phần tử */
+}
+
+.custom-card-footer .navbar-brand:hover,
+.custom-card-footer .nav-link:hover {
+    color: #ff5e3a; /* Màu chữ khi hover */
+}
