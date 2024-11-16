@@ -63,14 +63,19 @@ function displaySearchResults(books) {
     books.forEach((book) => {
         const bookItem = document.createElement("div");
         bookItem.className = "search-result-item";
+
+        // Tạo liên kết đến trang chi tiết sản phẩm, giả sử trang chi tiết là 'detail.html?id=BOOK_ID'
         bookItem.innerHTML = `
-            <img src="${book.Thumbnail}" alt="${book.Title}" class="book-image">
-            <div class="book-info">
-                <h4>${book.Title}</h4>
-                <p><strong>Author:</strong> ${book.Author || "Unknown"}</p>
-                <p class="book-price"><i class="fa-solid fa-dollar-sign"></i>${book.Price.toFixed(2)}</p>
-            </div>
+            <a href="../detail/detail.html?id=${book._id}" class="book-link">
+                <img src="${book.Thumbnail}" alt="${book.Title}" class="book-image">
+                <div class="book-info">
+                    <h4>${book.Title}</h4>
+                    <p><strong>Author:</strong> ${book.Author || "Unknown"}</p>
+                    <p class="book-price"><i class="fa-solid fa-dollar-sign"></i>${book.Price.toFixed(2)}</p>
+                </div>
+            </a>
         `;
+
         resultsList.appendChild(bookItem);
     });
 
@@ -79,6 +84,7 @@ function displaySearchResults(books) {
     // Hiển thị kết quả tìm kiếm
     showSearchResults();
 }
+
 
 
 

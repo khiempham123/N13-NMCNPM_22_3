@@ -47,7 +47,7 @@ const getFilteredBooks = async (req, res) => {
         }
 
         // Chọn các trường cần thiết, bao gồm Author thay vì Authors
-        const books = await Book.find(filter).select("Title Author Category Thumbnail Price");
+        const books = await Book.find(filter).select("Title Author Category Thumbnail Price _id");
         res.status(200).json(books);
     } catch (error) {
         console.error("Error filtering books:", error);
