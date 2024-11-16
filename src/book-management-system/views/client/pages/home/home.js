@@ -14,7 +14,7 @@ async function fetchAndDisplayCategoriesInDropdown() {
         categories.forEach(category => {
             const categoryItem = document.createElement("li");
             categoryItem.innerHTML = `
-                <a class="dropdown-item d-flex align-items-center" href="/categories/${category.name}">
+                <a class="dropdown-item d-flex align-items-center" href="../category/category.html?category=${category.name}">
                     <i class="fa-regular fa-circle-user me-2" style="width: 25px;"></i>
                     <span>${category.name}</span>
                 </a>

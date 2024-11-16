@@ -2,7 +2,9 @@ const API_BASE_URL = "http://localhost:3000";
 const booksContainer = document.getElementById("books-container");
 
 async function fetchAndDisplayBooksByCategory() {
-    const category = decodeURIComponent(window.location.pathname.split("/").pop()); // Giải mã tên category từ URL
+    const url = new URL(window.location.href);
+    const category = url.searchParams.get("category");
+    console.log("Category:", category);
     try {
         const response = await fetch(`${API_BASE_URL}/categories/${category}`);
         const books = await response.json();
