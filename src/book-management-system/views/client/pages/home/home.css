@@ -116,3 +116,108 @@
 .custom-card-footer .nav-link:hover {
     color: #ff5e3a; /* Màu chữ khi hover */
 }
+
+
+                        /* css phần kết quả search */
+
+/* Định dạng container kết quả tìm kiếm */
+#results-container {
+    position: absolute;
+    background-color: #fff;
+    width: 100%;
+    max-height: 0; /* Ẩn khi không có kết quả */
+    overflow-y: auto; /* Chỉ cuộn dọc */
+    overflow-x: hidden; /* Ẩn cuộn ngang nếu có */
+    border: 1px solid #ddd; /* Màu viền nhẹ nhàng */
+    border-radius: 8px; /* Bo tròn các góc */
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1); /* Thêm bóng đổ mềm mại */
+    z-index: 1000; /* Đảm bảo kết quả nằm trên các phần tử khác */
+    top: 100%; /* Đặt kết quả ngay dưới thanh tìm kiếm */
+    left: 0;
+    padding: 10px; /* Khoảng cách giữa viền và nội dung */
+    visibility: hidden; /* Ẩn khi không có kết quả */
+    opacity: 0; /* Ẩn khi không có kết quả */
+    transition: opacity 0.3s ease, visibility 0.3s ease, max-height 0.3s ease; /* Thêm hiệu ứng */
+}
+
+/* Khi có kết quả tìm kiếm, hiện thị */
+#results-container.show {
+    visibility: visible;
+    opacity: 1;
+    max-height: 400px; /* Giới hạn chiều cao */
+}
+
+/* Định dạng danh sách kết quả */
+.search-results-list {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    gap: 10px; /* Khoảng cách giữa các mục */
+}
+
+/* Định dạng từng mục kết quả */
+.search-result-item {
+    display: flex;
+    align-items: center;
+    padding: 10px;
+    background-color: #fafafa; /* Màu nền nhẹ nhàng */
+    border-radius: 5px; /* Bo tròn góc của mỗi mục kết quả */
+    transition: background-color 0.3s ease; /* Thêm hiệu ứng chuyển màu nền */
+    cursor: pointer; /* Chỉ con trỏ khi hover */
+}
+
+.search-result-item:hover {
+    background-color: #f0f0f0; /* Màu nền khi hover */
+}
+
+/* Định dạng hình ảnh sách */
+.book-image {
+    width: 50px;
+    height: 75px;
+    object-fit: cover;
+    margin-right: 15px;
+    border-radius: 5px; /* Bo tròn hình ảnh sách */
+}
+
+/* Định dạng thông tin sách */
+.book-info h4 {
+    margin: 0;
+    font-size: 16px;
+    color: #333;
+    font-weight: bold;
+}
+
+.book-info p {
+    margin: 5px 0 0 0;
+    color: #555;
+    font-size: 14px;
+}
+
+.book-price {
+    margin: 5px 0 0 0;
+    color: #ff5e3a;
+    font-weight: bold;
+    font-size: 16px;
+}
+
+/* Thêm định dạng cho thông báo "No books found" */
+#results-container.empty p {
+    text-align: center;
+    font-size: 14px;
+    font-weight: 500;
+    color: #333; /* Màu chữ tối cho thông báo */
+    background-color: #f8d7da; /* Màu nền đỏ nhẹ */
+    padding: 15px;
+    border-radius: 5px;
+    border: 1px solid #f5c6cb; /* Viền nhạt để tạo sự tương phản */
+}
+
+/* Khi không có kết quả tìm kiếm */
+#results-container.empty {
+    max-height: 100px; /* Giới hạn chiều cao khi không có kết quả */
+    opacity: 1; /* Đảm bảo thông báo hiện rõ */
+    visibility: visible; /* Hiển thị thông báo */
+    transition: opacity 0.5s ease-in-out, visibility 0.5s ease-in-out; /* Hiệu ứng trễ nhẹ */
+}
+
+

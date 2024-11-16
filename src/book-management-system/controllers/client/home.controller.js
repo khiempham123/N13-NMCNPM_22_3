@@ -1,22 +1,20 @@
 const Book = require("../../models/books.js");
 
+// Hàm lấy danh sách các danh mục sách
 const getCategories = async (req, res) => {
     try {
-        // Sử dụng MongoDB aggregation để nhóm theo category và đếm số lượng sách trong từng danh mục
         const categories = await Book.aggregate([
-            { $match: { Deleted: false } }, // Lọc các sách chưa bị xóa
-            { $group: { _id: "$Category", productCount: { $sum: 1 } } }, // Nhóm theo Category và đếm số lượng
+            { $match: { Deleted: false } },
+            { $group: { _id: "$Category", productCount: { $sum: 1 } } },
             { 
                 $project: {
-                    id: "$_id", // Đổi _id thành id để tiện cho frontend
-                    name: "$_id", // Đổi _id thành name (tên danh mục)
+                    id: "$_id",
+                    name: "$_id",
                     productCount: 1,
-                    _id: 0 // Loại bỏ _id gốc
+                    _id: 0
                 }
             }
         ]);
-
-        // Trả về danh sách categories dưới dạng JSON
         res.status(200).json(categories);
     } catch (error) {
         console.error("Error fetching categories:", error);
@@ -24,10 +22,10 @@ const getCategories = async (req, res) => {
     }
 };
 
+// Hàm lấy sách theo danh mục
 const getBooksByCategory = async (req, res) => {
-    const category = req.params.category; // Lấy category từ URL
+    const category = req.params.category;
     try {
-        // Tìm các sách thuộc category cụ thể và chưa bị xóa
         const books = await Book.find({ Category: category, Deleted: false });
         res.status(200).json(books);
     } catch (error) {
@@ -36,28 +34,28 @@ const getBooksByCategory = async (req, res) => {
     }
 };
 
-const searchBooks = async (req, res) => {
-    const query = req.query.q; // Lấy từ khóa tìm kiếm từ query string
+// Hàm lọc sách theo từ khóa và danh mục
+const getFilteredBooks = async (req, res) => {
+    const { q, category } = req.query;
     try {
-        const books = await Book.find({
-            Title: { $regex: query, $options: "i" }, // Tìm kiếm không phân biệt hoa thường
-            Deleted: false
-        }).select("Title Authors _id"); // Chỉ lấy các trường cần thiết để hiển thị
-        
-        // Đảm bảo gán giá trị mặc định cho Author nếu nó không tồn tại
-        const booksWithDefaultAuthor = books.map(book => ({
-            ...book._doc, // Dùng _doc để lấy dữ liệu thô từ MongoDB
-            Authors: book.Authors || "Unknown Author"
-        }));
-        
-        res.status(200).json(booksWithDefaultAuthor); // Trả về danh sách sách
+        const filter = { Deleted: false };
+        if (q) {
+            filter.Title = { $regex: q, $options: "i" };
+        }
+        if (category) {
+            filter.Category = category;
+        }
+
+        // Chọn các trường cần thiết, bao gồm Author thay vì Authors
+        const books = await Book.find(filter).select("Title Author Category Thumbnail Price");
+        res.status(200).json(books);
     } catch (error) {
-        console.error("Error searching books:", error);
-        res.status(500).json({ message: "An error occurred while searching for books." });
+        console.error("Error filtering books:", error);
+        res.status(500).json({ message: "An error occurred while fetching books." });
     }
 };
-////////////////// click navbar
 
+// Hàm lấy tất cả sách cho trang shop
 const getShopPage = async (req, res) => {
     try {
         const books = await Book.find({ Deleted: false });
@@ -68,9 +66,11 @@ const getShopPage = async (req, res) => {
     }
 };
 
+// Hàm lấy danh sách tác giả
 const getAuthors = async (req, res) => {
     try {
-        const authors = await Book.distinct("Authors", { Deleted: false });
+        // Sử dụng trường Author thay vì Authors
+        const authors = await Book.distinct("Author", { Deleted: false });
         res.status(200).json(authors.map(author => ({ name: author })));
     } catch (error) {
         console.error("Error fetching authors:", error);
@@ -78,9 +78,9 @@ const getAuthors = async (req, res) => {
     }
 };
 
+// Hàm lấy blog (không thay đổi)
 const getBlog = async (req, res) => {
     try {
-        // Replace this with actual blog retrieval logic if needed
         const blogs = [
             { title: "Blog Post 1", content: "Content for blog post 1" },
             { title: "Blog Post 2", content: "Content for blog post 2" }
@@ -92,6 +92,7 @@ const getBlog = async (req, res) => {
     }
 };
 
+// Hàm lấy thông tin liên hệ (không thay đổi)
 const getContact = (req, res) => {
     try {
         const contactInfo = {
@@ -106,15 +107,14 @@ const getContact = (req, res) => {
     }
 };
 
-// top seller
-
+// Hàm lấy danh mục bán chạy nhất
 const getTopCategories = async (req, res) => {
     try {
         const categories = await Book.aggregate([
-            { $match: { Deleted: false } }, // Loại bỏ các sản phẩm đã bị xóa
-            { $group: { _id: "$Category", count: { $sum: 1 } } }, // Đếm số lượng sản phẩm theo Category
-            { $sort: { count: -1 } }, // Sắp xếp theo số lượng sản phẩm giảm dần
-            { $limit: 6 } // Lấy 6 loại Category có nhiều sản phẩm nhất
+            { $match: { Deleted: false } },
+            { $group: { _id: "$Category", count: { $sum: 1 } } },
+            { $sort: { count: -1 } },
+            { $limit: 6 }
         ]);
         res.status(200).json(categories);
     } catch (error) {
@@ -123,16 +123,19 @@ const getTopCategories = async (req, res) => {
     }
 };
 
-
-// end top seller
-
 module.exports = {
     getCategories,
     getBooksByCategory,
-    searchBooks,
+    getFilteredBooks,
     getShopPage,
     getAuthors,
     getBlog,
     getContact,
     getTopCategories,
 };
+
+
+
+
+
+// 123456

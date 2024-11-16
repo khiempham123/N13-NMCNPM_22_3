@@ -1,158 +1,179 @@
 const API_BASE_URL = "http://localhost:3000";
-const categoriesDropdown = document.getElementById("categories-dropdown");
 
-// Hàm fetch categories từ API và hiển thị trong dropdown
-async function fetchAndDisplayCategoriesInDropdown() {
+// DOM elements
+const searchInput = document.querySelector(".form-control[type='search']");
+const categoriesDropdown = document.getElementById("categories-dropdown"); // Dropdown danh mục
+const resultsContainer = document.getElementById("results-container");
+const loadingIndicator = document.getElementById("loading"); // Phần tử loading (nếu bạn thêm vào HTML)
+
+// Hàm fetch danh sách sách theo danh mục và từ khóa
+async function fetchAndDisplayFilteredBooks(category) {
+    const query = searchInput.value.trim();
+
+    // Tạo URL với query string
+    const params = new URLSearchParams();
+    if (query) params.append("q", query);
+    if (category) params.append("category", category);
+
     try {
+        // Hiển thị loading
+        if (loadingIndicator) {
+            loadingIndicator.style.display = 'block';
+        }
+
+        const response = await fetch(`${API_BASE_URL}/search?${params.toString()}`);
+        if (!response.ok) {
+            throw new Error("Failed to fetch books");
+        }
+        const books = await response.json();
+
+        // Ẩn loading
+        if (loadingIndicator) {
+            loadingIndicator.style.display = 'none';
+        }
+
+        // Hiển thị kết quả
+        displaySearchResults(books);
+    } catch (error) {
+        console.error("Error fetching filtered books:", error);
+        if (loadingIndicator) {
+            loadingIndicator.style.display = 'none';
+        }
+        resultsContainer.innerHTML = `<p style="color: red;">Error fetching results. Please try again later.</p>`;
+    }
+}
+
+// Hàm hiển thị kết quả
+function displaySearchResults(books) {
+    resultsContainer.innerHTML = ""; // Clear previous content
+
+    if (books.length === 0) {
+        resultsContainer.classList.add('empty'); // Thêm class 'empty' nếu không có kết quả
+        resultsContainer.innerHTML = `<p>No books found matching your criteria.</p>`; // Nội dung thông báo
+        hideSearchResults();
+        return;
+    } else {
+        resultsContainer.classList.remove('empty'); // Loại bỏ class 'empty' nếu có kết quả
+    }
+
+    // Tạo một container cho các kết quả
+    const resultsList = document.createElement("div");
+    resultsList.classList.add("search-results-list");
+
+    books.forEach((book) => {
+        const bookItem = document.createElement("div");
+        bookItem.className = "search-result-item";
+        bookItem.innerHTML = `
+            <img src="${book.Thumbnail}" alt="${book.Title}" class="book-image">
+            <div class="book-info">
+                <h4>${book.Title}</h4>
+                <p><strong>Author:</strong> ${book.Author || "Unknown"}</p>
+                <p class="book-price"><i class="fa-solid fa-dollar-sign"></i>${book.Price.toFixed(2)}</p>
+            </div>
+        `;
+        resultsList.appendChild(bookItem);
+    });
+
+    resultsContainer.appendChild(resultsList);
+
+    // Hiển thị kết quả tìm kiếm
+    showSearchResults();
+}
+
+
+
+// Hàm fetch danh mục từ API và hiển thị trong dropdown
+async function fetchCategories() {
+    try {
+        // Gọi API để lấy danh sách các danh mục
         const response = await fetch(`${API_BASE_URL}/categories`);
+        if (!response.ok) {
+            throw new Error("Failed to fetch categories");
+        }
         const categories = await response.json();
 
-        // Xóa nội dung hiện tại
-        categoriesDropdown.innerHTML = "";
+        // Làm trống dropdown trước khi thêm danh mục mới
+        categoriesDropdown.innerHTML = ""; 
 
-        // Render từng category vào dropdown
-        categories.forEach(category => {
+        // Thêm mục "Tất cả" để không lọc theo danh mục
+        const allItem = document.createElement("li");
+        allItem.innerHTML = `
+            <a class="dropdown-item" href="#" data-category="">
+                All Category
+            </a>
+        `;
+        categoriesDropdown.appendChild(allItem);
+
+        // Render từng danh mục vào dropdown
+        categories.forEach((category) => {
             const categoryItem = document.createElement("li");
             categoryItem.innerHTML = `
-                <a class="dropdown-item d-flex align-items-center" href="../category/category.html?category=${category.name}">
-                    <i class="fa-regular fa-circle-user me-2" style="width: 25px;"></i>
-                    <span>${category.name}</span>
+                <a class="dropdown-item" href="#" data-category="${category.name}">
+                    ${category.name}
                 </a>
             `;
             categoriesDropdown.appendChild(categoryItem);
-        
-            if (category !== categories[categories.length - 1]) {
-                const divider = document.createElement("li");
-                divider.innerHTML = '<hr class="dropdown-divider">';
-                categoriesDropdown.appendChild(divider);
-            }
         });
-        
     } catch (error) {
         console.error("Error fetching categories:", error);
     }
 }
 
-// Gọi hàm fetch khi trang đã sẵn sàng
-document.addEventListener("DOMContentLoaded", fetchAndDisplayCategoriesInDropdown);
-
-
-
-// Chức năng Search
-const searchInput = document.querySelector(".form-control[type='search']");
-const searchButton = document.querySelector(".input-group-text");
-const searchResultsContainer = document.createElement("ul");
-
-// Append the search results container
-searchInput.parentElement.appendChild(searchResultsContainer);
-
-// Set up initial styles for the dropdown container
-searchResultsContainer.style.position = "absolute";
-searchResultsContainer.style.background = "#fff";
-searchResultsContainer.style.boxShadow = "0 4px 6px rgba(0, 0, 0, 0.1)";
-searchResultsContainer.style.border = "1px solid #ddd";
-searchResultsContainer.style.borderRadius = "0 0 5px 5px";
-searchResultsContainer.style.listStyle = "none";
-searchResultsContainer.style.padding = "0";
-searchResultsContainer.style.margin = "0";
-searchResultsContainer.style.zIndex = "1000";
-searchResultsContainer.style.display = "none"; // Hidden by default
-
-/**
- * Update the dropdown position to align with the search input.
- */
-function updateDropdownPosition() {
-    const rect = searchInput.getBoundingClientRect();
-    const scrollY = window.scrollY;
-    const scrollX = window.scrollX;
-
-    searchResultsContainer.style.top = `${rect.bottom + scrollY}px`;
-    searchResultsContainer.style.left = `${rect.left + scrollX}px`;
-    searchResultsContainer.style.width = `${rect.width}px`;
-    searchResultsContainer.style.position = "absolute";
-}
-
-/**
- * Fetch books and display results in dropdown.
- */
-async function fetchAndDisplaySearchResults() {
-    const query = searchInput.value.trim();
-
-    if (query.length === 0) {
-        searchResultsContainer.innerHTML = "";
-        searchResultsContainer.style.display = "none";
-        return;
-    }
-
-    try {
-        const response = await fetch(`${API_BASE_URL}/search?q=${query}`);
-        const books = await response.json();
-        searchResultsContainer.innerHTML = "";
-
-        if (books.length === 0) {
-            searchResultsContainer.innerHTML = "<li style='padding: 10px;'>No results found</li>";
-            searchResultsContainer.style.display = "block";
-            updateDropdownPosition();
-            return;
-        }
-
-        books.forEach((book) => {
-            const bookItem = document.createElement("li");
-            bookItem.style.padding = "10px";
-            bookItem.style.cursor = "pointer";
-            bookItem.style.borderBottom = "1px solid #ddd";
-            bookItem.innerHTML = `
-                <a href="../book/detail.html?id=${book._id}" style="text-decoration: none; color: black;">
-                    <strong>${book.Title}</strong> - <em>${book.Authors && book.Authors.trim() ? book.Authors : "Unknown Author"}</em>
-
-                </a>
-            `;
-            searchResultsContainer.appendChild(bookItem);
+// Lắng nghe sự kiện click vào dropdown để chọn danh mục
+categoriesDropdown.addEventListener("click", (event) => {
+    event.preventDefault();
+    const categoryElement = event.target.closest("a"); // Xác định phần tử <a> trong dropdown
+    if (categoryElement) {
+        const category = categoryElement.getAttribute("data-category"); // Lấy giá trị category từ data-category
+        // Cập nhật UI để đánh dấu danh mục đang chọn
+        document.querySelectorAll("#categories-dropdown .dropdown-item").forEach(item => {
+            item.classList.remove("active-category");
         });
-
-        // Điều chỉnh max-height nếu số lượng kết quả > 5
-        if (books.length > 5) {
-            searchResultsContainer.style.maxHeight = "300px"; // Giới hạn chiều cao
-            searchResultsContainer.style.overflowY = "auto"; // Bật thanh cuộn dọc
-        } else {
-            searchResultsContainer.style.maxHeight = ""; // Không giới hạn chiều cao
-            searchResultsContainer.style.overflowY = "hidden"; // Ẩn thanh cuộn
-        }
-
-        searchResultsContainer.style.display = "block";
-        updateDropdownPosition();
-    } catch (error) {
-        console.error("Error searching books:", error);
-        searchResultsContainer.innerHTML = `
-            <li style="color: red; padding: 10px;">Error fetching results. Please try again later.</li>
-        `;
-        searchResultsContainer.style.display = "block";
-    }
-}
-
-// Event listener for search input to trigger search
-searchInput.addEventListener("input", fetchAndDisplaySearchResults);
-
-// Event listener for the search button to trigger search
-searchButton.addEventListener("click", fetchAndDisplaySearchResults);
-
-// Event listener to hide dropdown when clicking outside
-document.addEventListener("click", (event) => {
-    if (!searchInput.contains(event.target) && !searchResultsContainer.contains(event.target)) {
-        searchResultsContainer.innerHTML = "";
-        searchResultsContainer.style.display = "none";
+        categoryElement.classList.add("active-category");
+        fetchAndDisplayFilteredBooks(category); // Gọi API với danh mục đã chọn
     }
 });
 
-// Event listeners to update dropdown position on resize or scroll
-window.addEventListener("resize", updateDropdownPosition);
-window.addEventListener("scroll", updateDropdownPosition);
+// Gọi API khi người dùng nhập tìm kiếm
+searchInput.addEventListener("input", () => {
+    const activeCategory = categoriesDropdown.querySelector(".active-category"); // Lấy danh mục đang được chọn
+    const category = activeCategory
+        ? activeCategory.getAttribute("data-category")
+        : ""; // Nếu không có danh mục chọn, để trống
+    fetchAndDisplayFilteredBooks(category); // Gọi API với category hiện tại
+});
+
+// Hàm ẩn kết quả tìm kiếm
+function hideSearchResults() {
+    const resultsContainer = document.getElementById('results-container');
+    resultsContainer.classList.remove('show'); // Loại bỏ lớp 'show' để ẩn kết quả
+}
+
+// Hàm hiển thị kết quả tìm kiếm
+function showSearchResults() {
+    const resultsContainer = document.getElementById('results-container');
+    resultsContainer.classList.add('show'); // Thêm lớp show để hiển thị kết quả với hiệu ứng
+}
+
+// Lắng nghe sự kiện click trên toàn bộ tài liệu
+document.addEventListener('click', (event) => {
+    const searchContainer = document.querySelector('.form-control');
+    const resultsContainer = document.getElementById('results-container');
+
+    // Nếu click không nằm trong search-container hoặc results-container, ẩn kết quả
+    if (!searchContainer.contains(event.target) && !resultsContainer.contains(event.target)) {
+        hideSearchResults();
+    }
+});
 
 
-//countdown
-// Hàm thiết lập đếm ngược
+// end search
+
+// Hàm thiết lập đếm ngược (countdown)
 function startCountdown(durationInSeconds) {
     const countdownElement = document.getElementById('countdown');
+    if (!countdownElement) return; // Nếu không có phần tử countdown, không làm gì cả
+
     let remainingTime = durationInSeconds;
 
     function updateTimer() {
@@ -182,12 +203,7 @@ function startCountdown(durationInSeconds) {
 // Bắt đầu đếm ngược với 24 giờ (24 * 60 * 60 giây)
 startCountdown(24 * 60 * 60);
 
-//end
-
-
-
-/// click nav
-
+// Lắng nghe sự kiện click trên các liên kết navbar
 const navLinks = document.querySelectorAll(".navbar-nav .nav-link");
 
 navLinks.forEach(link => {
@@ -217,9 +233,7 @@ navLinks.forEach(link => {
     });
 });
 
-
-
-// top seller
+// Xử lý top category để điều hướng đến trang category
 async function fetchTopCategories() {
     try {
         const response = await fetch(`${API_BASE_URL}/top-categories`);
@@ -230,6 +244,8 @@ async function fetchTopCategories() {
 
         // Render categories to the existing divs
         const container = document.querySelector('.container');
+        if (!container) return; // Nếu không có container, không làm gì cả
+
         const divs = container.querySelectorAll('.topseller-item');
 
         categories.forEach((category, index) => {
@@ -240,10 +256,17 @@ async function fetchTopCategories() {
 
                 // Add a caption for the category
                 const caption = link.querySelector('.product-caption');
-                caption.innerHTML = `
-                    <div class="caption-title"><span>${category._id}</span></div>
-                    <div class="caption-total"><span>${category.count} products</span></div>
-                `;
+                if (caption) {
+                    caption.innerHTML = `
+                        <div class="caption-title"><span>${category._id}</span></div>
+                        <div class="caption-total"><span>${category.count} products</span></div>
+                    `;
+                }
+
+                // Lắng nghe sự kiện click để chuyển hướng
+                link.addEventListener("click", () => {
+                    window.location.href = `../category/category.html?category=${category._id}`;
+                });
             }
         });
     } catch (error) {
@@ -252,5 +275,21 @@ async function fetchTopCategories() {
 }
 
 // Call the function when the page loads
-document.addEventListener('DOMContentLoaded', fetchTopCategories);
-// end top seller
+document.addEventListener('DOMContentLoaded', async () => {
+    await fetchCategories(); // Tải danh mục
+
+    // Chọn mục "Tất cả" mặc định
+    const allCategory = categoriesDropdown.querySelector('.dropdown-item[data-category=""]');
+    if (allCategory) {
+        allCategory.classList.add('active-category');
+    }
+
+    // fetchAndDisplayFilteredBooks(); // Hiển thị tất cả sách mặc định
+
+    fetchTopCategories(); // Tải và hiển thị top categories
+});
+
+
+
+
+// 123456
