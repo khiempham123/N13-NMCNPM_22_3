@@ -123,6 +123,69 @@ const getTopCategories = async (req, res) => {
     }
 };
 
+
+// start deals of the week
+
+const Discount = require("../../models/discounts.js");
+// 123
+// Function to get Deals of the Week
+const getDealsOfTheWeek = async (req, res) => {
+    try {
+        const currentDate = new Date();
+
+        const deals = await Discount.find({
+            dealActive: true,
+            $expr: {
+                $and: [
+                    { $lte: [{ $toDate: "$startDate" }, currentDate] },
+                    { $gte: [{ $toDate: "$endDate" }, currentDate] }
+                ]
+            }
+        })
+        .populate({
+            path: 'bookId',
+            select: 'Title Author Thumbnail' 
+        })
+        .sort({ dealRank: 1 }) 
+        .limit(4);
+
+        if (!deals || deals.length === 0) {
+            return res.status(404).json({ message: "No active deals found for the week." });
+        }
+
+        const dealsResponse = deals.map(deal => {
+            if (!deal.bookId) {
+                console.warn(`Book not found for deal ID: ${deal._id}`);
+                return null;
+            }
+
+            return {
+                _id: deal.bookId._id,
+                title: deal.bookId.Title,
+                author: deal.bookId.Author, 
+                thumbnail: deal.bookId.Thumbnail, 
+                discountPrice: deal.discountPrice,
+                originalPrice: deal.originalPrice,
+                soldCount: deal.soldCount,
+                maxQuantity: deal.maxQuantity,
+                dealDescription: deal.dealDescription,
+                endDate: deal.endDate
+            };
+        }).filter(deal => deal !== null); 
+
+        res.status(200).json(dealsResponse);
+    } catch (error) {
+        console.error("Error fetching deals of the week:", error);
+        res.status(500).json({ message: "An error occurred while fetching deals of the week." });
+    }
+};
+
+
+
+
+// end deals of the week
+
+
 module.exports = {
     getCategories,
     getBooksByCategory,
@@ -132,6 +195,7 @@ module.exports = {
     getBlog,
     getContact,
     getTopCategories,
+    getDealsOfTheWeek,
 };
 
 

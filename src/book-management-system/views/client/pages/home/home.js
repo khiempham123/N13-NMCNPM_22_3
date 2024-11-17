@@ -175,39 +175,6 @@ document.addEventListener('click', (event) => {
 
 // end search
 
-// Hàm thiết lập đếm ngược (countdown)
-function startCountdown(durationInSeconds) {
-    const countdownElement = document.getElementById('countdown');
-    if (!countdownElement) return; // Nếu không có phần tử countdown, không làm gì cả
-
-    let remainingTime = durationInSeconds;
-
-    function updateTimer() {
-        const hours = Math.floor(remainingTime / 3600);
-        const minutes = Math.floor((remainingTime % 3600) / 60);
-        const seconds = remainingTime % 60;
-
-        // Hiển thị dạng HH:MM:SS
-        countdownElement.textContent = `${hours.toString().padStart(2, '0')}:${minutes
-            .toString()
-            .padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
-
-        // Giảm thời gian còn lại và dừng khi hết giờ
-        if (remainingTime > 0) {
-            remainingTime--;
-        } else {
-            clearInterval(timerInterval);
-            countdownElement.textContent = "00:00:00"; // Hết giờ
-        }
-    }
-
-    // Gọi hàm cập nhật mỗi giây
-    updateTimer();
-    const timerInterval = setInterval(updateTimer, 1000);
-}
-
-// Bắt đầu đếm ngược với 24 giờ (24 * 60 * 60 giây)
-startCountdown(24 * 60 * 60);
 
 // Lắng nghe sự kiện click trên các liên kết navbar
 const navLinks = document.querySelectorAll(".navbar-nav .nav-link");
@@ -299,3 +266,164 @@ document.addEventListener('DOMContentLoaded', async () => {
 
 
 // 123456
+
+// 123456
+
+// start deals of the week
+
+document.addEventListener("DOMContentLoaded", function () {
+    const dealsContainer = document.getElementById('deals-of-the-week');
+    const countdownDisplay = document.getElementById('countdown');
+
+    // Hàm fetch dữ liệu từ API
+    fetch(`${API_BASE_URL}/deals-of-the-week`)
+        .then(response => response.json())
+        .then(data => {
+            // Nếu không có deals
+            if (data.length === 0) {
+                dealsContainer.innerHTML = '<p>No deals available this week.</p>';
+                countdownDisplay.textContent = '00:00:00:00';
+                return;
+            }
+
+            // Hiển thị countdown theo ngày kết thúc của deals
+            const endDates = data.map(deal => new Date(deal.endDate));
+            const earliestEndDate = new Date(Math.min(...endDates));
+            startCountdown(earliestEndDate, countdownDisplay);
+
+            // Render danh sách deals
+            for (let i = 0; i < data.length; i += 2) {
+                const row = document.createElement('div');
+                row.style.display = 'flex'; // Tạo dòng chứa 2 deals
+                row.style.justifyContent = 'space-between';
+
+                const dealPair = data.slice(i, i + 2); // Lấy 2 deals mỗi dòng
+                dealPair.forEach((deal, index) => {
+                    // Tạo deal-item
+                    const dealItem = document.createElement('div');
+                    dealItem.classList.add('deal-item');
+                    dealItem.style.cursor = 'pointer'; // Thay đổi con trỏ thành tay chỉ
+                    dealItem.setAttribute('data-id', deal._id); // Gắn ID của sách vào data-id
+
+                    // Thêm event click để chuyển hướng đến trang chi tiết
+                    dealItem.addEventListener('click', function () {
+                        console.log(deal._id)
+                        window.location.href = `../detail/detail.html?id=${deal._id}`;
+                    });
+
+                    // Tạo phần ảnh sách
+                    const img = document.createElement('img');
+                    img.src = deal.thumbnail;
+                    img.alt = deal.dealDescription || `Book cover of ${deal.title}`;
+                    dealItem.appendChild(img);
+
+                    // Tạo thông tin deal
+                    const dealInfo = document.createElement('div');
+                    dealInfo.classList.add('deal-info');
+
+                    // Tên sách
+                    const title = document.createElement('h2');
+                    title.textContent = deal.title;
+                    dealInfo.appendChild(title);
+
+                    // Tác giả
+                    const author = document.createElement('p');
+                    author.textContent = deal.author;
+                    dealInfo.appendChild(author);
+
+                    // Giá cả
+                    const price = document.createElement('p');
+                    price.classList.add('price');
+                    price.innerHTML = `
+                        <i class="fa-solid fa-dollar-sign"></i>${deal.discountPrice.toFixed(2)}
+                        <span class="old-price"><i class="fa-solid fa-dollar-sign"></i>${deal.originalPrice.toFixed(2)}</span>
+                    `;
+                    dealInfo.appendChild(price);
+
+                    // Số lượng đã bán
+                    const sold = document.createElement('p');
+                    sold.classList.add('sold');
+                    sold.textContent = `Already sold: ${deal.soldCount}/${deal.maxQuantity}`;
+                    dealInfo.appendChild(sold);
+
+                    // Thanh tiến độ
+                    const progress = document.createElement('div');
+                    progress.classList.add('progress');
+                    const progressBar = document.createElement('div');
+                    progressBar.classList.add('progress-bar');
+                    progressBar.style.width = `${(deal.soldCount / deal.maxQuantity) * 100}%`;
+                    progress.appendChild(progressBar);
+                    progressBar.style.backgroundColor = '#FF4500';
+                    dealInfo.appendChild(progress);
+
+                    // Gắn deal-info vào deal-item
+                    dealItem.appendChild(dealInfo);
+
+                    // Nếu là deal đầu tiên và có 2 deals, thêm divider dọc
+                    if (index === 0 && dealPair.length > 1) {
+                        const divider = document.createElement('div');
+                        divider.style.width = '1px';
+                        divider.style.backgroundColor = '#b3b3b3';
+                        divider.style.marginLeft = '20px';
+                        divider.style.marginRight = '20px';
+                        dealItem.appendChild(divider);
+                    }
+
+                    // Thêm deal-item vào row
+                    row.appendChild(dealItem);
+                });
+
+                // Thêm row vào container
+                dealsContainer.appendChild(row);
+
+                // Divider ngang giữa các dòng
+                if (i + 2 < data.length) {
+                    const horizontalDivider = document.createElement('div');
+                    horizontalDivider.style.borderBottom = '1px solid #FF4500';
+                    horizontalDivider.style.marginBottom = '20px';
+                    dealsContainer.appendChild(horizontalDivider);
+                }
+            }
+        })
+        .catch(error => {
+            console.error('Error fetching deals:', error);
+            dealsContainer.innerHTML = '<p>Error loading deals. Please try again later.</p>';
+            countdownDisplay.textContent = '00:00:00:00';
+        });
+
+    /**
+     * Hàm khởi động countdown timer
+     * @param {Date} endDate - Ngày kết thúc của deal
+     * @param {HTMLElement} display - Phần tử hiển thị countdown
+     */
+    function startCountdown(endDate, display) {
+        function updateCountdown() {
+            const now = new Date().getTime();
+            const distance = endDate.getTime() - now;
+
+            if (distance < 0) {
+                clearInterval(interval);
+                display.textContent = '00:00:00:00';
+                return;
+            }
+
+            const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+            display.textContent =
+                `${String(days).padStart(2, '0')}:` +
+                `${String(hours).padStart(2, '0')}:` +
+                `${String(minutes).padStart(2, '0')}:` +
+                `${String(seconds).padStart(2, '0')}`;
+        }
+
+        // Cập nhật ngay lập tức
+        updateCountdown();
+
+        // Cập nhật mỗi giây
+        const interval = setInterval(updateCountdown, 1000);
+    }
+});
+// end deals of the week

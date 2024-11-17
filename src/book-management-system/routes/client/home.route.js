@@ -15,6 +15,15 @@ router.get("/contact", controller.getContact);
 
 // top category
 router.get('/top-categories', controller.getTopCategories);
+
+// start deals of the week
+
+router.get('/deals-of-the-week', controller.getDealsOfTheWeek);
+
+// end deals of the week
+
+
+
 module.exports= router;
 
 
