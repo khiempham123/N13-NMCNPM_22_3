@@ -1,17 +1,17 @@
 const mongoose = require("mongoose");
 
 const bookSchema = new mongoose.Schema({
-    Title: { type: String, required: true },
-    Author: { type: String, required: true },
-    Description: { type: String },
-    Category: { type: String },
-    Publisher: { type: String },
-    'Publish Date': { type: Date },
-    Price: { type: Number, required: true },
-    Stock: { type: Number, required: true },
-    Deleted: { type: Boolean, default: false },
-    best_seller: { type: Boolean, default: false },
-    Thumbnail: { type: String }
+    title: { type: String, required: true },
+    author: { type: String, required: true },
+    description: { type: String },
+    category: { type: String },
+    publisher: { type: String },
+    publishDate: { type: String },
+    price: { type: Number, required: true },
+    stock: { type: Number, required: true },
+    deleted: { type: Boolean, default: false },
+    bestSeller: { type: Boolean, default: false },
+    thumbnail: { type: String }
 }, { timestamps: true });
 
 module.exports = mongoose.model("Book", bookSchema);

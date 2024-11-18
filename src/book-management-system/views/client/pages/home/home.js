@@ -67,11 +67,11 @@ function displaySearchResults(books) {
         // Tạo liên kết đến trang chi tiết sản phẩm, giả sử trang chi tiết là 'detail.html?id=BOOK_ID'
         bookItem.innerHTML = `
             <a href="../detail/detail.html?id=${book._id}" class="book-link">
-                <img src="${book.Thumbnail}" alt="${book.Title}" class="book-image">
+                <img src="${book.thumbnail}" alt="${book.title}" class="book-image">
                 <div class="book-info">
-                    <h4>${book.Title}</h4>
-                    <p><strong>Author:</strong> ${book.Author || "Unknown"}</p>
-                    <p class="book-price"><i class="fa-solid fa-dollar-sign"></i>${book.Price.toFixed(2)}</p>
+                    <h4>${book.title}</h4>
+                    <p><strong>Author:</strong> ${book.author || "Unknown"}</p>
+                    <p class="book-price"><i class="fa-solid fa-dollar-sign"></i>${book.price.toFixed(2)}</p>
                 </div>
             </a>
         `;

@@ -15,10 +15,10 @@ async function fetchAndDisplayBooksByCategory() {
             const bookItem = document.createElement("div");
             bookItem.classList.add("book-item");
             bookItem.innerHTML = `
-                <h3>${book.Title}</h3>
-                <p>${book.Description}</p>
-                <p><strong>Price:</strong> $${book.Price}</p>
-                <img src="${book.Thumbnail}" alt="${book.Title}" style="width: 100px; height: auto;">
+                <h3>${book.title}</h3>
+                <p>${book.description}</p>
+                <p><strong>Price:</strong> $${book.price}</p>
+                <img src="${book.thumbnail}" alt="${book.title}" style="width: 100px; height: auto;">
             `;
             booksContainer.appendChild(bookItem);
         });

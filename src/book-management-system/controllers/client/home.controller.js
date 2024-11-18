@@ -1,12 +1,14 @@
 const Book = require("../../models/books.js");
+const Discount = require("../../models/discounts.js");
+const mongoose = require("mongoose");
 
 // Hàm lấy danh sách các danh mục sách
 const getCategories = async (req, res) => {
     try {
         const categories = await Book.aggregate([
-            { $match: { Deleted: false } },
-            { $group: { _id: "$Category", productCount: { $sum: 1 } } },
-            { 
+            { $match: { deleted: false } },
+            { $group: { _id: "$category", productCount: { $sum: 1 } } },
+            {
                 $project: {
                     id: "$_id",
                     name: "$_id",
@@ -26,7 +28,7 @@ const getCategories = async (req, res) => {
 const getBooksByCategory = async (req, res) => {
     const category = req.params.category;
     try {
-        const books = await Book.find({ Category: category, Deleted: false });
+        const books = await Book.find({ category, deleted: false });
         res.status(200).json(books);
     } catch (error) {
         console.error("Error fetching books by category:", error);
@@ -38,16 +40,15 @@ const getBooksByCategory = async (req, res) => {
 const getFilteredBooks = async (req, res) => {
     const { q, category } = req.query;
     try {
-        const filter = { Deleted: false };
+        const filter = { deleted: false };
         if (q) {
-            filter.Title = { $regex: q, $options: "i" };
+            filter.title = { $regex: q, $options: "i" };
         }
         if (category) {
-            filter.Category = category;
+            filter.category = category;
         }
 
-        // Chọn các trường cần thiết, bao gồm Author thay vì Authors
-        const books = await Book.find(filter).select("Title Author Category Thumbnail Price _id");
+        const books = await Book.find(filter).select("title author category thumbnail price _id");
         res.status(200).json(books);
     } catch (error) {
         console.error("Error filtering books:", error);
@@ -58,7 +59,7 @@ const getFilteredBooks = async (req, res) => {
 // Hàm lấy tất cả sách cho trang shop
 const getShopPage = async (req, res) => {
     try {
-        const books = await Book.find({ Deleted: false });
+        const books = await Book.find({ deleted: false });
         res.status(200).json(books);
     } catch (error) {
         console.error("Error fetching books for shop page:", error);
@@ -69,8 +70,7 @@ const getShopPage = async (req, res) => {
 // Hàm lấy danh sách tác giả
 const getAuthors = async (req, res) => {
     try {
-        // Sử dụng trường Author thay vì Authors
-        const authors = await Book.distinct("Author", { Deleted: false });
+        const authors = await Book.distinct("author", { deleted: false });
         res.status(200).json(authors.map(author => ({ name: author })));
     } catch (error) {
         console.error("Error fetching authors:", error);
@@ -78,7 +78,7 @@ const getAuthors = async (req, res) => {
     }
 };
 
-// Hàm lấy blog (không thay đổi)
+// Hàm lấy blog
 const getBlog = async (req, res) => {
     try {
         const blogs = [
@@ -92,7 +92,7 @@ const getBlog = async (req, res) => {
     }
 };
 
-// Hàm lấy thông tin liên hệ (không thay đổi)
+// Hàm lấy thông tin liên hệ
 const getContact = (req, res) => {
     try {
         const contactInfo = {
@@ -111,8 +111,8 @@ const getContact = (req, res) => {
 const getTopCategories = async (req, res) => {
     try {
         const categories = await Book.aggregate([
-            { $match: { Deleted: false } },
-            { $group: { _id: "$Category", count: { $sum: 1 } } },
+            { $match: { deleted: false } },
+            { $group: { _id: "$category", count: { $sum: 1 } } },
             { $sort: { count: -1 } },
             { $limit: 6 }
         ]);
@@ -123,12 +123,7 @@ const getTopCategories = async (req, res) => {
     }
 };
 
-
-// start deals of the week
-
-const Discount = require("../../models/discounts.js");
-// 123
-// Function to get Deals of the Week
+// Hàm lấy các khuyến mãi trong tuần
 const getDealsOfTheWeek = async (req, res) => {
     try {
         const currentDate = new Date();
@@ -144,9 +139,9 @@ const getDealsOfTheWeek = async (req, res) => {
         })
         .populate({
             path: 'bookId',
-            select: 'Title Author Thumbnail' 
+            select: 'title author thumbnail' 
         })
-        .sort({ dealRank: 1 }) 
+        .sort({ dealRank: 1 })
         .limit(4);
 
         if (!deals || deals.length === 0) {
@@ -161,9 +156,9 @@ const getDealsOfTheWeek = async (req, res) => {
 
             return {
                 _id: deal.bookId._id,
-                title: deal.bookId.Title,
-                author: deal.bookId.Author, 
-                thumbnail: deal.bookId.Thumbnail, 
+                title: deal.bookId.title,
+                author: deal.bookId.author,
+                thumbnail: deal.bookId.thumbnail,
                 discountPrice: deal.discountPrice,
                 originalPrice: deal.originalPrice,
                 soldCount: deal.soldCount,
@@ -171,7 +166,7 @@ const getDealsOfTheWeek = async (req, res) => {
                 dealDescription: deal.dealDescription,
                 endDate: deal.endDate
             };
-        }).filter(deal => deal !== null); 
+        }).filter(deal => deal !== null);
 
         res.status(200).json(dealsResponse);
     } catch (error) {
@@ -181,9 +176,6 @@ const getDealsOfTheWeek = async (req, res) => {
 };
 
 
-
-
-// end deals of the week
 
 
 module.exports = {
@@ -197,9 +189,3 @@ module.exports = {
     getTopCategories,
     getDealsOfTheWeek,
 };
-
-
-
-
-
-// 123456

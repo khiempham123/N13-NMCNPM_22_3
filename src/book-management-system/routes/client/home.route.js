@@ -23,7 +23,6 @@ router.get('/deals-of-the-week', controller.getDealsOfTheWeek);
 // end deals of the week
 
 
-
 module.exports= router;
 
 
