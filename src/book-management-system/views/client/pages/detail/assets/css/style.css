@@ -317,66 +317,196 @@
   color: #8f8f8f;
 }
 
+.section-three .content .form-review-container #formReview .rating {
+  margin: 10px 0;
+}
+
+.section-three .content .form-review-container #formReview label {
+  font-weight: 600;
+  color: black;
+}
+
+.section-three .content .form-review-container #formReview .rating {
+  display: inline;
+  margin: 0 10px;
+}
+
+.section-three .content .form-review-container #formReview .rating .star {
+  font-weight: bold;
+  font-size: 20px;
+  color: gray;
+  cursor: pointer;
+}
+
+.section-three .content .form-review-container .form-text {
+  width: 100%;
+  aspect-ratio: 3 / 1;
+  margin: 10px 0;
+  padding: 24px 21px;
+  border-radius: 10px;
+  font-size: 15x;
+  border: 1.5px solid #e0e0e0;
+  box-shadow: 0px 0px 2px 2px rgba(0, 0, 0, 0.1);
+}
+
+.section-three .content .form-review-container .form-text::placeholder {
+  font-size: 15px;
+}
+
+.section-three .content .form-review-container .form {
+  width: 100%;
+  margin: 10px 0;
+  padding: 12px 22px;
+  border-radius: 25px;
+  font-size: 16x;
+  border: 1.5px solid #e0e0e0;
+  box-shadow: 0px 0px 2px 2px rgba(0, 0, 0, 0.1);
+}
+
+.section-three .content .form-review-container .checkbox {
+  margin: 10px 0;
+  color: #8f8f8f;
+}
+
+.section-three .content .form-review-container button {
+  padding: 10px 25px;
+  margin-top: 10px;
+  background: var(--color-one);
+  color: white;
+  border: 2px solid var(--color-one);
+  border-radius: 45px;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.3s ease;
+  display: block;
+}
+
+.section-three .content .form-review-container button:hover {
+  background: white;
+  color: var(--color-one);
+}
+
 /* End Section 3 */
 
 /* Section 4 */
 .section-four {
-  padding: 30px 0;
-  margin: 20px 0;
+  /* background-color: #cfe2d6; */
+  background: linear-gradient(90deg, #cfe2d6, #f6d8df);
 }
 
-.section-four .inner-head .inner-title {
+.section-four .inner-image .box-image {
+  padding: 50px 10px;
+}
+
+.section-four .inner-image .box-image img {
+  width: 100%;
+  height: auto;
+  object-fit: cover;
+  border-radius: 15px;
+  border: 10px solid white;
+  box-shadow: 0px 10px 30px -5px rgba(0, 0, 0, 0.25);
+}
+
+.section-four .inner-content {
+  padding: 50px 10px;
+  display: flex;
+  flex-direction: column; /* Sắp xếp các phần tử theo cột */
+  justify-content: space-between; /* Phân phối đều khoảng cách giữa các phần tử */
+  height: 100%; /* Đảm bảo box có chiều cao đầy đủ */
+  /* padding: 20px; Thêm khoảng cách nội bộ cho box */
+  box-sizing: border-box; /* Bao gồm padding trong chiều cao */
+}
+
+.section-four .inner-content p {
+  color: var(--color-one);
+}
+
+.section-four .inner-content .title {
+  font-weight: 600;
+  /* margin: 20px 0; */
+}
+
+.section-four .inner-content .desc {
+  color: #777;
+  /* margin: 20px 0; */
+  text-align: justify;
+}
+
+.section-four .inner-content a {
+  color: black;
+  transition: color 0.3s ease;
+}
+.section-four .inner-content a:hover {
+  color: var(--color-one);
+}
+
+.section-four .inner-content p,
+.section-four .inner-content h1,
+.section-four .inner-content .desc,
+.section-four .inner-content a {
+  margin-bottom: 0px; /* Thêm khoảng cách giữa các phần tử */
+}
+/* End Section 4 */
+
+/* Section 5 */
+.section-five {
+  padding: 30px 0;
+  margin: 50px 0;
+}
+
+.section-five .inner-head .inner-title {
   font-size: 25px;
   font-weight: bold;
   /* margin-bottom: 20px; */
   color: black;
 }
 
-.section-four {
+.section-five {
   color: black;
 }
-.section-four .inner-list .inner-box {
+.section-five .inner-list .inner-box {
   position: relative;
   margin: 20px 0;
 }
 
-.section-four .inner-list .inner-box .inner-image {
+.section-five .inner-list .inner-box .inner-image {
   position: relative;
   width: 100%;
   aspect-ratio: 2/3;
 }
 
-.section-four .inner-list .inner-box .inner-image img {
+.section-five .inner-list .inner-box .inner-image img {
   width: 100%;
   height: 100%;
   object-fit: cover;
   border-radius: 15px;
 }
 
-.section-four .inner-list .inner-box .inner-content {
+.section-five .inner-list .inner-box .inner-content {
   margin-top: 20px;
 }
 
-.section-four .inner-list .inner-box .inner-content .inner-title {
+.section-five .inner-list .inner-box .inner-content .inner-title {
   font-size: 18px;
   font-weight: bold;
   margin: 5px 0;
 }
 
-.section-four .inner-list .inner-box .inner-content .inner-author {
+.section-five .inner-list .inner-box .inner-content .inner-author {
   font-size: 14px;
   color: #a7a7a7;
   margin: 5px 0;
 }
 
-.section-four .inner-list .inner-box .inner-content .inner-price-new {
+.section-five .inner-list .inner-box .inner-content .inner-price-new {
   font-size: 20px;
   font-weight: bold;
   margin: 5px 0;
   color: var(--color-one);
 }
 
-.section-four .inner-list .inner-box .inner-content .inner-price-old {
+.section-five .inner-list .inner-box .inner-content .inner-price-old {
   font-size: 14px;
   color: #a7a7a7;
   margin: 5px 0;
@@ -384,7 +514,7 @@
   display: inline;
 }
 
-.section-four .inner-list .inner-box .inner-content .inner-discount {
+.section-five .inner-list .inner-box .inner-content .inner-discount {
   background: #fccc4d;
   color: white;
   border-radius: 50%;
@@ -398,7 +528,7 @@
   align-items: center;
 }
 
-.section-four .inner-list .inner-box .inner-image .transaction {
+.section-five .inner-list .inner-box .inner-image .transaction {
   background: white;
   width: 40px;
   height: 40px;
@@ -409,33 +539,33 @@
   transition: background-color 0.3s ease;
 }
 
-.section-four .inner-list .inner-box .inner-image .trans-cart {
+.section-five .inner-list .inner-box .inner-image .trans-cart {
   position: absolute;
   right: 5px;
   bottom: 5%;
 }
 
-.section-four .inner-list .inner-box .inner-image .trans-look {
+.section-five .inner-list .inner-box .inner-image .trans-look {
   position: absolute;
   right: 5px;
   bottom: 17%;
 }
 
-.section-four .inner-list .inner-box .inner-image .trans-love {
+.section-five .inner-list .inner-box .inner-image .trans-love {
   position: absolute;
   right: 5px;
   bottom: 29%;
 }
 
-.section-four .inner-list .inner-box .inner-image .trans-love i {
+.section-five .inner-list .inner-box .inner-image .trans-love i {
   color: red;
 }
 
-.section-four .inner-list .inner-box .inner-image:hover .transaction {
+.section-five .inner-list .inner-box .inner-image:hover .transaction {
   display: flex;
 }
 
-.section-four .inner-list .inner-box .inner-image .transaction:hover {
+.section-five .inner-list .inner-box .inner-image .transaction:hover {
   background: var(--color-one);
 }
 /* End Section 4 */
