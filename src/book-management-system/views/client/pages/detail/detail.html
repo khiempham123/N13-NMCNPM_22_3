@@ -1,0 +1,668 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Detail</title>
+
+    <link rel="stylesheet" href="assets/css/base.css">
+    <link rel="stylesheet" href="assets/css/home.css">
+    <link rel="stylesheet" href="assets/css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css"
+        integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+        crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.7.1.js"></script>
+    <script src="https://code.jquery.com/ui/1.14.0/jquery-ui.js"></script>
+
+<body>
+    <div class="container-fluid">
+        <div class="row headerCustome">
+      <div class="card w-100" style="margin: 0; padding: 0; border: none; border-radius: 0%;">
+        <div class="card-body"
+          style="background: rgb(201,129,161);
+                    background: radial-gradient(circle, rgba(201,129,161,1) 22%, rgba(133,193,189,1) 79%);border-radius: 0%;">
+          <nav class="navbar navbar-expand-lg">
+            <div class="container-fluid">
+              <a class="navbar-brand" href="#"
+                style="margin: 0px 300px 0px 50px; color: #fff; font-size: 30px;">
+                <i class="fa-solid fa-book"></i>
+                Bookory
+              </a>
+              <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+                aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+              </button>
+              <!-- test -->
+              <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav">
+                  <li class="nav-item dropdown custom-link">
+                    <a class="nav-link dropdown-toggle" href="#" role="button"
+                      data-bs-toggle="dropdown" aria-expanded="false" style="color: #fff;">
+                      <i class="fa-solid fa-table-list"></i>
+                      Categories
+                    </a>
+                    <ul class="dropdown-menu" id="categories-dropdown">
+                      <!-- Categories sẽ được thêm vào đây bằng JavaScript -->
+                    </ul>
+                  </li>
+                </ul>
+                <!-- Thanh search -->
+                <div class="input-group" style="width: 60%; position: relative;">
+                  <input class="form-control" type="search" placeholder="Search Product..."
+                    aria-label="Search" style="border-radius: 30px 0 0 30px;">
+                  <span class="input-group-text"
+                    style="border-radius: 0 30px 30px 0; cursor: pointer;">
+                    <i class="fa fa-search"></i>
+                  </span>
+                </div>
+              </div>
+
+
+              <!-- categories -->
+
+              <div style="color: #fff; font-size: 20px;">
+                <a href="https://example.com" style="color: inherit; text-decoration: none;">
+                  <i class="fa-regular fa-user"></i>
+                </a> |
+                <i class="fa-regular fa-heart"></i> |
+                <a href="https://example.com" style="color: inherit; text-decoration: none;">
+                  <i class="fa-solid fa-cart-shopping"></i>
+                </a>
+              </div>
+
+            </div>
+          </nav>
+        </div>
+        <div class="card-footer w-100 "
+          style="height: 70px; background: white; margin: 0; padding: 0; border: none; border-radius: 0%;">
+          <nav class="navbar navbar-expand-lg w-100"
+            style="height: 70px; margin: 0; padding: 0; border: none">
+            <div class="container-fluid text-black">
+              <div class="col-1"></div>
+              <a class="navbar-brand" href="#"
+                style="width:35px; margin: 0px 400px 0px 50px; text-align: center; justify-content: center;">
+                <i class="fa-solid fa-location-dot"></i>
+                <span style="font-size: 15px; text-decoration: underline; font-weight: 500;">Find a
+                  Book Store</span>
+              </a>
+              <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+                aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+              </button>
+              <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav" style="margin-right: 30px;">
+                  <li class="nav-item custom-link">
+                    <a class="nav-link" href="#" aria-expanded="false">
+                      <span class="nav-item">Home</span>
+                    </a>
+                  </li>
+                </ul>
+                <ul class="navbar-nav" style="margin-right: 30px;">
+                  <li class="nav-item custom-link">
+                    <a class="nav-link" href="#" aria-expanded="false">
+                      <span class="nav-item">Book</span>
+                    </a>
+                  </li>
+                </ul>
+                <ul class="navbar-nav" style="margin-right: 30px;">
+                  <li class="nav-item custom-link">
+                    <a class="nav-link" href="#" aria-expanded="false">
+                      <span class="nav-item">Author</span>
+                    </a>
+                  </li>
+                </ul>
+                <ul class="navbar-nav" style="margin-right: 30px;">
+                  <li class="nav-item custom-link">
+                    <a class="nav-link" href="#" aria-expanded="false">
+                      <span class="nav-item">Blog</span>
+                    </a>
+                  </li>
+                </ul>
+                <ul class="navbar-nav" style="margin-right: 30px;">
+                  <li class="nav-item custom-link">
+                    <a class="nav-link" href="#" aria-expanded="false">
+                      <span class="nav-item">Contact</span>
+                    </a>
+                  </li>
+                </ul>
+              </div>
+
+              <div style="margin-right: 200px; color: black;">
+                <i class="fa-solid fa-phone-volume"></i>
+                <span
+                  style="color: orangered; font-size: 20px; font-weight: 500; margin-left: 10px;">+84
+                  0123456789</span>
+              </div>
+            </div>
+          </nav>
+        </div>
+      </div>
+        </div>
+
+        <hr class="horizontal-line" />
+        <!-- Section 1 -->
+        <!-- <div class="section-one">
+          <div class="container">
+            <div class="row">
+              <div class="col-xl-12">
+                <div class="inner-breadcrumb">
+                  <a href="#">HOME</a>
+                  <i class="fa-solid fa-arrow-right"></i>
+                  <a href="#">ACTION & ADVENTURE</a>
+                  <i class="fa-solid fa-arrow-right"></i>
+                  <a href="#">THE GIRL AND THE LAST SLEEPOVER</a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div> -->
+        <!-- End Section 1 -->
+
+        <!-- Section 2 -->
+        <!-- Section 2 -->
+        <div class="section-two">
+          <div class="container">
+            <div class="row">
+              <div class="col-xl-6">
+                <div class="inner-image box">
+                  <img id="book-image" src="" alt="Book Image" />
+                </div>
+              </div>
+              <div class="col-xl-6">
+                <div class="inner-content box">
+                  <div class="inner-title">
+                    <h2 id="book-title">Loading...</h2>
+                  </div>
+                  <div class="inner-info">
+                    <p id="book-author" class="author">Author: </p>
+                    <div class="separator"></div>
+                    <i class="fa-solid fa-star">
+                      <span id="book-rating">0.0</span>
+                    </i>
+                  </div>
+                  <hr class="horizontal-line" />
+                  <div id="book-price" class="inner-price"></div>
+                  <div id="book-desc" class="inner-desc"></div>
+                  <div class="inner-type">
+                    <p>Select Format:</p>
+                    <ul id="book-formats"></ul>
+                    <div class="current-price">
+                      <span id="current-price">$0.00</span>
+                    </div>
+                  </div>
+                  <hr class="horizontal-line" />
+                  <div class="inner-quantity">
+                    <div class="quantity-selector">
+                      <button id="decrease" class="quantity-btn">-</button>
+                      <span id="quantity" class="quantity-value">1</span>
+                      <button id="increase" class="quantity-btn">+</button>
+                    </div>
+                    <button class="add-to-cart">
+                      <i class="fa-solid fa-basket-shopping"></i> Add to cart
+                    </button>
+                    <i class="fa-solid fa-heart wishlist"></i>
+                    <a href="#">Browse wishlist</a>
+                  </div>
+                  <hr class="horizontal-line" />
+                  <div class="inner-file">
+                    <div id="book-categories" class="categories"></div>
+                    <div id="book-tags" class="tags"></div>
+                    <div class="share">
+                      <a href="#" class="facebook">
+                        <i class="fa-brands fa-square-facebook"></i>
+                      </a>
+                      <a href="#" class="twitter">
+                        <i class="fa-brands fa-square-twitter"></i>
+                      </a>
+                      <a href="#" class="linkedin">
+                        <i class="fa-brands fa-invision"></i>
+                      </a>
+                      <a href="#" class="pinterest">
+                        <i class="fa-brands fa-square-pinterest"></i>
+                      </a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+
+        <!-- End Section 2 -->
+
+        <!-- Section 3 -->
+        <div class="section-three">
+      <div class="container">
+        <!-- Tab Navigation -->
+        <div class="tab-container">
+          <div class="tab active" data-tab="description">Description</div>
+          <div class="tab" data-tab="additional-info">
+            Additional information
+          </div>
+          <div class="tab" data-tab="reviews">Reviews</div>
+        </div>
+        <!-- Tab Content -->
+
+        <div class="content">
+          <div id="description" class="tab-content active">
+            <p>
+              Aut eligendi voluptatem adipisci unde iusto. Vitae aut voluptas
+              velit beatae at nam maiores. Sunt dolorem cumque qui sit in esse
+              quia occaecati. Eos et vero optio eaque nemo.
+            </p>
+            <br />
+            <p>
+              Qui omnis nihil accusantium dolorum molestiae. Assumenda rem et
+              non. Aut fugiat fugiat voluptatum vero vitae error. Sequi fugit
+              vitae dolor velit. Nemo et sapiente repudiandae.
+            </p>
+            <br />
+            <p>
+              Quam dolorum accusantium odio amet. Commodi consequatur distinctio
+              voluptas repellat doloribus quia. Consectetur ad similique atque
+              voluptas ut.
+            </p>
+            <br />
+            <p>
+              Earum vel delectus in facilis. Voluptatum minus nobis cum
+              temporibus perferendis est ut. Sed aut saepe ipsum animi
+              asperiores. Nihil nihil repudiandae adipisci quis ea voluptatum
+              dicta.
+            </p>
+
+            <!-- Thêm các đoạn nội dung khác nếu cần -->
+          </div>
+
+          <div id="additional-info" class="tab-content">
+            <table>
+              <tbody>
+                <tr>
+                  <th>Weight</th>
+                  <td>48 kg</td>
+                </tr>
+                <tr>
+                  <th>Dimensions</th>
+                  <td>88 x 110 x 95 cm</td>
+                </tr>
+                <tr>
+                  <th>Select Format</th>
+                  <td>Audio, Ebook, Hardcover, Paperback</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <div id="reviews" class="tab-content">
+            <div class="review">
+              <h5>
+                Join Hiddleston
+                <small class="text-muted">February 15, 2022</small>
+              </h5>
+              <p>★★★★★</p>
+              <p>
+                I am 6 feet tall and 220 lbs. This shirt fit me perfectly in the
+                chest and shoulders. My only complaint is that it is so long! I
+                like to wear polo shirts untucked. This shirt goes completely
+                past my rear end. If I wore it with ordinary shorts, you
+                probably wouldnt be able to see the shorts at all – completely
+                hidden by the shirt. It needs to be 4 to 5 inches shorter in
+                terms of length to suit me. I have many RL polo shirts, and this
+                one is by far the longest. I dont understand why.
+              </p>
+            </div>
+            <hr />
+            <div class="review">
+              <h5>
+                Kenneth R. Myers
+                <small class="text-muted">February 15, 2022</small>
+              </h5>
+              <p>★★★☆☆</p>
+              <p>
+                The shirt was not the fabric I believed it to be. It says
+                Classic Fit but was made like the older versions, not the soft
+                cotton like my others. I don't understand how the labels are the
+                same but a completely different shirt. Oh well, stuck with it
+                now.
+              </p>
+            </div>
+            
+            <!-- Thêm các đánh giá khác nếu cần -->
+
+            <div class="form-review-container" style="margin-top: 100px">
+              <hr />
+              <form id="formReview">
+                <p>Your email address will not be published. Required fields are marked *</p>
+                <!-- Rating Section -->
+                <label for="rating">Your rating *</label>
+                <div class="rating">
+                  <span class="star" data-value="1">★</span>
+                  <span class="star" data-value="2">★</span>
+                  <span class="star" data-value="3">★</span>
+                  <span class="star" data-value="4">★</span>
+                  <span class="star" data-value="5">★</span>
+                </div>
+
+                <!-- Review Section -->
+                <textarea class="form-text" id="review" name="review" placeholder="Your review *" required></textarea>
+                <div class="row form-row">
+                  <div class="col-xl-6">
+                    <input class="form" type="text" id="name" name="name" placeholder="Name *" required>
+                  </div>
+                  <div class="col-xl-6">
+                    <input class="form" type="email" id="email" name="email" placeholder="Email *" required>
+                  </div>
+                </div>
+
+                <!-- Save Details Checkbox -->
+                <label class="checkbox">
+                  <input type="checkbox" id="saveDetails">
+                    Save my name, email, and website in this browser for the next time I comment.
+                </label>
+
+                <!-- Submit Button -->
+                <button type="submit" class="submit-btn">Submit</button>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+        </div>
+        <!-- End Section 3 -->
+
+        <!-- Section 4 -->
+        <div class="section-four">
+      <div class="container">
+        <div class="row">
+          <div class="col-xl-6">
+            <div class="inner-content">
+              <p>ABOUT THE AUTHOR</p>
+              <div class="title"><h1>"My enthusiasm for writing never stops" - John Doe</h1></div>
+              <div class="desc">Nullam venenatis neque dis viverra hendrerit faucibus ornare feugiat urna. Tristique sollicitudin penatibus velit a class auctor himenaeos. Mollis semper luctus sit efficitur nam vitae feugiat enim tortor. Tortor montes integer cras massa donec ex ligula. Aliquet fringilla tellus mattis augue nam dui justo aliquam quisque suspendisse maximus. Pede velit ut dapibus suspendisse vivamus pulvinar nostra morbi curae potenti netus.</div>
+              <div><a href="#">VIEW ALL MY BOOK</a></div>
+            </div>
+          </div>
+          <div class="col-xl-6">
+            <div class="inner-image">
+              <div class="box-image">
+                <img src="assets/images/author.jpg" alt="Anh tac gia">
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+        </div>
+        <!-- End Section 4 -->
+        
+        <!-- Section 5 -->
+        <div class="section-five">
+          <div class="container">
+              <div class="inner-head">
+                  <div class="row">
+                      <div class="col-xl-3 d-flex justify-content-center align-items-center">
+                          <div class="inner-title">Related Products</div>
+                      </div>
+                      <div class="col-xl-9">
+                          <hr />
+                      </div>
+                  </div>
+              </div>
+              <div class="inner-list position-relative">
+                  <!-- Nút điều hướng bên trái -->
+                  <button class="btn-nav left" id="btn-left">
+                      <i class="fa fa-chevron-left"></i>
+                  </button>
+                  <!-- Danh sách sản phẩm -->
+                  <div class="row flex-nowrap overflow-hidden" id="product-list">
+                      <!-- Sản phẩm sẽ được thêm động từ fetch API -->
+                  </div>
+                  <!-- Nút điều hướng bên phải -->
+                  <button class="btn-nav right" id="btn-right">
+                      <i class="fa fa-chevron-right"></i>
+                  </button>
+              </div>
+          </div>
+      </div>
+        
+        <!-- End Section 5 -->
+
+        <div class="row">
+            <div class="footer">
+                <div class="container" style="margin-bottom: 20px;">
+                    <div class="column contact-info">
+                        <h3>
+                            Contact Info
+                        </h3>
+                        <p>
+                            1418 River Drive, Suite 35
+                            <br />
+                            Cottonhall, CA 9622
+                        </p>
+                        <p>
+                            Monday – Friday: 9:00-20:00
+                            <br />
+                            Saturday: 11:00 – 15:00
+                        </p>
+                        <a href="mailto:contact@example.com">
+                            contact@example.com
+                        </a>
+                    </div>
+                    <div class="column">
+                        <h3>
+                            Company
+                        </h3>
+                        <p>
+                            <a href="#">
+                                About us
+                            </a>
+                        </p>
+                        <p>
+                            <a href="#">
+                                Delivery Information
+                            </a>
+                        </p>
+                        <p>
+                            <a href="#">
+                                Privacy Policy
+                            </a>
+                        </p>
+                        <p>
+                            <a href="#">
+                                Terms &amp; Conditions
+                            </a>
+                        </p>
+                        <p>
+                            <a href="#">
+                                Contact Us
+                            </a>
+                        </p>
+                        <p>
+                            <a href="#">
+                                Support Center
+                            </a>
+                        </p>
+                    </div>
+                    <div style="border-right: 1px solid #b3b3b3; margin-right: 20px;"></div>
+                    <div class="column logo" style="margin-left: 20px;">
+                        <h2>
+                            Bookory
+                        </h2>
+                        <p>
+                            Got Questions? Call us 24/7!
+                        </p>
+                        <p style="color: #ff5e3a; font-size: 24px;">
+                            +(84) - 1800 - 4635
+                        </p>
+                        <div class="social-icons">
+                            <a href="#">
+                                <i class="fab fa-facebook-f">
+                                </i>
+                            </a>
+                            <a href="#">
+                                <i class="fab fa-twitter">
+                                </i>
+                            </a>
+                            <a href="#">
+                                <i class="fab fa-instagram">
+                                </i>
+                            </a>
+                            <a href="#">
+                                <i class="fab fa-pinterest">
+                                </i>
+                            </a>
+                        </div>
+                    </div>
+                    <div style="border-right: 1px solid #b3b3b3; margin-left: 40px; margin-right: 20px;"></div>
+                    <div class="column">
+                        <h3>
+                            Corporate
+                        </h3>
+                        <p>
+                            <a href="#">
+                                Become a Vendor
+                            </a>
+                        </p>
+                        <p>
+                            <a href="#">
+                                Affiliate Program
+                            </a>
+                        </p>
+                        <p>
+                            <a href="#">
+                                Our Suppliers
+                            </a>
+                        </p>
+                        <p>
+                            <a href="#">
+                                Accessibility
+                            </a>
+                        </p>
+                        <p>
+                            <a href="#">
+                                Promotions
+                            </a>
+                        </p>
+                        <p>
+                            <a href="#">
+                                Careers
+                            </a>
+                        </p>
+                    </div>
+                    <div class="column">
+                        <h3>
+                            Our Service
+                        </h3>
+                        <p>
+                            <a href="#">
+                                Help Center
+                            </a>
+                        </p>
+                        <p>
+                            <a href="#">
+                                Returns
+                            </a>
+                        </p>
+                        <p>
+                            <a href="#">
+                                Product Recalls
+                            </a>
+                        </p>
+                        <p>
+                            <a href="#">
+                                Accessibility
+                            </a>
+                        </p>
+                        <p>
+                            <a href="#">
+                                Contact Us
+                            </a>
+                        </p>
+                        <p>
+                            <a href="#">
+                                Store Pickup
+                            </a>
+                        </p>
+                    </div>
+                </div>
+                <div style="border-bottom: 1px solid #b3b3b3; margin-bottom: 20px;">
+                </div>
+                <div class="bottom-bar">
+                    <p>
+                        Copyright © 2024
+                        <a href="#">
+                            Bookory
+                        </a>
+                        . All rights reserved.
+                    </p>
+                    <div class="payment-icons">
+                        <img alt="PayPal logo" style="height: 50px; width: 70px;" src="./image/paypal.png" />
+                        <img alt="MasterCard logo" style="height: 50px; width: 70px;" src="./image/masterCard.png" />
+                        <img alt="American Express logo" style="height: 50px; width: 70px;"
+                            src="./image/american-express.png" />
+                        <img alt="Bitcoin logo" style="height: 50px; width: 70px;" src="./image/bitcoin_card.png" />
+                        <img alt="Discover logo" style="height: 50px; width: 70px;" src="./image/discover_card.png" />
+                        <img alt="Visa logo" style="height: 50px; width: 70px;" src="./image/visa.png" />
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+        const options = document.querySelectorAll(".select-box");
+        const priceDisplay = document.getElementById("current-price");
+        const clearButton = document.querySelector(".clear");
+
+        options.forEach((option) => {
+          option.addEventListener("click", () => {
+            // Xóa lớp 'active' khỏi tất cả các lựa chọn
+            options.forEach((opt) => opt.classList.remove("active"));
+
+            // Thêm lớp 'active' vào lựa chọn hiện tại và cập nhật giá
+            option.classList.add("active");
+            const price = option.getAttribute("data-price");
+            priceDisplay.textContent = `$${price}.00`;
+          });
+        });
+
+        // Sự kiện Clear để đặt lại giá về 0 và xóa lớp 'active'
+        clearButton.addEventListener("click", (event) => {
+          event.preventDefault();
+          options.forEach((opt) => opt.classList.remove("active"));
+          priceDisplay.textContent = "$0.00";
+        });
+      });
+    </script>
+        
+    <script>
+        // Get all tabs and tab contents
+        const tabs = document.querySelectorAll(".tab");
+        const tabContents = document.querySelectorAll(".tab-content");
+
+        // Add click event for each tab
+            tabs.forEach((tab) => {
+            tab.addEventListener("click", () => {
+        // Remove active class from all tabs and contents
+            tabs.forEach((t) => t.classList.remove("active"));
+            tabContents.forEach((content) => content.classList.remove("active"));
+
+        // Add active class to clicked tab and corresponding content
+            tab.classList.add("active");
+            document
+            .getElementById(tab.getAttribute("data-tab"))
+            .classList.add("active");
+        });
+      });
+    </script>
+    <script src="detail.js"></script>
+  </body>
+</html>
