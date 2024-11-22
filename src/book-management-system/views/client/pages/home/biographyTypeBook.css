@@ -100,3 +100,16 @@
     font-size: 20px;
     color: #ff4500;
 }
+
+.custom-carousel-control :hover{
+    background-color: #b3b3b3;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    overflow: hidden;
+    justify-content: center;
+    align-items: center;
+    display: flex;
+}
+

@@ -265,6 +265,7 @@ document.addEventListener('DOMContentLoaded', async () => {
 
 
 
+
 // 123456
 
 // 123456
@@ -427,3 +428,6 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 });
 // end deals of the week
+
+//Handle pre and next click on children type
+

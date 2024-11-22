@@ -46,7 +46,7 @@
 }
 
 .topseller-item img {
-    width: 100%; /* Hình ảnh chiếm toàn bộ chiều rộng */
+    width: auto; /* Hình ảnh chiếm toàn bộ chiều rộng */
     height: auto; /* Duy trì tỷ lệ khung hình */
     border-radius: 15px;
     object-fit: cover;
@@ -57,7 +57,7 @@
     position: absolute;
     bottom: 10%; /* Căn cách đáy 10% */
     left: 10%; /* Căn cách trái 10% */
-    padding: 20px 30px; /* Tăng kích thước padding */
+    padding: 10px 20px; /* Tăng kích thước padding */
     background: rgba(84, 80, 80, 0.3); /* Nền đen mờ */
     color: #fff; /* Màu chữ trắng */
     border-radius: 15px; /* Bo góc caption */
@@ -65,17 +65,17 @@
     opacity: 1; /* Luôn hiển thị */
     z-index: 10; /* Đảm bảo caption nằm trên hình ảnh */
     font-size: 20px; /* Kích thước chữ lớn hơn */
-    max-width: 80%; /* Đảm bảo caption không quá rộng */
+    max-width: 50%; /* Đảm bảo caption không quá rộng */
+    width: auto;
 }
 
 .product-caption .caption-title {
-    font-size: 24px; /* Kích thước lớn hơn cho tiêu đề */
+    font-size: 20px; /* Kích thước lớn hơn cho tiêu đề */
     font-weight: bold;
-    margin-bottom: 10px;
+    margin-bottom: 5px;
 }
 .caption-total span{
-    color: #131313
-    
+    color: #131313;
     font-size: 15px;
 
 }
