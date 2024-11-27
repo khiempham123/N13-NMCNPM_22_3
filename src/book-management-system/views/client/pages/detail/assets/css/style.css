@@ -55,7 +55,7 @@
 .section-two .inner-content .inner-info {
   display: flex;
   justify-content: space-between;
-  font-size: 12px;
+  font-size: 14px;
   margin: 20px 0;
 }
 
@@ -68,20 +68,20 @@
 }
 
 .section-two .inner-content .inner-price {
-  font-size: 24px;
+  font-size: 35px;
   color: var(--color-one);
   font-weight: 900;
   padding: 10px 0;
 }
 
 .section-two .inner-content .inner-desc {
-  font-size: 14px;
+  font-size: 17px;
   color: #8f8f8f;
   padding-bottom: 10px;
 }
 
 .section-two .inner-content .inner-type p {
-  font-size: 15px;
+  font-size: 16px;
 }
 
 .section-two .inner-content .inner-type ul {
@@ -94,7 +94,7 @@
   border-radius: 15px;
   padding: 10px 20px;
   background: #f0f0f0;
-  font-size: small;
+  font-size: 16px;
   margin-right: 10px;
   cursor: pointer;
   transition: color 0.3s ease;
@@ -111,12 +111,14 @@
 .section-two .inner-content .inner-type a {
   color: black;
   text-decoration: underline;
-  padding: 5px 0px;
+  font-size: 16px;
+  font-weight: 600;
+  padding: 10px 20px;
 }
 
 .section-two .inner-content .inner-type .current-price {
   color: var(--color-one);
-  font-size: 24px;
+  font-size: 30px;
   font-weight: 900;
 }
 
@@ -134,7 +136,7 @@
 }
 
 .section-two .inner-content .inner-quantity .quantity-selector .quantity-btn {
-  font-size: 20px;
+  font-size: 22px;
   background-color: white;
   border: none;
   cursor: pointer;
@@ -175,13 +177,13 @@
 .section-two .inner-content .inner-quantity i {
   color: black;
   margin-right: 5px;
-  font-size: 15px;
+  font-size: 16px;
 }
 
 .section-two .inner-content .inner-quantity a {
   color: #8f8f8f;
   font-weight: 600;
-  font-size: 13px;
+  font-size: 15px;
 }
 
 .section-two .inner-content .inner-quantity a:hover {
@@ -194,7 +196,7 @@
 
 .section-two .inner-content .inner-file .categories,
 .section-two .inner-content .inner-file .tags {
-  font-size: 14px;
+  font-size: 16px;
 }
 
 .section-two .inner-content .inner-file .categories span,
@@ -222,7 +224,7 @@
 }
 
 .section-two .inner-content .inner-file .share a i {
-  font-size: 35px;
+  font-size: 40px;
 }
 
 .section-two .inner-content .inner-file .share .facebook {
@@ -256,7 +258,7 @@
   font-weight: bold;
   color: #777;
   cursor: pointer;
-  font-size: 20px;
+  font-size: 27px;
   border-bottom: 3px solid transparent;
   transition: color 0.3s, border-color 0.3s;
 }
@@ -282,7 +284,7 @@
   /* border: 1px solid #e0e0e0; */
   /* border-top: none; */
   color: #777;
-  font-size: 15px;
+  font-size: 16px;
 }
 
 .section-three .tab-content.active {
@@ -344,13 +346,13 @@
   margin: 10px 0;
   padding: 24px 21px;
   border-radius: 10px;
-  font-size: 15x;
+  font-size: 16x;
   border: 1.5px solid #e0e0e0;
   box-shadow: 0px 0px 2px 2px rgba(0, 0, 0, 0.1);
 }
 
 .section-three .content .form-review-container .form-text::placeholder {
-  font-size: 15px;
+  font-size: 16px;
 }
 
 .section-three .content .form-review-container .form {
@@ -430,6 +432,7 @@
 .section-four .inner-content .desc {
   color: #777;
   /* margin: 20px 0; */
+  font-size: 16px;
   text-align: justify;
 }
 
@@ -545,16 +548,10 @@
   bottom: 5%;
 }
 
-.section-five .inner-list .inner-box .inner-image .trans-look {
-  position: absolute;
-  right: 5px;
-  bottom: 17%;
-}
-
 .section-five .inner-list .inner-box .inner-image .trans-love {
   position: absolute;
   right: 5px;
-  bottom: 29%;
+  bottom: 20%;
 }
 
 .section-five .inner-list .inner-box .inner-image .trans-love i {
