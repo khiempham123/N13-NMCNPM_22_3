@@ -2,122 +2,76 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Profile</title>
-
-    <!-- ===== ===== Custom Css ===== ===== -->
-    <link rel="stylesheet" href="profileStyle.css">
-    <link rel="stylesheet" href="responsive.css">
-
-    <!-- ===== ===== Remix Font Icons Cdn ===== ===== -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.1/css/all.min.css"
-        integrity="sha512-5Hs3dF2AEPkpNAR7UiOHba+lRSJNeM2ECkwxUIxC1Q/FLycGTbNapWXB4tP889k5T5Ju8fs4b1P5z/iB4nMfSQ=="
-        crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Employee Information Form</title>
+  <link rel="stylesheet" href="editProfileStyle.css">
 </head>
 
 <body>
-    <!-- ===== ===== Body Main-Background ===== ===== -->
-    <span class="main_bg"></span>
+  <div class="employee-form-container">
+    <div class="employee-form-box">
+      <div class="form-header">
+        <h1 class="form-title">User Information</h1>
+        <button id="editButton">Edit</button>
+      </div>
 
+      <form id="employeeForm" class="employee-form">
+        <div class="form-photo-section">
+          <div class="photo-wrapper">
+            <img id="photoPreview" class="photo-preview"
+              src="https://images.unsplash.com/photo-1633332755192-727a05c4013d?w=500&h=500"
+              alt="Employee Photo">
+            <label for="photoUpload" class="photo-upload-label" style="display: none;">Upload</label>
+            <input type="file" id="photoUpload" accept="image/*" style="display:none">
+          </div>
+        </div>
 
-    <!-- ===== ===== Main-Container ===== ===== -->
-    <div class="container">
+        <div class="form-field">
+          <label for="name">Name</label>
+          <input type="text" id="name" value="John Doe" disabled>
+        </div>
 
-        <!-- ===== ===== Header/Navbar ===== ===== -->
-        <header>
-            <div class="brandLogo">
-                <figure><img src="bg.png" alt="logo" width="40px" height="40px"></figure>
-                <span>Boook Management</span>
-            </div>
-        </header>
+        <div class="form-field">
+          <label for="dateOfBirth">Date of Birth</label>
+          <input type="date" id="dateOfBirth" value="1990-01-01" disabled>
+        </div>
 
+        <div class="form-field">
+          <label for="gender">Gender</label>
+          <select id="gender" disabled>
+            <option value="male" selected>Male</option>
+            <option value="female">Female</option>
+            <option value="other">Other</option>
+          </select>
+        </div>
 
-        <!-- ===== ===== User Main-Profile ===== ===== -->
-        <section class="userProfile card">
-            <div class="profile">
-                <figure><img src="profile.png" alt="profile" width="250px" height="250px"></figure>
-            </div>
-        </section>
+        <div class="form-field">
+          <label for="phone">Phone</label>
+          <input type="text" id="phone" value="(123) 456-7890" disabled>
+        </div>
 
+        <div class="form-field">
+          <label for="address">Address</label>
+          <input type="text" id="address" value="123 Main St, City, Country" disabled>
+        </div>
 
-        <!-- ===== ===== Work & Skills Section ===== ===== -->
-        <section class="work_skills card">
-
-            <!-- ===== ===== Work Contaienr ===== ===== -->
-        </section>
-
-
-        <!-- ===== ===== User Details Sections ===== ===== -->
-        <section class="userDetails card">
-            <div class="userName">
-                <h1 class="name">Jeremy Rose</h1>
-                <div class="map">
-                    <i class="ri fa-solid fa-location-dot"></i>
-                    <span> New York, NY</span>
-                </div>
-            </div>
-
-            <div class="btns">
-                <ul>
-                    <li class="sendMsg">
-                        <i class="ri fa-solid fa-message"></i>
-                        <a href="./editProfile.html">Edit Profile</a>
-                    </li>
-
-                    <li class="sendMsg active">
-                        <i class="ri fa-solid fa-check"></i>
-                        <a href="#">Profile</a>
-                    </li>
-
-                </ul>
-            </div>
-        </section>
-
-
-        <!-- ===== ===== Timeline & About Sections ===== ===== -->
-        <section class="timeline_about card">
-            <div class="tabs">
-                <ul>
-                    <li class="about active">
-                        <i class="ri fa-solid fa-user"></i>
-                        <span>About</span>
-                    </li>
-                </ul>
-            </div>
-
-            <div class="contact_Info">
-                <h1 class="heading">Contact Information</h1>
-                <ul>
-                    <li class="phone">
-                        <span class="label" style="  font-weight: 700;
-                        font-size: 14px;
-                        margin-right: 100px;
-                        width: 100px;">Phone:</span>
-                        <span class="info">+11 234 567 890</span>
-                    </li>
-                
-                    <li class="address">
-                        <span class="label" style="  font-weight: 700;
-                        font-size: 14px;
-                        margin-right: 90px;
-                        width: 100px;">Address:</span>
-                        <span class="info">S34 E 65th Street, New York</span>
-                    </li>
-                
-                    <li class="email">
-                        <span class="label" style="  font-weight: 700;
-                        font-size: 14px;
-                        margin-right: 100px;
-                        width: 100px;">E-mail:</span>
-                        <span class="info">hello@rsmarquetech.com</span>
-                    </li>
-                </ul>
-            </div>
-        </section>
+        <div class="form-field">
+          <label for="department">Department</label>
+          <select id="department" disabled>
+            <option value="Engineering" selected>Engineering</option>
+            <option value="Marketing">Marketing</option>
+            <option value="Sales">Sales</option>
+            <option value="Human Resources">Human Resources</option>
+            <option value="Finance">Finance</option>
+            <option value="Operations">Operations</option>
+          </select>
+        </div>
+      </form>
     </div>
+  </div>
 
+  <script src="test.js"></script>
 </body>
 
 </html>

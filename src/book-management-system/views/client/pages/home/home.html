@@ -22,6 +22,19 @@
         crossorigin="anonymous"></script>
     <script src="https://code.jquery.com/jquery-3.7.1.js"></script>
     <script src="https://code.jquery.com/ui/1.14.0/jquery-ui.js"></script>
+    <style>
+        .custom-carousel-control {
+            pointer-events: none;
+            /* Ngăn chặn sự kiện click trên thẻ <a> */
+        }
+
+        .custom-carousel-control .clickable-span {
+            pointer-events: auto;
+            /* Cho phép sự kiện click trên thẻ <span> */
+            cursor: pointer;
+            /* Thay đổi con trỏ chuột khi di chuột qua thẻ <span> */
+        }
+    </style>
 
 <body>
     <div class="container-fluid">
@@ -83,7 +96,7 @@
                                         <i class="fa-regular fa-user"> | </i>
                                     </a>
                                     <div class="profile-card"
-                                        style="display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center;">
+                                        style="display: none; flex-direction: column; align-items: center; justify-content: center; text-align: center;">
                                         <div class="close-btn">&times;</div>
                                         <div class="profile-img"><i class="fa-regular fa-user"></i></div>
                                         <div class="email">pgk06052018@gmail.com</div>
@@ -116,12 +129,12 @@
                             background: radial-gradient(circle, rgba(133,193,189,1) 11%, rgba(129,152,201,1) 90%); 
                             margin: 0; padding: none; border: none; border-radius: 0%;">
                     <nav class="navbar navbar-expand-lg w-100" style="margin: 0; padding: 0; border: none;">
-                        <div class="container-fluid text-black" style="margin: 0; padding: none; border: none;">
+                        <div class="container-fluid " style="margin: 0; padding: none; border: none;">
                             <div class="col-1"></div>
                             <a class="navbar-brand" href="https://maps.app.goo.gl/2MXnCG5jVrdjcQYZA" target="_blank"
-                                style="width:35px; margin: 0px 400px 0px 50px; text-align: center; justify-content: center;">
+                                style="width:35px; margin: 0px 400px 0px 50px; text-align: center; justify-content: center; color: white;">
                                 <i class="fa-solid fa-location-dot"></i>
-                                <span style="font-size: 15px; text-decoration: underline; font-weight: 500;">Find a Book
+                                <span style="font-size: 15px; text-decoration: underline; font-weight: 500; color: white;">Find a Book
                                     Store</span>
                             </a>
                             <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
@@ -133,41 +146,41 @@
                                 <ul class="navbar-nav" style="margin-right: 30px;">
                                     <li class="nav-item custom-link">
                                         <a class="nav-link" id="goHome" href="#" aria-expanded="false">
-                                            <span class="nav-item">Home</span>
+                                            <span class="nav-item" style=" color: white;">Home</span>
                                         </a>
                                     </li>
                                 </ul>
                                 <ul class="navbar-nav" style="margin-right: 30px;">
                                     <li class="nav-item custom-link">
                                         <a class="nav-link" href="#" aria-expanded="false">
-                                            <span class="nav-item">Book</span>
+                                            <span class="nav-item" style=" color: white;">Book</span>
                                         </a>
                                     </li>
                                 </ul>
                                 <ul class="navbar-nav" style="margin-right: 30px;">
                                     <li class="nav-item custom-link">
                                         <a class="nav-link" href="#" aria-expanded="false">
-                                            <span class="nav-item">Author</span>
+                                            <span class="nav-item" style=" color: white;">Author</span>
                                         </a>
                                     </li>
                                 </ul>
                                 <ul class="navbar-nav" style="margin-right: 30px;">
                                     <li class="nav-item custom-link">
                                         <a class="nav-link" href="#" aria-expanded="false">
-                                            <span class="nav-item">Blog</span>
+                                            <span class="nav-item" style=" color: white;">Blog</span>
                                         </a>
                                     </li>
                                 </ul>
                                 <ul class="navbar-nav" style="margin-right: 30px;">
                                     <li class="nav-item custom-link">
                                         <a class="nav-link" href="#" aria-expanded="false">
-                                            <span class="nav-item">Contact</span>
+                                            <span class="nav-item" style=" color: white;">Contact</span>
                                         </a>
                                     </li>
                                 </ul>
                             </div>
 
-                            <div style="margin-right: 200px; color: black;">
+                            <div style="margin-right: 200px; color: white;">
                                 <i class="fa-solid fa-phone-volume"></i>
                                 <span
                                     style="color: orangered; font-size: 20px; font-weight: 500; margin-left: 10px;">+84
@@ -228,8 +241,8 @@
                 </div>
             </div>
         </div>
-    </div>
-    <div class="row comfortableCustome" style="margin-top: 50px;">
+        </div>
+        <div class="row comfortableCustome" style="margin-top: 50px;">
 
         <div class="bg-white py-8">
             <div class="container mx-auto flex justify-between items-center"
@@ -286,169 +299,168 @@
                 </div>
             </div>
         </div>
-    </div>
-    <div style="border-bottom: 1px solid #b3b3b3; margin: 50px 50px 20px 50px;">
-    </div>
-    <div class="row customeDeals" style="margin-top: 56px">
-
-        <div class="col-2"></div>
-        <!--  -->
-        <div class="col-6" style="margin-bottom: 20px;">
-            <div class="deals" style="width: 80%;">
-                <h1>
-                    Deals Of The Week
-                    <span class="timer">
-                        <i class="fas fa-clock"></i>
-                        <span id="countdown"></span>
-                    </span>
-                </h1>
-                <div class="deals-list" id="deals-of-the-week">
-                    <!-- Dynamic deal items will be injected here -->
-                </div>
-            </div>
         </div>
-        <!--  -->
-        <div class="col-4">
-            <div class="vendors">
-                <h2>Top Selling Vendor</h2>
-                <div class="vendor-list">
-                    <div class="vendor-item">
-                        <img alt="Logo of Barone LLC."
-                            src="https://demo2.pavothemes.com/bookory/wp-content/uploads/2022/11/store-7.jpg"
-                            width="100" />
-                        <div class="vendor-info">
-                            <h3>
-                                Barone LLC. <span>(6 Products)</span>
-                            </h3>
-
-                            <div class="rating">
-                                <i class="fas fa-star">
-                                </i>
-                                <i class="fas fa-star">
-                                </i>
-                                <i class="fas fa-star">
-                                </i>
-                                <i class="fas fa-star">
-                                </i>
-                                <i class="fas fa-star-half-alt">
-                                </i>
-                            </div>
-                        </div>
-                    </div>
-                    <div style="border-bottom:1px solid #b3b3b3; margin:0px 15px 20px 10px;"></div>
-                    <div class="vendor-item">
-                        <img alt="Logo of Barone LLC."
-                            src="https://demo2.pavothemes.com/bookory/wp-content/uploads/2022/11/store-8.jpg"
-                            width="100" />
-                        <div class="vendor-info">
-                            <h3>
-                                Gregstore <span>(3 Products)</span>
-                            </h3>
-
-                            <div class="rating">
-                                <i class="fas fa-star">
-                                </i>
-                                <i class="fas fa-star">
-                                </i>
-                                <i class="fas fa-star">
-                                </i>
-                                <i class="fas fa-star-half-alt">
-                                </i>
-                            </div>
-                        </div>
-                    </div>
-                    <div style="border-bottom:1px solid #b3b3b3; margin:0px 15px 20px 10px;"></div>
-                    <div class="vendor-item">
-                        <img alt="Logo of Barone LLC."
-                            src="https://demo2.pavothemes.com/bookory/wp-content/uploads/2022/11/store-9.jpg"
-                            width="100" />
-                        <div class="vendor-info">
-                            <h3>
-                                Arlene <span>(6 Products)</span>
-                            </h3>
-
-                            <div class="rating">
-                                <i class="fas fa-star">
-                                </i>
-                                <i class="fas fa-star">
-                                </i>
-                                <i class="fas fa-star">
-                                </i>
-                                <i class="fas fa-star-half-alt">
-                                </i>
-                            </div>
-                        </div>
-                    </div>
-                    <div style="border-bottom:1px solid #b3b3b3; margin:0px 15px 20px 10px;"></div>
-                    <div class="vendor-item">
-                        <img alt="Logo of Barone LLC."
-                            src="https://demo2.pavothemes.com/bookory/wp-content/uploads/2022/11/store-5.jpg"
-                            width="100" />
-                        <div class="vendor-info">
-                            <h3>
-                                Book House <span>(6 Products)</span>
-                            </h3>
-
-                            <div class="rating">
-                                <i class="fas fa-star">
-                                </i>
-                                <i class="fas fa-star">
-                                </i>
-                                <i class="fas fa-star-half-alt">
-                                </i>
-                            </div>
-                        </div>
-                    </div>
-                    <div style="border-bottom:1px solid #b3b3b3; margin:0px 15px 20px 10px;"></div>
-                    <div class="vendor-item">
-                        <img alt="Logo of Barone LLC."
-                            src="https://demo2.pavothemes.com/bookory/wp-content/uploads/2022/11/cropped-store-3.jpg"
-                            width="100" />
-                        <div class="vendor-info">
-                            <h3>
-                                Book Store <span>(2 Products)</span>
-                            </h3>
-
-                            <div class="rating">
-                                <i class="fas fa-star">
-                                </i>
-                                <i class="fas fa-star">
-                                </i>
-                                <i class="fas fa-star">
-                                </i>
-                                <i class="fas fa-star">
-                                </i>
-                                <i class="fas fa-star-half-alt">
-                                </i>
-                            </div>
-                        </div>
-                    </div>
-                    <div style="border-bottom:1px solid #b3b3b3; margin:0px 15px 20px 10px;"></div>
-                    <div class="vendor-item">
-                        <img alt="Logo of Barone LLC."
-                            src="https://demo2.pavothemes.com/bookory/wp-content/uploads/2022/11/store-1.jpg"
-                            width="100" />
-                        <div class="vendor-info">
-                            <h3>
-                                Book Place <span>(4 Products)</span>
-                            </h3>
-
-                            <div class="rating">
-                                <i class="fas fa-star">
-                                </i>
-                                <i class="fas fa-star">
-                                </i>
-                                <i class="fas fa-star">
-                                </i>
-                                <i class="fas fa-star-half-alt">
-                                </i>
-                            </div>
-                        </div>
+        <div style="border-bottom: 1px solid #b3b3b3; margin: 50px 50px 20px 50px;">
+        </div>
+        <div class="row customeDeals" style="margin-top: 56px">
+            <div class="col-2"></div>
+            <!--  -->
+            <div class="col-6" style="margin-bottom: 20px;">
+                <div class="deals" style="width: 80%;">
+                    <h1>
+                        Deals Of The Week
+                        <span class="timer">
+                            <i class="fas fa-clock"></i>
+                            <span id="countdown"></span>
+                        </span>
+                    </h1>
+                    <div class="deals-list" id="deals-of-the-week">
+                        <!-- Dynamic deal items will be injected here -->
                     </div>
                 </div>
             </div>
+            <!--  -->
+            <div class="col-4">
+                <div class="vendors">
+                    <h2>Top Selling Vendor</h2>
+                    <div class="vendor-list">
+                        <div class="vendor-item">
+                            <img alt="Logo of Barone LLC."
+                                src="https://demo2.pavothemes.com/bookory/wp-content/uploads/2022/11/store-7.jpg"
+                                width="100" />
+                            <div class="vendor-info">
+                                <h3>
+                                    Barone LLC. <span>(6 Products)</span>
+                                </h3>
+
+                                <div class="rating">
+                                    <i class="fas fa-star">
+                                    </i>
+                                    <i class="fas fa-star">
+                                    </i>
+                                    <i class="fas fa-star">
+                                    </i>
+                                    <i class="fas fa-star">
+                                    </i>
+                                    <i class="fas fa-star-half-alt">
+                                    </i>
+                                </div>
+                            </div>
+                        </div>
+                        <div style="border-bottom:1px solid #b3b3b3; margin:0px 15px 20px 10px;"></div>
+                        <div class="vendor-item">
+                            <img alt="Logo of Barone LLC."
+                                src="https://demo2.pavothemes.com/bookory/wp-content/uploads/2022/11/store-8.jpg"
+                                width="100" />
+                            <div class="vendor-info">
+                                <h3>
+                                    Gregstore <span>(3 Products)</span>
+                                </h3>
+
+                                <div class="rating">
+                                    <i class="fas fa-star">
+                                    </i>
+                                    <i class="fas fa-star">
+                                    </i>
+                                    <i class="fas fa-star">
+                                    </i>
+                                    <i class="fas fa-star-half-alt">
+                                    </i>
+                                </div>
+                            </div>
+                        </div>
+                        <div style="border-bottom:1px solid #b3b3b3; margin:0px 15px 20px 10px;"></div>
+                        <div class="vendor-item">
+                            <img alt="Logo of Barone LLC."
+                                src="https://demo2.pavothemes.com/bookory/wp-content/uploads/2022/11/store-9.jpg"
+                                width="100" />
+                            <div class="vendor-info">
+                                <h3>
+                                    Arlene <span>(6 Products)</span>
+                                </h3>
+
+                                <div class="rating">
+                                    <i class="fas fa-star">
+                                    </i>
+                                    <i class="fas fa-star">
+                                    </i>
+                                    <i class="fas fa-star">
+                                    </i>
+                                    <i class="fas fa-star-half-alt">
+                                    </i>
+                                </div>
+                            </div>
+                        </div>
+                        <div style="border-bottom:1px solid #b3b3b3; margin:0px 15px 20px 10px;"></div>
+                        <div class="vendor-item">
+                            <img alt="Logo of Barone LLC."
+                                src="https://demo2.pavothemes.com/bookory/wp-content/uploads/2022/11/store-5.jpg"
+                                width="100" />
+                            <div class="vendor-info">
+                                <h3>
+                                    Book House <span>(6 Products)</span>
+                                </h3>
+
+                                <div class="rating">
+                                    <i class="fas fa-star">
+                                    </i>
+                                    <i class="fas fa-star">
+                                    </i>
+                                    <i class="fas fa-star-half-alt">
+                                    </i>
+                                </div>
+                            </div>
+                        </div>
+                        <div style="border-bottom:1px solid #b3b3b3; margin:0px 15px 20px 10px;"></div>
+                        <div class="vendor-item">
+                            <img alt="Logo of Barone LLC."
+                                src="https://demo2.pavothemes.com/bookory/wp-content/uploads/2022/11/cropped-store-3.jpg"
+                                width="100" />
+                            <div class="vendor-info">
+                                <h3>
+                                    Book Store <span>(2 Products)</span>
+                                </h3>
+
+                                <div class="rating">
+                                    <i class="fas fa-star">
+                                    </i>
+                                    <i class="fas fa-star">
+                                    </i>
+                                    <i class="fas fa-star">
+                                    </i>
+                                    <i class="fas fa-star">
+                                    </i>
+                                    <i class="fas fa-star-half-alt">
+                                    </i>
+                                </div>
+                            </div>
+                        </div>
+                        <div style="border-bottom:1px solid #b3b3b3; margin:0px 15px 20px 10px;"></div>
+                        <div class="vendor-item">
+                            <img alt="Logo of Barone LLC."
+                                src="https://demo2.pavothemes.com/bookory/wp-content/uploads/2022/11/store-1.jpg"
+                                width="100" />
+                            <div class="vendor-info">
+                                <h3>
+                                    Book Place <span>(4 Products)</span>
+                                </h3>
+
+                                <div class="rating">
+                                    <i class="fas fa-star">
+                                    </i>
+                                    <i class="fas fa-star">
+                                    </i>
+                                    <i class="fas fa-star">
+                                    </i>
+                                    <i class="fas fa-star-half-alt">
+                                    </i>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
-    </div>
 
     <div class="row customeBiographies" style="margin-top: 100px">
 
@@ -488,6 +500,14 @@
                                                 <div class="inner-content">
                                                     <div class="inner-title">{title}</div>
                                                     <div class="inner-author">{author}</div>
+
+                                                    <div class="rate" style="color: #ee2b3e;">
+                                                        <i class="fa-solid fa-star"></i>
+                                                        <i class="fa-solid fa-star"></i>
+                                                        <i class="fa-solid fa-star"></i>
+                                                        <i class="fa-solid fa-star"></i>
+                                                        <i class="fa-solid fa-star"></i>
+                                                    </div>
                                                     <div class="inner-price-new">
                                                         {price-new}
                                                         <div class="inner-price-old">{price-old}</div>
@@ -503,10 +523,7 @@
                                                     <img
                                                         src="https://demo2.pavothemes.com/bookory/wp-content/uploads/2022/02/33.jpg">
                                                     <div class="transaction trans-love">
-                                                        <i class="fa-regular fa-heart"></i>
-                                                    </div>
-                                                    <div class="transaction trans-look">
-                                                        <i class="fa-regular fa-eye"></i>
+                                                        <i class="fa-solid fa-heart" style="color: #ee2b3e;"></i>
                                                     </div>
                                                     <div class="transaction trans-cart">
                                                         <i class="fa-solid fa-basket-shopping"></i>
@@ -515,6 +532,14 @@
                                                 <div class="inner-content">
                                                     <div class="inner-title">{title}</div>
                                                     <div class="inner-author">{author}</div>
+
+                                                    <div class="rate" style="color: #ee2b3e;">
+                                                        <i class="fa-solid fa-star"></i>
+                                                        <i class="fa-solid fa-star"></i>
+                                                        <i class="fa-solid fa-star"></i>
+                                                        <i class="fa-solid fa-star"></i>
+                                                        <i class="fa-solid fa-star"></i>
+                                                    </div>
                                                     <div class="inner-price-new">
                                                         {price-new}
                                                         <div class="inner-price-old">{price-old}</div>
@@ -530,10 +555,7 @@
                                                     <img
                                                         src="https://demo2.pavothemes.com/bookory/wp-content/uploads/2022/02/34.jpg">
                                                     <div class="transaction trans-love">
-                                                        <i class="fa-regular fa-heart"></i>
-                                                    </div>
-                                                    <div class="transaction trans-look">
-                                                        <i class="fa-regular fa-eye"></i>
+                                                        <i class="fa-solid fa-heart" style="color: #ee2b3e;"></i>
                                                     </div>
                                                     <div class="transaction trans-cart">
                                                         <i class="fa-solid fa-basket-shopping"></i>
@@ -542,6 +564,14 @@
                                                 <div class="inner-content">
                                                     <div class="inner-title">{title}</div>
                                                     <div class="inner-author">{author}</div>
+
+                                                    <div class="rate" style="color: #ee2b3e;">
+                                                        <i class="fa-solid fa-star"></i>
+                                                        <i class="fa-solid fa-star"></i>
+                                                        <i class="fa-solid fa-star"></i>
+                                                        <i class="fa-solid fa-star"></i>
+                                                        <i class="fa-solid fa-star"></i>
+                                                    </div>
                                                     <div class="inner-price-new">
                                                         {price-new}
                                                         <div class="inner-price-old">{price-old}</div>
@@ -556,10 +586,7 @@
                                                     <img
                                                         src="https://demo2.pavothemes.com/bookory/wp-content/uploads/2022/02/34.jpg">
                                                     <div class="transaction trans-love">
-                                                        <i class="fa-regular fa-heart"></i>
-                                                    </div>
-                                                    <div class="transaction trans-look">
-                                                        <i class="fa-regular fa-eye"></i>
+                                                        <i class="fa-solid fa-heart" style="color: #ee2b3e;"></i>
                                                     </div>
                                                     <div class="transaction trans-cart">
                                                         <i class="fa-solid fa-basket-shopping"></i>
@@ -568,6 +595,14 @@
                                                 <div class="inner-content">
                                                     <div class="inner-title">{title}</div>
                                                     <div class="inner-author">{author}</div>
+
+                                                    <div class="rate" style="color: #ee2b3e;">
+                                                        <i class="fa-solid fa-star"></i>
+                                                        <i class="fa-solid fa-star"></i>
+                                                        <i class="fa-solid fa-star"></i>
+                                                        <i class="fa-solid fa-star"></i>
+                                                        <i class="fa-solid fa-star"></i>
+                                                    </div>
                                                     <div class="inner-price-new">
                                                         {price-new}
                                                         <div class="inner-price-old">{price-old}</div>
@@ -591,10 +626,7 @@
                                                     <img
                                                         src="https://demo2.pavothemes.com/bookory/wp-content/uploads/2022/02/33.jpg">
                                                     <div class="transaction trans-love">
-                                                        <i class="fa-regular fa-heart"></i>
-                                                    </div>
-                                                    <div class="transaction trans-look">
-                                                        <i class="fa-regular fa-eye"></i>
+                                                        <i class="fa-solid fa-heart" style="color: #ee2b3e;"></i>
                                                     </div>
                                                     <div class="transaction trans-cart">
                                                         <i class="fa-solid fa-basket-shopping"></i>
@@ -603,6 +635,14 @@
                                                 <div class="inner-content">
                                                     <div class="inner-title">{title}</div>
                                                     <div class="inner-author">{author}</div>
+
+                                                    <div class="rate" style="color: #ee2b3e;">
+                                                        <i class="fa-solid fa-star"></i>
+                                                        <i class="fa-solid fa-star"></i>
+                                                        <i class="fa-solid fa-star"></i>
+                                                        <i class="fa-solid fa-star"></i>
+                                                        <i class="fa-solid fa-star"></i>
+                                                    </div>
                                                     <div class="inner-price-new">
                                                         {price-new}
                                                         <div class="inner-price-old">{price-old}</div>
@@ -618,10 +658,7 @@
                                                     <img
                                                         src="https://demo2.pavothemes.com/bookory/wp-content/uploads/2022/02/33.jpg">
                                                     <div class="transaction trans-love">
-                                                        <i class="fa-regular fa-heart"></i>
-                                                    </div>
-                                                    <div class="transaction trans-look">
-                                                        <i class="fa-regular fa-eye"></i>
+                                                        <i class="fa-solid fa-heart" style="color: #ee2b3e;"></i>
                                                     </div>
                                                     <div class="transaction trans-cart">
                                                         <i class="fa-solid fa-basket-shopping"></i>
@@ -630,6 +667,14 @@
                                                 <div class="inner-content">
                                                     <div class="inner-title">{title}</div>
                                                     <div class="inner-author">{author}</div>
+
+                                                    <div class="rate" style="color: #ee2b3e;">
+                                                        <i class="fa-solid fa-star"></i>
+                                                        <i class="fa-solid fa-star"></i>
+                                                        <i class="fa-solid fa-star"></i>
+                                                        <i class="fa-solid fa-star"></i>
+                                                        <i class="fa-solid fa-star"></i>
+                                                    </div>
                                                     <div class="inner-price-new">
                                                         {price-new}
                                                         <div class="inner-price-old">{price-old}</div>
@@ -645,10 +690,7 @@
                                                     <img
                                                         src="https://demo2.pavothemes.com/bookory/wp-content/uploads/2022/02/34.jpg">
                                                     <div class="transaction trans-love">
-                                                        <i class="fa-regular fa-heart"></i>
-                                                    </div>
-                                                    <div class="transaction trans-look">
-                                                        <i class="fa-regular fa-eye"></i>
+                                                        <i class="fa-solid fa-heart" style="color: #ee2b3e;"></i>
                                                     </div>
                                                     <div class="transaction trans-cart">
                                                         <i class="fa-solid fa-basket-shopping"></i>
@@ -657,6 +699,14 @@
                                                 <div class="inner-content">
                                                     <div class="inner-title">{title}</div>
                                                     <div class="inner-author">{author}</div>
+
+                                                    <div class="rate" style="color: #ee2b3e;">
+                                                        <i class="fa-solid fa-star"></i>
+                                                        <i class="fa-solid fa-star"></i>
+                                                        <i class="fa-solid fa-star"></i>
+                                                        <i class="fa-solid fa-star"></i>
+                                                        <i class="fa-solid fa-star"></i>
+                                                    </div>
                                                     <div class="inner-price-new">
                                                         {price-new}
                                                         <div class="inner-price-old">{price-old}</div>
@@ -671,10 +721,7 @@
                                                     <img
                                                         src="https://demo2.pavothemes.com/bookory/wp-content/uploads/2022/02/34.jpg">
                                                     <div class="transaction trans-love">
-                                                        <i class="fa-regular fa-heart"></i>
-                                                    </div>
-                                                    <div class="transaction trans-look">
-                                                        <i class="fa-regular fa-eye"></i>
+                                                        <i class="fa-solid fa-heart" style="color: #ee2b3e;"></i>
                                                     </div>
                                                     <div class="transaction trans-cart">
                                                         <i class="fa-solid fa-basket-shopping"></i>
@@ -683,6 +730,14 @@
                                                 <div class="inner-content">
                                                     <div class="inner-title">{title}</div>
                                                     <div class="inner-author">{author}</div>
+
+                                                    <div class="rate" style="color: #ee2b3e;">
+                                                        <i class="fa-solid fa-star"></i>
+                                                        <i class="fa-solid fa-star"></i>
+                                                        <i class="fa-solid fa-star"></i>
+                                                        <i class="fa-solid fa-star"></i>
+                                                        <i class="fa-solid fa-star"></i>
+                                                    </div>
                                                     <div class="inner-price-new">
                                                         {price-new}
                                                         <div class="inner-price-old">{price-old}</div>
@@ -706,10 +761,7 @@
                                                     <img
                                                         src="https://demo2.pavothemes.com/bookory/wp-content/uploads/2022/02/33.jpg">
                                                     <div class="transaction trans-love">
-                                                        <i class="fa-regular fa-heart"></i>
-                                                    </div>
-                                                    <div class="transaction trans-look">
-                                                        <i class="fa-regular fa-eye"></i>
+                                                        <i class="fa-solid fa-heart" style="color: #ee2b3e;"></i>
                                                     </div>
                                                     <div class="transaction trans-cart">
                                                         <i class="fa-solid fa-basket-shopping"></i>
@@ -718,6 +770,14 @@
                                                 <div class="inner-content">
                                                     <div class="inner-title">{title}</div>
                                                     <div class="inner-author">{author}</div>
+
+                                                    <div class="rate" style="color: #ee2b3e;">
+                                                        <i class="fa-solid fa-star"></i>
+                                                        <i class="fa-solid fa-star"></i>
+                                                        <i class="fa-solid fa-star"></i>
+                                                        <i class="fa-solid fa-star"></i>
+                                                        <i class="fa-solid fa-star"></i>
+                                                    </div>
                                                     <div class="inner-price-new">
                                                         {price-new}
                                                         <div class="inner-price-old">{price-old}</div>
@@ -733,10 +793,7 @@
                                                     <img
                                                         src="https://demo2.pavothemes.com/bookory/wp-content/uploads/2022/02/33.jpg">
                                                     <div class="transaction trans-love">
-                                                        <i class="fa-regular fa-heart"></i>
-                                                    </div>
-                                                    <div class="transaction trans-look">
-                                                        <i class="fa-regular fa-eye"></i>
+                                                        <i class="fa-solid fa-heart" style="color: #ee2b3e;"></i>
                                                     </div>
                                                     <div class="transaction trans-cart">
                                                         <i class="fa-solid fa-basket-shopping"></i>
@@ -745,6 +802,14 @@
                                                 <div class="inner-content">
                                                     <div class="inner-title">{title}</div>
                                                     <div class="inner-author">{author}</div>
+
+                                                    <div class="rate" style="color: #ee2b3e;">
+                                                        <i class="fa-solid fa-star"></i>
+                                                        <i class="fa-solid fa-star"></i>
+                                                        <i class="fa-solid fa-star"></i>
+                                                        <i class="fa-solid fa-star"></i>
+                                                        <i class="fa-solid fa-star"></i>
+                                                    </div>
                                                     <div class="inner-price-new">
                                                         {price-new}
                                                         <div class="inner-price-old">{price-old}</div>
@@ -760,10 +825,7 @@
                                                     <img
                                                         src="https://demo2.pavothemes.com/bookory/wp-content/uploads/2022/02/34.jpg">
                                                     <div class="transaction trans-love">
-                                                        <i class="fa-regular fa-heart"></i>
-                                                    </div>
-                                                    <div class="transaction trans-look">
-                                                        <i class="fa-regular fa-eye"></i>
+                                                        <i class="fa-solid fa-heart" style="color: #ee2b3e;"></i>
                                                     </div>
                                                     <div class="transaction trans-cart">
                                                         <i class="fa-solid fa-basket-shopping"></i>
@@ -772,6 +834,14 @@
                                                 <div class="inner-content">
                                                     <div class="inner-title">{title}</div>
                                                     <div class="inner-author">{author}</div>
+
+                                                    <div class="rate" style="color: #ee2b3e;">
+                                                        <i class="fa-solid fa-star"></i>
+                                                        <i class="fa-solid fa-star"></i>
+                                                        <i class="fa-solid fa-star"></i>
+                                                        <i class="fa-solid fa-star"></i>
+                                                        <i class="fa-solid fa-star"></i>
+                                                    </div>
                                                     <div class="inner-price-new">
                                                         {price-new}
                                                         <div class="inner-price-old">{price-old}</div>
@@ -786,10 +856,7 @@
                                                     <img
                                                         src="https://demo2.pavothemes.com/bookory/wp-content/uploads/2022/02/34.jpg">
                                                     <div class="transaction trans-love">
-                                                        <i class="fa-regular fa-heart"></i>
-                                                    </div>
-                                                    <div class="transaction trans-look">
-                                                        <i class="fa-regular fa-eye"></i>
+                                                        <i class="fa-solid fa-heart" style="color: #ee2b3e;"></i>
                                                     </div>
                                                     <div class="transaction trans-cart">
                                                         <i class="fa-solid fa-basket-shopping"></i>
@@ -798,6 +865,14 @@
                                                 <div class="inner-content">
                                                     <div class="inner-title">{title}</div>
                                                     <div class="inner-author">{author}</div>
+
+                                                    <div class="rate" style="color: #ee2b3e;">
+                                                        <i class="fa-solid fa-star"></i>
+                                                        <i class="fa-solid fa-star"></i>
+                                                        <i class="fa-solid fa-star"></i>
+                                                        <i class="fa-solid fa-star"></i>
+                                                        <i class="fa-solid fa-star"></i>
+                                                    </div>
                                                     <div class="inner-price-new">
                                                         {price-new}
                                                         <div class="inner-price-old">{price-old}</div>
@@ -812,14 +887,17 @@
                         </div>
                     </div>
                     <a class="carousel-control-prev  custom-carousel-control" role="button"
-                        data-bs-target="#carouselExample" data-bs-slide="prev">
-                        <span class="" aria-hidden="true" style="color: red; font-size: 20px;"> <i
+                        data-bs-target="#carouselExample" data-bs-slide="prev"
+                        style="width: 220px; left: 10px; height: 500px; ">
+                        <span class="clickable-span" aria-hidden="true" style="color: red; font-size: 20px;"> <i
                                 class="fa-solid fa-chevron-left"></i></span>
                         <span class="visually-hidden">Previous</span>
                     </a>
                     <a class="carousel-control-next  custom-carousel-control" role="button"
-                        data-bs-target="#carouselExample" data-bs-slide="next" style="right: 30px;">
-                        <span class="" aria-hidden="true" style="text-align: center;color: red; font-size: 20px;"><i
+                        data-bs-target="#carouselExample" data-bs-slide="next"
+                        style="right: 30px; width: 190px; height: 500px;">
+                        <span class="clickable-span" aria-hidden="true"
+                            style="text-align: center;color: red; font-size: 20px;"><i
                                 class="fa-solid fa-chevron-right"></i></span>
                         <span class="visually-hidden">Next</span>
                     </a>
@@ -849,378 +927,865 @@
                 <div id="carouselExampleChildren" class="carousel slide">
                     <div class="carousel-inner">
                         <div class="carousel-item active">
-                            <div class="store">
-                                <div class="item">
-                                    <img src="https://demo2.pavothemes.com/bookory/wp-content/uploads/2022/02/25.jpg">
-                                    <p>Felix Ever After</p>
-                                    <div style="color: lightsalmon ;margin-bottom: 1rem">
-                                        <i class="fas fa-star">
-                                        </i>
-                                        <i class="fas fa-star">
-                                        </i>
-                                        <i class="fas fa-star">
-                                        </i>
-                                        <i class="fa-regular fa-star"></i>
-                                        <i class="fa-regular fa-star"></i>
-                                        3
+                            <div class="section-three">
+                                <div class="container">
+                                    <div class="row">
+                                        <!-- Book 1 -->
+                                        <div class="col-xl-3 col-lg-4 col-md-6 col-sm-6">
+                                            <div class="inner-box">
+                                                <div class="inner-image">
+                                                    <img
+                                                        src="https://demo2.pavothemes.com/bookory/wp-content/uploads/2022/02/25.jpg">
+                                                    <div class="transaction trans-love">
+                                                        <i class="fa-solid fa-heart" style="color: #ee2b3e;"></i>
+                                                    </div>
+                                                    <div class="transaction trans-cart">
+                                                        <i class="fa-solid fa-basket-shopping"></i>
+                                                    </div>
+                                                </div>
+                                                <div class="inner-content">
+                                                    <div class="inner-title">{title}</div>
+                                                    <div class="inner-author">{author}</div>
+
+                                                    <div class="rate" style="color: #ee2b3e;">
+                                                        <i class="fa-solid fa-star"></i>
+                                                        <i class="fa-solid fa-star"></i>
+                                                        <i class="fa-solid fa-star"></i>
+                                                        <i class="fa-solid fa-star"></i>
+                                                        <i class="fa-solid fa-star"></i>
+                                                    </div>
+                                                    <div class="inner-price-new">
+                                                        {price-new}
+                                                        <div class="inner-price-old">{price-old}</div>
+                                                    </div>
+                                                    <div class="inner-discount">{dc}</div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <!-- Book 2 -->
+                                        <div class="col-xl-3 col-lg-4 col-md-6 col-sm-6">
+                                            <div class="inner-box">
+                                                <div class="inner-image">
+                                                    <img
+                                                        src="https://demo2.pavothemes.com/bookory/wp-content/uploads/2022/02/31.jpg">
+                                                    <div class="transaction trans-love">
+                                                        <i class="fa-solid fa-heart" style="color: #ee2b3e;"></i>
+                                                    </div>
+                                                    <div class="transaction trans-cart">
+                                                        <i class="fa-solid fa-basket-shopping"></i>
+                                                    </div>
+                                                </div>
+                                                <div class="inner-content">
+                                                    <div class="inner-title">{title}</div>
+                                                    <div class="inner-author">{author}</div>
+
+                                                    <div class="rate" style="color: #ee2b3e;">
+                                                        <i class="fa-solid fa-star"></i>
+                                                        <i class="fa-solid fa-star"></i>
+                                                        <i class="fa-solid fa-star"></i>
+                                                        <i class="fa-solid fa-star"></i>
+                                                        <i class="fa-solid fa-star"></i>
+                                                    </div>
+                                                    <div class="inner-price-new">
+                                                        {price-new}
+                                                        <div class="inner-price-old">{price-old}</div>
+                                                    </div>
+                                                    <div class="inner-discount">{dc}</div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <!-- Book 3 -->
+                                        <div class="col-xl-3 col-lg-4 col-md-6 col-sm-6">
+                                            <div class="inner-box">
+                                                <div class="inner-image">
+                                                    <img
+                                                        src="https://demo2.pavothemes.com/bookory/wp-content/uploads/2022/02/32.jpg">
+                                                    <div class="transaction trans-love">
+                                                        <i class="fa-solid fa-heart" style="color: #ee2b3e;"></i>
+                                                    </div>
+                                                    <div class="transaction trans-cart">
+                                                        <i class="fa-solid fa-basket-shopping"></i>
+                                                    </div>
+                                                </div>
+                                                <div class="inner-content">
+                                                    <div class="inner-title">{title}</div>
+                                                    <div class="inner-author">{author}</div>
+
+                                                    <div class="rate" style="color: #ee2b3e;">
+                                                        <i class="fa-solid fa-star"></i>
+                                                        <i class="fa-solid fa-star"></i>
+                                                        <i class="fa-solid fa-star"></i>
+                                                        <i class="fa-solid fa-star"></i>
+                                                        <i class="fa-solid fa-star"></i>
+                                                    </div>
+                                                    <div class="inner-price-new">
+                                                        {price-new}
+                                                        <div class="inner-price-old">{price-old}</div>
+                                                    </div>
+                                                    <div class="inner-discount">{dc}</div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-xl-3 col-lg-4 col-md-6 col-sm-6">
+                                            <div class="inner-box">
+                                                <div class="inner-image">
+                                                    <img
+                                                        src="https://demo2.pavothemes.com/bookory/wp-content/uploads/2022/02/24.jpg">
+                                                    <div class="transaction trans-love">
+                                                        <i class="fa-solid fa-heart" style="color: #ee2b3e;"></i>
+                                                    </div>
+                                                    <div class="transaction trans-cart">
+                                                        <i class="fa-solid fa-basket-shopping"></i>
+                                                    </div>
+                                                </div>
+                                                <div class="inner-content">
+                                                    <div class="inner-title">{title}</div>
+                                                    <div class="inner-author">{author}</div>
+
+                                                    <div class="rate" style="color: #ee2b3e;">
+                                                        <i class="fa-solid fa-star"></i>
+                                                        <i class="fa-solid fa-star"></i>
+                                                        <i class="fa-solid fa-star"></i>
+                                                        <i class="fa-solid fa-star"></i>
+                                                        <i class="fa-solid fa-star"></i>
+                                                    </div>
+                                                    <div class="inner-price-new">
+                                                        {price-new}
+                                                        <div class="inner-price-old">{price-old}</div>
+                                                    </div>
+                                                    <div class="inner-discount">{dc}</div>
+                                                </div>
+                                            </div>
+                                        </div>
                                     </div>
-                                    <h1>Kacen Callender</h1>
-                                    <p1>
-                                        <i class="fa-solid fa-dollar-sign"></i>
-                                        324
-                                    </p1>
-                                </div>
-
-                                <div style="border-right: 1px solid #b3b3b3;  margin-right: 20px; height: 450px;"></div>
-
-                                <div class="item">
-                                    <img src="https://demo2.pavothemes.com/bookory/wp-content/uploads/2022/02/25.jpg">
-                                    <p>Felix Ever After</p>
-                                    <div style="color: lightsalmon ;margin-bottom: 1rem">
-                                        <i class="fas fa-star">
-                                        </i>
-                                        <i class="fas fa-star">
-                                        </i>
-                                        <i class="fas fa-star">
-                                        </i>
-                                        <i class="fa-regular fa-star"></i>
-                                        <i class="fa-regular fa-star"></i>
-                                        3
-                                    </div>
-                                    <h1>Kacen Callender</h1>
-                                    <p1>
-                                        <i class="fa-solid fa-dollar-sign"></i>
-                                        324
-                                    </p1>
-                                </div>
-
-                                <div style="border-right: 1px solid #b3b3b3;  margin-right: 20px; height: 450px;"></div>
-
-                                <div class="item">
-                                    <img src="https://demo2.pavothemes.com/bookory/wp-content/uploads/2022/02/31.jpg">
-                                    <p>Eat A Peach</p>
-                                    <div style="color: lightsalmon ;margin-bottom: 1rem">
-                                        <i class="fas fa-star">
-                                        </i>
-                                        <i class="fas fa-star">
-                                        </i>
-                                        <i class="fas fa-star">
-                                        </i>
-                                        <i class="fas fa-star">
-                                        </i>
-                                        <i class="fas fa-star">
-                                        </i>
-                                        5
-                                    </div>
-                                    <h1>David Chang</h1>
-                                    <p1>
-                                        <i class="fa-solid fa-dollar-sign"></i>
-                                        30
-                                    </p1>
-                                </div>
-
-                                <div style="border-right: 1px solid #b3b3b3;  margin-right: 20px; height: 450px;"></div>
-
-                                <div class="item">
-                                    <img src="https://demo2.pavothemes.com/bookory/wp-content/uploads/2022/02/32.jpg">
-                                    <p>Ring Shout</p>
-                                    <div style="color: lightsalmon ;margin-bottom: 1rem">
-                                        <i class="fas fa-star">
-                                        </i>
-                                        <i class="fas fa-star">
-                                        </i>
-                                        <i class="fas fa-star">
-                                        </i>
-                                        <i class="fas fa-star">
-                                        </i>
-                                        <i class="fas fa-star">
-                                        </i>
-                                        5
-                                    </div>
-                                    <h1>P. Dje`li' Clark</h1>
-                                    <p1>
-                                        <i class="fa-solid fa-dollar-sign"></i>
-                                        60.5
-                                    </p1>
-                                </div>
-
-                                <div style="border-right: 1px solid #b3b3b3;  margin-right: 20px; height: 450px;"></div>
-
-                                <div class="item">
-                                    <img src="https://demo2.pavothemes.com/bookory/wp-content/uploads/2022/02/24.jpg">
-                                    <p>Apple</p>
-                                    <div style="color: lightsalmon ;margin-bottom: 1rem">
-                                        <i class="fas fa-star">
-                                        </i>
-                                        <i class="fas fa-star">
-                                        </i>
-                                        <i class="fas fa-star">
-                                        </i>
-                                        <i class="fas fa-star">
-                                        </i>
-                                        <i class="fa-regular fa-star"></i>
-                                        4
-                                    </div>
-                                    <h1>Misty Figueroa</h1>
-                                    <p1>
-                                        <i class="fa-solid fa-dollar-sign"></i>
-                                        72.5
-                                    </p1>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="carousel-item">
-                            <div class="store">
-                                <div class="item">
-                                    <img src="https://demo2.pavothemes.com/bookory/wp-content/uploads/2022/02/25.jpg">
-                                    <p>Felix Ever After</p>
-                                    <div style="color: lightsalmon ;margin-bottom: 1rem">
-                                        <i class="fas fa-star">
-                                        </i>
-                                        <i class="fas fa-star">
-                                        </i>
-                                        <i class="fas fa-star">
-                                        </i>
-                                        <i class="fa-regular fa-star"></i>
-                                        <i class="fa-regular fa-star"></i>
-                                        3
-                                    </div>
-                                    <h1>Kacen Callender</h1>
-                                    <p1>
-                                        <i class="fa-solid fa-dollar-sign"></i>
-                                        324
-                                    </p1>
-                                </div>
-
-                                <div style="border-right: 1px solid #b3b3b3;  margin-right: 20px; height: 450px;"></div>
-
-                                <div class="item">
-                                    <img src="https://demo2.pavothemes.com/bookory/wp-content/uploads/2022/02/25.jpg">
-                                    <p>Felix Ever After</p>
-                                    <div style="color: lightsalmon ;margin-bottom: 1rem">
-                                        <i class="fas fa-star">
-                                        </i>
-                                        <i class="fas fa-star">
-                                        </i>
-                                        <i class="fas fa-star">
-                                        </i>
-                                        <i class="fa-regular fa-star"></i>
-                                        <i class="fa-regular fa-star"></i>
-                                        3
-                                    </div>
-                                    <h1>Kacen Callender</h1>
-                                    <p1>
-                                        <i class="fa-solid fa-dollar-sign"></i>
-                                        324
-                                    </p1>
-                                </div>
-
-                                <div style="border-right: 1px solid #b3b3b3;  margin-right: 20px; height: 450px;"></div>
-
-                                <div class="item">
-                                    <img src="https://demo2.pavothemes.com/bookory/wp-content/uploads/2022/02/31.jpg">
-                                    <p>Eat A Peach</p>
-                                    <div style="color: lightsalmon ;margin-bottom: 1rem">
-                                        <i class="fas fa-star">
-                                        </i>
-                                        <i class="fas fa-star">
-                                        </i>
-                                        <i class="fas fa-star">
-                                        </i>
-                                        <i class="fas fa-star">
-                                        </i>
-                                        <i class="fas fa-star">
-                                        </i>
-                                        5
-                                    </div>
-                                    <h1>David Chang</h1>
-                                    <p1>
-                                        <i class="fa-solid fa-dollar-sign"></i>
-                                        30
-                                    </p1>
-                                </div>
-
-                                <div style="border-right: 1px solid #b3b3b3;  margin-right: 20px; height: 450px;"></div>
-
-                                <div class="item">
-                                    <img src="https://demo2.pavothemes.com/bookory/wp-content/uploads/2022/02/32.jpg">
-                                    <p>Ring Shout</p>
-                                    <div style="color: lightsalmon ;margin-bottom: 1rem">
-                                        <i class="fas fa-star">
-                                        </i>
-                                        <i class="fas fa-star">
-                                        </i>
-                                        <i class="fas fa-star">
-                                        </i>
-                                        <i class="fas fa-star">
-                                        </i>
-                                        <i class="fas fa-star">
-                                        </i>
-                                        5
-                                    </div>
-                                    <h1>P. Dje`li' Clark</h1>
-                                    <p1>
-                                        <i class="fa-solid fa-dollar-sign"></i>
-                                        60.5
-                                    </p1>
-                                </div>
-
-                                <div style="border-right: 1px solid #b3b3b3;  margin-right: 20px; height: 450px;"></div>
-
-                                <div class="item">
-                                    <img src="https://demo2.pavothemes.com/bookory/wp-content/uploads/2022/02/24.jpg">
-                                    <p>Apple</p>
-                                    <div style="color: lightsalmon ;margin-bottom: 1rem">
-                                        <i class="fas fa-star">
-                                        </i>
-                                        <i class="fas fa-star">
-                                        </i>
-                                        <i class="fas fa-star">
-                                        </i>
-                                        <i class="fas fa-star">
-                                        </i>
-                                        <i class="fa-regular fa-star"></i>
-                                        4
-                                    </div>
-                                    <h1>Misty Figueroa</h1>
-                                    <p1>
-                                        <i class="fa-solid fa-dollar-sign"></i>
-                                        72.5
-                                    </p1>
                                 </div>
                             </div>
                         </div>
                         <div class="carousel-item">
-                            <div class="store">
-                                <div class="item">
-                                    <img src="https://demo2.pavothemes.com/bookory/wp-content/uploads/2022/02/25.jpg">
-                                    <p>Felix Ever After</p>
-                                    <div style="color: lightsalmon ;margin-bottom: 1rem">
-                                        <i class="fas fa-star">
-                                        </i>
-                                        <i class="fas fa-star">
-                                        </i>
-                                        <i class="fas fa-star">
-                                        </i>
-                                        <i class="fa-regular fa-star"></i>
-                                        <i class="fa-regular fa-star"></i>
-                                        3
+                            <div class="section-three">
+                                <div class="container">
+                                    <div class="row">
+                                        <!-- Book 1 -->
+                                        <div class="col-xl-3 col-lg-4 col-md-6 col-sm-6">
+                                            <div class="inner-box">
+                                                <div class="inner-image">
+                                                    <img
+                                                        src="https://demo2.pavothemes.com/bookory/wp-content/uploads/2022/02/25.jpg">
+                                                    <div class="transaction trans-love">
+                                                        <i class="fa-solid fa-heart" style="color: #ee2b3e;"></i>
+                                                    </div>
+                                                    <div class="transaction trans-cart">
+                                                        <i class="fa-solid fa-basket-shopping"></i>
+                                                    </div>
+                                                </div>
+                                                <div class="inner-content">
+                                                    <div class="inner-title">{title}</div>
+                                                    <div class="inner-author">{author}</div>
+
+                                                    <div class="rate" style="color: #ee2b3e;">
+                                                        <i class="fa-solid fa-star"></i>
+                                                        <i class="fa-solid fa-star"></i>
+                                                        <i class="fa-solid fa-star"></i>
+                                                        <i class="fa-solid fa-star"></i>
+                                                        <i class="fa-solid fa-star"></i>
+                                                    </div>
+                                                    <div class="inner-price-new">
+                                                        {price-new}
+                                                        <div class="inner-price-old">{price-old}</div>
+                                                    </div>
+                                                    <div class="inner-discount">{dc}</div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <!-- Book 2 -->
+                                        <div class="col-xl-3 col-lg-4 col-md-6 col-sm-6">
+                                            <div class="inner-box">
+                                                <div class="inner-image">
+                                                    <img
+                                                        src="https://demo2.pavothemes.com/bookory/wp-content/uploads/2022/02/31.jpg">
+                                                    <div class="transaction trans-love">
+                                                        <i class="fa-solid fa-heart" style="color: #ee2b3e;"></i>
+                                                    </div>
+                                                    <div class="transaction trans-cart">
+                                                        <i class="fa-solid fa-basket-shopping"></i>
+                                                    </div>
+                                                </div>
+                                                <div class="inner-content">
+                                                    <div class="inner-title">{title}</div>
+                                                    <div class="inner-author">{author}</div>
+
+                                                    <div class="rate" style="color: #ee2b3e;">
+                                                        <i class="fa-solid fa-star"></i>
+                                                        <i class="fa-solid fa-star"></i>
+                                                        <i class="fa-solid fa-star"></i>
+                                                        <i class="fa-solid fa-star"></i>
+                                                        <i class="fa-solid fa-star"></i>
+                                                    </div>
+                                                    <div class="inner-price-new">
+                                                        {price-new}
+                                                        <div class="inner-price-old">{price-old}</div>
+                                                    </div>
+                                                    <div class="inner-discount">{dc}</div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <!-- Book 3 -->
+                                        <div class="col-xl-3 col-lg-4 col-md-6 col-sm-6">
+                                            <div class="inner-box">
+                                                <div class="inner-image">
+                                                    <img
+                                                        src="https://demo2.pavothemes.com/bookory/wp-content/uploads/2022/02/32.jpg">
+                                                    <div class="transaction trans-love">
+                                                        <i class="fa-solid fa-heart" style="color: #ee2b3e;"></i>
+                                                    </div>
+                                                    <div class="transaction trans-cart">
+                                                        <i class="fa-solid fa-basket-shopping"></i>
+                                                    </div>
+                                                </div>
+                                                <div class="inner-content">
+                                                    <div class="inner-title">{title}</div>
+                                                    <div class="inner-author">{author}</div>
+
+                                                    <div class="rate" style="color: #ee2b3e;">
+                                                        <i class="fa-solid fa-star"></i>
+                                                        <i class="fa-solid fa-star"></i>
+                                                        <i class="fa-solid fa-star"></i>
+                                                        <i class="fa-solid fa-star"></i>
+                                                        <i class="fa-solid fa-star"></i>
+                                                    </div>
+                                                    <div class="inner-price-new">
+                                                        {price-new}
+                                                        <div class="inner-price-old">{price-old}</div>
+                                                    </div>
+                                                    <div class="inner-discount">{dc}</div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-xl-3 col-lg-4 col-md-6 col-sm-6">
+                                            <div class="inner-box">
+                                                <div class="inner-image">
+                                                    <img
+                                                        src="https://demo2.pavothemes.com/bookory/wp-content/uploads/2022/02/24.jpg">
+                                                    <div class="transaction trans-love">
+                                                        <i class="fa-solid fa-heart" style="color: #ee2b3e;"></i>
+                                                    </div>
+                                                    <div class="transaction trans-cart">
+                                                        <i class="fa-solid fa-basket-shopping"></i>
+                                                    </div>
+                                                </div>
+                                                <div class="inner-content">
+                                                    <div class="inner-title">{title}</div>
+                                                    <div class="inner-author">{author}</div>
+
+                                                    <div class="rate" style="color: #ee2b3e;">
+                                                        <i class="fa-solid fa-star"></i>
+                                                        <i class="fa-solid fa-star"></i>
+                                                        <i class="fa-solid fa-star"></i>
+                                                        <i class="fa-solid fa-star"></i>
+                                                        <i class="fa-solid fa-star"></i>
+                                                    </div>
+                                                    <div class="inner-price-new">
+                                                        {price-new}
+                                                        <div class="inner-price-old">{price-old}</div>
+                                                    </div>
+                                                    <div class="inner-discount">{dc}</div>
+                                                </div>
+                                            </div>
+                                        </div>
                                     </div>
-                                    <h1>Kacen Callender</h1>
-                                    <p1>
-                                        <i class="fa-solid fa-dollar-sign"></i>
-                                        324
-                                    </p1>
                                 </div>
+                            </div>
+                        </div>
+                        <div class="carousel-item">
+                            <div class="section-three">
+                                <div class="container">
+                                    <div class="row">
+                                        <!-- Book 1 -->
+                                        <div class="col-xl-3 col-lg-4 col-md-6 col-sm-6">
+                                            <div class="inner-box">
+                                                <div class="inner-image">
+                                                    <img
+                                                        src="https://demo2.pavothemes.com/bookory/wp-content/uploads/2022/02/25.jpg">
+                                                    <div class="transaction trans-love">
+                                                        <i class="fa-solid fa-heart" style="color: #ee2b3e;"></i>
+                                                    </div>
+                                                    <div class="transaction trans-cart">
+                                                        <i class="fa-solid fa-basket-shopping"></i>
+                                                    </div>
+                                                </div>
+                                                <div class="inner-content">
+                                                    <div class="inner-title">{title}</div>
+                                                    <div class="inner-author">{author}</div>
 
-                                <div style="border-right: 1px solid #b3b3b3;  margin-right: 20px; height: 450px;"></div>
+                                                    <div class="rate" style="color: #ee2b3e;">
+                                                        <i class="fa-solid fa-star"></i>
+                                                        <i class="fa-solid fa-star"></i>
+                                                        <i class="fa-solid fa-star"></i>
+                                                        <i class="fa-solid fa-star"></i>
+                                                        <i class="fa-solid fa-star"></i>
+                                                    </div>
+                                                    <div class="inner-price-new">
+                                                        {price-new}
+                                                        <div class="inner-price-old">{price-old}</div>
+                                                    </div>
+                                                    <div class="inner-discount">{dc}</div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <!-- Book 2 -->
+                                        <div class="col-xl-3 col-lg-4 col-md-6 col-sm-6">
+                                            <div class="inner-box">
+                                                <div class="inner-image">
+                                                    <img
+                                                        src="https://demo2.pavothemes.com/bookory/wp-content/uploads/2022/02/31.jpg">
+                                                    <div class="transaction trans-love">
+                                                        <i class="fa-solid fa-heart" style="color: #ee2b3e;"></i>
+                                                    </div>
+                                                    <div class="transaction trans-cart">
+                                                        <i class="fa-solid fa-basket-shopping"></i>
+                                                    </div>
+                                                </div>
+                                                <div class="inner-content">
+                                                    <div class="inner-title">{title}</div>
+                                                    <div class="inner-author">{author}</div>
 
-                                <div class="item">
-                                    <img src="https://demo2.pavothemes.com/bookory/wp-content/uploads/2022/02/25.jpg">
-                                    <p>Felix Ever After</p>
-                                    <div style="color: lightsalmon ;margin-bottom: 1rem">
-                                        <i class="fas fa-star">
-                                        </i>
-                                        <i class="fas fa-star">
-                                        </i>
-                                        <i class="fas fa-star">
-                                        </i>
-                                        <i class="fa-regular fa-star"></i>
-                                        <i class="fa-regular fa-star"></i>
-                                        3
+                                                    <div class="rate" style="color: #ee2b3e;">
+                                                        <i class="fa-solid fa-star"></i>
+                                                        <i class="fa-solid fa-star"></i>
+                                                        <i class="fa-solid fa-star"></i>
+                                                        <i class="fa-solid fa-star"></i>
+                                                        <i class="fa-solid fa-star"></i>
+                                                    </div>
+                                                    <div class="inner-price-new">
+                                                        {price-new}
+                                                        <div class="inner-price-old">{price-old}</div>
+                                                    </div>
+                                                    <div class="inner-discount">{dc}</div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <!-- Book 3 -->
+                                        <div class="col-xl-3 col-lg-4 col-md-6 col-sm-6">
+                                            <div class="inner-box">
+                                                <div class="inner-image">
+                                                    <img
+                                                        src="https://demo2.pavothemes.com/bookory/wp-content/uploads/2022/02/32.jpg">
+                                                    <div class="transaction trans-love">
+                                                        <i class="fa-solid fa-heart" style="color: #ee2b3e;"></i>
+                                                    </div>
+                                                    <div class="transaction trans-cart">
+                                                        <i class="fa-solid fa-basket-shopping"></i>
+                                                    </div>
+                                                </div>
+                                                <div class="inner-content">
+                                                    <div class="inner-title">{title}</div>
+                                                    <div class="inner-author">{author}</div>
+
+                                                    <div class="rate" style="color: #ee2b3e;">
+                                                        <i class="fa-solid fa-star"></i>
+                                                        <i class="fa-solid fa-star"></i>
+                                                        <i class="fa-solid fa-star"></i>
+                                                        <i class="fa-solid fa-star"></i>
+                                                        <i class="fa-solid fa-star"></i>
+                                                    </div>
+                                                    <div class="inner-price-new">
+                                                        {price-new}
+                                                        <div class="inner-price-old">{price-old}</div>
+                                                    </div>
+                                                    <div class="inner-discount">{dc}</div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-xl-3 col-lg-4 col-md-6 col-sm-6">
+                                            <div class="inner-box">
+                                                <div class="inner-image">
+                                                    <img
+                                                        src="https://demo2.pavothemes.com/bookory/wp-content/uploads/2022/02/24.jpg">
+                                                    <div class="transaction trans-love">
+                                                        <i class="fa-solid fa-heart" style="color: #ee2b3e;"></i>
+                                                    </div>
+                                                    <div class="transaction trans-cart">
+                                                        <i class="fa-solid fa-basket-shopping"></i>
+                                                    </div>
+                                                </div>
+                                                <div class="inner-content">
+                                                    <div class="inner-title">{title}</div>
+                                                    <div class="inner-author">{author}</div>
+
+                                                    <div class="rate" style="color: #ee2b3e;">
+                                                        <i class="fa-solid fa-star"></i>
+                                                        <i class="fa-solid fa-star"></i>
+                                                        <i class="fa-solid fa-star"></i>
+                                                        <i class="fa-solid fa-star"></i>
+                                                        <i class="fa-solid fa-star"></i>
+                                                    </div>
+                                                    <div class="inner-price-new">
+                                                        {price-new}
+                                                        <div class="inner-price-old">{price-old}</div>
+                                                    </div>
+                                                    <div class="inner-discount">{dc}</div>
+                                                </div>
+                                            </div>
+                                        </div>
                                     </div>
-                                    <h1>Kacen Callender</h1>
-                                    <p1>
-                                        <i class="fa-solid fa-dollar-sign"></i>
-                                        324
-                                    </p1>
-                                </div>
-
-                                <div style="border-right: 1px solid #b3b3b3;  margin-right: 20px; height: 450px;"></div>
-
-                                <div class="item">
-                                    <img src="https://demo2.pavothemes.com/bookory/wp-content/uploads/2022/02/31.jpg">
-                                    <p>Eat A Peach</p>
-                                    <div style="color: lightsalmon ;margin-bottom: 1rem">
-                                        <i class="fas fa-star">
-                                        </i>
-                                        <i class="fas fa-star">
-                                        </i>
-                                        <i class="fas fa-star">
-                                        </i>
-                                        <i class="fas fa-star">
-                                        </i>
-                                        <i class="fas fa-star">
-                                        </i>
-                                        5
-                                    </div>
-                                    <h1>David Chang</h1>
-                                    <p1>
-                                        <i class="fa-solid fa-dollar-sign"></i>
-                                        30
-                                    </p1>
-                                </div>
-
-                                <div style="border-right: 1px solid #b3b3b3;  margin-right: 20px; height: 450px;"></div>
-
-                                <div class="item">
-                                    <img src="https://demo2.pavothemes.com/bookory/wp-content/uploads/2022/02/32.jpg">
-                                    <p>Ring Shout</p>
-                                    <div style="color: lightsalmon ;margin-bottom: 1rem">
-                                        <i class="fas fa-star">
-                                        </i>
-                                        <i class="fas fa-star">
-                                        </i>
-                                        <i class="fas fa-star">
-                                        </i>
-                                        <i class="fas fa-star">
-                                        </i>
-                                        <i class="fas fa-star">
-                                        </i>
-                                        5
-                                    </div>
-                                    <h1>P. Dje`li' Clark</h1>
-                                    <p1>
-                                        <i class="fa-solid fa-dollar-sign"></i>
-                                        60.5
-                                    </p1>
-                                </div>
-
-                                <div style="border-right: 1px solid #b3b3b3;  margin-right: 20px; height: 450px;"></div>
-
-                                <div class="item">
-                                    <img src="https://demo2.pavothemes.com/bookory/wp-content/uploads/2022/02/24.jpg">
-                                    <p>Apple</p>
-                                    <div style="color: lightsalmon ;margin-bottom: 1rem">
-                                        <i class="fas fa-star">
-                                        </i>
-                                        <i class="fas fa-star">
-                                        </i>
-                                        <i class="fas fa-star">
-                                        </i>
-                                        <i class="fas fa-star">
-                                        </i>
-                                        <i class="fa-regular fa-star"></i>
-                                        4
-                                    </div>
-                                    <h1>Misty Figueroa</h1>
-                                    <p1>
-                                        <i class="fa-solid fa-dollar-sign"></i>
-                                        72.5
-                                    </p1>
                                 </div>
                             </div>
                         </div>
                     </div>
                     <a class="carousel-control-prev  custom-carousel-control" role="button"
-                        data-bs-target="#carouselExampleChildren" data-bs-slide="prev">
-                        <span class="" aria-hidden="true" style="color: red; font-size: 20px;"> <i
+                        data-bs-target="#carouselExampleChildren" data-bs-slide="prev"
+                        style="width: 220px; left: 10px; height: 500px; ">
+                        <span class="clickable-span" aria-hidden="true" style="color: red; font-size: 20px;"> <i
                                 class="fa-solid fa-chevron-left"></i></span>
                         <span class="visually-hidden">Previous</span>
                     </a>
                     <a class="carousel-control-next  custom-carousel-control" role="button"
-                        data-bs-target="#carouselExampleChildren" data-bs-slide="next" style="right: 30px;">
-                        <span class="" aria-hidden="true" style="text-align: center;color: red; font-size: 20px;"><i
+                        data-bs-target="#carouselExampleChildren" data-bs-slide="next"
+                        style="right: 30px; width: 190px; height: 500px;">
+                        <span class="clickable-span" aria-hidden="true" style="text-align: center;color: red; font-size: 20px;"><i
+                                class="fa-solid fa-chevron-right"></i></span>
+                        <span class="visually-hidden">Next</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row customeChildren" style="margin-top: 100px">
+
+        <div class="biography">
+            <div class="title">
+                <h1>Children' Book</h1>
+                <div class="line"></div>
+            </div>
+            <div id="carouselExampleIndicators" class="carousel slide" style="width: 90%;">
+                <div class="carousel-indicators">
+                    <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0"
+                        class="active" aria-current="true" aria-label="Slide 1"></button>
+                    <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1"
+                        aria-label="Slide 2"></button>
+                    <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2"
+                        aria-label="Slide 3"></button>
+                </div>
+                <div id="carouselExampleChildren" class="carousel slide">
+                    <div class="carousel-inner">
+                        <div class="carousel-item active">
+                            <div class="section-three">
+                                <div class="container">
+                                    <div class="row">
+                                        <!-- Book 1 -->
+                                        <div class="col-xl-3 col-lg-4 col-md-6 col-sm-6">
+                                            <div class="inner-box">
+                                                <div class="inner-image">
+                                                    <img
+                                                        src="https://demo2.pavothemes.com/bookory/wp-content/uploads/2022/02/25.jpg">
+                                                    <div class="transaction trans-love">
+                                                        <i class="fa-solid fa-heart" style="color: #ee2b3e;"></i>
+                                                    </div>
+                                                    <div class="transaction trans-cart">
+                                                        <i class="fa-solid fa-basket-shopping"></i>
+                                                    </div>
+                                                </div>
+                                                <div class="inner-content">
+                                                    <div class="inner-title">{title}</div>
+                                                    <div class="inner-author">{author}</div>
+
+                                                    <div class="rate" style="color: #ee2b3e;">
+                                                        <i class="fa-solid fa-star"></i>
+                                                        <i class="fa-solid fa-star"></i>
+                                                        <i class="fa-solid fa-star"></i>
+                                                        <i class="fa-solid fa-star"></i>
+                                                        <i class="fa-solid fa-star"></i>
+                                                    </div>
+                                                    <div class="inner-price-new">
+                                                        {price-new}
+                                                        <div class="inner-price-old">{price-old}</div>
+                                                    </div>
+                                                    <div class="inner-discount">{dc}</div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <!-- Book 2 -->
+                                        <div class="col-xl-3 col-lg-4 col-md-6 col-sm-6">
+                                            <div class="inner-box">
+                                                <div class="inner-image">
+                                                    <img
+                                                        src="https://demo2.pavothemes.com/bookory/wp-content/uploads/2022/02/31.jpg">
+                                                    <div class="transaction trans-love">
+                                                        <i class="fa-solid fa-heart" style="color: #ee2b3e;"></i>
+                                                    </div>
+                                                    <div class="transaction trans-cart">
+                                                        <i class="fa-solid fa-basket-shopping"></i>
+                                                    </div>
+                                                </div>
+                                                <div class="inner-content">
+                                                    <div class="inner-title">{title}</div>
+                                                    <div class="inner-author">{author}</div>
+
+                                                    <div class="rate" style="color: #ee2b3e;">
+                                                        <i class="fa-solid fa-star"></i>
+                                                        <i class="fa-solid fa-star"></i>
+                                                        <i class="fa-solid fa-star"></i>
+                                                        <i class="fa-solid fa-star"></i>
+                                                        <i class="fa-solid fa-star"></i>
+                                                    </div>
+                                                    <div class="inner-price-new">
+                                                        {price-new}
+                                                        <div class="inner-price-old">{price-old}</div>
+                                                    </div>
+                                                    <div class="inner-discount">{dc}</div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <!-- Book 3 -->
+                                        <div class="col-xl-3 col-lg-4 col-md-6 col-sm-6">
+                                            <div class="inner-box">
+                                                <div class="inner-image">
+                                                    <img
+                                                        src="https://demo2.pavothemes.com/bookory/wp-content/uploads/2022/02/32.jpg">
+                                                    <div class="transaction trans-love">
+                                                        <i class="fa-solid fa-heart" style="color: #ee2b3e;"></i>
+                                                    </div>
+                                                    <div class="transaction trans-cart">
+                                                        <i class="fa-solid fa-basket-shopping"></i>
+                                                    </div>
+                                                </div>
+                                                <div class="inner-content">
+                                                    <div class="inner-title">{title}</div>
+                                                    <div class="inner-author">{author}</div>
+
+                                                    <div class="rate" style="color: #ee2b3e;">
+                                                        <i class="fa-solid fa-star"></i>
+                                                        <i class="fa-solid fa-star"></i>
+                                                        <i class="fa-solid fa-star"></i>
+                                                        <i class="fa-solid fa-star"></i>
+                                                        <i class="fa-solid fa-star"></i>
+                                                    </div>
+                                                    <div class="inner-price-new">
+                                                        {price-new}
+                                                        <div class="inner-price-old">{price-old}</div>
+                                                    </div>
+                                                    <div class="inner-discount">{dc}</div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-xl-3 col-lg-4 col-md-6 col-sm-6">
+                                            <div class="inner-box">
+                                                <div class="inner-image">
+                                                    <img
+                                                        src="https://demo2.pavothemes.com/bookory/wp-content/uploads/2022/02/24.jpg">
+                                                    <div class="transaction trans-love">
+                                                        <i class="fa-solid fa-heart" style="color: #ee2b3e;"></i>
+                                                    </div>
+                                                    <div class="transaction trans-cart">
+                                                        <i class="fa-solid fa-basket-shopping"></i>
+                                                    </div>
+                                                </div>
+                                                <div class="inner-content">
+                                                    <div class="inner-title">{title}</div>
+                                                    <div class="inner-author">{author}</div>
+
+                                                    <div class="rate" style="color: #ee2b3e;">
+                                                        <i class="fa-solid fa-star"></i>
+                                                        <i class="fa-solid fa-star"></i>
+                                                        <i class="fa-solid fa-star"></i>
+                                                        <i class="fa-solid fa-star"></i>
+                                                        <i class="fa-solid fa-star"></i>
+                                                    </div>
+                                                    <div class="inner-price-new">
+                                                        {price-new}
+                                                        <div class="inner-price-old">{price-old}</div>
+                                                    </div>
+                                                    <div class="inner-discount">{dc}</div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="carousel-item">
+                            <div class="section-three">
+                                <div class="container">
+                                    <div class="row">
+                                        <!-- Book 1 -->
+                                        <div class="col-xl-3 col-lg-4 col-md-6 col-sm-6">
+                                            <div class="inner-box">
+                                                <div class="inner-image">
+                                                    <img
+                                                        src="https://demo2.pavothemes.com/bookory/wp-content/uploads/2022/02/25.jpg">
+                                                    <div class="transaction trans-love">
+                                                        <i class="fa-solid fa-heart" style="color: #ee2b3e;"></i>
+                                                    </div>
+                                                    <div class="transaction trans-cart">
+                                                        <i class="fa-solid fa-basket-shopping"></i>
+                                                    </div>
+                                                </div>
+                                                <div class="inner-content">
+                                                    <div class="inner-title">{title}</div>
+                                                    <div class="inner-author">{author}</div>
+
+                                                    <div class="rate" style="color: #ee2b3e;">
+                                                        <i class="fa-solid fa-star"></i>
+                                                        <i class="fa-solid fa-star"></i>
+                                                        <i class="fa-solid fa-star"></i>
+                                                        <i class="fa-solid fa-star"></i>
+                                                        <i class="fa-solid fa-star"></i>
+                                                    </div>
+                                                    <div class="inner-price-new">
+                                                        {price-new}
+                                                        <div class="inner-price-old">{price-old}</div>
+                                                    </div>
+                                                    <div class="inner-discount">{dc}</div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <!-- Book 2 -->
+                                        <div class="col-xl-3 col-lg-4 col-md-6 col-sm-6">
+                                            <div class="inner-box">
+                                                <div class="inner-image">
+                                                    <img
+                                                        src="https://demo2.pavothemes.com/bookory/wp-content/uploads/2022/02/31.jpg">
+                                                    <div class="transaction trans-love">
+                                                        <i class="fa-solid fa-heart" style="color: #ee2b3e;"></i>
+                                                    </div>
+                                                    <div class="transaction trans-cart">
+                                                        <i class="fa-solid fa-basket-shopping"></i>
+                                                    </div>
+                                                </div>
+                                                <div class="inner-content">
+                                                    <div class="inner-title">{title}</div>
+                                                    <div class="inner-author">{author}</div>
+
+                                                    <div class="rate" style="color: #ee2b3e;">
+                                                        <i class="fa-solid fa-star"></i>
+                                                        <i class="fa-solid fa-star"></i>
+                                                        <i class="fa-solid fa-star"></i>
+                                                        <i class="fa-solid fa-star"></i>
+                                                        <i class="fa-solid fa-star"></i>
+                                                    </div>
+                                                    <div class="inner-price-new">
+                                                        {price-new}
+                                                        <div class="inner-price-old">{price-old}</div>
+                                                    </div>
+                                                    <div class="inner-discount">{dc}</div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <!-- Book 3 -->
+                                        <div class="col-xl-3 col-lg-4 col-md-6 col-sm-6">
+                                            <div class="inner-box">
+                                                <div class="inner-image">
+                                                    <img
+                                                        src="https://demo2.pavothemes.com/bookory/wp-content/uploads/2022/02/32.jpg">
+                                                    <div class="transaction trans-love">
+                                                        <i class="fa-solid fa-heart" style="color: #ee2b3e;"></i>
+                                                    </div>
+                                                    <div class="transaction trans-cart">
+                                                        <i class="fa-solid fa-basket-shopping"></i>
+                                                    </div>
+                                                </div>
+                                                <div class="inner-content">
+                                                    <div class="inner-title">{title}</div>
+                                                    <div class="inner-author">{author}</div>
+
+                                                    <div class="rate" style="color: #ee2b3e;">
+                                                        <i class="fa-solid fa-star"></i>
+                                                        <i class="fa-solid fa-star"></i>
+                                                        <i class="fa-solid fa-star"></i>
+                                                        <i class="fa-solid fa-star"></i>
+                                                        <i class="fa-solid fa-star"></i>
+                                                    </div>
+                                                    <div class="inner-price-new">
+                                                        {price-new}
+                                                        <div class="inner-price-old">{price-old}</div>
+                                                    </div>
+                                                    <div class="inner-discount">{dc}</div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-xl-3 col-lg-4 col-md-6 col-sm-6">
+                                            <div class="inner-box">
+                                                <div class="inner-image">
+                                                    <img
+                                                        src="https://demo2.pavothemes.com/bookory/wp-content/uploads/2022/02/24.jpg">
+                                                    <div class="transaction trans-love">
+                                                        <i class="fa-solid fa-heart" style="color: #ee2b3e;"></i>
+                                                    </div>
+                                                    <div class="transaction trans-cart">
+                                                        <i class="fa-solid fa-basket-shopping"></i>
+                                                    </div>
+                                                </div>
+                                                <div class="inner-content">
+                                                    <div class="inner-title">{title}</div>
+                                                    <div class="inner-author">{author}</div>
+
+                                                    <div class="rate" style="color: #ee2b3e;">
+                                                        <i class="fa-solid fa-star"></i>
+                                                        <i class="fa-solid fa-star"></i>
+                                                        <i class="fa-solid fa-star"></i>
+                                                        <i class="fa-solid fa-star"></i>
+                                                        <i class="fa-solid fa-star"></i>
+                                                    </div>
+                                                    <div class="inner-price-new">
+                                                        {price-new}
+                                                        <div class="inner-price-old">{price-old}</div>
+                                                    </div>
+                                                    <div class="inner-discount">{dc}</div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="carousel-item">
+                            <div class="section-three">
+                                <div class="container">
+                                    <div class="row">
+                                        <!-- Book 1 -->
+                                        <div class="col-xl-3 col-lg-4 col-md-6 col-sm-6">
+                                            <div class="inner-box">
+                                                <div class="inner-image">
+                                                    <img
+                                                        src="https://demo2.pavothemes.com/bookory/wp-content/uploads/2022/02/25.jpg">
+                                                    <div class="transaction trans-love">
+                                                        <i class="fa-solid fa-heart" style="color: #ee2b3e;"></i>
+                                                    </div>
+                                                    <div class="transaction trans-cart">
+                                                        <i class="fa-solid fa-basket-shopping"></i>
+                                                    </div>
+                                                </div>
+                                                <div class="inner-content">
+                                                    <div class="inner-title">{title}</div>
+                                                    <div class="inner-author">{author}</div>
+
+                                                    <div class="rate" style="color: #ee2b3e;">
+                                                        <i class="fa-solid fa-star"></i>
+                                                        <i class="fa-solid fa-star"></i>
+                                                        <i class="fa-solid fa-star"></i>
+                                                        <i class="fa-solid fa-star"></i>
+                                                        <i class="fa-solid fa-star"></i>
+                                                    </div>
+                                                    <div class="inner-price-new">
+                                                        {price-new}
+                                                        <div class="inner-price-old">{price-old}</div>
+                                                    </div>
+                                                    <div class="inner-discount">{dc}</div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <!-- Book 2 -->
+                                        <div class="col-xl-3 col-lg-4 col-md-6 col-sm-6">
+                                            <div class="inner-box">
+                                                <div class="inner-image">
+                                                    <img
+                                                        src="https://demo2.pavothemes.com/bookory/wp-content/uploads/2022/02/31.jpg">
+                                                    <div class="transaction trans-love">
+                                                        <i class="fa-solid fa-heart" style="color: #ee2b3e;"></i>
+                                                    </div>
+                                                    <div class="transaction trans-cart">
+                                                        <i class="fa-solid fa-basket-shopping"></i>
+                                                    </div>
+                                                </div>
+                                                <div class="inner-content">
+                                                    <div class="inner-title">{title}</div>
+                                                    <div class="inner-author">{author}</div>
+
+                                                    <div class="rate" style="color: #ee2b3e;">
+                                                        <i class="fa-solid fa-star"></i>
+                                                        <i class="fa-solid fa-star"></i>
+                                                        <i class="fa-solid fa-star"></i>
+                                                        <i class="fa-solid fa-star"></i>
+                                                        <i class="fa-solid fa-star"></i>
+                                                    </div>
+                                                    <div class="inner-price-new">
+                                                        {price-new}
+                                                        <div class="inner-price-old">{price-old}</div>
+                                                    </div>
+                                                    <div class="inner-discount">{dc}</div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <!-- Book 3 -->
+                                        <div class="col-xl-3 col-lg-4 col-md-6 col-sm-6">
+                                            <div class="inner-box">
+                                                <div class="inner-image">
+                                                    <img
+                                                        src="https://demo2.pavothemes.com/bookory/wp-content/uploads/2022/02/32.jpg">
+                                                    <div class="transaction trans-love">
+                                                        <i class="fa-solid fa-heart" style="color: #ee2b3e;"></i>
+                                                    </div>
+                                                    <div class="transaction trans-cart">
+                                                        <i class="fa-solid fa-basket-shopping"></i>
+                                                    </div>
+                                                </div>
+                                                <div class="inner-content">
+                                                    <div class="inner-title">{title}</div>
+                                                    <div class="inner-author">{author}</div>
+
+                                                    <div class="rate" style="color: #ee2b3e;">
+                                                        <i class="fa-solid fa-star"></i>
+                                                        <i class="fa-solid fa-star"></i>
+                                                        <i class="fa-solid fa-star"></i>
+                                                        <i class="fa-solid fa-star"></i>
+                                                        <i class="fa-solid fa-star"></i>
+                                                    </div>
+                                                    <div class="inner-price-new">
+                                                        {price-new}
+                                                        <div class="inner-price-old">{price-old}</div>
+                                                    </div>
+                                                    <div class="inner-discount">{dc}</div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-xl-3 col-lg-4 col-md-6 col-sm-6">
+                                            <div class="inner-box">
+                                                <div class="inner-image">
+                                                    <img
+                                                        src="https://demo2.pavothemes.com/bookory/wp-content/uploads/2022/02/24.jpg">
+                                                    <div class="transaction trans-love">
+                                                        <i class="fa-solid fa-heart" style="color: #ee2b3e;"></i>
+                                                    </div>
+                                                    <div class="transaction trans-cart">
+                                                        <i class="fa-solid fa-basket-shopping"></i>
+                                                    </div>
+                                                </div>
+                                                <div class="inner-content">
+                                                    <div class="inner-title">{title}</div>
+                                                    <div class="inner-author">{author}</div>
+
+                                                    <div class="rate" style="color: #ee2b3e;">
+                                                        <i class="fa-solid fa-star"></i>
+                                                        <i class="fa-solid fa-star"></i>
+                                                        <i class="fa-solid fa-star"></i>
+                                                        <i class="fa-solid fa-star"></i>
+                                                        <i class="fa-solid fa-star"></i>
+                                                    </div>
+                                                    <div class="inner-price-new">
+                                                        {price-new}
+                                                        <div class="inner-price-old">{price-old}</div>
+                                                    </div>
+                                                    <div class="inner-discount">{dc}</div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <a class="carousel-control-prev  custom-carousel-control" role="button"
+                        data-bs-target="#carouselExampleChildren" data-bs-slide="prev"
+                        style="width: 220px; left: 10px; height: 500px; ">
+                        <span class="clickable-span" aria-hidden="true" style="color: red; font-size: 20px;"> <i
+                                class="fa-solid fa-chevron-left"></i></span>
+                        <span class="visually-hidden">Previous</span>
+                    </a>
+                    <a class="carousel-control-next  custom-carousel-control" role="button"
+                        data-bs-target="#carouselExampleChildren" data-bs-slide="next"
+                        style="right: 30px; width: 190px; height: 500px;">
+                        <span class="clickable-span" aria-hidden="true" style="text-align: center;color: red; font-size: 20px;"><i
                                 class="fa-solid fa-chevron-right"></i></span>
                         <span class="visually-hidden">Next</span>
                     </a>

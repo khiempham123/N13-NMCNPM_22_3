@@ -139,3 +139,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
 // End lấy thông tin các sản phẩm có cùng category với sản phẩm detail từ api /related/:id
+
+//backhome
+const gohome = document.getElementById('goHome');
+gohome.addEventListener('click', () => {
+    window.location.href = '../home/home.html';
+});

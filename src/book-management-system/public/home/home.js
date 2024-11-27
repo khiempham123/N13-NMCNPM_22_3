@@ -265,7 +265,6 @@ document.addEventListener('DOMContentLoaded', async () => {
 
 
 
-
 // 123456
 
 // 123456
@@ -428,58 +427,3 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 });
 // end deals of the week
-
-//Handle pre and next click on children type
-
-document.addEventListener("DOMContentLoaded", () => {
-    const userIcon = document.querySelector(".user-icon");
-    const profileCard = document.querySelector(".profile-card");
-    const closeBtn = document.querySelector(".close-btn");
-
-    // Hiển thị/hide khi click vào icon
-    userIcon.addEventListener("click", (event) => {
-        event.preventDefault();
-        profileCard.style.display = profileCard.style.display === "none" || profileCard.style.display === "" ? "block" : "none";
-    });
-
-    // Đóng khi click vào nút đóng
-    closeBtn.addEventListener("click", () => {
-        profileCard.style.display = "none";
-    });
-
-    // Ẩn profile-card khi click ngoài khu vực
-    document.addEventListener("click", (event) => {
-        if (!profileCard.contains(event.target) && !userIcon.contains(event.target)) {
-            profileCard.style.display = "none";
-        }
-    });
-});
-// Chỉ cho phép click tại nút mũi tên
-document.addEventListener("DOMContentLoaded", () => {
-    const prevControl = document.querySelector('.carousel-control-prev.custom-carousel-control');
-    const nextControl = document.querySelector('.carousel-control-next.custom-carousel-control');
-    const prevSpan = prevControl.querySelector('.clickable-span');
-    const nextSpan = nextControl.querySelector('.clickable-span');
-
-    prevControl.addEventListener('click', (event) => {
-        event.preventDefault(); // Ngăn chặn sự kiện click mặc định trên thẻ <a>
-    });
-
-    nextControl.addEventListener('click', (event) => {
-        event.preventDefault(); // Ngăn chặn sự kiện click mặc định trên thẻ <a>
-    });
-
-    prevSpan.addEventListener('click', (event) => {
-        event.stopPropagation(); // Ngăn chặn sự kiện click lan truyền lên thẻ <a>
-        const carousel = document.querySelector(prevControl.getAttribute('data-bs-target'));
-        const carouselInstance = bootstrap.Carousel.getInstance(carousel);
-        carouselInstance.prev(); // Thực hiện hành động chuyển slide trước
-    });
-
-    nextSpan.addEventListener('click', (event) => {
-        event.stopPropagation(); // Ngăn chặn sự kiện click lan truyền lên thẻ <a>
-        const carousel = document.querySelector(nextControl.getAttribute('data-bs-target'));
-        const carouselInstance = bootstrap.Carousel.getInstance(carousel);
-        carouselInstance.next(); // Thực hiện hành động chuyển slide tiếp theo
-    });
-});

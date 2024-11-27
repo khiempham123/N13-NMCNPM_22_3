@@ -101,8 +101,6 @@
     transition: transform 0.3s ease;
   }
   
-
-  
   .section-three .inner-box .inner-content {
     margin-top: 20px;
   }
@@ -123,7 +121,7 @@
     font-size: 20px;
     font-weight: bold;
     margin: 5px 0;
-    color: var(--color-one);
+    color: orangered
   }
   
   .section-three .inner-box .inner-content .inner-price-old {
@@ -168,7 +166,7 @@
   .section-three .inner-box .inner-image .trans-love {
     position: absolute;
     right: 5px;
-    bottom: 29%;
+    bottom: 17%;
   }
   
   .section-three .inner-box .inner-image:hover .transaction {
@@ -177,7 +175,7 @@
   }
   
   .section-three .inner-box .inner-image .transaction:hover {
-    background: orangered;
+    background: #ec594b;
   }
 
 .custom-carousel-control :hover{
