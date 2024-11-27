@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Employee Information Form</title>
+  <link rel="stylesheet" href="editProfileStyle.css">
+</head>
+
+<body>
+  <div class="employee-form-container">
+    <div class="employee-form-box">
+      <div class="form-header">
+        <h1 class="form-title">User Information</h1>
+        <button id="editButton">Edit</button>
+      </div>
+
+      <form id="employeeForm" class="employee-form">
+        <div class="form-photo-section">
+          <div class="photo-wrapper">
+            <img id="photoPreview" class="photo-preview"
+              src="https://images.unsplash.com/photo-1633332755192-727a05c4013d?w=500&h=500"
+              alt="Employee Photo">
+            <label for="photoUpload" class="photo-upload-label" style="display: none;">Upload</label>
+            <input type="file" id="photoUpload" accept="image/*" style="display:none">
+          </div>
+        </div>
+
+        <div class="form-field">
+          <label for="name">Name</label>
+          <input type="text" id="name" value="John Doe" disabled>
+        </div>
+
+        <div class="form-field">
+          <label for="dateOfBirth">Date of Birth</label>
+          <input type="date" id="dateOfBirth" value="1990-01-01" disabled>
+        </div>
+
+        <div class="form-field">
+          <label for="gender">Gender</label>
+          <select id="gender" disabled>
+            <option value="male" selected>Male</option>
+            <option value="female">Female</option>
+            <option value="other">Other</option>
+          </select>
+        </div>
+
+        <div class="form-field">
+          <label for="phone">Phone</label>
+          <input type="text" id="phone" value="(123) 456-7890" disabled>
+        </div>
+
+        <div class="form-field">
+          <label for="address">Address</label>
+          <input type="text" id="address" value="123 Main St, City, Country" disabled>
+        </div>
+
+        <div class="form-field">
+          <label for="department">Department</label>
+          <select id="department" disabled>
+            <option value="Engineering" selected>Engineering</option>
+            <option value="Marketing">Marketing</option>
+            <option value="Sales">Sales</option>
+            <option value="Human Resources">Human Resources</option>
+            <option value="Finance">Finance</option>
+            <option value="Operations">Operations</option>
+          </select>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <script src="test.js"></script>
+</body>
+
+</html>
