@@ -1,16 +1,6 @@
-.row {
-    margin: 0;
-    padding: 0;
-}
-
-.topSeller {
-    margin: 0;
-    padding: 0;
-}
 .custom-link {
     border-radius: 30px; 
     padding: 10px;
-
 }
 .nav-item{
     color:black;
@@ -19,34 +9,6 @@
 }
 .nav-item:hover {
     color: orangered
-
-}
-.nav-item span:hover {
-    font-size: 25px;
-    transition: 0.3s ease-in-out;
-}
-
-.card-footer {
-    background: rgb(133,193,189);
-    background: radial-gradient(circle, rgba(133,193,189,1) 11%, rgba(129,152,201,1) 90%);
-    margin: 0;
-    padding: 0;
-    border: none;
-    border-radius: 0%;
-    height: 90px; /* Đảm bảo chiều cao cố định */
-    align-items: center;
-    justify-content: center;
-}
-
-.navbar {
-    margin: 0;
-    padding: 0;
-    border: none;
-}
-
-.container-fluid {
-    margin: 0;
-    padding: 0;
 }
 
 .dropdown-divider-customer {

@@ -1,0 +1,81 @@
+/*.topseller-product-card {
+    margin-bottom: 30px;
+}
+.topseller-product-card .card {
+    height: 600px;
+    width: 400px;
+    border-radius: 20px;
+}
+.topseller-product-card .card-body .card-text {
+    height: 50px;
+}
+.topseller-product-card .card img {
+    height: 400px;
+    border-top-left-radius: 20px;
+    border-top-right-radius: 20px; 
+    object-fit: cover;
+}
+.product-title {
+    font-size: 1.25rem;
+    font-weight: 700;
+}
+.product-price {
+    font-size: 1.1rem;
+    color: #28a745;
+}
+.topseller-product-card .card-body .btn-primary{
+    background-color: #28a745;
+    color: white;
+    border-radius: 10px;
+}*/
+.topSeller .col {
+    margin: 0;
+}
+
+.topseller-item {
+    display: block;
+    position: relative;
+    overflow: hidden; /* Ẩn các phần tử thừa */
+    border-radius: 15px; /* Bo góc */
+    transition: transform 0.3s ease, box-shadow 0.3s ease; /* Hiệu ứng hover */
+}
+
+.topseller-item:hover {
+    transform: scale(1.05); /* Phóng to nhẹ khi hover */
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2); /* Thêm hiệu ứng đổ bóng */
+}
+
+.topseller-item img {
+    width: 100%; /* Hình ảnh chiếm toàn bộ chiều rộng */
+    height: auto; /* Duy trì tỷ lệ khung hình */
+    border-radius: 15px;
+    object-fit: cover;
+}
+
+/* Thay đổi vị trí và kích thước của caption */
+.topseller-item .product-caption {
+    position: absolute;
+    bottom: 10%; /* Căn cách đáy 10% */
+    left: 10%; /* Căn cách trái 10% */
+    padding: 20px 30px; /* Tăng kích thước padding */
+    background: rgba(84, 80, 80, 0.3); /* Nền đen mờ */
+    color: #fff; /* Màu chữ trắng */
+    border-radius: 15px; /* Bo góc caption */
+    text-align: left;
+    opacity: 1; /* Luôn hiển thị */
+    z-index: 10; /* Đảm bảo caption nằm trên hình ảnh */
+    font-size: 20px; /* Kích thước chữ lớn hơn */
+    max-width: 80%; /* Đảm bảo caption không quá rộng */
+}
+
+.product-caption .caption-title {
+    font-size: 24px; /* Kích thước lớn hơn cho tiêu đề */
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+.caption-total span{
+    color: #131313
+    
+    font-size: 15px;
+
+}

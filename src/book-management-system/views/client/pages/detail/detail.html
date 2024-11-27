@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Detail</title>
 
     <link rel="stylesheet" href="assets/css/base.css">
     <link rel="stylesheet" href="assets/css/home.css">
@@ -109,6 +109,8 @@
                     </div>
                 </nav>
             </div>
+
+
             <div class="card-footer" style="background: rgb(133,193,189);
                         background: radial-gradient(circle, rgba(133,193,189,1) 11%, rgba(129,152,201,1) 90%); 
                         margin: 0; padding: none; border: none; border-radius: 0%;">
@@ -178,7 +180,7 @@
 
         <hr class="horizontal-line" />
         <!-- Section 1 -->
-        <div class="section-one">
+        <!-- <div class="section-one">
           <div class="container">
             <div class="row">
               <div class="col-xl-12">
@@ -192,109 +194,82 @@
               </div>
             </div>
           </div>
-        </div>
+        </div> -->
         <!-- End Section 1 -->
 
         <!-- Section 2 -->
+        <!-- Section 2 -->
         <div class="section-two">
-      <div class="container">
-        <div class="row">
-          <div class="col-xl-6">
-            <div class="inner-image box">
-              <img src="assets/images/book-1.jpg" alt="anh-sach" />
-            </div>
-          </div>
-          <div class="col-xl-6">
-            <div class="inner-content box">
-              <div class="inner-title">
-                <h1>The Girl and the Last Sleepover</h1>
-              </div>
-              <div class="inner-info">
-                <p class="author">Author: Nguyễn Văn B</p>
-                <div class="separator"></div>
-                <i class="fa-solid fa-star"> <span>4.6</span></i>
-                <div class="separator"></div>
-                <p class="SKU">SKU: int280</p>
-              </div>
-              <hr class="horizontal-line" />
-              <div class="inner-price">$125.00 - $450.00</div>
-              <div class="inner-desc">
-                Nihil quo dolorum debitis velit qui et inventore. Delectus aut
-                occaecati sunt mollitia illo. Odio velit mollitia ipsam
-                explicabo nisi quisquam dolore non. Rem omnis consectetur et ea.
-              </div>
-              <div class="inner-type">
-                <p>Select Format:</p>
-                <ul>
-                  <li>
-                    <div class="FOREVER select-box" data-price="150">
-                      FOREVER
-                    </div>
-                  </li>
-                  <li>
-                    <div class="RENT-3 select-box" data-price="30">RENT-3D</div>
-                  </li>
-                  <li>
-                    <div class="RENT-5 select-box" data-price="45">RENT-5D</div>
-                  </li>
-                  <li>
-                    <div class="RENT-7 select-box" data-price="65">
-                      RENT-7D~1W
-                    </div>
-                  </li>
-                  <a href="#" class="clear">Clear</a>
-                </ul>
-                <div class="current-price">
-                  <span id="current-price">$0.00</span>
-                </div>
-              </div>
-              <hr class="horizontal-line" />
-              <div class="inner-quantity">
-                <div class="quantity-selector">
-                  <button id="decrease" class="quantity-btn">-</button>
-                  <span id="quantity" class="quantity-value">1</span>
-                  <button id="increase" class="quantity-btn">+</button>
+
+          <div class="container">
+            <div class="row">
+              <div class="col-xl-6">
+                <div class="inner-image box">
+                  <img id="book-image" src="" alt="Book Image" />
                 </div>
 
-                <button class="add-to-cart">
-                  <i class="fa-solid fa-basket-shopping"></i> Add to cart
-                </button>
-
-                <i class="fa-solid fa-heart wishlist"></i>
-                <a href="#">Browse wishlist</a>
               </div>
-              <hr class="horizontal-line" />
-              <div class="inner-file">
-                <div class="categories">
-                  <span>Categories:</span>
-                  <a href="#">Action & Adventure</a>,
-                  <a href="#">Activity Books</a>
-                </div>
-                <div class="tags">
-                  <span>Tags:</span>
-                  <a href="#">Books</a>, <a href="#">Fiction</a>,
-                  <a href="#">Romance - Contemporary</a>
-                </div>
-                <div class="share">
-                  <a href="#" class="facebook"
-                    ><i class="fa-brands fa-square-facebook"></i
-                  ></a>
-                  <a href="#" class="twitter">
-                    <i class="fa-brands fa-square-twitter"></i>
-                  </a>
-                  <a href="#" class="linkedin"
-                    ><i class="fa-brands fa-invision"></i
-                  ></a>
-                  <a href="#" class="pinterest">
-                    <i class="fa-brands fa-square-pinterest"></i>
-                  </a>
+              <div class="col-xl-6">
+                <div class="inner-content box">
+                  <div class="inner-title">
+                    <h2 id="book-title">Loading...</h2>
+                  </div>
+                  <div class="inner-info">
+                    <p id="book-author" class="author">Author: </p>
+                    <div class="separator"></div>
+                    <i class="fa-solid fa-star">
+                      <span id="book-rating">0.0</span>
+                    </i>
+                  </div>
+                  <hr class="horizontal-line" />
+                  <div id="book-price" class="inner-price"></div>
+                  <div id="book-desc" class="inner-desc"></div>
+                  <div class="inner-type">
+                    <p>Select Format:</p>
+                    <ul id="book-formats"></ul>
+                    <div class="current-price">
+                      <span id="current-price">$0.00</span>
+                    </div>
+                  </div>
+                  <hr class="horizontal-line" />
+                  <div class="inner-quantity">
+                    <div class="quantity-selector">
+                      <button id="decrease" class="quantity-btn">-</button>
+                      <span id="quantity" class="quantity-value">1</span>
+                      <button id="increase" class="quantity-btn">+</button>
+                    </div>
+                    <button class="add-to-cart">
+                      <i class="fa-solid fa-basket-shopping"></i> Add to cart
+                    </button>
+                    <i class="fa-solid fa-heart wishlist"></i>
+                    <a href="#">Browse wishlist</a>
+                  </div>
+                  <hr class="horizontal-line" />
+                  <div class="inner-file">
+                    <div id="book-categories" class="categories"></div>
+                    <div id="book-tags" class="tags"></div>
+                    <div class="share">
+                      <a href="#" class="facebook">
+                        <i class="fa-brands fa-square-facebook"></i>
+                      </a>
+                      <a href="#" class="twitter">
+                        <i class="fa-brands fa-square-twitter"></i>
+                      </a>
+                      <a href="#" class="linkedin">
+                        <i class="fa-brands fa-invision"></i>
+                      </a>
+                      <a href="#" class="pinterest">
+                        <i class="fa-brands fa-square-pinterest"></i>
+                      </a>
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>
           </div>
         </div>
-      </div>
-        </div>
+
+
         <!-- End Section 2 -->
 
         <!-- Section 3 -->
@@ -462,163 +437,40 @@
         
         <!-- Section 5 -->
         <div class="section-five">
-      <div class="container">
-        <div class="inner-head">
-          <div class="row">
-            <div
-              class="col-xl-3 d-flex justify-content-center align-items-center"
-            >
-              <div class="inner-title">Related Products</div>
+
+          <div class="container">
+              <div class="inner-head">
+                  <div class="row">
+                      <div class="col-xl-3 d-flex justify-content-center align-items-center">
+                          <div class="inner-title">Related Products</div>
+                      </div>
+                      <div class="col-xl-9">
+                          <hr />
+                      </div>
+
+
+
+              <div class="inner-list position-relative">
+                  <!-- Nút điều hướng bên trái -->
+                  <button class="btn-nav left" id="btn-left">
+                      <i class="fa fa-chevron-left"></i>
+                  </button>
+                  <!-- Danh sách sản phẩm -->
+                  <div class="row flex-nowrap overflow-hidden" id="product-list">
+                      <!-- Sản phẩm sẽ được thêm động từ fetch API -->
+
             </div>
-            <div class="col-xl-9">
-              <hr />
-            </div>
+            
+
+                  </div>
+                  <!-- Nút điều hướng bên phải -->
+                  <button class="btn-nav right" id="btn-right">
+                      <i class="fa fa-chevron-right"></i>
+                  </button>
+              </div>
           </div>
-        </div>
-        <div class="inner-list">
-          <div class="row">
-            <!-- Book-1 -->
-            <div class="col-xl-2 col-lg-2 col-md-4">
-              <div class="inner-box">
-                <div class="inner-image">
-                  <img src="assets/images/book-1.jpg" alt="anh sp" />
-                  <div class="transaction trans-love">
-                    <i class="fa-regular fa-heart"></i>
-                  </div>
-                  <div class="transaction trans-cart">
-                    <i class="fa-solid fa-basket-shopping"></i>
-                  </div>
-                </div>
-                <div class="inner-content">
-                  <div class="inner-title">{title}</div>
-                  <div class="inner-author">{author}</div>
-                  <div class="inner-price-new">
-                    {price-new}
-                    <div class="inner-price-old">{price-old}</div>
-                  </div>
-                  <div class="inner-discount">{dc}</div>
-                </div>
-              </div>
-            </div>
-            <!-- Book-2 -->
-            <div class="col-xl-2 col-lg-2 col-md-4">
-              <div class="inner-box">
-                <div class="inner-image">
-                  <img src="assets/images/book-1.jpg" alt="anh sp" />
-                  <div class="transaction trans-love">
-                    <i class="fa-regular fa-heart"></i>
-                  </div>
-                  <div class="transaction trans-cart">
-                    <i class="fa-solid fa-basket-shopping"></i>
-                  </div>
-                </div>
-                <div class="inner-content">
-                  <div class="inner-title">{title}</div>
-                  <div class="inner-author">{author}</div>
-                  <div class="inner-price-new">
-                    {price-new}
-                    <div class="inner-price-old">{price-old}</div>
-                  </div>
-                  <div class="inner-discount">{dc}</div>
-                </div>
-              </div>
-            </div>
-            <!-- Book-3 -->
-            <div class="col-xl-2 col-lg-2 col-md-4">
-              <div class="inner-box">
-                <div class="inner-image">
-                  <img src="assets/images/book-1.jpg" alt="anh sp" />
-                  <div class="transaction trans-love">
-                    <i class="fa-regular fa-heart"></i>
-                  </div>
-                  <div class="transaction trans-cart">
-                    <i class="fa-solid fa-basket-shopping"></i>
-                  </div>
-                </div>
-                <div class="inner-content">
-                  <div class="inner-title">{title}</div>
-                  <div class="inner-author">{author}</div>
-                  <div class="inner-price-new">
-                    {price-new}
-                    <div class="inner-price-old">{price-old}</div>
-                  </div>
-                  <div class="inner-discount">{dc}</div>
-                </div>
-              </div>
-            </div>
-            <!-- Book-4 -->
-            <div class="col-xl-2 col-lg-2 col-md-4">
-              <div class="inner-box">
-                <div class="inner-image">
-                  <img src="assets/images/book-1.jpg" alt="anh sp" />
-                  <div class="transaction trans-love">
-                    <i class="fa-regular fa-heart"></i>
-                  </div>
-                  <div class="transaction trans-cart">
-                    <i class="fa-solid fa-basket-shopping"></i>
-                  </div>
-                </div>
-                <div class="inner-content">
-                  <div class="inner-title">{title}</div>
-                  <div class="inner-author">{author}</div>
-                  <div class="inner-price-new">
-                    {price-new}
-                    <div class="inner-price-old">{price-old}</div>
-                  </div>
-                  <div class="inner-discount">{dc}</div>
-                </div>
-              </div>
-            </div>
-            <!-- Book-5 -->
-            <div class="col-xl-2 col-lg-2 col-md-4">
-              <div class="inner-box">
-                <div class="inner-image">
-                  <img src="assets/images/book-1.jpg" alt="anh sp" />
-                  <div class="transaction trans-love">
-                    <i class="fa-regular fa-heart"></i>
-                  </div>
-                  <div class="transaction trans-cart">
-                    <i class="fa-solid fa-basket-shopping"></i>
-                  </div>
-                </div>
-                <div class="inner-content">
-                  <div class="inner-title">{title}</div>
-                  <div class="inner-author">{author}</div>
-                  <div class="inner-price-new">
-                    {price-new}
-                    <div class="inner-price-old">{price-old}</div>
-                  </div>
-                  <div class="inner-discount">{dc}</div>
-                </div>
-              </div>
-            </div>
-            <!-- Book-6 -->
-            <div class="col-xl-2 col-lg-2 col-md-4">
-              <div class="inner-box">
-                <div class="inner-image">
-                  <img src="assets/images/book-1.jpg" alt="anh sp" />
-                  <div class="transaction trans-love">
-                    <i class="fa-regular fa-heart"></i>
-                  </div>
-                  <div class="transaction trans-cart">
-                    <i class="fa-solid fa-basket-shopping"></i>
-                  </div>
-                </div>
-                <div class="inner-content">
-                  <div class="inner-title">{title}</div>
-                  <div class="inner-author">{author}</div>
-                  <div class="inner-price-new">
-                    {price-new}
-                    <div class="inner-price-old">{price-old}</div>
-                  </div>
-                  <div class="inner-discount">{dc}</div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
       </div>
-        </div>
+        
         <!-- End Section 5 -->
 
         <div class="row">
@@ -850,30 +702,6 @@
         });
       });
     </script>
-    <script>
-      document.addEventListener("DOMContentLoaded", () => {
-        const userIcon = document.querySelector(".user-icon");
-        const profileCard = document.querySelector(".profile-card");
-        const closeBtn = document.querySelector(".close-btn");
-    
-        // Hiển thị/hide khi click vào icon
-        userIcon.addEventListener("click", (event) => {
-            event.preventDefault();
-            profileCard.style.display = profileCard.style.display === "none" || profileCard.style.display === "" ? "block" : "none";
-        });
-    
-        // Đóng khi click vào nút đóng
-        closeBtn.addEventListener("click", () => {
-            profileCard.style.display = "none";
-        });
-    
-        // Ẩn profile-card khi click ngoài khu vực
-        document.addEventListener("click", (event) => {
-            if (!profileCard.contains(event.target) && !userIcon.contains(event.target)) {
-                profileCard.style.display = "none";
-            }
-        });
-      });
-    </script>
+    <script src="detail.js"></script>
   </body>
 </html>
