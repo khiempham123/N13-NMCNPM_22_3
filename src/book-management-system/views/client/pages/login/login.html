@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="vi">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,12 +8,13 @@
     <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet">
     <link href="style.css" rel="stylesheet">
 </head>
+
 <body>
     <div class="wrapper">
         <!-- Form Đăng nhập -->
         <div class="form-wrapper sign-in">
-            <form id="signInForm">
-                <h1>Đăng Nhập</h1>
+            <form action="" id="signInForm">
+                <h1>Sign In</h1>
                 <div class="input-box">
                     <input type="text" id="loginUsername" class="input" required>
                     <label>Username</label>
@@ -27,16 +29,24 @@
                     <label><input type="checkbox">Remember</label>
                     <a href="#" class="forgotPassword-link">Forgot Password</a>
                 </div>
-                <button type="submit" class="btn">Đăng Nhập</button>
+                <button type="submit" class="btn">Sign In</button>
                 <div class="register-link">
-                    <p>Chưa có tài khoản? <a href="#" class="signUp-link">Đăng ký</a></p>
+                    <p>Don't have an account?
+                        <a href="#" class="signUp-link">Sign up</a>
+                    </p>
                 </div>
                 <div class="social-media">
-                    <p>Hoặc đăng nhập với</p>
+                    <p>Or login with</p>
                     <div class="social-icons">
-                        <a href="#" class="social-icon"><i class='bx bxl-facebook'></i></a>
-                        <a href="#" class="social-icon"><i class='bx bxl-twitter'></i></a>
-                        <a href="#" class="social-icon"><i class='bx bxl-google'></i></a>
+                        <a href="#" class="social-icon">
+                            <i class='bx bxl-facebook'></i>
+                        </a>
+                        <a href="#" class="social-icon">
+                            <i class='bx bxl-twitter'></i>
+                        </a>
+                        <a href="#" class="social-icon">
+                            <i class='bx bxl-google'></i>
+                        </a>
                     </div>
                 </div>
             </form>
@@ -50,29 +60,31 @@
                     <input type="text" id="username" class="input" required>
                     <label>Tên đăng nhập</label>
                     <i class='bx bxs-user'></i>
-                    <div class="error-message" id="usernameError" style="display: none;">Tên đăng nhập không hợp lệ.</div>
+                    <div class="error-message" id="usernameError" style="display: none;">Tên đăng nhập không hợp lệ.
+                    </div>
                 </div>
                 <div id="usernameError" class="error-message" style="display: none;">Tên đăng nhập đã tồn tại.</div>
-                
+
                 <div class="input-box">
                     <input type="password" id="password" class="input" required>
                     <label>Mật khẩu</label>
                     <i class='bx bxs-lock-alt'></i>
                 </div>
-                
+
                 <div class="input-box">
                     <input type="password" id="signupconfirmPassword" class="input" required>
                     <label>Xác nhận mật khẩu</label>
                     <i class='bx bxs-lock-alt'></i>
                 </div>
-                <div id="confirmPasswordError" class="error-message" style="display: none;">Mật khẩu xác nhận không khớp. Vui lòng nhập lại.</div>
+                <div id="confirmPasswordError" class="error-message" style="display: none;">Mật khẩu xác nhận không
+                    khớp. Vui lòng nhập lại.</div>
 
                 <div class="input-box">
                     <input type="email" id="email" class="input" required>
                     <label>Email</label>
                     <i class='bx bx-envelope'></i>
                 </div>
-                
+
                 <div class="input-box">
                     <input type="tel" id="phone" class="input" required>
                     <label>Số điện thoại</label>
@@ -91,7 +103,7 @@
                 </div>
             </form>
         </div>
-        <!-- Form Quên mật khẩu -->
+        <!-- Form Quên mật khẩu --> 
         <div class="form-wrapper forgot-password">
             <form id="forgotPasswordForm">
                 <h1>Quên mật khẩu</h1>
@@ -103,41 +115,48 @@
                 <button type="submit" class="btn">Gửi yêu cầu</button>
                 <div id="timerBox" style="display: none; text-align: center;">
                     <p id="countdown" style="display: inline-block; font-size: 14px;">03:00</p>
-                    <span id="resendOtpText" style="display: none; margin-left: 10px; font-size: 12px; color: blue; cursor: pointer;">Gửi lại mã OTP</span>
+                    <span id="resendOtpText"
+                        style="display: none; margin-left: 10px; font-size: 12px; color: blue; cursor: pointer;">Gửi lại
+                        mã OTP</span>
                 </div>
-        
+
                 <div id="timerBox" style="display: none; text-align: center;">
                     <p id="countdown" style="display: inline-block; font-size: 14px;">03:00</p>
-                    <span id="resendOtpText" style="display: none; margin-left: 10px; font-size: 12px; color: blue; cursor: pointer;">Gửi lại mã OTP</span>
+                    <span id="resendOtpText"
+                        style="display: none; margin-left: 10px; font-size: 12px; color: blue; cursor: pointer;">Gửi lại
+                        mã OTP</span>
                 </div>
-                <!-- Ô nhập OTP -->
+                <!-- Ô nhập OTP --> 
                 <div class="input-box otp-box" style="display: none;">
                     <input type="text" id="otpInput" class="input">
                     <label>Nhập mã OTP</label>
                     <i class='bx bxs-lock-alt'></i>
                 </div>
                 <button type="button" class="btn" id="otpSubmitBtn" style="display: none;">Xác nhận OTP</button>
-                <div class="error-message" id="otpError" style="color: red; display: none; text-align: center; margin-top: 10px;">
+                <div class="error-message" id="otpError"
+                    style="color: red; display: none; text-align: center; margin-top: 10px;">
                     OTP không khớp. Xin vui lòng nhập lại.
                 </div>
                 <div class="register-link">
-                    <p><a href="#" class="signIn-link">Quay lại Đăng nhập</a></p>
+                    <p><a href="#" class="backToSignIn-link">Quay lại Đăng nhập</a></p>
                 </div>
             </form>
         </div>
 
-        <!-- Form Reset Password -->
+        <!-- Form Reset Password 
         <div class="form-wrapper reset-password">
             <form id="resetPasswordForm">
                 <h1>Đặt lại mật khẩu</h1>
                 <p class="info-text">Nhập mật khẩu mới của bạn để hoàn tất quá trình.</p>
                 <div class="input-box">
-                    <input type="password" id="newPassword" class="input" required minlength="8" autocomplete="new-password">
+                    <input type="password" id="newPassword" class="input" required minlength="8"
+                        autocomplete="new-password">
                     <label>Mật khẩu mới</label>
                     <i class='bx bxs-lock-alt'></i>
                 </div>
                 <div class="input-box">
-                    <input type="password" id="confirmPassword" class="input" required minlength="8" autocomplete="new-password">
+                    <input type="password" id="confirmPassword" class="input" required minlength="8"
+                        autocomplete="new-password">
                     <label>Xác nhận mật khẩu</label>
                     <i class='bx bxs-lock-alt'></i>
                 </div>
@@ -146,16 +165,17 @@
                     <p><a href="#" class="signIn-link">Quay lại Đăng nhập</a></p>
                 </div>
             </form>
-        </div>
-    <!-- Modal thông báo -->
-    <div id="successModal" class="modal">
-        <div class="modal-content">
-            <h2>Đăng kí thành công </h2>
-            <p>Bạn đã đăng kí tài khoảng thành công</p>
-            <button id="closeModal" class="btn">Đóng</button>
-        </div>
-    </div>
-    
-    <script src="main.js"></script>
+        </div> -->
+        <!-- Modal thông báo 
+        <div id="successModal" class="modal">
+            <div class="modal-content">
+                <h2>Đăng kí thành công </h2>
+                <p>Bạn đã đăng kí tài khoảng thành công</p>
+                <button id="closeModal" class="btn">Đóng</button>
+            </div>
+        </div> -->
+
+        <script src="main.js"></script>
 </body>
+
 </html>
