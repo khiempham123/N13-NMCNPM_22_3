@@ -305,3 +305,7 @@
 }
 
 /* End Page-number */
+#product-list {
+  border: 1px solid red;  /* Để kiểm tra xem phần tử có tồn tại và có kích thước không */
+  display: block;  /* Đảm bảo phần tử hiển thị */
+}
