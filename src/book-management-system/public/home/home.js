@@ -189,7 +189,7 @@ navLinks.forEach(link => {
                 window.location.href = "./home.html";
                 break;
             case "Book":
-                window.location.href = "../shop/shop.html";
+                window.location.href = "/shop.html";
                 break;
             case "Author":
                 window.location.href = "/authors.html";
