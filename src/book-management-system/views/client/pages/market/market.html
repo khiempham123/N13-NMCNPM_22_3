@@ -118,7 +118,9 @@
                             <a class="navbar-brand" href="https://maps.app.goo.gl/2MXnCG5jVrdjcQYZA" target="_blank"
                                 style="width:35px; margin: 0px 400px 0px 50px; text-align: center; justify-content: center; color: white;">
                                 <i class="fa-solid fa-location-dot"></i>
-                                <span style="font-size: 15px; text-decoration: underline; font-weight: 500; color: white;">Find a Book
+                                <span
+                                    style="font-size: 15px; text-decoration: underline; font-weight: 500; color: white;">Find
+                                    a Book
                                     Store</span>
                             </a>
                             <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
@@ -184,60 +186,77 @@
         <div class="section-three">
             <div class="container">
                 <div class="row">
-                    <div class="col-xl-3 col-lg-3 col-md-3">
-                        <!-- SideBar -->
-                        <div class="sidebar">
-                            <h4>My Favourite Books</h4>
-                            <!-- <hr class="horizontal-line" /> -->
-                            <!-- Một số điều hướng hoặc tinh chỉnh nếu cần thiết -->
-                        </div>
-                    </div>
-                    <div class="col-xl-9 col-lg-9 col-md-9">
-                        <!-- List Book -->
-                        <div class="listbook">
-                            <!-- Carousel -->
-                            <div class="carousel">
-                                <div class="carousel-images" id="carouselImages">
-                                    <img src="./images/banner-1.png" alt="Slide 1" />
-                                    <img src="assets/images/banner-2.png" alt="Slide 2" />
-                                    <img src="assets/images/banner-3.png" alt="Slide 3" />
-                                    <img src="assets/images/banner-4.png" alt="Slide 4" />
-                                    <img src="assets/images/banner-5.png" alt="Slide 4" />
-                                </div>
-                                <div class="carousel-buttons" id="carouselButtons"></div>
-                            </div>
+                    <div class="container my-5">
+                        <div class="row">
+                            <!-- Phần giỏ hàng -->
+                            <div class="col-lg-8">
+                                <div class="cart-container">
+                                    <div class="cart-header">
+                                        GIỎ HÀNG (1 sản phẩm)
+                                    </div>
+                                    <div class="cart-controls d-flex align-items-center mt-3">
+                                        <div style="width: 50%;">
+                                            <input type="checkbox" />
+                                            Chọn tất cả (1 sản phẩm)
+                                        </div>
+                                        <div class="d-flex w-50 text-center">
+                                            <div class="quantity-label" style="width: 50%;">Số lượng</div>
+                                            <div class="price-label">Thành tiền</div>
+                                        </div>
+                                    </div>
+                                    <hr class="horizontal-line" />
 
-                            <div class="sorting">
-                                <select aria-label="Choose an option">
-                                    <option>Default sorting</option>
-                                    <option>Sort by price (Ascending)</option>
-                                    <option>Sort by price ( Descending)</option>
-                                </select>
-                            </div>
+                                    <div class="cart-item d-flex  align-items-center mt-3">
+                                        <div class="d-flex align-items-center" style="width: 58%;">
+                                            <input class="me-3" type="checkbox" />
+                                            <img alt="Book cover" src="https://storage.googleapis.com/a1aa/image/xm2x0F9zfhRsJKxSv7aJUK8FQ3gtaQ6iodDzmpME1nOFs86JA.jpg" />
+                                            <div class="ms-3">
+                                                <div class="cart-item-title">
+                                                    Trăm Năm Cô Đơn (Tái Bản 2023)
+                                                </div>
+                                                <div class="cart-item-price">
+                                                    139.300 đ
+                                                </div>
+                                                <div class="cart-item-old-price">
+                                                    199.000 đ
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="d-flex align-items-center" style="width: 15%;">
+                                            <div class="quantity-controls">
+                                                <button class="btn btn-outline-secondary btn-sm">-</button>
+                                                <span class="mx-2">1</span>
+                                                <button class="btn btn-outline-secondary btn-sm">+</button>
+                                            </div>
+                                        </div>
+                                        <div class="d-flex align-items-center">
 
-                            <div class="row" id="product-list">
-                                <!-- Danh sách sản phẩm sẽ được hiển thị ở đây -->
-                            </div>
-                            <!-- Page Number -->
-                            <div class="page-number">
-                                <div class="container">
-                                    <div class="row">
-                                        <div class="col-12">
-                                            <ul class="page-wrap">
-                                                <li><span class="page current">1</span></li>
-                                                <li><a href="#" class="page">2</a></li>
-                                                <li><a href="#" class="page">3</a></li>
-                                                <li>
-                                                    <a href="#">
-                                                        <i class="fa-solid fa-angle-right page"></i>
-                                                    </a>
-                                                </li>
-                                            </ul>
+                                            <div class="ms-3 cart-item-price">139.300 đ</div>
+                                            <div class="ms-3 delete-item">
+                                                <button class="btn btn-outline-danger btn-sm">
+                                                    <i class="fas fa-trash"></i>
+                                                </button>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
+                            <!-- Phần thanh toán -->
+                            <div class="col-lg-4">
+                                <div class="cart-summary">
+                                    <div class="d-flex justify-content-between align-items-center mb-3">
+                                        <div>Thành tiền</div>
+                                        <div>139.300 đ</div>
+                                    </div>
+                                    <div class="d-flex justify-content-between align-items-center mb-3">
+                                        <div class="total-price-label">Tổng Số Tiền (gồm VAT)</div>
+                                        <div class="total-price">139.300 đ</div>
+                                    </div>
+                                    <button class="btn btn-secondary">THANH TOÁN</button>
+                                </div>
+                            </div>
                         </div>
+                        
                     </div>
                 </div>
             </div>
