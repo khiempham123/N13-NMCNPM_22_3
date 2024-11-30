@@ -386,8 +386,8 @@
   color: #999;
 }
 
-.payment-section,
-.delivery-section {
+.payment-section
+{
     display: none;
     position: fixed;
     top: 50%;
@@ -401,7 +401,20 @@
     padding: 20px;
     border-radius: 8px;
 }
-
+.delivery-section {
+  display: none;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 1000;
+  width: 90%;
+  max-width: 1000px;
+  background-color: #fff;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+  border-radius: 8px;
+}
 .payment-section.active,
 .delivery-section.active {
     display: block;
