@@ -28,10 +28,10 @@ function renderCustomerTable() {
             <td>${customer.email}</td>
             <td>
               <button class="edit-btn" data-id="${customer.id}">
-                <i class="fa-solid fa-gear"></i>
+                <i class="fa-solid fa-pen-to-square"></i>
               </button>
               <button class="delete-btn" data-id="${customer.id}">
-                <i class="fa-solid fa-trash-can"></i>
+                <i class="fa-solid fa-trash"></i>
               </button>
             </td>
           `;
@@ -119,16 +119,37 @@ document
     document.getElementById("editCustomerPopup").style.display = "none";
   });
 
-// Xóa khách hàng
+// Mở popup xóa khách hàng
 document.addEventListener("click", function (event) {
   if (event.target.closest(".delete-btn")) {
     const customerId = event.target
       .closest(".delete-btn")
       .getAttribute("data-id");
-    customers = customers.filter((c) => c.id != customerId);
-    renderCustomerTable();
+    document.getElementById("deleteCustomerPopup").style.display = "flex";
+    document
+      .getElementById("deleteCustomerBtn")
+      .setAttribute("data-id", customerId);
   }
 });
+
+// Đóng popup xóa khách hàng
+document
+  .getElementById("closeDeleteCustomerPopup")
+  .addEventListener("click", function () {
+    document.getElementById("deleteCustomerPopup").style.display = "none";
+  });
+
+// Xác nhận xóa khách hàng
+document
+  .getElementById("deleteCustomerBtn")
+  .addEventListener("click", function () {
+    const customerId = document
+      .getElementById("deleteCustomerBtn")
+      .getAttribute("data-id");
+    customers = customers.filter((c) => c.id != customerId);
+    renderCustomerTable();
+    document.getElementById("deleteCustomerPopup").style.display = "none";
+  });
 
 // Initial render
 renderCustomerTable();

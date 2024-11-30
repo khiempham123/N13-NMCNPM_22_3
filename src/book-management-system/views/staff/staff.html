@@ -30,7 +30,7 @@
       <nav class="sidebar">
         <div class="logo">
           <i class="fa-solid fa-book-open-reader"></i>
-          <span>Bookory</span>
+          <span>StaffWeb</span>
         </div>
         <hr />
         <ul>
@@ -63,6 +63,37 @@
             >
           </li>
         </ul>
+        <div id="changePassword" class="change-password">
+          <i class="fa-solid fa-key"></i>
+          <span>Change Password</span>
+        </div>
+        <div class="frame-password" id="changePasswordPopup">
+          <div class="popup-frame">
+            <div class="popup-content">
+              <h2>CHANGE PASSWORD</h2>
+              <input
+                type="password"
+                id="oldPassword"
+                placeholder="Old Password"
+              />
+              <br />
+              <input
+                type="password"
+                id="newPassword"
+                placeholder="New Password"
+              />
+              <br />
+              <input
+                type="password"
+                id="confirmPassword"
+                placeholder="Confirm Password"
+              />
+              <br />
+              <button id="changePasswordBtn">CHANGE</button>
+              <button id="closeChangePasswordPopup">CLOSE</button>
+            </div>
+          </div>
+        </div>
       </nav>
 
       <div class="content" id="content">
@@ -75,17 +106,11 @@
                 <div class="title">Notifications</div>
 
                 <div class="inner-right">
-                  <!-- Thanh tìm kiếm -->
-                  <div class="search-container">
-                    <input type="text" placeholder="Search..." />
-                    <i class="fa fa-search"></i>
-                  </div>
-
                   <!-- Các biểu tượng -->
                   <div class="icons">
-                    <i class="fa fa-wave-square"></i>
+                    <i class="fa-solid fa-calendar"></i>
                     <i class="fa fa-globe"></i>
-                    <i class="fa fa-user"></i>
+                    <i class="fa-solid fa-right-from-bracket"></i>
                   </div>
                 </div>
               </div>
@@ -99,8 +124,13 @@
             <div class="container">
               <div class="box-table">
                 <div class="head-box">
+                  <div class="search-container">
+                    <input type="text" placeholder="Search..." />
+                    <i class="fa fa-search"></i>
+                  </div>
                   <button id="openAddCustomerModal">
                     <i class="fa-solid fa-plus"></i>
+                    <span>New Customer</span>
                   </button>
                 </div>
                 <table id="customerTable">
@@ -207,6 +237,19 @@
                   </div>
                 </div>
               </div>
+              <!-- Popup Delete Customer -->
+              <div class="popup" id="deleteCustomerPopup">
+                <div class="popup-frame">
+                  <div class="popup-content">
+                    <h2>DELETE CUSTOMER</h2>
+                    <h5 style="margin-bottom: 30px">
+                      Are you sure you want to delete this customer?
+                    </h5>
+                    <button id="deleteCustomerBtn">YES</button>
+                    <button id="closeDeleteCustomerPopup">NO</button>
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
           <div class="footer"></div>
@@ -222,16 +265,12 @@
 
                 <div class="inner-right">
                   <!-- Thanh tìm kiếm -->
-                  <div class="search-container">
-                    <input type="text" placeholder="Search..." />
-                    <i class="fa fa-search"></i>
-                  </div>
 
                   <!-- Các biểu tượng -->
                   <div class="icons">
-                    <i class="fa fa-wave-square"></i>
+                    <i class="fa-solid fa-calendar"></i>
                     <i class="fa fa-globe"></i>
-                    <i class="fa fa-user"></i>
+                    <i class="fa-solid fa-right-from-bracket"></i>
                   </div>
                 </div>
               </div>
@@ -245,8 +284,13 @@
             <div class="container">
               <div class="main-box">
                 <div class="head-box">
-                  <button id="openAddCustomerModal">
+                  <div class="search-container">
+                    <input type="text" placeholder="Search..." />
+                    <i class="fa fa-search"></i>
+                  </div>
+                  <button id="openAddBookModal">
                     <i class="fa-solid fa-plus"></i>
+                    <span>New Book</span>
                   </button>
                 </div>
                 <div class="row">
@@ -261,8 +305,8 @@
                         <p>Author: Author 1</p>
                         <p>Price: $10</p>
                         <p>Quantity: 10</p>
-                        <button class="settingBtn">Setting</button>
-                        <button class="deleteBtn">Delete</button>
+                        <button id="editBtn" class="editBtn">Edit</button>
+                        <button id="" class="deleteBtn">Delete</button>
                       </div>
                     </div>
                   </div>
@@ -270,15 +314,15 @@
                   <div class="col-xl-3">
                     <div class="book-box">
                       <div class="book-image">
-                        <img src="assets/images/popup.jpg" alt="book-1" />
+                        <img src="assets/images/popup.jpg" alt="book-2" />
                       </div>
                       <div class="book-content">
                         <h4>Book 2</h4>
                         <p>Author: Author 2</p>
-                        <p>Price: $12</p>
-                        <p>Quantity: 10</p>
-                        <button>Setting</button>
-                        <button>Delete</button>
+                        <p>Price: $10</p>
+                        <p>Quantity: 12</p>
+                        <button id="editBtn" class="editBtn">Edit</button>
+                        <button id="" class="deleteBtn">Delete</button>
                       </div>
                     </div>
                   </div>
@@ -286,15 +330,15 @@
                   <div class="col-xl-3">
                     <div class="book-box">
                       <div class="book-image">
-                        <img src="assets/images/popup.jpg" alt="book-1" />
+                        <img src="assets/images/popup.jpg" alt="book-3" />
                       </div>
                       <div class="book-content">
                         <h4>Book 3</h4>
                         <p>Author: Author 3</p>
-                        <p>Price: $11</p>
-                        <p>Quantity: 2</p>
-                        <button>Setting</button>
-                        <button>Delete</button>
+                        <p>Price: $33</p>
+                        <p>Quantity: 3</p>
+                        <button id="editBtn" class="editBtn">Edit</button>
+                        <button id="" class="deleteBtn">Delete</button>
                       </div>
                     </div>
                   </div>
@@ -302,24 +346,152 @@
                   <div class="col-xl-3">
                     <div class="book-box">
                       <div class="book-image">
-                        <img src="assets/images/popup.jpg" alt="book-1" />
+                        <img src="assets/images/popup.jpg" alt="book-4" />
                       </div>
                       <div class="book-content">
                         <h4>Book 4</h4>
                         <p>Author: Author 4</p>
-                        <p>Price: $5</p>
-                        <p>Quantity: 21</p>
-                        <button>Setting</button>
-                        <button>Delete</button>
+                        <p>Price: $14</p>
+                        <p>Quantity: 7</p>
+                        <button id="editBtn" class="editBtn">Edit</button>
+                        <button id="" class="deleteBtn">Delete</button>
                       </div>
                     </div>
                   </div>
                 </div>
               </div>
-
               <!-- Add Book Modal -->
-
+              <div class="popup" id="addBookPopup">
+                <div class="popup-frame">
+                  <div class="row">
+                    <div class="col-xl-6">
+                      <div class="popup-content">
+                        <h2>ADD BOOK</h2>
+                        <input
+                          type="text"
+                          id="editBookName"
+                          placeholder="Name"
+                        />
+                        <br />
+                        <input
+                          type="text"
+                          id="editBookAuthor"
+                          placeholder="Author"
+                        />
+                        <br />
+                        <input
+                          type="number"
+                          id="editBookPrice"
+                          placeholder="Price"
+                        />
+                        <br />
+                        <!-- Thêm ô input vào đây -->
+                        <button id="">SAVE</button>
+                        <button id="closeAddBookPopup">CLOSE</button>
+                      </div>
+                    </div>
+                    <div class="col-xl-6">
+                      <div class="popup-image">
+                        <img src="assets/images/popup.jpg" alt="popup.img" />
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
               <!-- Edit Book Modal (For Settings) -->
+              <div class="popup" id="editBookPopup">
+                <div class="popup-frame-book">
+                  <div class="row">
+                    <div class="col-xl-5">
+                      <div class="popup-image">
+                        <img src="assets/images/popup.jpg" alt="popup.img" />
+                      </div>
+                    </div>
+                    <div class="col-xl-7">
+                      <div class="popup-content">
+                        <h2
+                          style="margin-bottom: 40px; color: var(--color-one)"
+                        >
+                          Name: The Book of books
+                        </h2>
+                        <div class="input-edit" style="margin-bottom: 10px">
+                          <label style="margin-right: 20px" for="editBookAuthor"
+                            >Author:
+                          </label>
+                          <input
+                            type="text"
+                            id="editBookAuthor"
+                            placeholder="Author"
+                          />
+                        </div>
+                        <div class="input-edit" style="margin-bottom: 10px">
+                          <label style="margin-right: 34px" for="editBookPrice"
+                            >Price:
+                          </label>
+                          <input
+                            type="number"
+                            id="editBookPrice"
+                            placeholder="Price"
+                          />
+                        </div>
+                        <div class="input-edit" style="margin-bottom: 10px">
+                          <label style="margin-right: 33px" for="editBookStore"
+                            >Store:
+                          </label>
+                          <input
+                            type="number"
+                            id="editBookStore"
+                            placeholder="Store"
+                          />
+                        </div>
+                        <div class="input-edit" style="margin-bottom: 10px">
+                          <label style="margin-right: 34px" for="editBookPrice"
+                            >Price:
+                          </label>
+                          <input
+                            type="number"
+                            id="editBookPrice"
+                            placeholder="Price"
+                          />
+                        </div>
+                        <div class="input-edit" style="margin-bottom: 10px">
+                          <label style="margin-right: 26px" for="editBookGenre"
+                            >Genre:
+                          </label>
+                          <input
+                            type="text"
+                            id="editBookGenre"
+                            placeholder="Genre"
+                          />
+                        </div>
+                        <div class="input-edit" style="margin-bottom: 10px">
+                          <label style="margin-right: 24px" for="editBookImage"
+                            >Image:
+                          </label>
+                          <input
+                            type="file"
+                            id="editBookImage"
+                            placeholder="Image"
+                          />
+                        </div>
+                        <div class="input-edit" style="margin-bottom: 10px">
+                          <label for="editBookDescription">Description: </label>
+                          <textarea
+                            type=""
+                            id="editBookDescription"
+                            placeholder="Description"
+                          >
+                          </textarea>
+                        </div>
+                        <div class="button-box">
+                          <button id="">SAVE</button>
+                          <button id="closeEditBookPopup">CLOSE</button>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
           <div class="footer"></div>
@@ -335,15 +507,11 @@
 
                 <div class="inner-right">
                   <!-- Thanh tìm kiếm -->
-                  <div class="search-container">
-                    <input type="text" placeholder="Search..." />
-                    <i class="fa fa-search"></i>
-                  </div>
                   <!-- Các biểu tượng -->
                   <div class="icons">
-                    <i class="fa fa-wave-square"></i>
+                    <i class="fa-solid fa-calendar"></i>
                     <i class="fa fa-globe"></i>
-                    <i class="fa fa-user"></i>
+                    <i class="fa-solid fa-right-from-bracket"></i>
                   </div>
                 </div>
               </div>
@@ -356,6 +524,12 @@
           <div class="section-main">
             <div class="container">
               <div class="box-table">
+                <div class="head-box">
+                  <div class="search-container">
+                    <input type="text" placeholder="Search..." />
+                    <i class="fa fa-search"></i>
+                  </div>
+                </div>
                 <table id="ordersTable">
                   <thead>
                     <tr>
@@ -363,7 +537,7 @@
                       <th>Name</th>
                       <th>Address</th>
                       <th>Total</th>
-                      <th>Condition</th>
+                      <th>Status</th>
                     </tr>
                   </thead>
                   <tbody>
@@ -374,12 +548,13 @@
                       <td>Nguyễn Văn A</td>
                       <td>123 ABC</td>
                       <td>$100</td>
-                      <td>
-                        <select>
+                      <td id="status-icon">
+                        <i class="fa-solid fa-truck"></i>
+                        <select id="order-status">
+                          <option value="Order Received">Order Received</option>
                           <option value="Processing">Processing</option>
+                          <option value="Packed">Packed</option>
                           <option value="Shipped">Shipped</option>
-                          <option value="Delivered">Delivered</option>
-                          <option value="Cancelled">Cancelled</option>
                         </select>
                       </td>
                     </tr>
@@ -407,7 +582,7 @@
           <div class="footer"></div>
         </div>
 
-        <!-- trang Personal -->
+        <!-- trang personal -->
         <div id="personal" class="page">
           <div class="header">
             <div class="container-fluid">
@@ -417,16 +592,12 @@
 
                 <div class="inner-right">
                   <!-- Thanh tìm kiếm -->
-                  <div class="search-container">
-                    <input type="text" placeholder="Search..." />
-                    <i class="fa fa-search"></i>
-                  </div>
 
                   <!-- Các biểu tượng -->
                   <div class="icons">
-                    <i class="fa fa-wave-square"></i>
+                    <i class="fa-solid fa-calendar"></i>
                     <i class="fa fa-globe"></i>
-                    <i class="fa fa-user"></i>
+                    <i class="fa-solid fa-right-from-bracket"></i>
                   </div>
                 </div>
               </div>
@@ -445,8 +616,22 @@
                     alt="anh nen dai dien"
                   />
                 </div>
+                <div id="openEditPersonalModal" class="edit-gear">
+                  <i class="fa-solid fa-gear"></i>
+                </div>
                 <div class="profile-picture">
-                  <img src="assets/images/anhdaidiencuoi.jpg" alt="avatar" />
+                  <img
+                    src="assets/images/anhdaidiencuoi.jpg"
+                    alt="avatar"
+                    id="avatar"
+                    onclick="toggleDropdown(event)"
+                  />
+                  <!-- Dropdown menu -->
+                  <div id="avatarDropdown" class="dropdown-menu">
+                    <ul>
+                      <li>Change Your Avatar</li>
+                    </ul>
+                  </div>
                 </div>
                 <div class="profile-info">
                   <div class="row">
@@ -511,6 +696,91 @@
                   </div>
                 </div>
               </div>
+              <!-- Popup Edit Personal -->
+              <div class="popup" id="editPersonalPopup">
+                <div class="popup-frame">
+                  <div class="row">
+                    <div class="col-xl-6">
+                      <div class="popup-content">
+                        <h2>Personal Information</h2>
+                        <input
+                          type="text"
+                          id="staffName"
+                          placeholder="Name"
+                        /><br />
+                        <input
+                          type="date"
+                          id="staffBirthDay"
+                          placeholder="BirthDay"
+                        />
+                        <br />
+                        <input
+                          type="phone"
+                          id="staffPhone"
+                          placeholder="Phone"
+                        />
+                        <br />
+                        <input
+                          type="email"
+                          id="staffEmail"
+                          placeholder="Email"
+                        />
+                        <br />
+                        <input
+                          type="text"
+                          id="staffLiving"
+                          placeholder="Living in"
+                        />
+                        <br />
+                        <input type="text" id="staffFrom" placeholder="From" />
+                        <br />
+                        <!-- <input
+                          type="text"
+                          id="staffPosition"
+                          placeholder="On position"
+                        /><br /> -->
+                        <!-- <input
+                          type="number"
+                          id="staffSalary"
+                          placeholder="Salary"
+                        />
+                        <br />
+                        <input
+                          type="text"
+                          id="staffWorkingTime"
+                          placeholder="Working time"
+                        />
+                        <br />
+                        <input
+                          type="text"
+                          id="staffDayOff"
+                          placeholder="Day off"
+                        />
+                        <br />
+                        <input
+                          type="Level"
+                          id="staffLevel"
+                          placeholder="Level of experience"
+                        />
+                        <br />
+                        <input
+                          type="timeKeeping"
+                          id="stafftimeKeeping"
+                          placeholder="Timekeeping"
+                        />
+                        <br /> -->
+                        <button id="">ADD</button>
+                        <button id="closeEditPersonalPopup">CLOSE</button>
+                      </div>
+                    </div>
+                    <div class="col-xl-6">
+                      <div class="popup-image">
+                        <img src="assets/images/popup.jpg" alt="popup.img" />
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
           <div class="footer"></div>
@@ -521,6 +791,78 @@
     <script src="page.js"></script>
     <script src="customer.js"></script>
     <script src="books.js"></script>
+    <script src="personal.js"></script>
+    <script src="book.js"></script>
+    <script src="changePassword.js"></script>
+
+    <script>
+      function toggleDropdown(event) {
+        event.stopPropagation(); // Ngừng sự kiện click nổi bọt
+        const dropdown = document.getElementById("avatarDropdown");
+        dropdown.style.display =
+          dropdown.style.display === "block" ? "none" : "block";
+      }
+
+      // Đóng dropdown nếu click ra ngoài
+      document.addEventListener("click", function (event) {
+        const dropdown = document.getElementById("avatarDropdown");
+        const avatar = document.getElementById("avatar");
+
+        // Kiểm tra xem click có xảy ra bên ngoài ảnh đại diện và dropdown không
+        if (
+          !avatar.contains(event.target) &&
+          !dropdown.contains(event.target)
+        ) {
+          dropdown.style.display = "none";
+        }
+      });
+    </script>
+    <script>
+      document;
+      // Lắng nghe sự thay đổi của dropdown
+      document
+        .getElementById("order-status")
+        .addEventListener("change", function () {
+          var icon = document.getElementById("status-icon");
+          var selectedOption = this.value; // Lấy giá trị option được chọn
+
+          // Loại bỏ tất cả các lớp màu cũ
+          icon.classList.remove(
+            "status-order-received",
+            "status-processing",
+            "status-packed",
+            "status-shipped"
+          );
+
+          // Thêm lớp màu mới dựa trên lựa chọn
+          if (selectedOption === "Order Received") {
+            icon.classList.add("status-order-received");
+          } else if (selectedOption === "Processing") {
+            icon.classList.add("status-processing");
+          } else if (selectedOption === "Packed") {
+            icon.classList.add("status-packed");
+          } else if (selectedOption === "Shipped") {
+            icon.classList.add("status-shipped");
+          }
+        });
+
+      // Cập nhật màu icon khi trang tải, dựa trên trạng thái mặc định của dropdown
+      window.addEventListener("load", function () {
+        var icon = document.getElementById("status-icon");
+        var selectedOption = document.getElementById("order-status").value; // Lấy giá trị mặc định của option khi trang tải lên
+
+        // Thêm lớp màu tương ứng cho trạng thái mặc định
+        if (selectedOption === "Order Received") {
+          icon.classList.add("status-order-received");
+        } else if (selectedOption === "Processing") {
+          icon.classList.add("status-processing");
+        } else if (selectedOption === "Packed") {
+          icon.classList.add("status-packed");
+        } else if (selectedOption === "Shipped") {
+          icon.classList.add("status-shipped");
+        }
+      });
+    </script>
     <!-- Bootstrap 4 -->
     <script
       src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js"

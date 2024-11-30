@@ -1,5 +1,6 @@
 :root {
   --color-one: #f97316;
+  --color-one: #ff704d;
   --color-two: #1e3a8a;
   --color-three: #ffffff;
   --color-background: #ebecf1;
@@ -51,4 +52,8 @@ select {
   border: none;
   outline: none; /* Xóa đường viền khi focus vào select */
   /* background: transparent; Tùy chọn: làm nền trong suốt */
+}
+
+.scrollable::-webkit-scrollbar {
+  display: none; /* Ẩn thanh cuộn */
 }
