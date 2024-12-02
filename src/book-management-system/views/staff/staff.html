@@ -30,7 +30,7 @@
       <nav class="sidebar">
         <div class="logo">
           <i class="fa-solid fa-book-open-reader"></i>
-          <span>StaffWeb</span>
+          <span>Staff</span>
         </div>
         <hr />
         <ul>
@@ -246,7 +246,7 @@
               <!-- Popup Delete Customer -->
               <div class="popup" id="deleteCustomerPopup">
                 <div class="popup-frame">
-                  <div class="popup-content">
+                  <div class="popup-delete">
                     <h2>DELETE CUSTOMER</h2>
                     <h5 style="margin-bottom: 30px">
                       Are you sure you want to delete this customer?
@@ -312,7 +312,7 @@
                         <p>Price: $10</p>
                         <p>Quantity: 10</p>
                         <button id="editBtn" class="editBtn">Edit</button>
-                        <button id="" class="deleteBtn">Delete</button>
+                        <button id="deleteBtn" class="deleteBtn">Delete</button>
                       </div>
                     </div>
                   </div>
@@ -420,8 +420,8 @@
                         >
                           Name: The Book of books
                         </h2>
-                        <div class="input-edit" style="margin-bottom: 10px">
-                          <label style="margin-right: 20px" for="editBookAuthor"
+                        <div style="margin-bottom: 10px">
+                          <label style="margin-right: 50px" for="editBookAuthor"
                             >Author:
                           </label>
                           <input
@@ -430,8 +430,8 @@
                             placeholder="Author"
                           />
                         </div>
-                        <div class="input-edit" style="margin-bottom: 10px">
-                          <label style="margin-right: 34px" for="editBookPrice"
+                        <div style="margin-bottom: 10px">
+                          <label style="margin-right: 66px" for="editBookPrice"
                             >Price:
                           </label>
                           <input
@@ -440,18 +440,18 @@
                             placeholder="Price"
                           />
                         </div>
-                        <div class="input-edit" style="margin-bottom: 10px">
-                          <label style="margin-right: 33px" for="editBookStore"
-                            >Store:
+                        <div style="margin-bottom: 10px">
+                          <label style="margin-right: 62px" for="editBookStock"
+                            >Stock:
                           </label>
                           <input
                             type="number"
-                            id="editBookStore"
-                            placeholder="Store"
+                            id="editBookStock"
+                            placeholder="Stock"
                           />
                         </div>
-                        <div class="input-edit" style="margin-bottom: 10px">
-                          <label style="margin-right: 34px" for="editBookPrice"
+                        <div style="margin-bottom: 10px">
+                          <label style="margin-right: 66px" for="editBookPrice"
                             >Price:
                           </label>
                           <input
@@ -460,27 +460,61 @@
                             placeholder="Price"
                           />
                         </div>
-                        <div class="input-edit" style="margin-bottom: 10px">
-                          <label style="margin-right: 26px" for="editBookGenre"
-                            >Genre:
+                        <div style="margin-bottom: 10px">
+                          <label
+                            style="margin-right: 34px"
+                            for="editBookCategory"
+                            >Category:
                           </label>
                           <input
                             type="text"
-                            id="editBookGenre"
-                            placeholder="Genre"
+                            id="editBookCategory"
+                            placeholder="Category"
                           />
                         </div>
-                        <div class="input-edit" style="margin-bottom: 10px">
-                          <label style="margin-right: 24px" for="editBookImage"
-                            >Image:
+                        <div style="margin-bottom: 10px">
+                          <label
+                            style="margin-right: 31px"
+                            for="editBookPublisher"
+                            >Publisher:
+                          </label>
+                          <input
+                            type="text"
+                            id="editBookPublisher"
+                            placeholder="Publisher"
+                          />
+                        </div>
+                        <div style="margin-bottom: 10px">
+                          <label
+                            style="margin-right: 9px"
+                            for="editBookPublishDate"
+                            >Publish Date:
+                          </label>
+                          <input
+                            type="date"
+                            id="editBookPublishDate"
+                            placeholder="Publish Date"
+                          />
+                        </div>
+                        <div
+                          action="upload.php"
+                          method="post"
+                          enctype="multipart/form-data"
+                          id="ThumbnailForm"
+                          style="margin-bottom: 10px"
+                        >
+                          <label
+                            style="margin-right: 24px"
+                            for="editBookThumbnail"
+                            >Thumbnail:
                           </label>
                           <input
                             type="file"
-                            id="editBookImage"
-                            placeholder="Image"
+                            id="editBookThumbnail"
+                            placeholder="Thumbnail"
                           />
                         </div>
-                        <div class="input-edit" style="margin-bottom: 10px">
+                        <div style="margin-bottom: 10px">
                           <label for="editBookDescription">Description: </label>
                           <textarea
                             type=""
@@ -495,6 +529,19 @@
                         </div>
                       </div>
                     </div>
+                  </div>
+                </div>
+              </div>
+              <!-- Popup Delete Book -->
+              <div class="popup" id="deleteBookPopup">
+                <div class="popup-frame">
+                  <div class="popup-delete">
+                    <h2>DELETE BOOK</h2>
+                    <h5 style="margin-bottom: 30px">
+                      Are you sure you want to delete this book?
+                    </h5>
+                    <button id="deleteBookBtn">YES</button>
+                    <button id="closeDeleteBookPopup">NO</button>
                   </div>
                 </div>
               </div>
@@ -544,11 +591,11 @@
                       <th>Address</th>
                       <th>Total</th>
                       <th>Status</th>
+                      <th></th>
                     </tr>
                   </thead>
                   <tbody>
                     <!-- Dữ liệu đơn hàng sẽ được thêm vào đây -->
-                    <!-- gợi ý cho tôi đi -->
                     <tr>
                       <td>1</td>
                       <td>Nguyễn Văn A</td>
@@ -556,12 +603,11 @@
                       <td>$100</td>
                       <td id="status-icon">
                         <i class="fa-solid fa-truck"></i>
-                        <select id="order-status">
-                          <option value="Order Received">Order Received</option>
-                          <option value="Processing">Processing</option>
-                          <option value="Packed">Packed</option>
-                          <option value="Shipped">Shipped</option>
-                        </select>
+                      </td>
+                      <td>
+                        <button id="editOrder" class="editOrder">
+                          <i class="fa-solid fa-pen-to-square"></i>
+                        </button>
                       </td>
                     </tr>
                   </tbody>
@@ -581,6 +627,45 @@
                       <span><i class="fa-solid fa-chevron-right"></i></span>
                     </li>
                   </ul>
+                </div>
+              </div>
+              <!-- Edit Order Modal -->
+              <!-- Popup Edit Customer -->
+              <div class="popup" id="editOrderPopup">
+                <div class="popup-frame">
+                  <div class="row">
+                    <div class="col-xl-6">
+                      <div class="popup-content">
+                        <h2>EDIT ORDER</h2>
+                        <input
+                          type="text"
+                          id="editOrderName"
+                          placeholder="Name"
+                        />
+                        <br />
+                        <input
+                          type="text"
+                          id="editOrderAddress"
+                          placeholder="Address"
+                        />
+                        <br />
+                        <select id="order-status">
+                          <option value="Order Received">Order Received</option>
+                          <option value="Processing">Processing</option>
+                          <option value="Packed">Packed</option>
+                          <option value="Shipped">Shipped</option>
+                        </select>
+                        <br />
+                        <button id="">SAVE</button>
+                        <button id="closeEditOrderPopup">CLOSE</button>
+                      </div>
+                    </div>
+                    <div class="col-xl-6">
+                      <div class="popup-image">
+                        <img src="assets/images/popup.jpg" alt="popup.img" />
+                      </div>
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>
@@ -639,7 +724,9 @@
                         <p>New Price: $10</p>
                         <p>Prime Price: $12</p>
                         <button id="editSale" class="editSale">Edit</button>
-                        <button id="" class="deleteBtn">Delete</button>
+                        <button id="deleteSale" class="deleteBtn">
+                          Delete
+                        </button>
                       </div>
                     </div>
                   </div>
@@ -783,7 +870,9 @@
                           <label for="option2">False</label>
                         </div>
                         <div class="input-edit" style="margin-bottom: 10px">
-                          <label for="editSoldCount">Sold Count: </label>
+                          <label style="margin-right: 30px" for="editSoldCount"
+                            >Sold Count:
+                          </label>
                           <input
                             type="number"
                             id="editSoldCount"
@@ -791,7 +880,9 @@
                           />
                         </div>
                         <div class="input-edit" style="margin-bottom: 10px">
-                          <label for="editMaxQuality">Max Quality: </label>
+                          <label style="margin-right: 22px" for="editMaxQuality"
+                            >Max Quality:
+                          </label>
                           <input
                             type="number"
                             id="saleMaxQuality"
@@ -822,6 +913,19 @@
                         </div>
                       </div>
                     </div>
+                  </div>
+                </div>
+              </div>
+              <!-- Popup Delete Sale -->
+              <div class="popup" id="deleteSalePopup">
+                <div class="popup-frame">
+                  <div class="popup-delete">
+                    <h2>DELETE SALE</h2>
+                    <h5 style="margin-bottom: 30px">
+                      Are you sure you want to delete this sale?
+                    </h5>
+                    <button id="deleteSaleBtn">YES</button>
+                    <button id="closeDeleteSalePopup">NO</button>
                   </div>
                 </div>
               </div>
@@ -1043,6 +1147,7 @@
     <script src="book.js"></script>
     <script src="changePassword.js"></script>
     <script src="sale.js"></script>
+    <script src="order.js"></script>
 
     <script>
       function toggleDropdown(event) {
@@ -1063,52 +1168,6 @@
           !dropdown.contains(event.target)
         ) {
           dropdown.style.display = "none";
-        }
-      });
-    </script>
-    <script>
-      document;
-      // Lắng nghe sự thay đổi của dropdown
-      document
-        .getElementById("order-status")
-        .addEventListener("change", function () {
-          var icon = document.getElementById("status-icon");
-          var selectedOption = this.value; // Lấy giá trị option được chọn
-
-          // Loại bỏ tất cả các lớp màu cũ
-          icon.classList.remove(
-            "status-order-received",
-            "status-processing",
-            "status-packed",
-            "status-shipped"
-          );
-
-          // Thêm lớp màu mới dựa trên lựa chọn
-          if (selectedOption === "Order Received") {
-            icon.classList.add("status-order-received");
-          } else if (selectedOption === "Processing") {
-            icon.classList.add("status-processing");
-          } else if (selectedOption === "Packed") {
-            icon.classList.add("status-packed");
-          } else if (selectedOption === "Shipped") {
-            icon.classList.add("status-shipped");
-          }
-        });
-
-      // Cập nhật màu icon khi trang tải, dựa trên trạng thái mặc định của dropdown
-      window.addEventListener("load", function () {
-        var icon = document.getElementById("status-icon");
-        var selectedOption = document.getElementById("order-status").value; // Lấy giá trị mặc định của option khi trang tải lên
-
-        // Thêm lớp màu tương ứng cho trạng thái mặc định
-        if (selectedOption === "Order Received") {
-          icon.classList.add("status-order-received");
-        } else if (selectedOption === "Processing") {
-          icon.classList.add("status-processing");
-        } else if (selectedOption === "Packed") {
-          icon.classList.add("status-packed");
-        } else if (selectedOption === "Shipped") {
-          icon.classList.add("status-shipped");
         }
       });
     </script>

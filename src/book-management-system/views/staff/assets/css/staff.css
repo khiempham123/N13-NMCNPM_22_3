@@ -104,7 +104,7 @@
   width: 100%;
   border: 1px solid #fff;
   text-align: center !important;
-  height: 473.75px;
+  /* height: 473.75px; */
   overflow-y: auto;
 }
 
@@ -376,7 +376,16 @@
   display: block;
   width: 100%;
   padding: 10px 20px;
-  border-radius: 40px;
+  border-radius: 30px;
+  border: 1px solid black;
+  color: black;
+}
+
+.main .content .page .section-main .popup-frame .popup-content select {
+  display: block;
+  width: 100%;
+  padding: 10px 20px;
+  border-radius: 30px;
   border: 1px solid black;
   color: black;
 }
@@ -401,6 +410,55 @@
   overflow-y: auto;
 }
 
+.main .content .page .section-main .popup-frame .popup-delete {
+  padding: 20px;
+  border-radius: 30px;
+  width: 100%;
+  border: 1px solid #fff;
+  text-align: center !important;
+  overflow-y: auto;
+}
+
+.main .content .page .section-main .popup-frame .popup-delete h2 {
+  font-weight: 800;
+  color: black;
+  margin-bottom: 50px;
+}
+
+.main .content .page .section-main .popup-frame .popup-delete button {
+  width: 100%;
+  max-width: 250px;
+  color: black;
+  background: rgba(76, 175, 80, 0.5);
+  box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.5);
+  font-weight: 700;
+}
+
+.main
+  .content
+  .page
+  .section-main
+  .popup-frame
+  .popup-delete
+  button:last-child {
+  background: rgba(244, 67, 54, 0.5);
+}
+
+.main .content .page .section-main .popup-frame .popup-delete button:hover {
+  background: rgba(76, 175, 80, 1);
+  border: none;
+}
+
+.main
+  .content
+  .page
+  .section-main
+  .popup-frame
+  .popup-delete
+  button:last-child:hover {
+  background: rgba(244, 67, 54, 01);
+}
+
 .main
   .content
   .page
@@ -420,10 +478,19 @@
   width: 100%;
   max-width: 250px;
   color: black;
-  background: var(--color-three);
-  border: 1px solid var(--color-one);
+  background: rgba(76, 175, 80, 0.5);
   box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.5);
   font-weight: 700;
+}
+
+.main
+  .content
+  .page
+  .section-main
+  .popup-frame
+  .popup-content
+  button:last-child {
+  background: rgba(244, 67, 54, 0.5);
 }
 
 .main .content .page .section-main .popup-frame .popup-content button:hover {
@@ -515,8 +582,6 @@
   width: 40%;
   max-width: 100px;
   color: black;
-  background: var(--color-three);
-  border: 1px solid var(--color-one);
   box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.5);
   font-weight: 700;
   margin-right: 10px;
@@ -528,7 +593,27 @@
   .section-main
   .popup-frame-book
   .popup-content
-  button:hover {
+  button:first-child {
+  background: rgba(76, 175, 80, 0.5);
+}
+
+.main
+  .content
+  .page
+  .section-main
+  .popup-frame-book
+  .popup-content
+  button:last-child {
+  background: rgba(244, 67, 54, 0.5);
+}
+
+.main
+  .content
+  .page
+  .section-main
+  .popup-frame-book
+  .popup-content
+  button:first-child:hover {
   background: rgba(76, 175, 80, 1);
   border: none;
 }
@@ -540,7 +625,7 @@
   .popup-frame-book
   .popup-content
   button:last-child:hover {
-  background: rgba(244, 67, 54, 01);
+  background: rgba(244, 67, 54, 1);
 }
 
 /* end popup */
