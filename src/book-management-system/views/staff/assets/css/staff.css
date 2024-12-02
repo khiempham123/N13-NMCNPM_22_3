@@ -64,6 +64,8 @@
   left: 40px;
   cursor: pointer;
   padding: 5px 12px;
+  background-color: rgba(17, 14, 14, 0.25);
+  border-radius: 10px;
 }
 
 .main .sidebar .change-password:hover {
