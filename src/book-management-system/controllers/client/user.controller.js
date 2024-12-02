@@ -39,10 +39,13 @@ module.exports.login = async (req, res) => {
       { _id: user._id, username: user.username },
       "secretkey",
       {
-        expiresIn: "1h", // Token sẽ hết hạn sau 1 giờ
+        expiresIn: "24h", // Token sẽ hết hạn sau 1 giờ
       }
     );
-    res.json({ message: "Login successful", token });
+    console.log("token:", token);
+    res.json({
+      token: token,
+    });
   } catch (error) {
     console.error("Error logging in user:", error);
     res

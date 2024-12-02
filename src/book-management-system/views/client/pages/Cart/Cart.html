@@ -1,572 +1,692 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Cart</title>
-    <link rel="stylesheet" href="../publicStyle/dropProfile.css">
-    <link rel="stylesheet" href="../publicStyle/base.css">
-    <link rel="stylesheet" href="../publicStyle/home.css">
+    <link rel="stylesheet" href="../publicStyle/dropProfile.css" />
+    <link rel="stylesheet" href="../publicStyle/base.css" />
+    <link rel="stylesheet" href="../publicStyle/home.css" />
     <script src="../publicStyle/dropProfile.js"></script>
-    <link rel="stylesheet" href="./cart.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css"
-        integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg=="
-        crossorigin="anonymous" referrerpolicy="no-referrer" />
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
-        integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
-        crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="./cart.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css"
+      integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH"
+      crossorigin="anonymous"
+    />
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+      crossorigin="anonymous"
+    ></script>
     <script src="https://code.jquery.com/jquery-3.7.1.js"></script>
     <script src="https://code.jquery.com/ui/1.14.0/jquery-ui.js"></script>
-    <script src="./payment.js"></script>
-    <style>
 
-    </style>
-</head>
+    <style></style>
+  </head>
 
-<body>
+  <body>
     <div class="container-fluid">
-        <div class="row" style="border: none;padding: none;">
-            <div class="card" style="margin: 0; padding: 0; border: none; border-radius: 0%;">
-                <div class="card-body"
-                    style="background: rgb(201,129,161);
-                    background: radial-gradient(circle, rgba(201,129,161,1) 22%, rgba(133,193,189,1) 79%);border-radius: 0%;">
-                    <nav class="navbar navbar-expand-lg">
-                        <div class="container-fluid">
-                            <a class="navbar-brand" href="#"
-                                style="margin: 0px 300px 0px 50px; color: #fff; font-size: 30px;">
-                                <i class="fa-solid fa-book"></i>
-                                Bookory
-                            </a>
-                            <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
-                                data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
-                                aria-expanded="false" aria-label="Toggle navigation">
-                                <span class="navbar-toggler-icon"></span>
-                            </button>
-                            <!-- test -->
-                            <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                                <ul class="navbar-nav">
-                                    <li class="nav-item dropdown custom-link">
-                                        <a class="nav-link dropdown-toggle" href="#" role="button"
-                                            data-bs-toggle="dropdown" aria-expanded="false" style="color: #fff;">
-                                            <i class="fa-solid fa-table-list"></i>
-                                            Categories
-                                        </a>
-                                        <ul class="dropdown-menu" id="categories-dropdown">
-                                            <!-- Categories sẽ được thêm vào đây bằng JavaScript -->
-                                        </ul>
-                                    </li>
-                                </ul>
-                                <!-- Thanh search -->
-                                <div class="input-group" style="width: 60%; position: relative;">
-                                    <input class="form-control" type="search" placeholder="Search Product..."
-                                        aria-label="Search" style="border-radius: 30px 0 0 30px;">
-                                    <span class="input-group-text"
-                                        style="border-radius: 0 30px 30px 0; cursor: pointer;">
-                                        <i class="fa fa-search"></i>
-                                    </span>
-                                    <!-- Phần tử để hiển thị kết quả tìm kiếm -->
-                                    <div id="results-container" style="margin-top: 5px;"></div>
-                                </div>
-                            </div>
+      <div class="row" style="border: none; padding: none">
+        <div
+          class="card"
+          style="margin: 0; padding: 0; border: none; border-radius: 0%"
+        >
+          <div
+            class="card-body"
+            style="
+              background: rgb(201, 129, 161);
+              background: radial-gradient(
+                circle,
+                rgba(201, 129, 161, 1) 22%,
+                rgba(133, 193, 189, 1) 79%
+              );
+              border-radius: 0%;
+            "
+          >
+            <nav class="navbar navbar-expand-lg">
+              <div class="container-fluid">
+                <a
+                  class="navbar-brand"
+                  href="#"
+                  style="
+                    margin: 0px 300px 0px 50px;
+                    color: #fff;
+                    font-size: 30px;
+                  "
+                >
+                  <i class="fa-solid fa-book"></i>
+                  Bookory
+                </a>
+                <button
+                  class="navbar-toggler"
+                  type="button"
+                  data-bs-toggle="collapse"
+                  data-bs-target="#navbarSupportedContent"
+                  aria-controls="navbarSupportedContent"
+                  aria-expanded="false"
+                  aria-label="Toggle navigation"
+                >
+                  <span class="navbar-toggler-icon"></span>
+                </button>
+                <!-- test -->
+                <div
+                  class="collapse navbar-collapse"
+                  id="navbarSupportedContent"
+                >
+                  <ul class="navbar-nav">
+                    <li class="nav-item dropdown custom-link">
+                      <a
+                        class="nav-link dropdown-toggle"
+                        href="#"
+                        role="button"
+                        data-bs-toggle="dropdown"
+                        aria-expanded="false"
+                        style="color: #fff"
+                      >
+                        <i class="fa-solid fa-table-list"></i>
+                        Categories
+                      </a>
+                      <ul class="dropdown-menu" id="categories-dropdown">
+                        <!-- Categories sẽ được thêm vào đây bằng JavaScript -->
+                      </ul>
+                    </li>
+                  </ul>
+                  <!-- Thanh search -->
+                  <div
+                    class="input-group"
+                    style="width: 60%; position: relative"
+                  >
+                    <input
+                      class="form-control"
+                      type="search"
+                      placeholder="Search Product..."
+                      aria-label="Search"
+                      style="border-radius: 30px 0 0 30px"
+                    />
+                    <span
+                      class="input-group-text"
+                      style="border-radius: 0 30px 30px 0; cursor: pointer"
+                    >
+                      <i class="fa fa-search"></i>
+                    </span>
+                    <!-- Phần tử để hiển thị kết quả tìm kiếm -->
+                    <div id="results-container" style="margin-top: 5px"></div>
+                  </div>
+                </div>
 
+                <!-- categories -->
 
-                            <!-- categories -->
-
-                            <div
-                                style="color: #fff; font-size: 20px; display: flex; justify-content: center; align-items: center;">
-                                <div class="user-menu" style="width: fit-content;">
-                                    <!-- Ban đầu khi User chưa đăng nhập tất cả thông tin ở img, email, greeting, manage-account chưa xuất hiện 
+                <div
+                  style="
+                    color: #fff;
+                    font-size: 20px;
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                  "
+                >
+                  <div class="user-menu" style="width: fit-content">
+                    <!-- Ban đầu khi User chưa đăng nhập tất cả thông tin ở img, email, greeting, manage-account chưa xuất hiện 
                                      sau khi login or register thành công thì thay thế img bằng ký tự đầu trong tên lót, email = email user, greeting = user name, manage-account chưa có sẽ xuất hiện, 
                                      sau đó thay thế các nút register, login lần lượt bằng thay đổi tài khoản, đăng xuất. 
                                      Xử lý điều này và các thao tác click tại cái btn để di chuyển đến đúng trang, những css liên quan được đặt trong dropProfile.css-->
-                                    <a class="user-icon" href="#" style="color: inherit; text-decoration: none;">
-                                        <i class="fa-regular fa-user"> | </i>
-                                    </a>
-                                    <div class="profile-card"
-                                        style="display: none; flex-direction: column; align-items: center; justify-content: center; text-align: center;">
-                                        <div class="close-btn">&times;</div>
-                                        <div class="profile-img"><i class="fa-regular fa-user"></i></div>
-                                        <div class="email">pgk06052018@gmail.com</div>
-                                        <div class="greeting">Hi 12_0159 Pham,</div>
-                                        <div class="manage-account">Management Your Account</div>
-                                        <div class="btn-group">
-                                            <button class="btn btn-light border"><i class="fa-solid fa-circle-plus"
-                                                    style="font-size: 18px; color: #74C0FC; margin-right: 5px;"></i>
-                                                Switch Accounts</button>
-                                            <button class="btn btn-light border"><i
-                                                    class="fa-solid fa-arrow-right-to-bracket"
-                                                    style="font-size: 18px; color: #74C0FC; margin-right: 5px;"></i> Log
-                                                out</button>
-                                        </div>
-                                        <div class="profile-footer">
-                                            Chính sách quyền riêng tư · Điều khoản dịch vụ
-                                        </div>
-                                    </div>
-                                </div>
-                                <i class="fa-regular fa-heart" style="margin-left: 5px;"> | </i>
-                                <a href="https://example.com" style="color: inherit; text-decoration: none;">
-                                    <i class="fa-solid fa-cart-shopping " style="margin-left: 5px;"></i>
-                                </a>
-                            </div>
-
-                        </div>
-                    </nav>
+                    <a
+                      class="user-icon"
+                      href="#"
+                      style="color: inherit; text-decoration: none"
+                    >
+                      <i class="fa-regular fa-user"> | </i>
+                    </a>
+                    <div
+                      class="profile-card"
+                      style="
+                        display: none;
+                        flex-direction: column;
+                        align-items: center;
+                        justify-content: center;
+                        text-align: center;
+                      "
+                    >
+                      <div class="close-btn">&times;</div>
+                      <div class="profile-img">
+                        <i class="fa-regular fa-user"></i>
+                      </div>
+                      <div class="email">pgk06052018@gmail.com</div>
+                      <div class="greeting">Hi 12_0159 Pham,</div>
+                      <div class="manage-account">Management Your Account</div>
+                      <div class="btn-group">
+                        <button class="btn btn-light border">
+                          <i
+                            class="fa-solid fa-circle-plus"
+                            style="
+                              font-size: 18px;
+                              color: #74c0fc;
+                              margin-right: 5px;
+                            "
+                          ></i>
+                          Switch Accounts
+                        </button>
+                        <button class="btn btn-light border">
+                          <i
+                            class="fa-solid fa-arrow-right-to-bracket"
+                            style="
+                              font-size: 18px;
+                              color: #74c0fc;
+                              margin-right: 5px;
+                            "
+                          ></i>
+                          Log out
+                        </button>
+                      </div>
+                      <div class="profile-footer">
+                        Chính sách quyền riêng tư · Điều khoản dịch vụ
+                      </div>
+                    </div>
+                  </div>
+                  <i class="fa-regular fa-heart" style="margin-left: 5px">
+                    |
+                  </i>
+                  <a
+                    href="https://example.com"
+                    style="color: inherit; text-decoration: none"
+                  >
+                    <i
+                      class="fa-solid fa-cart-shopping"
+                      style="margin-left: 5px"
+                    ></i>
+                  </a>
                 </div>
-                <div class="card-footer" style="background: rgb(133,193,189);
-                            background: radial-gradient(circle, rgba(133,193,189,1) 11%, rgba(129,152,201,1) 90%); 
-                            margin: 0; padding: none; border: none; border-radius: 0%;">
-                    <nav class="navbar navbar-expand-lg w-100" style="margin: 0; padding: 0; border: none;">
-                        <div class="container-fluid " style="margin: 0; padding: none; border: none;">
-                            <div class="col-1"></div>
-                            <a class="navbar-brand" href="https://maps.app.goo.gl/2MXnCG5jVrdjcQYZA" target="_blank"
-                                style="width:35px; margin: 0px 400px 0px 50px; text-align: center; justify-content: center; color: white;">
-                                <i class="fa-solid fa-location-dot"></i>
-                                <span
-                                    style="font-size: 15px; text-decoration: underline; font-weight: 500; color: white;">Find
-                                    a Book
-                                    Store</span>
-                            </a>
-                            <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
-                                data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
-                                aria-expanded="false" aria-label="Toggle navigation">
-                                <span class="navbar-toggler-icon"></span>
-                            </button>
-                            <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                                <ul class="navbar-nav" style="margin-right: 30px;">
-                                    <li class="nav-item custom-link">
-                                        <a class="nav-link" id="goHome" href="#" aria-expanded="false">
-                                            <span class="nav-item" style=" color: white;">Home</span>
-                                        </a>
-                                    </li>
-                                </ul>
-                                <ul class="navbar-nav" style="margin-right: 30px;">
-                                    <li class="nav-item custom-link">
-                                        <a class="nav-link" href="#" aria-expanded="false">
-                                            <span class="nav-item" style=" color: white;">Book</span>
-                                        </a>
-                                    </li>
-                                </ul>
-                                <ul class="navbar-nav" style="margin-right: 30px;">
-                                    <li class="nav-item custom-link">
-                                        <a class="nav-link" href="#" aria-expanded="false">
-                                            <span class="nav-item" style=" color: white;">Author</span>
-                                        </a>
-                                    </li>
-                                </ul>
-                                <ul class="navbar-nav" style="margin-right: 30px;">
-                                    <li class="nav-item custom-link">
-                                        <a class="nav-link" href="#" aria-expanded="false">
-                                            <span class="nav-item" style=" color: white;">Blog</span>
-                                        </a>
-                                    </li>
-                                </ul>
-                                <ul class="navbar-nav" style="margin-right: 30px;">
-                                    <li class="nav-item custom-link">
-                                        <a class="nav-link" href="#" aria-expanded="false">
-                                            <span class="nav-item" style=" color: white;">Contact</span>
-                                        </a>
-                                    </li>
-                                </ul>
-                            </div>
-
-                            <div style="margin-right: 200px; color: white;">
-                                <i class="fa-solid fa-phone-volume"></i>
-                                <span
-                                    style="color: orangered; font-size: 20px; font-weight: 500; margin-left: 10px;">+84
-                                    0123456789</span>
-                            </div>
-                        </div>
-                    </nav>
+              </div>
+            </nav>
+          </div>
+          <div
+            class="card-footer"
+            style="
+              background: rgb(133, 193, 189);
+              background: radial-gradient(
+                circle,
+                rgba(133, 193, 189, 1) 11%,
+                rgba(129, 152, 201, 1) 90%
+              );
+              margin: 0;
+              padding: none;
+              border: none;
+              border-radius: 0%;
+            "
+          >
+            <nav
+              class="navbar navbar-expand-lg w-100"
+              style="margin: 0; padding: 0; border: none"
+            >
+              <div
+                class="container-fluid"
+                style="margin: 0; padding: none; border: none"
+              >
+                <div class="col-1"></div>
+                <a
+                  class="navbar-brand"
+                  href="https://maps.app.goo.gl/2MXnCG5jVrdjcQYZA"
+                  target="_blank"
+                  style="
+                    width: 35px;
+                    margin: 0px 400px 0px 50px;
+                    text-align: center;
+                    justify-content: center;
+                    color: white;
+                  "
+                >
+                  <i class="fa-solid fa-location-dot"></i>
+                  <span
+                    style="
+                      font-size: 15px;
+                      text-decoration: underline;
+                      font-weight: 500;
+                      color: white;
+                    "
+                    >Find a Book Store</span
+                  >
+                </a>
+                <button
+                  class="navbar-toggler"
+                  type="button"
+                  data-bs-toggle="collapse"
+                  data-bs-target="#navbarSupportedContent"
+                  aria-controls="navbarSupportedContent"
+                  aria-expanded="false"
+                  aria-label="Toggle navigation"
+                >
+                  <span class="navbar-toggler-icon"></span>
+                </button>
+                <div
+                  class="collapse navbar-collapse"
+                  id="navbarSupportedContent"
+                >
+                  <ul class="navbar-nav" style="margin-right: 30px">
+                    <li class="nav-item custom-link">
+                      <a
+                        class="nav-link"
+                        id="goHome"
+                        href="#"
+                        aria-expanded="false"
+                      >
+                        <span class="nav-item" style="color: white">Home</span>
+                      </a>
+                    </li>
+                  </ul>
+                  <ul class="navbar-nav" style="margin-right: 30px">
+                    <li class="nav-item custom-link">
+                      <a class="nav-link" href="#" aria-expanded="false">
+                        <span class="nav-item" style="color: white">Book</span>
+                      </a>
+                    </li>
+                  </ul>
+                  <ul class="navbar-nav" style="margin-right: 30px">
+                    <li class="nav-item custom-link">
+                      <a class="nav-link" href="#" aria-expanded="false">
+                        <span class="nav-item" style="color: white"
+                          >Author</span
+                        >
+                      </a>
+                    </li>
+                  </ul>
+                  <ul class="navbar-nav" style="margin-right: 30px">
+                    <li class="nav-item custom-link">
+                      <a class="nav-link" href="#" aria-expanded="false">
+                        <span class="nav-item" style="color: white">Blog</span>
+                      </a>
+                    </li>
+                  </ul>
+                  <ul class="navbar-nav" style="margin-right: 30px">
+                    <li class="nav-item custom-link">
+                      <a class="nav-link" href="#" aria-expanded="false">
+                        <span class="nav-item" style="color: white"
+                          >Contact</span
+                        >
+                      </a>
+                    </li>
+                  </ul>
                 </div>
-            </div>
+
+                <div style="margin-right: 200px; color: white">
+                  <i class="fa-solid fa-phone-volume"></i>
+                  <span
+                    style="
+                      color: orangered;
+                      font-size: 20px;
+                      font-weight: 500;
+                      margin-left: 10px;
+                    "
+                    >+84 0123456789</span
+                  >
+                </div>
+              </div>
+            </nav>
+          </div>
         </div>
-         <div class="row" style="min-height: 90vh;">
-            <div class="section-three" style="min-height: 90vh;">
-                <div class="container">
-                    <div class="row" >
-                        <div class="container my-5">
-                            <div class="row">
-                                <!-- Phần giỏ hàng -->
-                                <div class="col-lg-8">
-                                    <div class="cart-container">
-                                        <div class="cart-header">
-                                            GIỎ HÀNG (1 sản phẩm)
-                                        </div>
-                                        <div class="cart-controls d-flex align-items-center mt-3">
-                                            <div style="width: 50%;">
-                                                <input type="checkbox" style="width: 15px; height: 15px;" />
-                                                Chọn tất cả (1 sản phẩm)
-                                            </div>
-                                            <div class="d-flex w-50 text-center">
-                                                <div class="quantity-label" style="width: 50%;">Số lượng</div>
-                                                <div class="price-label">Thành tiền</div>
-                                            </div>
-                                        </div>
-                                        <hr class="horizontal-line" />
-    
-                                        <div class="cart-item d-flex  align-items-center mt-3">
-                                            <div class="d-flex align-items-center" style="width: 58%;">
-                                                <input class="me-3" type="checkbox" style="width: 15px; height: 15px;" />
-                                                <img alt="Book cover"
-                                                    src="https://storage.googleapis.com/a1aa/image/xm2x0F9zfhRsJKxSv7aJUK8FQ3gtaQ6iodDzmpME1nOFs86JA.jpg" />
-                                                <div class="ms-3">
-                                                    <div class="cart-item-title">
-                                                        Trăm Năm Cô Đơn (Tái Bản 2023)
-                                                    </div>
-                                                    <div class="cart-item-price">
-                                                        139.300 đ
-                                                    </div>
-                                                    <div class="cart-item-old-price">
-                                                        199.000 đ
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="d-flex align-items-center" style="width: 15%;">
-                                                <div class="quantity-controls">
-                                                    <button class="btn btn-outline-secondary btn-sm">-</button>
-                                                    <span class="mx-2">1</span>
-                                                    <button class="btn btn-outline-secondary btn-sm">+</button>
-                                                </div>
-                                            </div>
-                                            <div class="d-flex align-items-center">
-    
-                                                <div class="ms-3 cart-item-price">139.300 đ</div>
-                                                <div class="ms-3 delete-item">
-                                                    <button class="btn btn-outline-danger btn-sm">
-                                                        <i class="fas fa-trash"></i>
-                                                    </button>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <!-- Phần thanh toán -->
-                                <div class="col-lg-4">
-                                    <div class="cart-summary">
-                                        <div class="d-flex justify-content-between align-items-center mb-3">
-                                            <div>Thành tiền</div>
-                                            <div>139.300 đ</div>
-                                        </div>
-                                        <div class="d-flex justify-content-between align-items-center mb-3">
-                                            <div class="total-price-label">Tổng Số Tiền (gồm VAT)</div>
-                                            <div class="total-price">139.300 đ</div>
-                                        </div>
-                                        <button class="btn btn-secondary" id="checkoutBtn">THANH TOÁN</button>
-                                    </div>
-                                </div>
-                            </div>
-    
-                        </div>
-                    </div>
-                </div>
-                <!-- End Section-three -->
-            </div>
-            <div class="overlay"></div>
-
-         </div>
-         <div class="payment-section">
-    
-            <form>
-                <div class="form-check">
-                    <input class="form-check-input" type="radio" name="paymentMethod" id="cashOnDelivery">
-                    <label class="form-check-label" for="cashOnDelivery">
-                        Cash on Delivery
-                    </label>
-                </div>
-                <div class="form-check">
-                    <input class="form-check-input" type="radio" name="paymentMethod" id="bankTransfer" checked>
-                    <label class="form-check-label" for="bankTransfer">
-                        Bank Transfer
-                    </label>
-                </div>
-                <div class="mt-3 p-3 border rounded" style="background-color: #f8f9fa;">
-                    <div class="mb-3">
-                        <label for="selectBank" class="form-label">Select Bank</label>
-                        <select class="form-select" id="selectBank">
-                            <option selected>Choose a bank</option>
-                            <option value="1">Bank 1</option>
-                            <option value="2">Bank 2</option>
-                            <option value="3">Bank 3</option>
-                        </select>
-                    </div>
-                    <div class="mb-3">
-                        <label for="accountNumber" class="form-label">Account Number</label>
-                        <input type="text" class="form-control" id="accountNumber" placeholder="Enter account number">
-                    </div>
-                </div>
-                <div class="d-flex justify-content-between mt-3">
-                    <button type="button" class="btn btn-secondary btn-back" id="backToCart" style="width: 40%;">Back to
-                        Cart</button>
-                    <button type="button" class="btn btn-primary btn-continue" id="continueToDelivery"
-                        style="width: 40%;">Continue to
-                        Delivery</button>
-                </div>
-            </form>
-
-        </div>
-
-        <!-- Phần giao hàng -->
-        <div class="delivery-section">
+      </div>
+      <div class="row" style="min-height: 90vh">
+        <div class="section-three" style="min-height: 90vh">
+          <div class="container">
             <div class="row">
-                <div class="col-md-8">
-                    <h4 class="mb-3">Delivery Information</h4>
-                    <form>
-                        <div class="row mb-3">
-                            <div class="col-md-6">
-                                <label for="firstName" class="form-label">
-                                    <h6>First Name</h6>
-                                </label>
-                                <input type="text" class="form-control" id="firstName">
-                            </div>
-                            <div class="col-md-6">
-                                <label for="lastName" class="form-label">
-                                    <h6>Last Name</h6>
-                                </label>
-                                <input type="text" class="form-control" id="lastName">
-                            </div>
+              <div class="container my-5">
+                <div class="row">
+                  <!-- Phần giỏ hàng -->
+                  <div class="col-lg-8">
+                    <div class="cart-container">
+                      <div class="cart-header">GIỎ HÀNG</div>
+                      <div class="cart-controls d-flex align-items-center mt-3">
+                        <div style="width: 50%">Danh sách các sách</div>
+                        <div class="d-flex w-50 text-center">
+                          <div class="quantity-label" style="width: 50%">
+                            Số lượng
+                          </div>
+                          <div class="price-label">Thành tiền</div>
                         </div>
-                        <div class="mb-3">
-                            <label for="address" class="form-label">
-                                <h6>Address</h6>
-                            </label>
-                            <input type="text" class="form-control" id="address">
-                        </div>
-                        <div class="row mb-3">
-                            <div class="col-md-6">
-                                <label for="city" class="form-label">
-                                    <h6>City</h6>
-                                </label>
-                                <input type="text" class="form-control" id="city">
-                            </div>
-                            <div class="col-md-6">
-                                <label for="district" class="form-label">
-                                    <h6>District</h6>
-                                </label>
-                                <select class="form-select" id="district">
-                                    <option selected>Select District</option>
-                                    <option value="1">District 1</option>
-                                    <option value="2">District 2</option>
-                                    <option value="3">District 3</option>
-                                </select>
-                            </div>
-                        </div>
-                        <div class="mb-3" style="width: 304px;">
-                            <label for="ward" class="form-label">
-                                <h6>Ward</h6>
-                            </label>
-                            <select class="form-select" id="ward">
-                                <option selected>Select Ward</option>
-                                <option value="1">Ward 1</option>
-                                <option value="2">Ward 2</option>
-                                <option value="3">Ward 3</option>
-                            </select>
-                        </div>
-                        <div class="d-flex">
-                            <button type="button" class="btn btn-secondary btn-back-to-payment"
-                                style="margin-right: 10px; width: 40%;" id="backToPayment">Back to Payment</button>
-                            <button type="button" class="btn  btn-primary btn-complete" style="width: 40%;">Complete
-                                Order</button>
-                        </div>
-                    </form>
-                </div>
-                <div class="col-md-4">
-                    <div class="cart-sumary">
-                        <div class="order-summary">
-                            <h5>Order Summary</h5>
-                            <div class="d-flex justify-content-between">
-                                <span>Subtotal</span>
-                                <span>$299.00</span>
-                            </div>
-                            <div class="d-flex justify-content-between">
-                                <span>Shipping</span>
-                                <span>$10.00</span>
-                            </div>
-                            <hr>
-                            <div class="d-flex justify-content-between">
-                                <strong>Total</strong>
-                                <strong>$309.00</strong>
-                            </div>
-                        </div>
-                    </div>
+                      </div>
+                      <hr class="horizontal-line" />
 
+                      <!-- Giỏ hàng items sẽ được thêm vào đây -->
+                      <div id="cartItems"></div>
+
+                      <!-- Tổng giá trị giỏ hàng -->
+                      <div class="cart-total mt-3">
+                        <div class="d-flex justify-content-between">
+                          <div><strong>Tổng cộng:</strong></div>
+                          <div id="totalPrice"><strong>0 $</strong></div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <!-- Phần thanh toán -->
+                  <div class="col-lg-4">
+                    <div class="cart-summary">
+                      <div
+                        class="d-flex justify-content-between align-items-center mb-3"
+                      >
+                        <div>Thành tiền</div>
+                        <div id="totalAmount">0 $</div>
+                      </div>
+                      <div
+                        class="d-flex justify-content-between align-items-center mb-3"
+                      >
+                        <div class="total-price-label">
+                          Tổng Số Tiền (gồm VAT 10%)
+                        </div>
+                        <div class="total-price" id="totalWithVAT">0 $</div>
+                      </div>
+                      <button class="btn btn-secondary" id="checkoutButton">
+                        Thanh toán
+                      </button>
+                    </div>
+                  </div>
                 </div>
+              </div>
             </div>
+          </div>
+          <!-- End Section-three -->
         </div>
+        <div class="overlay"></div>
+      </div>
+      <div class="payment-section">
+        <form>
+          <div class="form-check">
+            <input
+              class="form-check-input"
+              type="radio"
+              name="paymentMethod"
+              id="cashOnDelivery"
+              checked
+            />
+            <label class="form-check-label" for="cashOnDelivery">
+              Cash on Delivery
+            </label>
+          </div>
+          <div class="form-check">
+            <input
+              class="form-check-input"
+              type="radio"
+              name="paymentMethod"
+              id="bankTransfer"
+            />
+            <label class="form-check-label" for="bankTransfer">
+              Bank Transfer
+            </label>
+          </div>
+          <div
+            class="mt-3 p-3 border rounded bank-info"
+            style="background-color: #f8f9fa"
+            id="bankInfoSection"
+          >
+            <div class="mb-3">
+              <label for="selectBank" class="form-label">Select Bank</label>
+              <select class="form-select" id="selectBank">
+                <option selected>Choose a bank</option>
+                <option value="1">Bank 1</option>
+                <option value="2">Bank 2</option>
+                <option value="3">Bank 3</option>
+              </select>
+            </div>
+            <div class="mb-3">
+              <label for="accountNumber" class="form-label"
+                >Account Number</label
+              >
+              <input
+                type="text"
+                class="form-control"
+                id="accountNumber"
+                placeholder="Enter account number"
+              />
+            </div>
+          </div>
+
+          <div class="d-flex justify-content-between mt-3">
+            <button
+              type="button"
+              class="btn btn-secondary btn-back"
+              id="backToCart"
+              style="width: 40%"
+            >
+              Back to Cart
+            </button>
+            <button
+              type="button"
+              class="btn btn-primary btn-continue"
+              id="continueToDelivery"
+              style="width: 40%"
+            >
+              Continue to Delivery
+            </button>
+          </div>
+        </form>
+      </div>
+
+      <!-- Phần giao hàng -->
+      <div class="delivery-section">
         <div class="row">
-            <div class="footer">
-                <div class="container" style="margin-bottom: 20px;">
-                    <div class="column contact-info">
-                        <h3>
-                            Contact Info
-                        </h3>
-                        <p>
-                            1418 River Drive, Suite 35
-                            <br />
-                            Cottonhall, CA 9622
-                        </p>
-                        <p>
-                            Monday – Friday: 9:00-20:00
-                            <br />
-                            Saturday: 11:00 – 15:00
-                        </p>
-                        <a href="mailto:contact@example.com">
-                            contact@example.com
-                        </a>
-                    </div>
-                    <div class="column">
-                        <h3>
-                            Company
-                        </h3>
-                        <p>
-                            <a href="#">
-                                About us
-                            </a>
-                        </p>
-                        <p>
-                            <a href="#">
-                                Delivery Information
-                            </a>
-                        </p>
-                        <p>
-                            <a href="#">
-                                Privacy Policy
-                            </a>
-                        </p>
-                        <p>
-                            <a href="#">
-                                Terms &amp; Conditions
-                            </a>
-                        </p>
-                        <p>
-                            <a href="#">
-                                Contact Us
-                            </a>
-                        </p>
-                        <p>
-                            <a href="#">
-                                Support Center
-                            </a>
-                        </p>
-                    </div>
-                    <div style="border-right: 1px solid #b3b3b3; margin-right: 20px;"></div>
-                    <div class="column logo" style="margin-left: 20px;">
-                        <h2>
-                            Bookory
-                        </h2>
-                        <p>
-                            Got Questions? Call us 24/7!
-                        </p>
-                        <p style="color: #ff5e3a; font-size: 24px;">
-                            +(84) - 1800 - 4635
-                        </p>
-                        <div class="social-icons">
-                            <a href="#">
-                                <i class="fab fa-facebook-f">
-                                </i>
-                            </a>
-                            <a href="#">
-                                <i class="fab fa-twitter">
-                                </i>
-                            </a>
-                            <a href="#">
-                                <i class="fab fa-instagram">
-                                </i>
-                            </a>
-                            <a href="#">
-                                <i class="fab fa-pinterest">
-                                </i>
-                            </a>
-                        </div>
-                    </div>
-                    <div style="border-right: 1px solid #b3b3b3; margin-left: 40px; margin-right: 20px;"></div>
-                    <div class="column">
-                        <h3>
-                            Corporate
-                        </h3>
-                        <p>
-                            <a href="#">
-                                Become a Vendor
-                            </a>
-                        </p>
-                        <p>
-                            <a href="#">
-                                Affiliate Program
-                            </a>
-                        </p>
-                        <p>
-                            <a href="#">
-                                Our Suppliers
-                            </a>
-                        </p>
-                        <p>
-                            <a href="#">
-                                Accessibility
-                            </a>
-                        </p>
-                        <p>
-                            <a href="#">
-                                Promotions
-                            </a>
-                        </p>
-                        <p>
-                            <a href="#">
-                                Careers
-                            </a>
-                        </p>
-                    </div>
-                    <div class="column">
-                        <h3>
-                            Our Service
-                        </h3>
-                        <p>
-                            <a href="#">
-                                Help Center
-                            </a>
-                        </p>
-                        <p>
-                            <a href="#">
-                                Returns
-                            </a>
-                        </p>
-                        <p>
-                            <a href="#">
-                                Product Recalls
-                            </a>
-                        </p>
-                        <p>
-                            <a href="#">
-                                Accessibility
-                            </a>
-                        </p>
-                        <p>
-                            <a href="#">
-                                Contact Us
-                            </a>
-                        </p>
-                        <p>
-                            <a href="#">
-                                Store Pickup
-                            </a>
-                        </p>
-                    </div>
+          <div class="col-md-8">
+            <h4 class="mb-3">Delivery Information</h4>
+            <form>
+              <div class="row mb-3">
+                <div class="col-md-6">
+                  <label for="firstName" class="form-label">
+                    <h6>First Name</h6>
+                  </label>
+                  <input type="text" class="form-control" id="firstName" />
                 </div>
-                <div style="border-bottom: 1px solid #b3b3b3; margin-bottom: 20px;">
+                <div class="col-md-6">
+                  <label for="lastName" class="form-label">
+                    <h6>Last Name</h6>
+                  </label>
+                  <input type="text" class="form-control" id="lastName" />
                 </div>
-                <div class="bottom-bar">
-                    <p>
-                        Copyright © 2024
-                        <a href="#">
-                            Bookory
-                        </a>
-                        . All rights reserved.
-                    </p>
+              </div>
+              <div class="mb-3">
+                <label for="address" class="form-label">
+                  <h6>Address</h6>
+                </label>
+                <input type="text" class="form-control" id="address" />
+              </div>
+              <div class="row mb-3">
+                <div class="col-md-6">
+                  <label for="city" class="form-label">
+                    <h6>City</h6>
+                  </label>
+                  <select class="form-select" id="city">
+                    <option selected>--Select City--</option>
+                  </select>
                 </div>
+                <div class="col-md-6">
+                  <label for="district" class="form-label">
+                    <h6>District</h6>
+                  </label>
+                  <select class="form-select" id="district" disabled>
+                    <option selected>--Select District--</option>
+                  </select>
+                </div>
+              </div>
+              <div class="mb-3" style="width: 304px">
+                <label for="ward" class="form-label">
+                  <h6>Ward</h6>
+                </label>
+                <select class="form-select" id="ward" disabled>
+                  <option selected>--Select Ward--</option>
+                </select>
+              </div>
+              <div class="d-flex">
+                <button
+                  type="button"
+                  class="btn btn-secondary btn-back-to-payment"
+                  style="margin-right: 10px; width: 40%"
+                  id="backToPayment"
+                >
+                  Back to Payment
+                </button>
+                <button
+                  type="button"
+                  class="btn btn-primary btn-complete"
+                  style="width: 40%"
+                >
+                  Complete Order
+                </button>
+              </div>
+            </form>
+          </div>
+          <div class="col-md-4">
+            <div class="cart-sumary">
+              <div class="order-summary">
+                <h5>Order Summary</h5>
+                <div class="d-flex justify-content-between">
+                  <span>SubTotal</span>
+                  <span id="subTotal">0 $</span>
+                </div>
+                <div class="d-flex justify-content-between">
+                  <span>Shipping</span>
+                  <span>$10.00</span>
+                </div>
+                <hr />
+                <div class="d-flex justify-content-between">
+                  <strong>Total</strong>
+                  <strong id="total" style="color: red">0 $</strong>
+                </div>
+              </div>
             </div>
+          </div>
         </div>
+      </div>
+      <div class="row">
+        <div class="footer">
+          <div class="container" style="margin-bottom: 20px">
+            <div class="column contact-info">
+              <h3>Contact Info</h3>
+              <p>
+                1418 River Drive, Suite 35
+                <br />
+                Cottonhall, CA 9622
+              </p>
+              <p>
+                Monday – Friday: 9:00-20:00
+                <br />
+                Saturday: 11:00 – 15:00
+              </p>
+              <a href="mailto:contact@example.com"> contact@example.com </a>
+            </div>
+            <div class="column">
+              <h3>Company</h3>
+              <p>
+                <a href="#"> About us </a>
+              </p>
+              <p>
+                <a href="#"> Delivery Information </a>
+              </p>
+              <p>
+                <a href="#"> Privacy Policy </a>
+              </p>
+              <p>
+                <a href="#"> Terms &amp; Conditions </a>
+              </p>
+              <p>
+                <a href="#"> Contact Us </a>
+              </p>
+              <p>
+                <a href="#"> Support Center </a>
+              </p>
+            </div>
+            <div
+              style="border-right: 1px solid #b3b3b3; margin-right: 20px"
+            ></div>
+            <div class="column logo" style="margin-left: 20px">
+              <h2>Bookory</h2>
+              <p>Got Questions? Call us 24/7!</p>
+              <p style="color: #ff5e3a; font-size: 24px">+(84) - 1800 - 4635</p>
+              <div class="social-icons">
+                <a href="#">
+                  <i class="fab fa-facebook-f"> </i>
+                </a>
+                <a href="#">
+                  <i class="fab fa-twitter"> </i>
+                </a>
+                <a href="#">
+                  <i class="fab fa-instagram"> </i>
+                </a>
+                <a href="#">
+                  <i class="fab fa-pinterest"> </i>
+                </a>
+              </div>
+            </div>
+            <div
+              style="
+                border-right: 1px solid #b3b3b3;
+                margin-left: 40px;
+                margin-right: 20px;
+              "
+            ></div>
+            <div class="column">
+              <h3>Corporate</h3>
+              <p>
+                <a href="#"> Become a Vendor </a>
+              </p>
+              <p>
+                <a href="#"> Affiliate Program </a>
+              </p>
+              <p>
+                <a href="#"> Our Suppliers </a>
+              </p>
+              <p>
+                <a href="#"> Accessibility </a>
+              </p>
+              <p>
+                <a href="#"> Promotions </a>
+              </p>
+              <p>
+                <a href="#"> Careers </a>
+              </p>
+            </div>
+            <div class="column">
+              <h3>Our Service</h3>
+              <p>
+                <a href="#"> Help Center </a>
+              </p>
+              <p>
+                <a href="#"> Returns </a>
+              </p>
+              <p>
+                <a href="#"> Product Recalls </a>
+              </p>
+              <p>
+                <a href="#"> Accessibility </a>
+              </p>
+              <p>
+                <a href="#"> Contact Us </a>
+              </p>
+              <p>
+                <a href="#"> Store Pickup </a>
+              </p>
+            </div>
+          </div>
+          <div
+            style="border-bottom: 1px solid #b3b3b3; margin-bottom: 20px"
+          ></div>
+          <div class="bottom-bar">
+            <p>
+              Copyright © 2024
+              <a href="#"> Bookory </a>
+              . All rights reserved.
+            </p>
+          </div>
+        </div>
+      </div>
     </div>
-</body>
-
+    <script src="./payment.js"></script>
+    <script src="./cart.js"></script>
+    <script src="../../helpers/nav.js"></script>
+  </body>
 </html>

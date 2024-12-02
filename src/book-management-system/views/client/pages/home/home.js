@@ -441,43 +441,6 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   });
 });
-// Chỉ cho phép click tại nút mũi tên
-document.addEventListener("DOMContentLoaded", () => {
-  const prevControl = document.querySelector(
-    ".carousel-control-prev.custom-carousel-control"
-  );
-  const nextControl = document.querySelector(
-    ".carousel-control-next.custom-carousel-control"
-  );
-  const prevSpan = prevControl.querySelector(".clickable-span");
-  const nextSpan = nextControl.querySelector(".clickable-span");
-
-  prevControl.addEventListener("click", (event) => {
-    event.preventDefault(); // Ngăn chặn sự kiện click mặc định trên thẻ <a>
-  });
-
-  nextControl.addEventListener("click", (event) => {
-    event.preventDefault(); // Ngăn chặn sự kiện click mặc định trên thẻ <a>
-  });
-
-  prevSpan.addEventListener("click", (event) => {
-    event.stopPropagation(); // Ngăn chặn sự kiện click lan truyền lên thẻ <a>
-    const carousel = document.querySelector(
-      prevControl.getAttribute("data-bs-target")
-    );
-    const carouselInstance = bootstrap.Carousel.getInstance(carousel);
-    carouselInstance.prev(); // Thực hiện hành động chuyển slide trước
-  });
-
-  nextSpan.addEventListener("click", (event) => {
-    event.stopPropagation(); // Ngăn chặn sự kiện click lan truyền lên thẻ <a>
-    const carousel = document.querySelector(
-      nextControl.getAttribute("data-bs-target")
-    );
-    const carouselInstance = bootstrap.Carousel.getInstance(carousel);
-    carouselInstance.next(); // Thực hiện hành động chuyển slide tiếp theo
-  });
-});
 
 //////////////////////////////////////// Phần sách ///////////////////////////////
 // Hàm fetch và hiển thị sách lên giao diện
@@ -576,6 +539,7 @@ async function addToCart(event, bookId, title, thumbnail, price) {
     const response = await fetch(`${API_BASE_URL}/add-to-cart`, {
       method: "POST",
       headers: {
+        authorization: localStorage.getItem("token"),
         "Content-Type": "application/json",
       },
       body: JSON.stringify({

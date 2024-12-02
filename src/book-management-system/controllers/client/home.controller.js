@@ -1,6 +1,6 @@
 const Book = require("../../models/books.js");
 const Discount = require("../../models/discounts.js");
-const User = require("../../models/user.models.js");
+const Cart = require("../../models/cart.models.js");
 
 // Hàm lấy danh sách các danh mục sách
 const getCategories = async (req, res) => {
@@ -162,21 +162,42 @@ const addBookToCart = async (req, res) => {
   const userId = req.user._id; // Giả sử bạn đã có user authentication
 
   try {
-    // Kiểm tra xem sản phẩm đã có trong giỏ hàng chưa
-    let cartItem = await Cart.findOne({ userId, "items.bookId": bookId });
+    // Kiểm tra xem giỏ hàng đã có cho người dùng chưa
+    let cart = await Cart.findOne({ userId });
 
-    if (cartItem) {
-      // Nếu có, cập nhật số lượng sản phẩm trong giỏ hàng
-      const existingItem = cartItem.items.find(
+    if (cart) {
+      // Kiểm tra xem sản phẩm đã có trong giỏ hàng chưa
+      const existingItem = cart.items.find(
         (item) => item.bookId.toString() === bookId
       );
-      existingItem.quantity += quantity;
-      existingItem.totalPrice = existingItem.quantity * existingItem.price;
 
-      await cartItem.save();
+      if (existingItem) {
+        // Nếu có, cập nhật số lượng sản phẩm trong giỏ hàng
+        existingItem.quantity += quantity;
+        existingItem.totalPrice =
+          existingItem.quantity * existingItem.price.toFixed(2);
+      } else {
+        // Nếu chưa có, thêm sản phẩm mới vào giỏ hàng
+        const newItem = {
+          bookId,
+          title,
+          thumbnail,
+          price,
+          quantity,
+          totalPrice: price * quantity,
+        };
+        cart.items.push(newItem);
+      }
+
+      // Cập nhật lại tổng số tiền trong giỏ hàng
+      cart.totalAmount = cart.items
+        .reduce((total, item) => total + item.totalPrice, 0)
+        .toFixed(2);
+
+      await cart.save();
       return res.status(200).json({ message: "Giỏ hàng đã được cập nhật" });
     } else {
-      // Nếu chưa có, thêm sản phẩm mới vào giỏ hàng
+      // Nếu giỏ hàng chưa có, tạo giỏ hàng mới
       const newItem = {
         bookId,
         title,
@@ -189,6 +210,7 @@ const addBookToCart = async (req, res) => {
       const newCart = new Cart({
         userId,
         items: [newItem],
+        totalAmount: newItem.totalPrice, // Tổng tiền ban đầu là giá trị của sản phẩm vừa thêm
       });
 
       await newCart.save();

@@ -25,7 +25,7 @@ const cartSchema = new mongoose.Schema(
     },
     items: [cartItemSchema], // Mảng chứa các items trong giỏ hàng
     totalAmount: { type: Number, required: true, default: 0 }, // Tổng tiền trong giỏ hàng
-    status: { type: String, default: "active" }, // Trạng thái giỏ hàng (active, completed, etc.)
+    // status: { type: String, default: "active" }, // Trạng thái giỏ hàng (active, completed, etc.)
   },
   { timestamps: true }
 );
