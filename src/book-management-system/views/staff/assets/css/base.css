@@ -57,3 +57,13 @@ select {
 .scrollable::-webkit-scrollbar {
   display: none; /* Ẩn thanh cuộn */
 }
+
+textarea::placeholder {
+  color: gray; /* Màu của placeholder */
+  opacity: 1; /* Đảm bảo placeholder không bị mờ */
+}
+input:focus,
+textarea:focus {
+  border: 2px solid #4caf50; /* Màu viền khi textarea được chọn */
+  outline: none; /* Loại bỏ outline mặc định */
+}

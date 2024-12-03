@@ -373,24 +373,76 @@
                     <div class="col-xl-6">
                       <div class="popup-content">
                         <h2>ADD BOOK</h2>
-                        <input
-                          type="text"
-                          id="editBookName"
-                          placeholder="Name"
-                        />
-                        <br />
-                        <input
-                          type="text"
-                          id="editBookAuthor"
-                          placeholder="Author"
-                        />
-                        <br />
-                        <input
-                          type="number"
-                          id="editBookPrice"
-                          placeholder="Price"
-                        />
-                        <br />
+                        <div style="margin-bottom: 20px">
+                          <input
+                            type="text"
+                            id="addBookName"
+                            placeholder="Name book"
+                          />
+                        </div>
+                        <div style="margin-bottom: 20px">
+                          <input
+                            type="text"
+                            id="addBookAuthor"
+                            placeholder="Author"
+                          />
+                        </div>
+                        <div style="margin-bottom: 20px">
+                          <input
+                            type="number"
+                            id="addBookPrice"
+                            placeholder="Price"
+                          />
+                        </div>
+                        <div style="margin-bottom: 20px">
+                          <input
+                            type="number"
+                            id="addBookStock"
+                            placeholder="Stock"
+                          />
+                        </div>
+                        <div style="margin-bottom: 20px">
+                          <input
+                            type="number"
+                            id="addBookPrice"
+                            placeholder="Price"
+                          />
+                        </div>
+                        <div style="margin-bottom: 20px">
+                          <input
+                            type="text"
+                            id="addBookCategory"
+                            placeholder="Category"
+                          />
+                        </div>
+                        <div style="margin-bottom: 20px">
+                          <input
+                            type="text"
+                            id="addBookPublisher"
+                            placeholder="Publisher"
+                          />
+                        </div>
+                        <div style="margin-bottom: 20px">
+                          <input
+                            type="date"
+                            id="addBookPublishDate"
+                            placeholder="Publish Date"
+                          />
+                        </div>
+                        <div style="margin-bottom: 20px">
+                          <input
+                            type="text"
+                            id="addBookThumbnail"
+                            placeholder="Image url"
+                          />
+                        </div>
+                        <div style="margin-bottom: 20px">
+                          <textarea
+                            id="addBookDescription"
+                            placeholder="Description"
+                          >
+                          </textarea>
+                        </div>
                         <!-- Thêm ô input vào đây -->
                         <button id="">SAVE</button>
                         <button id="closeAddBookPopup">CLOSE</button>
@@ -496,22 +548,16 @@
                             placeholder="Publish Date"
                           />
                         </div>
-                        <div
-                          action="upload.php"
-                          method="post"
-                          enctype="multipart/form-data"
-                          id="ThumbnailForm"
-                          style="margin-bottom: 10px"
-                        >
+                        <div style="margin-bottom: 10px">
                           <label
                             style="margin-right: 24px"
                             for="editBookThumbnail"
                             >Thumbnail:
                           </label>
                           <input
-                            type="file"
+                            type="text"
                             id="editBookThumbnail"
-                            placeholder="Thumbnail"
+                            placeholder="Image url"
                           />
                         </div>
                         <div style="margin-bottom: 10px">
@@ -601,9 +647,7 @@
                       <td>Nguyễn Văn A</td>
                       <td>123 ABC</td>
                       <td>$100</td>
-                      <td id="status-icon">
-                        <i class="fa-solid fa-truck"></i>
-                      </td>
+                      <td>shipped</td>
                       <td>
                         <button id="editOrder" class="editOrder">
                           <i class="fa-solid fa-pen-to-square"></i>
@@ -630,7 +674,6 @@
                 </div>
               </div>
               <!-- Edit Order Modal -->
-              <!-- Popup Edit Customer -->
               <div class="popup" id="editOrderPopup">
                 <div class="popup-frame">
                   <div class="row">
@@ -656,7 +699,7 @@
                           <option value="Shipped">Shipped</option>
                         </select>
                         <br />
-                        <button id="">SAVE</button>
+                        <button id="saveOrderBtn">SAVE</button>
                         <button id="closeEditOrderPopup">CLOSE</button>
                       </div>
                     </div>
@@ -739,24 +782,59 @@
                     <div class="col-xl-6">
                       <div class="popup-content">
                         <h2>ADD SALEBOOK</h2>
-                        <input
-                          type="text"
-                          id="editBookName"
-                          placeholder="Name"
-                        />
-                        <br />
-                        <input
-                          type="text"
-                          id="editBookAuthor"
-                          placeholder="Author"
-                        />
-                        <br />
-                        <input
-                          type="number"
-                          id="editBookPrice"
-                          placeholder="Price"
-                        />
-                        <br />
+                        <div class="input-edit" style="margin-bottom: 20px">
+                          <input type="text" id="editSaleID" placeholder="ID" />
+                        </div>
+                        <div class="input-edit" style="margin-bottom: 20px">
+                          <input
+                            type="number"
+                            id="editDiscountPrice"
+                            placeholder="Discount Price"
+                          />
+                        </div>
+                        <div class="input-edit" style="margin-bottom: 20px">
+                          <input
+                            type="number"
+                            id="editOriginPrice"
+                            placeholder="Origin Price"
+                          />
+                        </div>
+                        <div class="input-edit" style="margin-bottom: 20px">
+                          <input
+                            type="number"
+                            id="editDiscountPercent"
+                            placeholder="Percent"
+                          />
+                        </div>
+                        <div class="input-edit" style="margin-bottom: 20px">
+                          <input
+                            type="number"
+                            id="editSoldCount"
+                            placeholder="Sold Count"
+                          />
+                        </div>
+                        <div class="input-edit" style="margin-bottom: 20px">
+                          <input
+                            type="number"
+                            id="saleMaxQuality"
+                            placeholder="Max Quality"
+                          />
+                        </div>
+                        <div class="input-edit" style="margin-bottom: 20px">
+                          <input
+                            type="text"
+                            id="editSaleThumbnail:"
+                            placeholder="Image url"
+                          >
+                          </input>
+                        </div>
+                        <div class="input-edit" style="margin-bottom: 20px">                          <textarea
+                            type=""
+                            id="editSaleDescription"
+                            placeholder="Description"
+                          >
+                          </textarea>
+                        </div>
                         <!-- Thêm ô input vào đây -->
                         <button id="">SAVE</button>
                         <button id="closeAddSalePopup">CLOSE</button>
@@ -890,16 +968,16 @@
                           />
                         </div>
                         <div class="input-edit" style="margin-bottom: 10px">
-                          <label for="editSaleDescription">Description: </label>
-                          <textarea
-                            type=""
-                            id="editSaleDescription"
-                            placeholder="Description"
+                          <label style="margin-right: 33px" for="editSaleThubmnail">Thumbnail: </label>
+                          <input
+                            type="text"
+                            id="editSaleThumbnail:"
+                            placeholder="Image url"
                           >
-                          </textarea>
+                          </input>
                         </div>
                         <div class="input-edit" style="margin-bottom: 10px">
-                          <label for="editSaleThubmnail">Thumbnail: </label>
+                          <label for="editSaleDescription">Description: </label>
                           <textarea
                             type=""
                             id="editSaleDescription"

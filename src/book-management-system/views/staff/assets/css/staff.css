@@ -378,7 +378,7 @@
   display: block;
   width: 100%;
   padding: 10px 20px;
-  border-radius: 30px;
+  border-radius: 20px;
   border: 1px solid black;
   color: black;
 }
@@ -508,6 +508,15 @@
   .popup-content
   button:last-child:hover {
   background: rgba(244, 67, 54, 01);
+}
+
+.main .content .page .section-main .popup-frame .popup-content textarea {
+  width: 100%;
+  height: 100px;
+  padding: 3px 20px;
+  border-radius: 20px;
+  border: 1px solid black;
+  color: black;
 }
 
 .main .content .page .section-main .popup-frame .popup-image {
