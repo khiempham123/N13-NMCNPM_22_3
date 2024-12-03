@@ -8,6 +8,7 @@
     <link rel="stylesheet" href="../publicStyle/dropProfile.css">
     <link rel="stylesheet" href="../publicStyle/base.css">
     <link rel="stylesheet" href="../publicStyle/home.css">
+    <link rel="stylesheet" href="./cart.css">
     <script src="../publicStyle/dropProfile.js"></script>
     <link rel="stylesheet" href="./fav.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css"
@@ -196,46 +197,50 @@
                     </div>
                     <div class="col-xl-9 col-lg-9 col-md-9">
                         <!-- List Book -->
-                        <div class="listbook">
-                            <!-- Carousel -->
-                            <div class="carousel">
-                                <div class="carousel-images" id="carouselImages">
-                                    <img src="../publicStyle/images/banner-1.png" alt="Slide 1" />
-                                    <img src="assets/images/banner-2.png" alt="Slide 2" />
-                                    <img src="assets/images/banner-3.png" alt="Slide 3" />
-                                    <img src="assets/images/banner-4.png" alt="Slide 4" />
-                                    <img src="assets/images/banner-5.png" alt="Slide 4" />
+                        <div class="cart-container" style="margin-top: 20px;">
+                            <div class="cart-controls d-flex align-items-center">
+                                <div style="width: 50%; font-size: 25px; font-weight: 500; color: #9bb7d4;">
+                                    Books
                                 </div>
-                                <div class="carousel-buttons" id="carouselButtons"></div>
+                                <div class="d-flex w-50 text-center">
+                                    <div class="quantity-label" style="width: 50%; font-size: 25px; font-weight: 500; color: #9bb7d4;">Rating</div>
+                                    <div class="price-label" style="font-size: 25px; font-weight: 500; color: #9bb7d4;">Status</div>
+                                </div>
                             </div>
+                            <hr class="horizontal-line" />
 
-                            <div class="sorting">
-                                <select aria-label="Choose an option">
-                                    <option>Default sorting</option>
-                                    <option>Sort by price (Ascending)</option>
-                                    <option>Sort by price ( Descending)</option>
-                                </select>
-                            </div>
+                            <div class="cart-item d-flex  align-items-center mt-3">
+                                <div class="book-item" style="width: 58%;">
+                                    <img alt="Book cover of 'Life Flight' by Misty Figueroa" height="90" src="https://storage.googleapis.com/a1aa/image/kMW4c45pD3a9NBJvzjKcDH8cLPa179e6h96NbCDiXeF1cI3TA.jpg" width="60"/>
+                                    <div class="book-details">
+                                     <p class="book-title">
+                                      Life Flight
+                                     </p>
 
-                            <div class="row" id="product-list">
-                                <!-- Danh sách sản phẩm sẽ được hiển thị ở đây -->
-                            </div>
-                            <!-- Page Number -->
-                            <div class="page-number">
-                                <div class="container">
-                                    <div class="row">
-                                        <div class="col-12">
-                                            <ul class="page-wrap">
-                                                <li><span class="page current">1</span></li>
-                                                <li><a href="#" class="page">2</a></li>
-                                                <li><a href="#" class="page">3</a></li>
-                                                <li>
-                                                    <a href="#">
-                                                        <i class="fa-solid fa-angle-right page"></i>
-                                                    </a>
-                                                </li>
-                                            </ul>
-                                        </div>
+                                     <p class="book-author">
+                                      Misty Figueroa
+                                     </p>
+                                    </div>
+                                </div>
+                                <div class="d-flex align-items-center" style="width: 15%;">
+                                    <div class="book-rating">
+                                        <i class="fas fa-star">
+                                        </i>
+                                        <i class="fas fa-star">
+                                        </i>
+                                        <i class="fas fa-star">
+                                        </i>
+                                        <i class="fas fa-star">
+                                        </i>
+                                        <i class="fas fa-star">
+                                        </i>
+                                    </div>
+                                </div>
+                                <div class="d-flex " style="margin-left: 15px;">
+                                    <div class="ms-3 delete-item" >
+                                        <button class="btn btn-outline-danger btn-sm">
+                                            <i class="fas fa-trash"></i>
+                                        </button>
                                     </div>
                                 </div>
                             </div>
