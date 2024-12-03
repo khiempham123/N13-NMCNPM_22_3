@@ -1,0 +1,47 @@
+/* Cấu trúc phân trang */
+.pagination-container {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+  }
+  
+  .pagination {
+    list-style: none;
+    display: flex;
+    gap: 10px;
+    padding: 0;
+    margin: 0;
+  }
+  
+  .page-item {
+    display: inline;
+  }
+  
+  .page-link {
+    display: block;
+    padding: 8px 15px;
+    text-decoration: none;
+    color: #007bff;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    cursor: pointer;
+    background-color: white;
+  }
+  
+  .page-link:hover {
+    background-color: #f8f9fa;
+  }
+  
+  /* Nút khi bị vô hiệu hóa */
+  .page-item.disabled .page-link {  
+    color: #6c757d;
+    cursor: not-allowed;
+    pointer-events: none;
+  }
+  
+  .page-item.active .page-link {
+    background-color: #007bff;
+    color: white;
+    font-weight: bold;
+  }
+  

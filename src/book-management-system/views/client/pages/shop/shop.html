@@ -8,6 +8,9 @@
     <link rel="stylesheet" href="assets/css/base.css">
     <link rel="stylesheet" href="assets/css/home.css">
     <link rel="stylesheet" href="assets/css/shop.css">
+    <link rel="stylesheet" href="assets/css/filterPrice.css">
+    <link rel="stylesheet" href="assets/css/pagination.css">
+    <link rel="stylesheet" href="assets/css/spinner.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css"
         integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg=="
         crossorigin="anonymous" referrerpolicy="no-referrer" />
@@ -18,6 +21,11 @@
         crossorigin="anonymous"></script>
     <script src="https://code.jquery.com/jquery-3.7.1.js"></script>
     <script src="https://code.jquery.com/ui/1.14.0/jquery-ui.js"></script>
+    <link
+      rel="stylesheet"
+      href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css" />
+      
+        
     
 <body>
     <div class="container-fluid">
@@ -189,69 +197,49 @@
                   <h4>LoveBook</h4>
                   <!-- <hr class="horizontal-line" /> -->
                   <h5>Genre</h5>
-                  <ul>
-                    <li><input type="checkbox" /> Action & Adventure</li>
-                    <li><input type="checkbox" /> Activity Books</li>
-                    <li><input type="checkbox" /> Animals</li>
-                    <li><input type="checkbox" /> Anthologies</li>
-                    <li><input type="checkbox" /> Arts & Literature</li>
-                    <li><input type="checkbox" /> Cars & Trucks</li>
-                    <li><input type="checkbox" /> Classics</li>
-                    <li><input type="checkbox" /> Contemporary</li>
-                    <li><input type="checkbox" /> Cultural</li>
-                    <li><input type="checkbox" /> European</li>
-                    <li><input type="checkbox" /> Foreign Language</li>
-                    <li><input type="checkbox" /> Genre Fiction</li>
-                    <li><input type="checkbox" /> Historical</li>
-                    <li><input type="checkbox" /> Uncategorized</li>
+                  <ul id="genre-list">
+                    <!-- Các thể loại sẽ được thêm vào đây -->
                   </ul>
                   <hr class="horizontal-line" />
                   <h5>Authors</h5>
-                  <ul>
-                    <li><input type="checkbox" /> Arthur Gonzalez</li>
-                    <li><input type="checkbox" /> Dana Chambers</li>
-                    <li><input type="checkbox" /> Ernesto Wade</li>
-                    <li><input type="checkbox" /> Karla Newman</li>
-                    <li><input type="checkbox" /> Misty Figueroa</li>
-                    <li><input type="checkbox" /> Rita James</li>
-                    <li><input type="checkbox" /> Suzanne Casey</li>
+                  <ul id="author-list">
+                    <!-- Các tác giả sẽ được thêm vào đây -->
                   </ul>
                   <hr class="horizontal-line" />
                   <h5>Filer By Price</h5>
-                  <input
-                    type="range"
-                    min="250"
-                    max="1000"
-                    value="250"
-                    id="priceRange"
-                    class="slider"
-                  />
-                  <div class="price-display">
-                    Price: $<span id="minPrice">250</span> — $<span id="maxPrice"
-                      >1000</span
-                    >
-                  </div>
-                  <hr class="horizontal-line" />
-                  <h5>Age</h5>
-                  <ul>
-                    <li><input type="checkbox" /> 0 - 6</li>
-                    <li><input type="checkbox" /> 6 - 11</li>
-                    <li><input type="checkbox" /> 11 - 15</li>
-                    <li><input type="checkbox" /> 15 - 18</li>
-                    <li><input type="checkbox" /> 18+</li>
-                  </ul>
-                  <hr class="horizontal-line" />
-                  <h5>Language</h5>
-                  <ul>
-                    <li><input type="checkbox" /> Vietnamese</li>
-                    <li><input type="checkbox" /> English</li>
-                    <li><input type="checkbox" /> Bilingual English-Vietnamese</li>
-                    <li><input type="checkbox" /> Japanese</li>
-                    <li><input type="checkbox" /> Korean</li>
-                    <li><input type="checkbox" /> Chinese</li>
-                    <li><input type="checkbox" /> German</li>
-                    <li><input type="checkbox" /> French</li>
-                  </ul>
+                  <div id="priceRefinements"
+                    aria-labelledby="priceRefinements"
+                    class="a-section a-spacing-none"
+                    role="group">
+                    <div
+                        id="filter-p_36"
+                        data-csa-c-content-id="386465011"
+                        data-csa-c-slot-id="nav-ref"
+                        data-csa-c-type="element"
+                        class="a-section sf-refinements-panel sf-range-content"
+                        data-csa-c-id="1ns385-nu1p49-79rx4b-xfjzou">
+
+                        <div class="a-section sf-filter-section s-no-js-hide">
+                        <div
+                            id="p_36/range-slider"
+                            data-csa-c-content-id="p_36/range-slider"
+                            data-csa-c-slot-id="nav-ref"
+                            class="a-section sf-range-slider">
+                            
+                            <!-- Slider container with id 'priceRange' -->
+                            <div id="priceRange"></div>
+                            
+                            <!-- Price range label -->
+                            <div id="range-value" style="margin-top: 10px;"></div>
+
+                            <!-- Hidden fields to store minPrice and maxPrice -->
+                            <input type="hidden" id="minPrice" value="100" />
+                            <input type="hidden" id="maxPrice" value="500" />
+                        </div>
+                        </div>
+                    </div>
+                    </div>
+
                   <button class="filter-button button-one">Filter</button>
                 </div>
               </div>
@@ -289,210 +277,210 @@
                     <select aria-label="Choose an option">
                       <option>Default sorting</option>
                       <option>Sort by price (Ascending)</option>
-                      <option>Sort by price ( Descending)</option>
+                      <option>Sort by price (Descending)</option>
                     </select>
                   </div>
                   
-                  <div class="row" id="product-list">
+                  <div class="row" id="book-list">
+                    <p class="centered-text" style="display: none;">Không có sách phù hợp</p>
                     <!-- Danh sách sản phẩm sẽ được hiển thị ở đây -->
                   </div>
-                <!-- Page Number -->
-                <div class="page-number">
-                  <div class="container">
-                    <div class="row">
-                      <div class="col-12">
-                        <ul class="page-wrap">
-                          <li><span class="page current">1</span></li>
-                          <li><a href="#" class="page">2</a></li>
-                          <li><a href="#" class="page">3</a></li>
-                          <li>
-                            <a href="#">
-                              <i class="fa-solid fa-angle-right page"></i>
-                            </a>
-                          </li>
-                        </ul>
-                      </div>
-                    </div>
-                  </div>
-              </div>
-              </div>
-            </div>
-          </div>
-        </div>
+                  <div class="spinner-container" id="spinner-container" style="display: none;">
+                    <div class="spinner"></div>
+                </div>
+                <!-- Phân trang -->
+                <div class="pagination-container">
+                    <ul class="pagination" id="pagination-list">
+                        <li id="prev-page" class="page-item disabled">
+                            <a href="javascript:void(0);" class="page-link">&laquo; Previous</a>
+                        </li>
+                        <!-- Các trang số sẽ được cập nhật ở đây -->
+                        <li id="next-page" class="page-item">
+                            <a href="javascript:void(0);" class="page-link">Next &raquo;</a>
+                        </li>
+                    </ul>
+                </div>
         <!-- End Section-three -->
-
-        <div class="row">
-            <div class="footer">
-                <div class="container" style="margin-bottom: 20px;">
-                    <div class="column contact-info">
-                        <h3>
-                            Contact Info
-                        </h3>
-                        <p>
-                            1418 River Drive, Suite 35
-                            <br />
-                            Cottonhall, CA 9622
-                        </p>
-                        <p>
-                            Monday – Friday: 9:00-20:00
-                            <br />
-                            Saturday: 11:00 – 15:00
-                        </p>
-                        <a href="mailto:contact@example.com">
-                            contact@example.com
-                        </a>
-                    </div>
-                    <div class="column">
-                        <h3>
-                            Company
-                        </h3>
-                        <p>
-                            <a href="#">
-                                About us
-                            </a>
-                        </p>
-                        <p>
-                            <a href="#">
-                                Delivery Information
-                            </a>
-                        </p>
-                        <p>
-                            <a href="#">
-                                Privacy Policy
-                            </a>
-                        </p>
-                        <p>
-                            <a href="#">
-                                Terms &amp; Conditions
-                            </a>
-                        </p>
-                        <p>
-                            <a href="#">
-                                Contact Us
-                            </a>
-                        </p>
-                        <p>
-                            <a href="#">
-                                Support Center
-                            </a>
-                        </p>
-                    </div>
-                    <div style="border-right: 1px solid #b3b3b3; margin-right: 20px;"></div>
-                    <div class="column logo" style="margin-left: 20px;">
-                        <h2>
-                            Bookory
-                        </h2>
-                        <p>
-                            Got Questions? Call us 24/7!
-                        </p>
-                        <p style="color: #ff5e3a; font-size: 24px;">
-                            +(84) - 1800 - 4635
-                        </p>
-                        <div class="social-icons">
-                            <a href="#">
-                                <i class="fab fa-facebook-f">
-                                </i>
-                            </a>
-                            <a href="#">
-                                <i class="fab fa-twitter">
-                                </i>
-                            </a>
-                            <a href="#">
-                                <i class="fab fa-instagram">
-                                </i>
-                            </a>
-                            <a href="#">
-                                <i class="fab fa-pinterest">
-                                </i>
-                            </a>
-                        </div>
-                    </div>
-                    <div style="border-right: 1px solid #b3b3b3; margin-left: 40px; margin-right: 20px;"></div>
-                    <div class="column">
-                        <h3>
-                            Corporate
-                        </h3>
-                        <p>
-                            <a href="#">
-                                Become a Vendor
-                            </a>
-                        </p>
-                        <p>
-                            <a href="#">
-                                Affiliate Program
-                            </a>
-                        </p>
-                        <p>
-                            <a href="#">
-                                Our Suppliers
-                            </a>
-                        </p>
-                        <p>
-                            <a href="#">
-                                Accessibility
-                            </a>
-                        </p>
-                        <p>
-                            <a href="#">
-                                Promotions
-                            </a>
-                        </p>
-                        <p>
-                            <a href="#">
-                                Careers
-                            </a>
-                        </p>
-                    </div>
-                    <div class="column">
-                        <h3>
-                            Our Service
-                        </h3>
-                        <p>
-                            <a href="#">
-                                Help Center
-                            </a>
-                        </p>
-                        <p>
-                            <a href="#">
-                                Returns
-                            </a>
-                        </p>
-                        <p>
-                            <a href="#">
-                                Product Recalls
-                            </a>
-                        </p>
-                        <p>
-                            <a href="#">
-                                Accessibility
-                            </a>
-                        </p>
-                        <p>
-                            <a href="#">
-                                Contact Us
-                            </a>
-                        </p>
-                        <p>
-                            <a href="#">
-                                Store Pickup
-                            </a>
-                        </p>
-                    </div>
-                </div>
-                <div style="border-bottom: 1px solid #b3b3b3; margin-bottom: 20px;">
-                </div>
-                <div class="bottom-bar">
+        </div>
+    </div>
+    </div>
+    </div>
+    <div class="row">
+        <div class="footer">
+            <div class="container" style="margin-bottom: 20px;">
+                <div class="column contact-info">
+                    <h3>
+                        Contact Info
+                    </h3>
                     <p>
-                        Copyright © 2024
+                        1418 River Drive, Suite 35
+                        <br />
+                        Cottonhall, CA 9622
+                    </p>
+                    <p>
+                        Monday – Friday: 9:00-20:00
+                        <br />
+                        Saturday: 11:00 – 15:00
+                    </p>
+                    <a href="mailto:contact@example.com">
+                        contact@example.com
+                    </a>
+                </div>
+                <div class="column">
+                    <h3>
+                        Company
+                    </h3>
+                    <p>
                         <a href="#">
-                            Bookory
+                            About us
                         </a>
-                        . All rights reserved.
+                    </p>
+                    <p>
+                        <a href="#">
+                            Delivery Information
+                        </a>
+                    </p>
+                    <p>
+                        <a href="#">
+                            Privacy Policy
+                        </a>
+                    </p>
+                    <p>
+                        <a href="#">
+                            Terms &amp; Conditions
+                        </a>
+                    </p>
+                    <p>
+                        <a href="#">
+                            Contact Us
+                        </a>
+                    </p>
+                    <p>
+                        <a href="#">
+                            Support Center
+                        </a>
+                    </p>
+                </div>
+                <div style="border-right: 1px solid #b3b3b3; margin-right: 20px;"></div>
+                <div class="column logo" style="margin-left: 20px;">
+                    <h2>
+                        Bookory
+                    </h2>
+                    <p>
+                        Got Questions? Call us 24/7!
+                    </p>
+                    <p style="color: #ff5e3a; font-size: 24px;">
+                        +(84) - 1800 - 4635
+                    </p>
+                    <div class="social-icons">
+                        <a href="#">
+                            <i class="fab fa-facebook-f">
+                            </i>
+                        </a>
+                        <a href="#">
+                            <i class="fab fa-twitter">
+                            </i>
+                        </a>
+                        <a href="#">
+                            <i class="fab fa-instagram">
+                            </i>
+                        </a>
+                        <a href="#">
+                            <i class="fab fa-pinterest">
+                            </i>
+                        </a>
+                    </div>
+                </div>
+                <div style="border-right: 1px solid #b3b3b3; margin-left: 40px; margin-right: 20px;"></div>
+                <div class="column">
+                    <h3>
+                        Corporate
+                    </h3>
+                    <p>
+                        <a href="#">
+                            Become a Vendor
+                        </a>
+                    </p>
+                    <p>
+                        <a href="#">
+                            Affiliate Program
+                        </a>
+                    </p>
+                    <p>
+                        <a href="#">
+                            Our Suppliers
+                        </a>
+                    </p>
+                    <p>
+                        <a href="#">
+                            Accessibility
+                        </a>
+                    </p>
+                    <p>
+                        <a href="#">
+                            Promotions
+                        </a>
+                    </p>
+                    <p>
+                        <a href="#">
+                            Careers
+                        </a>
+                    </p>
+                </div>
+                <div class="column">
+                    <h3>
+                        Our Service
+                    </h3>
+                    <p>
+                        <a href="#">
+                            Help Center
+                        </a>
+                    </p>
+                    <p>
+                        <a href="#">
+                            Returns
+                        </a>
+                    </p>
+                    <p>
+                        <a href="#">
+                            Product Recalls
+                        </a>
+                    </p>
+                    <p>
+                        <a href="#">
+                            Accessibility
+                        </a>
+                    </p>
+                    <p>
+                        <a href="#">
+                            Contact Us
+                        </a>
+                    </p>
+                    <p>
+                        <a href="#">
+                            Store Pickup
+                        </a>
                     </p>
                 </div>
             </div>
+            <div style="border-bottom: 1px solid #b3b3b3; margin-bottom: 20px;">
+            </div>
+            <div class="bottom-bar">
+                <p>
+                    Copyright © 2024
+                    <a href="#">
+                        Bookory
+                    </a>
+                    . All rights reserved.
+                </p>
+            </div>
         </div>
-    </div>  
+    </div>
+</div>  
 <script src="./shop.js"></script>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"></script>
+
+
 </body>
 </html>
