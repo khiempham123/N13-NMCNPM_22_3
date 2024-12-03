@@ -1,6 +1,7 @@
 const Book = require("../../models/books.js");
 const Discount = require("../../models/discounts.js");
 const Cart = require("../../models/cart.models.js");
+const Favorite = require("../../models/fav.models.js");
 
 // Hàm lấy danh sách các danh mục sách
 const getCategories = async (req, res) => {
@@ -226,6 +227,70 @@ const addBookToCart = async (req, res) => {
   }
 };
 
+const addBookToFav = async (req, res) => {
+  const { bookId, title, thumbnail, price, rating } = req.body;
+  const userId = req.user._id; // Giả sử bạn đã có user authentication
+
+  try {
+    // Kiểm tra xem danh sách yêu thích đã có cho người dùng chưa
+    let fav = await Favorite.findOne({ userId });
+
+    if (fav) {
+      // Kiểm tra xem sản phẩm đã có trong danh sách yêu thích chưa
+      const existingItem = fav.items.find(
+        (item) => item.bookId.toString() === bookId
+      );
+
+      if (existingItem) {
+        // Nếu có, thông báo sản phẩm đã có trong danh sách yêu thích
+        return res
+          .status(400)
+          .json({ message: "Sách đã có trong danh sách yêu thích" });
+      } else {
+        // Nếu chưa có, thêm sản phẩm mới vào danh sách yêu thích
+        const newItem = {
+          bookId,
+          title,
+          thumbnail,
+          price,
+          rating,
+        };
+        fav.items.push(newItem);
+      }
+
+      // Lưu lại danh sách yêu thích sau khi thêm sản phẩm mới
+      await fav.save();
+      return res
+        .status(200)
+        .json({ message: "Sách đã được thêm vào danh sách yêu thích" });
+    } else {
+      // Nếu danh sách yêu thích chưa có, tạo danh sách yêu thích mới
+      const newItem = {
+        bookId,
+        title,
+        thumbnail,
+        price,
+        rating,
+      };
+
+      const newFav = new Favorite({
+        userId,
+        items: [newItem],
+      });
+
+      await newFav.save();
+      return res.status(200).json({
+        message: "Danh sách yêu thích đã được tạo và sách đã được thêm vào",
+      });
+    }
+  } catch (error) {
+    console.error(error);
+    return res
+      .status(500)
+      .json({ message: "Lỗi server khi thêm sách vào danh sách yêu thích" });
+  }
+};
+
 module.exports = {
   getCategories,
   getBooksByCategory,
@@ -234,4 +299,5 @@ module.exports = {
   getDealsOfTheWeek,
   getBestSeller,
   addBookToCart,
+  addBookToFav,
 };

@@ -21,6 +21,8 @@ router.get("/best-seller", controller.getBestSeller);
 
 router.post("/add-to-cart", authenticateUser, controller.addBookToCart);
 
+router.post("/add-to-fav", authenticateUser, controller.addBookToFav);
+
 module.exports = router;
 
 //   123456

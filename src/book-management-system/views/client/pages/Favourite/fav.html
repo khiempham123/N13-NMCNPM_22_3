@@ -188,68 +188,39 @@
             <div class="container">
                 <div class="row">
                     <div class="col-xl-3 col-lg-3 col-md-3">
-                        <!-- SideBar -->
+                        <!-- Sidebar -->
                         <div class="sidebar">
                             <h4>My Favourite Books</h4>
-                            <!-- <hr class="horizontal-line" /> -->
-                            <!-- Một số điều hướng hoặc tinh chỉnh nếu cần thiết -->
                         </div>
                     </div>
                     <div class="col-xl-9 col-lg-9 col-md-9">
                         <!-- List Book -->
-                        <div class="cart-container" style="margin-top: 20px;">
-                            <div class="cart-controls d-flex align-items-center">
-                                <div style="width: 50%; font-size: 25px; font-weight: 500; color: #9bb7d4;">
+                        <div class="fav-container" style="margin-top: 20px;">
+                            <div class="fav-controls d-flex align-items-center" style="margin-bottom: 10px;">
+                                <div class="book-title" style="flex: 1; font-size: 25px; font-weight: 500; color: #9bb7d4; text-align: left;">
                                     Books
                                 </div>
-                                <div class="d-flex w-50 text-center">
-                                    <div class="quantity-label" style="width: 50%; font-size: 25px; font-weight: 500; color: #9bb7d4;">Rating</div>
-                                    <div class="price-label" style="font-size: 25px; font-weight: 500; color: #9bb7d4;">Status</div>
+                                <div class="rating-title" style="flex: 1; font-size: 25px; font-weight: 500; color: #9bb7d4; text-align: center;">
+                                    Rating
+                                </div>
+                                <div class="price-title" style="flex: 1; font-size: 25px; font-weight: 500; color: #9bb7d4; text-align: center;">
+                                    Price
+                                </div>
+                                <div class="status-title" style="flex: 1; font-size: 25px; font-weight: 500; color: #9bb7d4; text-align: center;">
+                                    Status
                                 </div>
                             </div>
+                            
                             <hr class="horizontal-line" />
-
-                            <div class="cart-item d-flex  align-items-center mt-3">
-                                <div class="book-item" style="width: 58%;">
-                                    <img alt="Book cover of 'Life Flight' by Misty Figueroa" height="90" src="https://storage.googleapis.com/a1aa/image/kMW4c45pD3a9NBJvzjKcDH8cLPa179e6h96NbCDiXeF1cI3TA.jpg" width="60"/>
-                                    <div class="book-details">
-                                     <p class="book-title">
-                                      Life Flight
-                                     </p>
-
-                                     <p class="book-author">
-                                      Misty Figueroa
-                                     </p>
-                                    </div>
-                                </div>
-                                <div class="d-flex align-items-center" style="width: 15%;">
-                                    <div class="book-rating">
-                                        <i class="fas fa-star">
-                                        </i>
-                                        <i class="fas fa-star">
-                                        </i>
-                                        <i class="fas fa-star">
-                                        </i>
-                                        <i class="fas fa-star">
-                                        </i>
-                                        <i class="fas fa-star">
-                                        </i>
-                                    </div>
-                                </div>
-                                <div class="d-flex " style="margin-left: 15px;">
-                                    <div class="ms-3 delete-item" >
-                                        <button class="btn btn-outline-danger btn-sm">
-                                            <i class="fas fa-trash"></i>
-                                        </button>
-                                    </div>
-                                </div>
-                            </div>
+        
+                            <!-- Book Item will be inserted here dynamically -->
+                            <div id="fav-list"></div>
                         </div>
                     </div>
                 </div>
             </div>
-            <!-- End Section-three -->
         </div>
+        
 
         <div class="row">
             <div class="footer">
@@ -422,7 +393,7 @@
                 </div>
             </div>
         </div>
-        <script src="./vendor.js"></script>
+        <script src="./fav.js"></script>
 </body>
 
 </html>

@@ -465,9 +465,11 @@ async function loadBestSellers() {
           <div class="inner-box" onclick="goToBookDetail('${book._id}')">
             <div class="inner-image">
               <img src="${book.thumbnail}" alt="${book.title}">
-              <div class="transaction trans-love" onclick="goToFavoritesPage(event, '${
+              <div class="transaction trans-love" onclick="addToFav(event, '${
                 book._id
-              }')">
+              }', '${book.title}', '${book.thumbnail}', ${book.price}, ${
+        book.rating
+      })">
                 <i class="fa-solid fa-heart" style="color: #ee2b3e;"></i>  
               </div>
               <div class="transaction trans-cart" onclick="addToCart(event, '${
@@ -514,21 +516,49 @@ function getStarRating(rating) {
   }
   return stars.join("");
 }
-
-// Chuyển hướng đến trang sách yêu thích
-function goToFavoritesPage(event, bookId) {
-  event.stopPropagation(); // Ngừng sự kiện click truyền ra ngoài
-  window.location.href = `../Favourite/fav.html`;
-}
-
-// // Chuyển hướng đến trang giỏ hàng
-// function goToCartPage(event) {
-//   event.stopPropagation(); // Ngừng sự kiện click truyền ra ngoài
-//   window.location.href = `../cart/cart.html`;
-// }
-
+// đến trang detail
 function goToBookDetail(bookId) {
   window.location.href = `../detail/detail.html?id=${bookId}`;
+}
+
+// Chuyển hướng đến trang sách yêu thích
+async function addToFav(event, bookId, title, thumbnail, price, rating) {
+  // Ngừng sự kiện để không lan ra các phần tử cha
+  event.stopPropagation();
+
+  try {
+    // Gửi yêu cầu POST đến API để thêm sách vào danh sách yêu thích
+    const response = await fetch(`${API_BASE_URL}/add-to-fav`, {
+      method: "POST",
+      headers: {
+        authorization: localStorage.getItem("token"),
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        bookId,
+        title,
+        thumbnail,
+        price,
+        rating,
+      }),
+    });
+
+    // Phản hồi từ server
+    const result = await response.json();
+
+    if (response.ok) {
+      // Nếu thêm sách thành công
+      alert("Sản phẩm đã được thêm vào danh sách yêu thích!");
+    } else {
+      // Nếu có lỗi từ phía server
+      console.error(result.message);
+      alert("Có lỗi xảy ra khi thêm sản phẩm vào danh sách yêu thích.");
+    }
+  } catch (error) {
+    // Xử lý lỗi khi không thể kết nối tới API
+    console.error("Error adding to fav:", error);
+    alert("Có lỗi xảy ra khi thêm sản phẩm vào danh sách yêu thích.");
+  }
 }
 
 async function addToCart(event, bookId, title, thumbnail, price) {
