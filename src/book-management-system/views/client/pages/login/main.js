@@ -70,28 +70,34 @@ document.addEventListener('DOMContentLoaded', () => {
 // Chuyển đổi giữa các form Đăng nhập, Đăng ký, Quên mật khẩu, Đặt lại mật khẩu
 const signUpBtnLink = document.querySelector('.signUp-link');
 const signInBtnLink = document.querySelector('.signIn-link');
-const forgotPasswordLink = document.querySelector('.remember-forgot a'); // Link "Forgot Password"
+const forgotPasswordLink = document.querySelector('.forgotPassword-link'); // Link "Forgot Password"
+const backToSignInLink = document.querySelector('.backToSignIn-link');
 const wrapper = document.querySelector('.wrapper');
 
-// Khi nhấn vào "Đăng ký"
-if (signUpBtnLink) {
-    signUpBtnLink.addEventListener('click', (e) => {
-        e.preventDefault();
-        wrapper.classList.add('sign-up-active'); // Thêm lớp để hiển thị form Đăng ký
-        wrapper.classList.remove('active', 'forgot-active', 'reset-active'); // Ẩn các form khác
-        console.log('Current wrapper classes (Đăng ký):', wrapper.classList);
-    });
-}
-// Khi nhấn vào "Đăng nhập"
-if (signInBtnLink) {
-    signInBtnLink.addEventListener('click', (e) => {
-        e.preventDefault();
-        wrapper.classList.add('active'); // Hiển thị form Đăng nhập
-        wrapper.classList.remove('sign-up-active', 'forgot-active', 'reset-active'); // Ẩn các form khác
-        console.log('Current wrapper classes (Đăng nhập):', wrapper.classList);
-    });
-}
+signUpBtnLink.addEventListener('click', () => {
+    wrapper.classList.add('active');
+    wrapper.classList.remove('forgot-active');
+});
 
+// Quay lại Sign In từ Sign Up
+signInBtnLink.addEventListener('click', () => {
+    wrapper.classList.remove('active');
+    wrapper.classList.remove('forgot-active');
+});
+
+// Chuyển sang Forgot Password
+forgotPasswordLink.addEventListener('click', (e) => {
+    e.preventDefault();
+    wrapper.classList.add('forgot-active');
+    wrapper.classList.remove('active');
+});
+
+// Quay lại Sign In từ Forgot Password
+backToSignInLink.addEventListener('click', (e) => {
+    e.preventDefault();
+    wrapper.classList.remove('forgot-active');
+    wrapper.classList.remove('active');
+});
 // Khi nhấn vào "Quên mật khẩu"
 if (forgotPasswordLink) {
     forgotPasswordLink.addEventListener('click', (e) => {
