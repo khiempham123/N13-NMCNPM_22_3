@@ -1,5 +1,3 @@
-
-
 .cart-container {
   background-color: #fff;
   padding: 20px;
@@ -7,151 +5,69 @@
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 
-.cart-header {
-  font-size: 1.25rem;
-  font-weight: bold;
+.cart-controls {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-bottom: 10px;
 }
 
 .cart-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 15px 0;
   border-bottom: 1px solid #e0e0e0;
-  padding: 10px 0;
 }
 
 .cart-item:last-child {
   border-bottom: none;
 }
 
-.cart-item img {
-  width: 60px;
-  height: 90px;
-  object-fit: cover;
-}
-
-.cart-item-title {
-  font-size: 1rem;
-  font-weight: bold;
-}
-
-.cart-item-price {
-  color: red;
-  font-weight: bold;
-}
-
-.cart-item-old-price {
-  text-decoration: line-through;
-  color: #999;
-}
-
-.cart-summary {
-  background-color: #f8f9fa;
-  padding: 20px;
-  border-radius: 8px;
-}
-
-.cart-summary .btn {
-  width: 100%;
-}
-
-.cart-summary .total-price {
-  font-size: 1.25rem;
-  font-weight: bold;
-  color: red;
-}
-
-.cart-summary .total-price-label {
-  font-size: 1rem;
-  color: #999;
-}
-
-.payment-section
-{
-    display: none;
-    position: fixed;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    z-index: 1000;
-    width: 90%;
-    max-width: 500px;
-    background-color: #fff;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    padding: 20px;
-    border-radius: 8px;
-}
-.delivery-section {
-  display: none;
-  position: fixed;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  z-index: 1000;
-  width: 90%;
-  max-width: 1000px;
-  background-color: #fff;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-  padding: 20px;
-  border-radius: 8px;
-}
-.payment-section.active,
-.delivery-section.active {
-    display: block;
-}
-
-.overlay {
-    display: none;
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(0, 0, 0, 0.5);
-    z-index: 999;
-}
-
-.overlay.active {
-    display: block;
-}
-
-.blur {
-    filter: blur(5px);
-}
-
 .book-item {
-  background-color: white;
-  border-radius: 10px;
-  padding: 15px;
-  margin-bottom: 15px;
   display: flex;
   align-items: center;
+  width: 40%;
 }
+
 .book-item img {
   width: 60px;
   height: 90px;
+  object-fit: cover;
   border-radius: 5px;
   margin-right: 15px;
 }
+
 .book-details {
   flex-grow: 1;
 }
+
 .book-title {
-  font-size: 18px;
+  font-size: 16px;
   font-weight: bold;
   margin: 0;
 }
+
 .book-author {
+  font-size: 14px;
   color: #888;
   margin: 5px 0;
 }
+
 .book-price {
-  color: #ff4d4d;
   font-size: 20px;
   font-weight: bold;
+  color: #ff4d4d;
+  text-align: center;
 }
-.book-old-price {
-  text-decoration: line-through;
-  color: #888;
-  margin-left: 10px;
-}
-.book-rating {
+
+.book-rating i {
+  font-size: 18px;
   color: orangered;
+  text-align: center;
+}
+
+.delete-item button {
+  padding: 5px 10px;
+  font-size: 10px;
 }

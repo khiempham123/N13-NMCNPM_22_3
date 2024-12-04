@@ -24,7 +24,7 @@
 </head>
 
 <body>
-    <div class="container-fluid">
+    <div class="container-fluid" style="padding: 0; border: none;">
         <div class="row" style="border: none;padding: none;">
             <div class="card" style="margin: 0; padding: 0; border: none; border-radius: 0%;">
                 <div class="card-body"
@@ -121,7 +121,9 @@
                             <a class="navbar-brand" href="https://maps.app.goo.gl/2MXnCG5jVrdjcQYZA" target="_blank"
                                 style="width:35px; margin: 0px 400px 0px 50px; text-align: center; justify-content: center; color: white;">
                                 <i class="fa-solid fa-location-dot"></i>
-                                <span style="font-size: 15px; text-decoration: underline; font-weight: 500; color: white;">Find a Book
+                                <span
+                                    style="font-size: 15px; text-decoration: underline; font-weight: 500; color: white;">Find
+                                    a Book
                                     Store</span>
                             </a>
                             <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
@@ -184,245 +186,226 @@
         <!-- End Section-one -->
 
         <!-- Section-three -->
-        <div class="section-three" style="min-height: 90vh;">
-            <div class="container">
+        <div class="section-three" style="min-height: 90vh; padding: none; margin: none;">
+            <div class="container" style="padding: none; margin: none;">
                 <div class="row">
-                    <div class="col-xl-3 col-lg-3 col-md-3">
-                        <!-- SideBar -->
-                        <div class="sidebar">
-                            <h4>My Favourite Books</h4>
-                            <!-- <hr class="horizontal-line" /> -->
-                            <!-- Một số điều hướng hoặc tinh chỉnh nếu cần thiết -->
+                    <!-- List Book -->
+                    <div class="cart-container mt-3">
+                        <div class="cart-controls d-flex justify-content-between align-items-center text-center">
+                            <div class="w-50 text-start" style="font-size: 1.8rem; font-weight: 500; color: #9bb7d4;">
+                                Books
+                            </div>
+                            <div class="w-50 d-flex justify-content-around text-center">
+                                <div style="width: 32%; font-size: 1.8rem; font-weight: 500; color: #9bb7d4;">Price</div>
+                                <div style="width: 35%; font-size: 1.8rem; font-weight: 500; color: #9bb7d4;">Rating</div>
+                                <div style="width: 30%; font-size: 1.8rem; font-weight: 500; color: #9bb7d4;">Status</div>
+                            </div>
                         </div>
-                    </div>
-                    <div class="col-xl-9 col-lg-9 col-md-9">
-                        <!-- List Book -->
-                        <div class="cart-container" style="margin-top: 20px;">
-                            <div class="cart-controls d-flex align-items-center">
-                                <div style="width: 50%; font-size: 25px; font-weight: 500; color: #9bb7d4;">
-                                    Books
-                                </div>
-                                <div class="d-flex w-50 text-center">
-                                    <div class="quantity-label" style="width: 50%; font-size: 25px; font-weight: 500; color: #9bb7d4;">Rating</div>
-                                    <div class="price-label" style="font-size: 25px; font-weight: 500; color: #9bb7d4;">Status</div>
+                        <hr />
+                
+                        <div class="cart-item d-flex align-items-center">
+                            <div class="book-item d-flex align-items-center w-50">
+                                <img src="https://storage.googleapis.com/a1aa/image/kMW4c45pD3a9NBJvzjKcDH8cLPa179e6h96NbCDiXeF1cI3TA.jpg" alt="Book cover of 'Life Flight'" />
+                                <div class="book-details">
+                                    <p class="book-title">Life Flight</p>
+                                    <p class="book-author">Misty Figueroa</p>
                                 </div>
                             </div>
-                            <hr class="horizontal-line" />
-
-                            <div class="cart-item d-flex  align-items-center mt-3">
-                                <div class="book-item" style="width: 58%;">
-                                    <img alt="Book cover of 'Life Flight' by Misty Figueroa" height="90" src="https://storage.googleapis.com/a1aa/image/kMW4c45pD3a9NBJvzjKcDH8cLPa179e6h96NbCDiXeF1cI3TA.jpg" width="60"/>
-                                    <div class="book-details">
-                                     <p class="book-title">
-                                      Life Flight
-                                     </p>
-
-                                     <p class="book-author">
-                                      Misty Figueroa
-                                     </p>
-                                    </div>
+                            <div class="w-50 d-flex justify-content-around align-items-center text-center">
+                                <div class="book-price">$12.99</div>
+                                <div class="book-rating">
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
                                 </div>
-                                <div class="d-flex align-items-center" style="width: 15%;">
-                                    <div class="book-rating">
-                                        <i class="fas fa-star">
-                                        </i>
-                                        <i class="fas fa-star">
-                                        </i>
-                                        <i class="fas fa-star">
-                                        </i>
-                                        <i class="fas fa-star">
-                                        </i>
-                                        <i class="fas fa-star">
-                                        </i>
-                                    </div>
-                                </div>
-                                <div class="d-flex " style="margin-left: 15px;">
-                                    <div class="ms-3 delete-item" >
-                                        <button class="btn btn-outline-danger btn-sm">
-                                            <i class="fas fa-trash"></i>
-                                        </button>
-                                    </div>
+                                <div>
+                                    <button class="btn btn-outline-danger btn-sm">
+                                        <i class="fas fa-trash" style="font-size: 20px;"></i>
+                                    </button>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
+                
             </div>
-            <!-- End Section-three -->
         </div>
+        <!-- End Section-three -->
+    </div>
 
-        <div class="row">
-            <div class="footer">
-                <div class="container" style="margin-bottom: 20px;">
-                    <div class="column contact-info">
-                        <h3>
-                            Contact Info
-                        </h3>
-                        <p>
-                            1418 River Drive, Suite 35
-                            <br />
-                            Cottonhall, CA 9622
-                        </p>
-                        <p>
-                            Monday – Friday: 9:00-20:00
-                            <br />
-                            Saturday: 11:00 – 15:00
-                        </p>
-                        <a href="mailto:contact@example.com">
-                            contact@example.com
-                        </a>
-                    </div>
-                    <div class="column">
-                        <h3>
-                            Company
-                        </h3>
-                        <p>
-                            <a href="#">
-                                About us
-                            </a>
-                        </p>
-                        <p>
-                            <a href="#">
-                                Delivery Information
-                            </a>
-                        </p>
-                        <p>
-                            <a href="#">
-                                Privacy Policy
-                            </a>
-                        </p>
-                        <p>
-                            <a href="#">
-                                Terms &amp; Conditions
-                            </a>
-                        </p>
-                        <p>
-                            <a href="#">
-                                Contact Us
-                            </a>
-                        </p>
-                        <p>
-                            <a href="#">
-                                Support Center
-                            </a>
-                        </p>
-                    </div>
-                    <div style="border-right: 1px solid #b3b3b3; margin-right: 20px;"></div>
-                    <div class="column logo" style="margin-left: 20px;">
-                        <h2>
-                            Bookory
-                        </h2>
-                        <p>
-                            Got Questions? Call us 24/7!
-                        </p>
-                        <p style="color: #ff5e3a; font-size: 24px;">
-                            +(84) - 1800 - 4635
-                        </p>
-                        <div class="social-icons">
-                            <a href="#">
-                                <i class="fab fa-facebook-f">
-                                </i>
-                            </a>
-                            <a href="#">
-                                <i class="fab fa-twitter">
-                                </i>
-                            </a>
-                            <a href="#">
-                                <i class="fab fa-instagram">
-                                </i>
-                            </a>
-                            <a href="#">
-                                <i class="fab fa-pinterest">
-                                </i>
-                            </a>
-                        </div>
-                    </div>
-                    <div style="border-right: 1px solid #b3b3b3; margin-left: 40px; margin-right: 20px;"></div>
-                    <div class="column">
-                        <h3>
-                            Corporate
-                        </h3>
-                        <p>
-                            <a href="#">
-                                Become a Vendor
-                            </a>
-                        </p>
-                        <p>
-                            <a href="#">
-                                Affiliate Program
-                            </a>
-                        </p>
-                        <p>
-                            <a href="#">
-                                Our Suppliers
-                            </a>
-                        </p>
-                        <p>
-                            <a href="#">
-                                Accessibility
-                            </a>
-                        </p>
-                        <p>
-                            <a href="#">
-                                Promotions
-                            </a>
-                        </p>
-                        <p>
-                            <a href="#">
-                                Careers
-                            </a>
-                        </p>
-                    </div>
-                    <div class="column">
-                        <h3>
-                            Our Service
-                        </h3>
-                        <p>
-                            <a href="#">
-                                Help Center
-                            </a>
-                        </p>
-                        <p>
-                            <a href="#">
-                                Returns
-                            </a>
-                        </p>
-                        <p>
-                            <a href="#">
-                                Product Recalls
-                            </a>
-                        </p>
-                        <p>
-                            <a href="#">
-                                Accessibility
-                            </a>
-                        </p>
-                        <p>
-                            <a href="#">
-                                Contact Us
-                            </a>
-                        </p>
-                        <p>
-                            <a href="#">
-                                Store Pickup
-                            </a>
-                        </p>
-                    </div>
-                </div>
-                <div style="border-bottom: 1px solid #b3b3b3; margin-bottom: 20px;">
-                </div>
-                <div class="bottom-bar">
+    <div class="row">
+        <div class="footer">
+            <div class="container" style="margin-bottom: 20px;">
+                <div class="column contact-info">
+                    <h3>
+                        Contact Info
+                    </h3>
                     <p>
-                        Copyright © 2024
+                        1418 River Drive, Suite 35
+                        <br />
+                        Cottonhall, CA 9622
+                    </p>
+                    <p>
+                        Monday – Friday: 9:00-20:00
+                        <br />
+                        Saturday: 11:00 – 15:00
+                    </p>
+                    <a href="mailto:contact@example.com">
+                        contact@example.com
+                    </a>
+                </div>
+                <div class="column">
+                    <h3>
+                        Company
+                    </h3>
+                    <p>
                         <a href="#">
-                            Bookory
+                            About us
                         </a>
-                        . All rights reserved.
+                    </p>
+                    <p>
+                        <a href="#">
+                            Delivery Information
+                        </a>
+                    </p>
+                    <p>
+                        <a href="#">
+                            Privacy Policy
+                        </a>
+                    </p>
+                    <p>
+                        <a href="#">
+                            Terms &amp; Conditions
+                        </a>
+                    </p>
+                    <p>
+                        <a href="#">
+                            Contact Us
+                        </a>
+                    </p>
+                    <p>
+                        <a href="#">
+                            Support Center
+                        </a>
+                    </p>
+                </div>
+                <div style="border-right: 1px solid #b3b3b3; margin-right: 20px;"></div>
+                <div class="column logo" style="margin-left: 20px;">
+                    <h2>
+                        Bookory
+                    </h2>
+                    <p>
+                        Got Questions? Call us 24/7!
+                    </p>
+                    <p style="color: #ff5e3a; font-size: 24px;">
+                        +(84) - 1800 - 4635
+                    </p>
+                    <div class="social-icons">
+                        <a href="#">
+                            <i class="fab fa-facebook-f">
+                            </i>
+                        </a>
+                        <a href="#">
+                            <i class="fab fa-twitter">
+                            </i>
+                        </a>
+                        <a href="#">
+                            <i class="fab fa-instagram">
+                            </i>
+                        </a>
+                        <a href="#">
+                            <i class="fab fa-pinterest">
+                            </i>
+                        </a>
+                    </div>
+                </div>
+                <div style="border-right: 1px solid #b3b3b3; margin-left: 40px; margin-right: 20px;"></div>
+                <div class="column">
+                    <h3>
+                        Corporate
+                    </h3>
+                    <p>
+                        <a href="#">
+                            Become a Vendor
+                        </a>
+                    </p>
+                    <p>
+                        <a href="#">
+                            Affiliate Program
+                        </a>
+                    </p>
+                    <p>
+                        <a href="#">
+                            Our Suppliers
+                        </a>
+                    </p>
+                    <p>
+                        <a href="#">
+                            Accessibility
+                        </a>
+                    </p>
+                    <p>
+                        <a href="#">
+                            Promotions
+                        </a>
+                    </p>
+                    <p>
+                        <a href="#">
+                            Careers
+                        </a>
+                    </p>
+                </div>
+                <div class="column">
+                    <h3>
+                        Our Service
+                    </h3>
+                    <p>
+                        <a href="#">
+                            Help Center
+                        </a>
+                    </p>
+                    <p>
+                        <a href="#">
+                            Returns
+                        </a>
+                    </p>
+                    <p>
+                        <a href="#">
+                            Product Recalls
+                        </a>
+                    </p>
+                    <p>
+                        <a href="#">
+                            Accessibility
+                        </a>
+                    </p>
+                    <p>
+                        <a href="#">
+                            Contact Us
+                        </a>
+                    </p>
+                    <p>
+                        <a href="#">
+                            Store Pickup
+                        </a>
                     </p>
                 </div>
             </div>
+            <div style="border-bottom: 1px solid #b3b3b3; margin-bottom: 20px;">
+            </div>
+            <div class="bottom-bar">
+                <p>
+                    Copyright © 2024
+                    <a href="#">
+                        Bookory
+                    </a>
+                    . All rights reserved.
+                </p>
+            </div>
         </div>
-        <script src="./vendor.js"></script>
+    </div>
+    <script src="./vendor.js"></script>
 </body>
 
 </html>
