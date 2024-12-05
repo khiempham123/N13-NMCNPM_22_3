@@ -587,7 +587,7 @@ async function addToCart(event, bookId, title, thumbnail, price) {
       alert("Sản phẩm đã được thêm vào giỏ hàng!");
     } else {
       console.error(result.message);
-      alert("Có lỗi xảy ra khi thêm sản phẩm vào giỏ hàng.");
+      alert("Sách đã tồn tại trong danh sách yêu thích của bạn!");
     }
   } catch (error) {
     console.error("Error adding to cart:", error);
@@ -596,3 +596,63 @@ async function addToCart(event, bookId, title, thumbnail, price) {
 }
 
 document.addEventListener("DOMContentLoaded", loadBestSellers);
+
+// vendor
+async function fetchVendors() {
+  try {
+    const response = await fetch(`${API_BASE_URL}/vendor`);
+    const vendors = await response.json();
+
+    // Xử lý dữ liệu và render HTML cho các vendors
+    const vendorList = document.getElementById("vendor-list");
+    vendors.forEach((vendor) => {
+      const vendorItem = document.createElement("div");
+      vendorItem.classList.add("vendor-item");
+      vendorItem.innerHTML = `
+        <img alt="Logo of ${vendor.vendor}"
+            src="${vendor.thumbnail}"
+            width="100" />
+        <div class="vendor-info">
+            <h3>
+                ${vendor.vendor} <span>(${vendor.books.length} Products)</span>
+            </h3>
+            <div class="rating">
+                ${renderStars(vendor.rating)}
+            </div>
+        </div>
+      `;
+
+      // Gắn sự kiện khi nhấn vào vendor sẽ chuyển hướng đến trang chi tiết
+      vendorItem.addEventListener("click", () => {
+        window.location.href = `../Vendor/vendor.html?vendorName=${encodeURIComponent(
+          vendor.vendor
+        )}`;
+      });
+
+      vendorList.appendChild(vendorItem);
+    });
+  } catch (error) {
+    console.error("Error fetching vendors:", error);
+  }
+}
+
+// Hàm render các ngôi sao đánh giá
+function renderStars(rating) {
+  let stars = "";
+  for (let i = 0; i < 5; i++) {
+    if (i < Math.floor(rating)) {
+      // Hiển thị sao đầy
+      stars += '<i class="fas fa-star"></i>';
+    } else if (i < Math.floor(rating) + 0.5 && rating % 1 !== 0) {
+      // Hiển thị sao một nửa
+      stars += '<i class="fas fa-star-half-alt"></i>';
+    } else {
+      // Hiển thị sao rỗng
+      stars += '<i class="far fa-star"></i>';
+    }
+  }
+  return stars;
+}
+
+// Fetch dữ liệu khi trang được load
+document.addEventListener("DOMContentLoaded", fetchVendors);

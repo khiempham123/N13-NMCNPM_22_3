@@ -291,6 +291,45 @@ const addBookToFav = async (req, res) => {
   }
 };
 
+const Vendor = require("../../models/vendor.models.js");
+
+const getAllVendors = async (req, res) => {
+  try {
+    const vendors = await Vendor.find()
+      .populate("books") // Populate thông tin sách
+      .exec();
+
+    // Thêm thuộc tính số sách cho mỗi vendor
+    const vendorsWithBookCount = vendors.map((vendor) => ({
+      ...vendor.toObject(), // Chuyển đổi vendor thành object để có thể thêm thuộc tính mới
+      bookCount: vendor.books.length, // Đếm số sách và thêm vào thuộc tính bookCount
+    }));
+
+    res.status(200).json(vendorsWithBookCount); // Trả dữ liệu dưới dạng JSON
+  } catch (error) {
+    res.status(500).json({ message: "Error fetching vendors", error });
+  }
+};
+
+const getVendorByName = async (req, res) => {
+  const { vendorName } = req.params; // Lấy vendorName từ tham số URL
+
+  try {
+    // Tìm kiếm vendor theo tên (không phân biệt chữ hoa/thường)
+    const vendor = await Vendor.findOne({
+      vendor: new RegExp("^" + vendorName + "$", "i"),
+    }).populate("books"); // Populates thông tin sách của vendor
+
+    if (!vendor) {
+      return res.status(404).json({ message: "Vendor not found" });
+    }
+
+    res.status(200).json(vendor); // Trả dữ liệu vendor
+  } catch (error) {
+    res.status(500).json({ message: "Error fetching vendor", error });
+  }
+};
+
 module.exports = {
   getCategories,
   getBooksByCategory,
@@ -300,4 +339,6 @@ module.exports = {
   getBestSeller,
   addBookToCart,
   addBookToFav,
+  getAllVendors,
+  getVendorByName,
 };

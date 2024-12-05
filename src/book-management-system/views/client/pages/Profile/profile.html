@@ -204,39 +204,33 @@
             <div class="form-header">
               <h1 class="form-title">User Information</h1>
               <button id="editButton">Edit</button>
+              <button id="cancelButton" style="display: none;">Cancel</button>
             </div>
-
+        
             <form id="employeeForm" class="employee-form">
               <div class="form-photo-section">
                 <div class="photo-wrapper">
-                  <img
-                    id="photoPreview"
-                    class="photo-preview"
+                  <img id="photoPreview" class="photo-preview"
                     src="https://images.unsplash.com/photo-1633332755192-727a05c4013d?w=500&h=500"
                     alt="Employee Photo" />
-                  <label
-                    for="photoUpload"
-                    class="photo-upload-label"
-                    style="display: none">Upload</label>
-                  <input
-                    type="file"
-                    id="photoUpload"
-                    accept="image/*"
-                    style="display: none" />
+                  <label for="photoUpload" class="photo-upload-label" style="display: none">Upload</label>
+                  <input type="file" id="photoUpload" accept="image/*" style="display: none" />
                 </div>
               </div>
-
+        
+              <!-- Name -->
               <div class="form-field">
                 <label for="name">Name</label>
                 <input type="text" id="name" value="John Doe" disabled />
               </div>
-
+        
+              <!-- Date of Birth -->
               <div class="form-field">
                 <label for="dateOfBirth">Date of Birth</label>
-                <input type="date" id="dateOfBirth" value="1990-01-01"
-                  disabled />
+                <input type="date" id="dateOfBirth" value="1990-01-01" disabled />
               </div>
-
+        
+              <!-- Gender -->
               <div class="form-field">
                 <label for="gender">Gender</label>
                 <select id="gender" disabled>
@@ -245,35 +239,28 @@
                   <option value="other">Other</option>
                 </select>
               </div>
-
+        
+              <!-- Phone -->
               <div class="form-field">
                 <label for="phone">Phone</label>
                 <input type="text" id="phone" value="(123) 456-7890" disabled />
               </div>
-
+        
+              <!-- Address -->
               <div class="form-field">
                 <label for="address">Address</label>
-                <input
-                  type="text"
-                  id="address"
-                  value="123 Main St, City, Country"
-                  disabled />
+                <input type="text" id="address" value="123 Main St, City, Country" disabled />
               </div>
-
-              <div class="form-field">
-                <label for="department">Department</label>
-                <select id="department" disabled>
-                  <option value="Engineering" selected>Engineering</option>
-                  <option value="Marketing">Marketing</option>
-                  <option value="Sales">Sales</option>
-                  <option value="Human Resources">Human Resources</option>
-                  <option value="Finance">Finance</option>
-                  <option value="Operations">Operations</option>
-                </select>
-              </div>
+        
+              <button type="submit" id="saveButton" style="display: none;">Save</button>
             </form>
           </div>
         </div>
+        
+
+
+
+        <!-- footer -->
         <div class="row">
           <div class="footer">
             <div class="container" style="margin-bottom: 20px;">

@@ -21,7 +21,7 @@
     <script src="https://code.jquery.com/ui/1.14.0/jquery-ui.js"></script>
 
 <body>
-    <div class="container-fluid" style ="margin: 0; padding: 0;">
+    <div class="container-fluid" style="margin: 0; padding: 0;">
         <div class="row" style="border: none;padding: none;">
             <div class="card" style="margin: 0; padding: 0; border: none; border-radius: 0%;">
                 <div class="card-body"
@@ -183,92 +183,16 @@
         <!-- End Section-one -->
 
         <!-- Section-three -->
-        <div class="section-three" >
+        <div class="section-three">
             <div class="container">
-                <div class="row" >
+                <div class="row">
                     <div class="col-xl-3 col-lg-3 col-md-3">
                         <!-- SideBar -->
                         <div class="sidebar" style="margin-bottom: 20px;">
-                            <h4>Barron Vendor</h4>
-                            <!-- <hr class="horizontal-line" /> -->
-                            <div class="vendor-list">
-                                <div class="vendor-item">
-                                    <img alt="Logo of Barone LLC."
-                                        src="https://demo2.pavothemes.com/bookory/wp-content/uploads/2022/11/store-7.jpg"
-                                        width="100" />
-                                    <div class="vendor-info">
-                                        <h3>
-                                            Barone LLC. <span>(6 Products)</span>
-                                        </h3>
-                                    </div>
-                                </div>
-                                <div
-                                    style="border-bottom:1px solid #b3b3b3; margin:0px 15px 20px 10px;"></div>
-                                <div class="vendor-item">
-                                    <img alt="Logo of Barone LLC."
-                                        src="https://demo2.pavothemes.com/bookory/wp-content/uploads/2022/11/store-8.jpg"
-                                        width="100" />
-                                    <div class="vendor-info">
-                                        <h3>
-                                            Gregstore <span>(3 Products)</span>
-                                        </h3>
-
-                                    </div>
-                                </div>
-                                <div
-                                    style="border-bottom:1px solid #b3b3b3; margin:0px 15px 20px 10px;"></div>
-                                <div class="vendor-item">
-                                    <img alt="Logo of Barone LLC."
-                                        src="https://demo2.pavothemes.com/bookory/wp-content/uploads/2022/11/store-9.jpg"
-                                        width="100" />
-                                    <div class="vendor-info">
-                                        <h3>
-                                            Arlene <span>(6 Products)</span>
-                                        </h3>
-
-                                    </div>
-                                </div>
-                                <div
-                                    style="border-bottom:1px solid #b3b3b3; margin:0px 15px 20px 10px;"></div>
-                                <div class="vendor-item">
-                                    <img alt="Logo of Barone LLC."
-                                        src="https://demo2.pavothemes.com/bookory/wp-content/uploads/2022/11/store-5.jpg"
-                                        width="100" />
-                                    <div class="vendor-info">
-                                        <h3>
-                                            Book House <span>(6 Products)</span>
-                                        </h3>
-
-                                    </div>
-                                </div>
-                                <div
-                                    style="border-bottom:1px solid #b3b3b3; margin:0px 15px 20px 10px;"></div>
-                                <div class="vendor-item">
-                                    <img alt="Logo of Barone LLC."
-                                        src="https://demo2.pavothemes.com/bookory/wp-content/uploads/2022/11/cropped-store-3.jpg"
-                                        width="100" />
-                                    <div class="vendor-info">
-                                        <h3>
-                                            Book Store <span>(2 Products)</span>
-                                        </h3>
-
-                                    </div>
-                                </div>
-                                <div
-                                    style="border-bottom:1px solid #b3b3b3; margin:0px 15px 20px 10px;"></div>
-                                <div class="vendor-item">
-                                    <img alt="Logo of Barone LLC."
-                                        src="https://demo2.pavothemes.com/bookory/wp-content/uploads/2022/11/store-1.jpg"
-                                        width="100" />
-                                    <div class="vendor-info">
-                                        <h3>
-                                            Book Place <span>(4 Products)</span>
-                                        </h3>
-
-                                    </div>
-                                </div>
+                            <h4>Vendor List</h4>
+                            <div class="vendor-list" id="sidebar-vendor-list">
+                                <!-- Vendor items sẽ được render tại đây -->
                             </div>
-                            <!--Nơi này sẽ để thêm sách độc quyền hoặc best seller-->
                         </div>
                     </div>
                     <div class="col-xl-9 col-lg-9 col-md-9">
@@ -276,24 +200,26 @@
                         <div class="listbook">
                             <!-- Carousel -->
                             <div class="container-vendor">
-                                <img alt="A person browsing books in a bookstore" class="background-image" src="https://storage.googleapis.com/a1aa/image/afwLeegnEfCezly3u50L5O4RCDeei4sqWT5d7oDeERVyGTK3TA.jpg"/>
+                                <img alt="A person browsing books in a bookstore" class="background-image"
+                                     src="https://storage.googleapis.com/a1aa/image/afwLeegnEfCezly3u50L5O4RCDeei4sqWT5d7oDeERVyGTK3TA.jpg" />
                                 <div class="info">
-                                    <img alt="Company Logo" src="https://demo2.pavothemes.com/bookory/wp-content/uploads/2022/11/store-7.jpg"/>
-                                    <h1>Barone LLC.</h1>
+                                    <img alt="Company Logo" id="vendor-logo" />
+                                    <h1 id="vendor-name">Barone LLC.</h1>
                                     <div class="icon-text">
                                         <i class="fas fa-map-marker-alt"></i>
-                                        <p>8502 Preston Rd. Inglewood, Maine 98380, Selangor, Malaysia</p>
+                                        <p id="vendor-address">8502 Preston Rd. Inglewood, Maine 98380, Selangor, Malaysia</p>
                                     </div>
                                     <div class="icon-text">
                                         <i class="fas fa-phone-alt"></i>
-                                        <p>(406) 555-0120</p>
+                                        <p id="vendor-phone">(406) 555-0120</p>
                                     </div>
                                     <div class="icon-text">
                                         <i class="fas fa-star"></i>
-                                        <p>4.00 rating from 30 reviews</p>
+                                        <p id="vendor-rating">4.00 rating</p>
                                     </div>
                                 </div>
                             </div>
+                            
 
                             <div class="sorting">
                                 <select aria-label="Choose an option">
@@ -303,7 +229,7 @@
                                 </select>
                             </div>
 
-                            <div class="row" id="product-list">
+                            <div class="row">
                                 <!-- Danh sách sản phẩm sẽ được hiển thị ở đây -->
                             </div>
                             <!-- Page Number -->
