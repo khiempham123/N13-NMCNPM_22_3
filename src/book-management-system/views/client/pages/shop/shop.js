@@ -283,6 +283,7 @@ function fetchData() {
               `;
               bookList.appendChild(bookDiv); // Thêm sách vào book-list
           });
+        currentPage = 1
       } else {
           // Nếu không có sách, hiển thị thông báo
           bookList.innerHTML = '<p>No books found matching your criteria.</p>';
@@ -301,7 +302,7 @@ document.addEventListener('DOMContentLoaded', fetchData);
 const searchButton = document.querySelector('.filter-button');
 searchButton.addEventListener('click', searchBooks);
 searchButton.addEventListener('click', updateURL2);
-searchButton.addEventListener('click', fetchbooks);
+searchButton.addEventListener('click', () => fetchbooks(1));
 //////////////////////////////////////////////////////////URL///////////////////////////////////////////////////////////////
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 function updateURL2() {
@@ -410,25 +411,56 @@ async function fetchbooks(page) {
 // Render pagination
 function renderPagination(totalPages, currentPage) {
     const paginationContainer = document.getElementById('pagination-list');
-    paginationContainer.innerHTML = ''; // Xóa nội dung cũ
+    paginationContainer.innerHTML = ''; // Clear previous content
+    console.log("Page",currentPage)
+    // Create "Prev" button
+    const prevButton = document.createElement('button');
+    prevButton.textContent = '<';
+    prevButton.classList.add('pagination-button');
+    prevButton.disabled = currentPage === 1;  // Disable when on the first page
+    prevButton.addEventListener('click', () => {
+        if (currentPage > 1) {
+            currentPage--;
+            updateURL(currentPage);  // Update URL
+            window.scrollTo(0, 0);
+            fetchbooks(currentPage);  // Fetch new data for the current page
+        }
+    });
+    paginationContainer.appendChild(prevButton);
+
+    // Create page buttons
     for (let i = 1; i <= totalPages; i++) {
         const pageButton = document.createElement('button');
         pageButton.textContent = i;
         pageButton.classList.add('pagination-button');
         if (i === currentPage) {
-            pageButton.classList.add('active');
+            pageButton.classList.add('active'); // Highlight the current page
         }
 
         pageButton.addEventListener('click', () => {
             currentPage = i;
-            console.log(i)
-            updateURL(currentPage);  // Cập nhật URL
+            updateURL(currentPage);  // Update URL
             window.scrollTo(0, 0);
-            fetchbooks(currentPage);  // Fetch lại dữ liệu cho trang mới
+            fetchbooks(currentPage);  // Fetch new data for the selected page
         });
 
-        paginationContainer.appendChild(pageButton); // Thêm nút phân trang vào container
+        paginationContainer.appendChild(pageButton);
     }
+
+    // Create "Next" button
+    const nextButton = document.createElement('button');
+    nextButton.textContent = '>';
+    nextButton.classList.add('pagination-button');
+    nextButton.disabled = currentPage === totalPages;  // Disable when on the last page
+    nextButton.addEventListener('click', () => {
+        if (currentPage < totalPages) {
+            currentPage++;
+            updateURL(currentPage);  // Update URL
+            window.scrollTo(0, 0);
+            fetchbooks(currentPage);  // Fetch new data for the next page
+        }
+    });
+    paginationContainer.appendChild(nextButton);
 }
 // Cập nhật URL khi bấm vào số trang
 function updateURL(page) {
