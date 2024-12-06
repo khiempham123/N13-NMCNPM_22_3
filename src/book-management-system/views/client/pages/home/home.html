@@ -129,7 +129,8 @@
                                                 <div class="greeting">Hi 12_0159
                                                     Pham,</div>
                                                 <div class="manage-account">Management
-                                                    Your Account</div>
+                                                    Your Account
+                                                </div>
                                                 <div class="btn-group">
                                                     <button
                                                         class="btn btn-light border"><i
@@ -636,6 +637,12 @@
                 </div>
                 <script src="home.js"></script>
                 <script src="../../helpers/nav.js"></script>
+                <script>
+                    const profileButton = document.querySelector(".manage-account")
+                    profileButton.addEventListener('click', ()=>{
+                        window.location.href = "../Profile/profile.html"
+                    })
+                </script>
                 
 
             </body>

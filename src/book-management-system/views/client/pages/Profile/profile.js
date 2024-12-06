@@ -33,13 +33,6 @@ document.addEventListener("DOMContentLoaded", () => {
       document.getElementById("saveButton").style.display = "none";
       document.getElementById("cancelButton").style.display = "none";
       document.getElementById("editButton").style.display = "inline-block";
-
-      // Khôi phục lại giá trị ban đầu (nếu cần)
-      document.getElementById("name").value = "John Doe";
-      document.getElementById("dateOfBirth").value = "1990-01-01";
-      document.getElementById("gender").value = "male";
-      document.getElementById("phone").value = "(123) 456-7890";
-      document.getElementById("address").value = "123 Main Street";
     });
 
   // Lắng nghe sự kiện khi nhấn nút "Save"
@@ -54,10 +47,11 @@ document.addEventListener("DOMContentLoaded", () => {
       const gender = document.getElementById("gender").value;
       const phone = document.getElementById("phone").value;
       const address = document.getElementById("address").value;
+      const avatar = document.getElementById("photoPreview").value;
 
       // Giả sử bạn gửi dữ liệu này đến server để lưu (bằng AJAX, hoặc gửi qua API...)
       console.log("Saved Data:", { name, dateOfBirth, gender, phone, address });
-
+      editInfo(name, dateOfBirth, gender, phone, address, avatar);
       // Sau khi lưu xong, bạn có thể cập nhật giao diện (nếu cần)
       // Chuyển sang chế độ xem (read-only)
       const inputs = document.querySelectorAll(
@@ -73,6 +67,7 @@ document.addEventListener("DOMContentLoaded", () => {
       document.getElementById("editButton").style.display = "inline-block";
     });
 
+  ///////////////////////////////////////////////
   //get thong tin nguoi dung tu database
   // Hàm lấy thông tin người dùng từ API
   async function fetchInfo() {
@@ -89,12 +84,13 @@ document.addEventListener("DOMContentLoaded", () => {
       }
 
       const userData = await response.json();
-
+      console.log(userData);
       // Hiển thị thông tin người dùng vào các trường trong form
       document.getElementById("name").value = userData.fullName;
       document.getElementById("dateOfBirth").value = userData.dateOfBirth;
       document.getElementById("gender").value = userData.gender;
       document.getElementById("phone").value = userData.phone;
+      document.getElementById("address").value = userData.address;
       document.getElementById("photoPreview").src =
         userData.avatar ||
         "https://images.unsplash.com/photo-1633332755192-727a05c4013d?w=500&h=500";
@@ -104,20 +100,14 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   // Hàm để chỉnh sửa thông tin người dùng
-  async function editInfo() {
-    // Lấy dữ liệu từ các trường trong form
-    const name = document.getElementById("name").value;
-    const dateOfBirth = document.getElementById("dateOfBirth").value;
-    const gender = document.getElementById("gender").value;
-    const phone = document.getElementById("phone").value;
-    const avatar = document.getElementById("photoPreview").src; // Giả sử bạn đã upload avatar mới
-
+  async function editInfo(name, dateOfBirth, gender, phone, address, avatar) {
     // Tạo đối tượng chứa thông tin người dùng
     const updatedData = {
       fullName: name,
       dateOfBirth: dateOfBirth,
       gender: gender,
       phone: phone,
+      address: address,
       avatar: avatar, // Chỉ cần lấy URL avatar hiện tại (hoặc upload ảnh mới và lấy URL)
     };
 
@@ -145,4 +135,5 @@ document.addEventListener("DOMContentLoaded", () => {
       console.error("Error updating user info:", error);
     }
   }
+  fetchInfo();
 });

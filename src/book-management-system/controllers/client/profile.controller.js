@@ -1,11 +1,10 @@
-const InfoUser = require("../../models/infoUser.models");
+const User = require("../../models/user.models");
 
 // Lấy thông tin người dùng (dựa trên user đã xác thực từ middleware)
 const getInfo = async (req, res) => {
   try {
     // Lấy thông tin người dùng từ request (được thêm vào từ middleware)
-    const user = await InfoUser.findOne({ _id: req.user._id });
-
+    const user = await User.findOne({ _id: req.user._id });
     if (!user) {
       return res.status(404).json({ message: "User not found" });
     }
@@ -22,7 +21,7 @@ const editInfo = async (req, res) => {
     // Lấy thông tin mới từ body request
     const { fullName, dateOfBirth, gender, avatar, address, phone } = req.body;
 
-    const updatedUser = await InfoUser.findByIdAndUpdate(
+    const updatedUser = await User.findByIdAndUpdate(
       req.user._id, // Dùng _id người dùng từ token
       { fullName, dateOfBirth, gender, avatar, address, phone },
       { new: true } // Trả về đối tượng đã cập nhật
