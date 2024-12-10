@@ -2,13 +2,12 @@ const API_BASE_URL = "http://localhost:3000";
 
 async function fetchVendorsForSidebar() {
   try {
-    const response = await fetch(`${API_BASE_URL}/vendor`); // Gọi API để lấy danh sách vendor
-    const vendors = await response.json(); // Parse dữ liệu JSON trả về
+    const response = await fetch(`${API_BASE_URL}/vendor`);
+    const vendors = await response.json();
 
     const vendorListContainer = document.getElementById("sidebar-vendor-list");
     vendorListContainer.innerHTML = ""; // Clear list hiện tại trước khi thêm mới
 
-    // Duyệt qua các vendor và render mỗi vendor
     vendors.forEach((vendor) => {
       const vendorItem = document.createElement("div");
       vendorItem.classList.add("vendor-item");
@@ -23,13 +22,17 @@ async function fetchVendorsForSidebar() {
                     </h3>
                 </div>
             `;
-      // Thêm sự kiện click để chuyển sang trang chi tiết vendor
       vendorItem.addEventListener("click", () => {
-        window.location.href = `../Vendor/vendor.html?vendorName=${encodeURIComponent(
+        // window.location.href = `../Vendor/vendor.html?vendorName=${encodeURIComponent(
+        //   vendor.vendor
+        // )}`;
+        event.preventDefault();
+
+        const newUrl = `./vendor.html?vendorName=${encodeURIComponent(
           vendor.vendor
         )}`;
-
-        // fetchVendorInfo(vendor.vendor);
+        history.pushState(null, "", newUrl);
+        fetchVendorInfo();
       });
       vendorListContainer.appendChild(vendorItem);
     });
@@ -38,13 +41,11 @@ async function fetchVendorsForSidebar() {
   }
 }
 
-// Gọi hàm fetchVendorsForSidebar khi trang được tải
-document.addEventListener("DOMContentLoaded", fetchVendorsForSidebar);
-
 // banner verndor
-const urlParams = new URLSearchParams(window.location.search);
-const vendorName = decodeURIComponent(urlParams.get("vendorName"));
+
 async function fetchVendorInfo() {
+  const urlParams = new URLSearchParams(window.location.search);
+  const vendorName = decodeURIComponent(urlParams.get("vendorName"));
   try {
     // Gọi API lấy thông tin vendor theo vendorName
     const response = await fetch(`${API_BASE_URL}/vendor/${vendorName}`);
@@ -58,9 +59,9 @@ async function fetchVendorInfo() {
     document.getElementById("vendor-name").innerText = vendor.vendor;
     document.getElementById("vendor-address").innerText = vendor.address;
     document.getElementById("vendor-phone").innerText = vendor.phoneNumber;
-    document.getElementById(
-      "vendor-rating"
-    ).innerText = `${vendor.rating} rating`;
+    document.getElementById("vendor-rating").innerHTML = renderStars(
+      vendor.rating
+    );
 
     // Cập nhật background image nếu cần thiết
     // document.querySelector(".background-image").src =
@@ -72,23 +73,18 @@ async function fetchVendorInfo() {
   }
 }
 
-document.addEventListener("DOMContentLoaded", fetchVendorInfo);
-
 // sách của vendor
 async function fetchBookOfVendor(vendorName) {
   try {
-    // Fetch dữ liệu từ API
     const response = await fetch(`${API_BASE_URL}/vendor/${vendorName}`);
     const books = await response.json();
-    // Tìm phần tử chứa sách (div section-three)
+
     const booksContainer = document.querySelector(
       ".section-three .container .row .col-xl-9.col-lg-9.col-md-9 .row"
     );
 
-    // Đảm bảo container trống trước khi hiển thị
     booksContainer.innerHTML = "";
 
-    // Duyệt qua danh sách sách và tạo HTML cho từng sách
     books.books.forEach((book) => {
       const bookHTML = `
             <div class="col-xl-3 col-lg-4 col-md-6 col-sm-6">
@@ -127,7 +123,6 @@ async function fetchBookOfVendor(vendorName) {
             </div>
           `;
 
-      // Thêm HTML vào container
       booksContainer.innerHTML += bookHTML;
     });
   } catch (error) {
@@ -146,6 +141,23 @@ function getStarRating(rating) {
     }
   }
   return stars.join("");
+}
+
+function renderStars(rating) {
+  let stars = "";
+  for (let i = 0; i < 5; i++) {
+    if (i < Math.floor(rating)) {
+      // Hiển thị sao đầy
+      stars += '<i class="fas fa-star"></i>';
+    } else if (i < Math.floor(rating) + 0.5 && rating % 1 !== 0) {
+      // Hiển thị sao một nửa
+      stars += '<i class="fas fa-star-half-alt"></i>';
+    } else {
+      // Hiển thị sao rỗng
+      stars += '<i class="far fa-star"></i>';
+    }
+  }
+  return stars;
 }
 // đến trang detail
 function goToBookDetail(bookId) {
@@ -225,3 +237,8 @@ async function addToCart(event, bookId, title, thumbnail, price) {
     alert("Có lỗi xảy ra khi thêm sản phẩm vào giỏ hàng.");
   }
 }
+
+// Gọi hàm fetchVendorsForSidebar khi trang được tải
+document.addEventListener("DOMContentLoaded", fetchVendorsForSidebar);
+
+document.addEventListener("DOMContentLoaded", fetchVendorInfo);
