@@ -21,7 +21,11 @@ body {
   align-items: center;
   justify-content: center;
 }
-
+.employee-form-info{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
 .employee-form-box {
   background-color: #ffffff;
   border-radius: 0.75rem;
