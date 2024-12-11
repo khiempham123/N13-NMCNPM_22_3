@@ -1,0 +1,121 @@
+[{
+  "_id": {
+    "$oid": "6759c4c9a3b583ad307d829a"
+  },
+  "name": "Định Hình Phương Hướng",
+  "birthDay": "1990-01-01",
+  "phone": "0979797997",
+  "email": "chuatedomdom1997@gmail.com",
+  "livingIn": "HoChiMinh city",
+  "from": "Ben Tre",
+  "position": "Father",
+  "salary": 5000000,
+  "workingTime": "8h - 17h",
+  "dayOff": "Sunday",
+  "levelOfExperience": "03/10",
+  "timekeeping": "25/26"
+},
+{
+  "_id": {
+    "$oid": "6759c4c9a3b583ad307d829b"
+  },
+  "name": "Nguyễn Văn A",
+  "birthDay": {
+    "$date": "1985-09-19T00:00:00.000Z"
+  },
+  "phone": "0912345678",
+  "email": "nguyenvana@example.com",
+  "livingIn": "Hanoi",
+  "from": "Nam Dinh",
+  "position": "Manager",
+  "salary": 8000000,
+  "workingTime": "9h - 18h",
+  "dayOff": "Saturday",
+  "levelOfExperience": "07/10",
+  "timekeeping": "26/26"
+},
+{
+  "_id": {
+    "$oid": "6759c4c9a3b583ad307d829c"
+  },
+  "name": "Trần Thị B",
+  "birthDay": "1992-03-20",
+  "phone": "0934567890",
+  "email": "tranb@example.com",
+  "livingIn": "Da Nang",
+  "from": "Quang Nam",
+  "position": "Developer",
+  "salary": 6000000,
+  "workingTime": "8h - 17h",
+  "dayOff": "Sunday",
+  "levelOfExperience": "05/10",
+  "timekeeping": "24/26"
+},
+{
+  "_id": {
+    "$oid": "6759c4c9a3b583ad307d829d"
+  },
+  "name": "Lê Văn C",
+  "birthDay": "1988-07-30",
+  "phone": "0945678901",
+  "email": "levanc@example.com",
+  "livingIn": "Hai Phong",
+  "from": "Thai Binh",
+  "position": "Designer",
+  "salary": 7000000,
+  "workingTime": "9h - 18h",
+  "dayOff": "Saturday",
+  "levelOfExperience": "06/10",
+  "timekeeping": "25/26"
+},
+{
+  "_id": {
+    "$oid": "6759c4c9a3b583ad307d829e"
+  },
+  "name": "Phạm Thị D",
+  "birthDay": "1995-12-12",
+  "phone": "0956789012",
+  "email": "phamthid@example.com",
+  "livingIn": "Can Tho",
+  "from": "Vinh Long",
+  "position": "Marketing",
+  "salary": 5500000,
+  "workingTime": "8h - 17h",
+  "dayOff": "Sunday",
+  "levelOfExperience": "04/10",
+  "timekeeping": "26/26"
+},
+{
+  "_id": {
+    "$oid": "6759c4c9a3b583ad307d829f"
+  },
+  "name": "Nguyễn Văn E",
+  "birthDay": "1991-11-11",
+  "phone": "0967890123",
+  "email": "nguyenvane@example.com",
+  "livingIn": "Nha Trang",
+  "from": "Khanh Hoa",
+  "position": "Sales",
+  "salary": 6500000,
+  "workingTime": "9h - 18h",
+  "dayOff": "Saturday",
+  "levelOfExperience": "05/10",
+  "timekeeping": "25/26"
+},
+{
+  "_id": {
+    "$oid": "6759c4c9a3b583ad307d82a0"
+  },
+  "name": "Trần Văn F",
+  "birthDay": "1987-09-09",
+  "phone": "0978901234",
+  "email": "tranvf@example.com",
+  "livingIn": "Hue",
+  "from": "Thua Thien Hue",
+  "position": "HR",
+  "salary": 6000000,
+  "workingTime": "8h - 17h",
+  "dayOff": "Sunday",
+  "levelOfExperience": "06/10",
+  "timekeeping": "24/26"
+}]
