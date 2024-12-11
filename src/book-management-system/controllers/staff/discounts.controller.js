@@ -1,10 +1,22 @@
 const Discount = require("../../models/discounts");
 
-// Lấy tất cả giảm giá
+// Hàm lấy danh sách giảm giá với phân trang
 const getAllDiscounts = async (req, res) => {
+    const { page = 1, limit = 10 } = req.query;
+    const skip = (page - 1) * limit;
+
     try {
-        const discounts = await Discount.find();
-        res.status(200).json(discounts);
+        const discounts = await Discount.find()
+            .skip(skip)
+            .limit(limit);
+        const totalDiscounts = await Discount.countDocuments();
+
+        res.status(200).json({
+            totalDiscounts,
+            totalPages: Math.ceil(totalDiscounts / limit),
+            currentPage: page,
+            discounts,
+        });
     } catch (error) {
         res.status(500).json({ message: "Error fetching discounts" });
     }

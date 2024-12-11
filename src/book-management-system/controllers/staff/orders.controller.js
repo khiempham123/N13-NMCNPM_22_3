@@ -1,10 +1,23 @@
 const Order = require("../../models/orders");
 
 // Lấy tất cả đơn hàng
+// Hàm lấy danh sách đơn hàng với phân trang
 const getAllOrders = async (req, res) => {
+    const { page = 1, limit = 10 } = req.query;
+    const skip = (page - 1) * limit;
+
     try {
-        const orders = await Order.find();
-        res.status(200).json(orders);
+        const orders = await Order.find()
+            .skip(skip)
+            .limit(limit);
+        const totalOrders = await Order.countDocuments();
+
+        res.status(200).json({
+            totalOrders,
+            totalPages: Math.ceil(totalOrders / limit),
+            currentPage: page,
+            orders,
+        });
     } catch (error) {
         res.status(500).json({ message: "Error fetching orders" });
     }

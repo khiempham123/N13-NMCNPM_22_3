@@ -1,10 +1,23 @@
 const Customer = require("../../models/customers");
 
 // Lấy tất cả khách hàng
+// Hàm lấy danh sách khách hàng với phân trang
 const getAllCustomers = async (req, res) => {
+    const { page = 1, limit = 10 } = req.query;
+    const skip = (page - 1) * limit;
+
     try {
-        const customers = await Customer.find();
-        res.status(200).json(customers);
+        const customers = await Customer.find()
+            .skip(skip)
+            .limit(limit);
+        const totalCustomers = await Customer.countDocuments();
+
+        res.status(200).json({
+            totalCustomers,
+            totalPages: Math.ceil(totalCustomers / limit),
+            currentPage: page,
+            customers,
+        });
     } catch (error) {
         res.status(500).json({ message: "Error fetching customers" });
     }

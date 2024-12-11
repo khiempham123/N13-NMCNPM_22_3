@@ -1,15 +1,27 @@
 const Book = require("../../models/books");
 
-// Lấy tất cả sách
+// Hàm lấy danh sách sách với phân trang
 const getAllBooks = async (req, res) => {
+    const { page = 1, limit = 10 } = req.query; // Lấy số trang và số lượng sách mỗi trang từ query params
+    const skip = (page - 1) * limit; // Tính toán số lượng sách cần bỏ qua
+
     try {
-        const books = await Book.find({ deleted: false });
-        res.status(200).json(books);
+        const books = await Book.find({ deleted: false })
+            .skip(skip)
+            .limit(limit);
+        const totalBooks = await Book.countDocuments({ deleted: false }); // Tổng số sách
+
+        res.status(200).json({
+            totalBooks,
+            totalPages: Math.ceil(totalBooks / limit),
+            currentPage: page,
+            books,
+        });
     } catch (error) {
-        res.status(500).json({ message: "Error fetching books" });
+        console.error("Error fetching books:", error);
+        res.status(500).json({ message: "An error occurred while fetching books." });
     }
 };
-
 // Lấy sách theo ID
 const getBookById = async (req, res) => {
     try {

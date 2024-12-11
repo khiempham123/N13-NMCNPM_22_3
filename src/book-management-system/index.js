@@ -9,7 +9,7 @@ const orders = require("./routes/staff/orders.route")
 const registerRoutes = require("./routes/staff/register.route");
 const loginRoutes = require("./routes/staff/login.route");
 const changePasswordRoutes = require("./routes/staff/changePassword.route");
-
+const staff = require("./routes/staff/staff.route");
 const app = express();
 const port = process.env.PORT;
 
@@ -35,6 +35,7 @@ app.use("/api/orders", orders);
 app.use("/api/register", registerRoutes);
 app.use("/api/login", loginRoutes);
 app.use("/api/change-password", changePasswordRoutes);
+app.use("/api/staffs", staff);
 app.listen(port, () => {
   console.log(`Example app listening on port ${port}`);
 });
