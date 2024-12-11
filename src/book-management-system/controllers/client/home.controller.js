@@ -330,6 +330,19 @@ const getVendorByName = async (req, res) => {
   }
 };
 
+// Hàm lấy danh sách tác giả
+const getAuthors = async (req, res) => {
+  try {
+    const authors = await Book.distinct("author", { deleted: false });
+    res.status(200).json(authors.map((author) => ({ name: author })));
+  } catch (error) {
+    console.error("Error fetching authors:", error);
+    res
+      .status(500)
+      .json({ message: "An error occurred while fetching authors." });
+  }
+};
+
 module.exports = {
   getCategories,
   getBooksByCategory,
@@ -341,4 +354,5 @@ module.exports = {
   addBookToFav,
   getAllVendors,
   getVendorByName,
+  getAuthors,
 };

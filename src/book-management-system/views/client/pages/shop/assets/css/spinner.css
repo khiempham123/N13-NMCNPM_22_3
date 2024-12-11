@@ -1,0 +1,31 @@
+/* Tạo hiệu ứng spinner */
+.spinner {
+    border: 4px solid rgba(255, 255, 255, 0.3); /* Màu nền */
+    border-top: 4px solid #3498db; /* Màu của phần xoay */
+    border-radius: 50%;
+    width: 40px; /* Đường kính */
+    height: 40px; /* Đường kính */
+    animation: spin 1s linear infinite; /* Đặt hiệu ứng xoay */
+    margin: 0 auto; /* Căn giữa */
+}
+
+/* Hiệu ứng xoay */
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+/* Đảm bảo spinner được căn giữa màn hình */
+.spinner-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(255, 255, 255, 0.7); /* Màu nền mờ */
+    z-index: 9999; /* Đảm bảo nằm trên tất cả các phần tử khác */
+    display: none; /* Mặc định ẩn */
+}
