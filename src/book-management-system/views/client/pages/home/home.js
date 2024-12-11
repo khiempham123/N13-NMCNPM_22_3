@@ -412,12 +412,13 @@ document.addEventListener("DOMContentLoaded", function () {
 // end deals of the week
 
 //Handle pre and next click on children type
-
+//Xử lý các sự kiện click tại modal User
 document.addEventListener("DOMContentLoaded", () => {
   const userIcon = document.querySelector(".user-icon");
   const profileCard = document.querySelector(".profile-card");
   const closeBtn = document.querySelector(".close-btn");
-
+  const historyBtn = document.getElementById('btn-history');
+  const addProductModal = document.querySelector('addProductModal');
   // Hiển thị/hide khi click vào icon
   userIcon.addEventListener("click", (event) => {
     event.preventDefault();
@@ -431,7 +432,11 @@ document.addEventListener("DOMContentLoaded", () => {
   closeBtn.addEventListener("click", () => {
     profileCard.style.display = "none";
   });
+  historyBtn.addEventListener("click", () => {
 
+    profileCard.style.display = "none";
+    addProductModal.style.display = 'block';
+  });
   // Ẩn profile-card khi click ngoài khu vực
   document.addEventListener("click", (event) => {
     if (
@@ -442,7 +447,24 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   });
 });
+//Phải có đoạn code này thì mới đóng modal User và mở Modal history được
+const addProductBtn = document.getElementById('btn-history');
+const closeBtn = document.getElementsByClassName('close')[0];
 
+addProductBtn.addEventListener('click', () => {
+    addProductModal.style.display = 'block';
+});
+
+closeBtn.addEventListener('click', () => {
+    addProductModal.style.display = 'none';
+});
+
+window.addEventListener('click', (event) => {
+    if (event.target == addProductModal) {
+        addProductModal.style.display = 'none';
+    }
+});
+//////////////////////////////////////////////////////////////////////////////////
 //////////////////////////////////////// Phần sách ///////////////////////////////
 // Hàm fetch và hiển thị sách lên giao diện
 async function loadBestSellers() {

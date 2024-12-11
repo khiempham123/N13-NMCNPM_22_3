@@ -1,0 +1,232 @@
+.details {
+    position: relative;
+    width: 100%;
+    padding: 20px;
+    display: grid;
+    grid-gap: 30px;
+    /* margin-top: 10px; */
+  }
+  
+  .details .recentOrders {
+    position: relative;
+    display: grid;
+    min-height: 500px;
+    background: var(--white);
+    padding: 20px;
+    box-shadow: 0 7px 25px rgba(0, 0, 0, 0.08);
+    border-radius: 20px;
+  }
+  
+  .details .cardHeader {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+  }
+  .cardHeader h2 {
+    font-weight: 600;
+    color: var(--blue);
+  }
+  .cardHeader .btn {
+    position: relative;
+    padding: 5px 10px;
+    background: var(--blue);
+    text-decoration: none;
+    color: var(--white);
+    border-radius: 6px;
+  }
+  
+  .details table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 10px;
+  }
+  .details table thead td {
+    font-weight: 600;
+  }
+  .details .recentOrders table tr {
+    color: var(--black1);
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+  }
+  .details .recentOrders table tr:last-child {
+    border-bottom: none;
+  }
+  .details .recentOrders table tbody tr:hover {
+    background: var(--blue);
+    color: var(--white);
+  }
+  .details .recentOrders table tr td {
+    padding: 10px;
+  }
+  .details .recentOrders table tr td:last-child {
+    text-align: end;
+  }
+  .details .recentOrders table tr td:nth-child(2) {
+    text-align: end;
+  }
+  .details .recentOrders table tr td:nth-child(3) {
+    text-align: center;
+  }
+  .status.delivered {
+    padding: 2px 4px;
+    background: #8de02c;
+    color: var(--white);
+    border-radius: 4px;
+    font-size: 14px;
+    font-weight: 500;
+  }
+  .status.pending {
+    padding: 2px 4px;
+    background: #e9b10a;
+    color: var(--white);
+    border-radius: 4px;
+    font-size: 14px;
+    font-weight: 500;
+  }
+  .status.return {
+    padding: 2px 4px;
+    background: #f00;
+    color: var(--white);
+    border-radius: 4px;
+    font-size: 14px;
+    font-weight: 500;
+  }
+  .status.inProgress {
+    padding: 2px 4px;
+    background: #1795ce;
+    color: var(--white);
+    border-radius: 4px;
+    font-size: 14px;
+    font-weight: 500;
+  }
+  
+/* Modal container */
+.modal-History {
+    display: none; 
+    position: fixed; 
+    z-index: 100000; 
+    left: 0;
+    top: 0;
+    width: 100%; 
+    height: 100%; 
+    overflow: auto; 
+    background-color: rgb(0,0,0); 
+    background-color: rgba(0,0,0,0.4); 
+    opacity: 0.95;
+}
+
+/* Modal content */
+.modal-content-History {
+    background-color: #fefefe;
+    margin: 15% auto; 
+    padding: 20px;
+    border: 1px solid #888;
+    width: 80%; 
+    border-radius: 20px;
+
+}
+
+/* Close button */
+.close {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.container-History {
+    max-width: 1000px;
+    margin: 20px auto;
+    background: #fff;
+    border-radius: 10px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+}
+
+h1 {
+    text-align: center;
+    font-size: 24px;
+    color: #333;
+}
+
+.form-section {
+    margin-bottom: 40px;
+}
+
+.form-section h2 {
+    font-size: 18px;
+    color: white;
+    background-color: #6c4efc;
+    padding: 10px;
+    margin: 0 -20px 20px;
+    border-radius: 8px;
+}
+
+.form-group {
+    display: flex;
+    margin-bottom: 15px;
+    align-items: center;
+}
+
+.form-group label {
+    flex: 1;
+    font-weight: bold;
+}
+
+.form-group input, .form-group select, .form-group textarea {
+    flex: 2;
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+.form-group textarea {
+    resize: none;
+    height: 60px;
+}
+
+.form-group input[type="file"] {
+    padding: 3px;
+}
+
+.form-group input[type="checkbox"] {
+    flex: 0;
+    margin-right: 10px;
+}
+
+.form-buttons {
+    text-align: center;
+}
+
+.form-buttons button {
+    background-color: #6c4efc;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.form-buttons button:hover {
+    background-color: #5a3edc;
+}
+
+.split {
+    display: flex;
+    justify-content: space-between;
+}
+
+.split > div {
+    flex: 1;
+    margin-right: 10px;
+}
+
+.split > div:last-child {
+    margin-right: 0;
+}   
