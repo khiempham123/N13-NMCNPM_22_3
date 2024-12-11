@@ -30,7 +30,7 @@ function displayFavItems(favData) {
   if (favData && favData.items && favData.items.length > 0) {
     favData.items.forEach((item) => {
       const { title, price, rating, thumbnail } = item;
-
+      const author = item.bookId.author;
       // Sử dụng hàm getStarRating để hiển thị sao thay vì số rating
       const starRating = getStarRating(rating);
 
@@ -47,7 +47,7 @@ function displayFavItems(favData) {
               <img src="${thumbnail}" alt="${title}" />
               <div class="book-details">
                   <p class="book-title">${title}</p>
-                  <p class="book-author">${item.author || "Unknown"}</p>
+                  <p class="book-author">${author || "Unknown"}</p>
               </div>
           </div>
           <div class="w-50 d-flex justify-content-around align-items-center text-center">
@@ -57,7 +57,7 @@ function displayFavItems(favData) {
               </div>
               <div>
                   <button class="btn btn-outline-danger btn-sm"
-                  onclick="removeFromFav(' ${item._id} ')" >
+                  onclick="removeFromFav('${item._id}')" >
                       <i class="fas fa-trash" style="font-size: 20px;"></i>
                   </button>
               </div>
@@ -91,7 +91,9 @@ function removeFromFav(itemId) {
 
   // Nếu người dùng xác nhận, thực hiện xóa sản phẩm
   if (isConfirmed) {
+    console.log(itemId);
     const itemElement = document.getElementById(`fav-item-${itemId}`);
+    console.log(itemElement);
     itemElement.remove();
     // Gửi yêu cầu API để xóa sản phẩm khỏi danh sách yêu thích trong cơ sở dữ liệu
     deleteItemFromFavDatabase(itemId);

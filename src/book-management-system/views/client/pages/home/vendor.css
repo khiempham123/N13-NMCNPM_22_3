@@ -1,36 +1,54 @@
 .vendors h2 {
-    font-size: 30px;
-    font-weight: 630;
-    margin-top: 15px;
-    margin-bottom: 35px;
+  font-size: 30px;
+  font-weight: 630;
+  margin-top: 15px;
+  margin-bottom: 35px;
 }
 .vendor-list {
-    margin-top: 20px;
+  margin-top: 20px;
 }
 .vendor-item {
-    display: flex;
-    align-items: center;
-    margin-bottom: 20px;
+  display: flex;
+  align-items: center;
+  margin-bottom: 20px;
 }
 .vendor-item img {
-    width: 70px;
-    height: 70px;
-    border-radius: 15px;
-    margin-right: 10px;
+  width: 70px;
+  height: 70px;
+  border-radius: 15px;
+  margin-right: 10px;
 }
 .vendor-info {
-    width: 80%;
+  width: 80%;
 }
 .vendor-info h3 {
-    font-size: 16px;
-    font-weight: 500;
-    margin: 0;
+  font-size: 16px;
+  font-weight: 500;
+  margin: 0;
 }
 .vendor-info span {
-    margin: 5px 0;
-    font-size: 14px;
-    color: #666;
+  margin: 5px 0;
+  font-size: 14px;
+  color: #666;
 }
 .vendor-info .rating {
-    color: lightsalmon;
+  color: lightsalmon;
+}
+
+.vendor-item {
+  display: flex;
+  align-items: center;
+  padding: 10px;
+  margin-bottom: 20px; /* Tạo khoảng cách giữa các vendor item */
+  border-bottom: 1px solid #b3b3b3; /* Ngăn cách giữa các item */
+  cursor: pointer; /* Thêm hiệu ứng con trỏ là bàn tay khi hover */
+  transition: background-color 0.2s; /* Thêm hiệu ứng chuyển màu nền khi hover */
+}
+
+.vendor-item:hover {
+  background-color: #f0f0f0; /* Thay đổi màu nền khi hover */
+}
+
+.vendor-info {
+  margin-left: 15px;
 }

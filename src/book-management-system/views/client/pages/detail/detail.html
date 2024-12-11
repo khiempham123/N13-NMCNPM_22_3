@@ -2,185 +2,195 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Detail</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Detail</title>
 
-    <link rel="stylesheet" href="assets/css/base.css">
-    <link rel="stylesheet" href="assets/css/home.css">
-    <link rel="stylesheet" href="assets/css/style.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css"
-        integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg=="
-        crossorigin="anonymous" referrerpolicy="no-referrer" />
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
-        integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
-        crossorigin="anonymous"></script>
-    <script src="https://code.jquery.com/jquery-3.7.1.js"></script>
-    <script src="https://code.jquery.com/ui/1.14.0/jquery-ui.js"></script>
+  <link rel="stylesheet" href="assets/css/base.css">
+  <link rel="stylesheet" href="assets/css/home.css">
+  <link rel="stylesheet" href="assets/css/style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css"
+    integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg=="
+    crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+    crossorigin="anonymous"></script>
+  <script src="https://code.jquery.com/jquery-3.7.1.js"></script>
+  <script src="https://code.jquery.com/ui/1.14.0/jquery-ui.js"></script>
 
 <body>
-    <div class="container-fluid">
-      <div class="row" style="border: none;padding: none;">
-        <div class="card" style="margin: 0; padding: 0; border: none; border-radius: 0%;">
-            <div class="card-body"
-                style="background: rgb(201,129,161);
+  <div class="container-fluid">
+    <div class="row" style="border: none;padding: none;">
+      <div class="card" style="margin: 0; padding: 0; border: none; border-radius: 0%;">
+        <div class="card-body"
+          style="background: rgb(201,129,161);
                 background: radial-gradient(circle, rgba(201,129,161,1) 22%, rgba(133,193,189,1) 79%);border-radius: 0%;">
-                <nav class="navbar navbar-expand-lg">
-                    <div class="container-fluid">
-                        <a class="navbar-brand" href="#"
-                            style="margin: 0px 300px 0px 50px; color: #fff; font-size: 30px;">
-                            <i class="fa-solid fa-book"></i>
-                            Bookory
-                        </a>
-                        <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
-                            data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
-                            aria-expanded="false" aria-label="Toggle navigation">
-                            <span class="navbar-toggler-icon"></span>
-                        </button>
-                        <!-- test -->
-                        <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                            <ul class="navbar-nav">
-                                <li class="nav-item dropdown custom-link">
-                                    <a class="nav-link dropdown-toggle" href="#" role="button"
-                                        data-bs-toggle="dropdown" aria-expanded="false" style="color: #fff;">
-                                        <i class="fa-solid fa-table-list"></i>
-                                        Categories
-                                    </a>
-                                    <ul class="dropdown-menu" id="categories-dropdown">
-                                        <!-- Categories sẽ được thêm vào đây bằng JavaScript -->
-                                    </ul>
-                                </li>
-                            </ul>
-                            <!-- Thanh search -->
-                            <div class="input-group" style="width: 60%; position: relative;">
-                                <input class="form-control" type="search" placeholder="Search Product..."
-                                    aria-label="Search" style="border-radius: 30px 0 0 30px;">
-                                <span class="input-group-text"
-                                    style="border-radius: 0 30px 30px 0; cursor: pointer;">
-                                    <i class="fa fa-search"></i>
-                                </span>
-                                <!-- Phần tử để hiển thị kết quả tìm kiếm -->
-                                <div id="results-container" style="margin-top: 5px;"></div>
-                            </div>
-                        </div>
+          <nav class="navbar navbar-expand-lg">
+            <div class="container-fluid">
+
+              <a class="navbar-brand" href="#" style="margin: 0px 300px 0px 50px; color: #fff; font-size: 30px;">
+
+                <i class="fa-solid fa-book"></i>
+                Bookory
+              </a>
+              <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+                aria-label="Toggle navigation">
+
+                <span class="navbar-toggler-icon"></span>
+              </button>
+              <!-- test -->
+              <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav">
+                  <li class="nav-item dropdown custom-link">
+                    <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
+                      aria-expanded="false" style="color: #fff;">
+
+                      <i class="fa-solid fa-table-list"></i>
+                      Categories
+                    </a>
+                    <ul class="dropdown-menu" id="categories-dropdown">
+                      <!-- Categories sẽ được thêm vào đây bằng JavaScript -->
+                    </ul>
+                  </li>
+                </ul>
+                <!-- Thanh search -->
+                <div class="input-group" style="width: 60%; position: relative;">
+                  <input class="form-control" type="search" placeholder="Search Product..." aria-label="Search"
+                    style="border-radius: 30px 0 0 30px;">
+                  <span class="input-group-text" style="border-radius: 0 30px 30px 0; cursor: pointer;">
+
+                    <i class="fa fa-search"></i>
+                  </span>
+                  <!-- Phần tử để hiển thị kết quả tìm kiếm -->
+                  <div id="results-container" style="margin-top: 5px;"></div>
+                </div>
+              </div>
 
 
-                        <!-- categories -->
+              <!-- categories -->
 
-                        <div
-                            style="color: #fff; font-size: 20px; display: flex; justify-content: center; align-items: center;">
-                            <div class="user-menu" style="width: fit-content;">
-                                <!-- Ban đầu khi User chưa đăng nhập tất cả thông tin ở img, email, greeting, manage-account chưa xuất hiện 
+              <div style="color: #fff; font-size: 20px; display: flex; justify-content: center; align-items: center;">
+                <div class="user-menu" style="width: fit-content;">
+                  <!-- Ban đầu khi User chưa đăng nhập tất cả thông tin ở img, email, greeting, manage-account chưa xuất hiện 
                                  sau khi login or register thành công thì thay thế img bằng ký tự đầu trong tên lót, email = email user, greeting = user name, manage-account chưa có sẽ xuất hiện, 
                                  sau đó thay thế các nút register, login lần lượt bằng thay đổi tài khoản, đăng xuất. 
                                  Xử lý điều này và các thao tác click tại cái btn để di chuyển đến đúng trang, những css liên quan được đặt trong dropProfile.css-->
-                                <a class="user-icon" href="#" style="color: inherit; text-decoration: none;">
-                                    <i class="fa-regular fa-user"> | </i>
-                                </a>
-                                <div class="profile-card"
-                                    style="display: none; flex-direction: column; align-items: center; justify-content: center; text-align: center;">
-                                    <div class="close-btn">&times;</div>
-                                    <div class="profile-img"><i class="fa-regular fa-user"></i></div>
-                                    <div class="email">pgk06052018@gmail.com</div>
-                                    <div class="greeting">Hi 12_0159 Pham,</div>
-                                    <div class="manage-account">Management Your Account</div>
-                                    <div class="btn-group">
-                                        <button class="btn btn-light border"><i class="fa-solid fa-circle-plus"
-                                                style="font-size: 18px; color: #74C0FC; margin-right: 5px;"></i>
-                                            Switch Accounts</button>
-                                        <button class="btn btn-light border"><i
-                                                class="fa-solid fa-arrow-right-to-bracket"
-                                                style="font-size: 18px; color: #74C0FC; margin-right: 5px;"></i> Log
-                                            out</button>
-                                    </div>
-                                    <div class="profile-footer">
-                                        Chính sách quyền riêng tư · Điều khoản dịch vụ
-                                    </div>
-                                </div>
-                            </div>
-                            <i class="fa-regular fa-heart" style="margin-left: 5px;"> | </i>
-                            <a href="https://example.com" style="color: inherit; text-decoration: none;">
-                                <i class="fa-solid fa-cart-shopping " style="margin-left: 5px;"></i>
-                            </a>
-                        </div>
+                  <a class="user-icon" href="#" style="color: inherit; text-decoration: none;">
+                    <i class="fa-regular fa-user"> | </i>
+                  </a>
+                  <div class="profile-card"
+                    style="display: none; flex-direction: column; align-items: center; justify-content: center; text-align: center;">
+                    <div class="close-btn">&times;</div>
+                    <div class="profile-img"><i class="fa-regular fa-user"></i></div>
+                    <div class="email">pgk06052018@gmail.com</div>
+                    <div class="greeting">Hi 12_0159 Pham,</div>
+                    <div class="manage-account">Management Your Account</div>
+                    <div class="btn-group">
+                      <button class="btn btn-light border"><i class="fa-solid fa-circle-plus"
+                          style="font-size: 18px; color: #74C0FC; margin-right: 5px;"></i>
+                        Switch Accounts</button>
+                      <button class="btn btn-light border"><i class="fa-solid fa-arrow-right-to-bracket"
 
+                          style="font-size: 18px; color: #74C0FC; margin-right: 5px;"></i> Log
+                        out</button>
                     </div>
-                </nav>
+                    <div class="profile-footer">
+                      Chính sách quyền riêng tư · Điều khoản dịch vụ
+                    </div>
+                  </div>
+                </div>
+                <a href="../Favourite/fav.html" style="color: inherit; text-decoration: none;">
+                  <i class="fa-regular fa-heart" style="margin-left: 5px;"> | </i>
+                </a>
+                <a href="../Cart/Cart.html" style="color: inherit; text-decoration: none;">
+
+                  <i class="fa-solid fa-cart-shopping " style="margin-left: 5px;"></i>
+                </a>
+              </div>
+
             </div>
+          </nav>
+        </div>
 
 
-            <div class="card-footer" style="background: rgb(133,193,189);
+        <div class="card-footer" style="background: rgb(133,193,189);
                         background: radial-gradient(circle, rgba(133,193,189,1) 11%, rgba(129,152,201,1) 90%); 
                         margin: 0; padding: none; border: none; border-radius: 0%;">
-                <nav class="navbar navbar-expand-lg w-100" style="margin: 0; padding: 0; border: none;">
-                    <div class="container-fluid " style="margin: 0; padding: none; border: none;">
-                        <div class="col-1"></div>
-                        <a class="navbar-brand" href="https://maps.app.goo.gl/2MXnCG5jVrdjcQYZA" target="_blank"
-                            style="width:35px; margin: 0px 400px 0px 50px; text-align: center; justify-content: center; color: white;">
-                            <i class="fa-solid fa-location-dot"></i>
-                            <span style="font-size: 15px; text-decoration: underline; font-weight: 500; color: white;">Find a Book
-                                Store</span>
-                        </a>
-                        <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
-                            data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
-                            aria-expanded="false" aria-label="Toggle navigation">
-                            <span class="navbar-toggler-icon"></span>
-                        </button>
-                        <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                            <ul class="navbar-nav" style="margin-right: 30px;">
-                                <li class="nav-item custom-link">
-                                    <a class="nav-link" id="goHome" href="#" aria-expanded="false">
-                                        <span class="nav-item" style=" color: white;">Home</span>
-                                    </a>
-                                </li>
-                            </ul>
-                            <ul class="navbar-nav" style="margin-right: 30px;">
-                                <li class="nav-item custom-link">
-                                    <a class="nav-link" href="#" aria-expanded="false">
-                                        <span class="nav-item" style=" color: white;">Book</span>
-                                    </a>
-                                </li>
-                            </ul>
-                            <ul class="navbar-nav" style="margin-right: 30px;">
-                                <li class="nav-item custom-link">
-                                    <a class="nav-link" href="#" aria-expanded="false">
-                                        <span class="nav-item" style=" color: white;">Author</span>
-                                    </a>
-                                </li>
-                            </ul>
-                            <ul class="navbar-nav" style="margin-right: 30px;">
-                                <li class="nav-item custom-link">
-                                    <a class="nav-link" href="#" aria-expanded="false">
-                                        <span class="nav-item" style=" color: white;">Blog</span>
-                                    </a>
-                                </li>
-                            </ul>
-                            <ul class="navbar-nav" style="margin-right: 30px;">
-                                <li class="nav-item custom-link">
-                                    <a class="nav-link" href="#" aria-expanded="false">
-                                        <span class="nav-item" style=" color: white;">Contact</span>
-                                    </a>
-                                </li>
-                            </ul>
-                        </div>
+          <nav class="navbar navbar-expand-lg w-100" style="margin: 0; padding: 0; border: none;">
+            <div class="container-fluid " style="margin: 0; padding: none; border: none;">
+              <div class="col-1"></div>
+              <a class="navbar-brand" href="https://maps.app.goo.gl/2MXnCG5jVrdjcQYZA" target="_blank"
+                style="width:35px; margin: 0px 400px 0px 50px; text-align: center; justify-content: center; color: white;">
+                <i class="fa-solid fa-location-dot"></i>
+                <span style="font-size: 15px; text-decoration: underline; font-weight: 500; color: white;">Find
+                  a Book
+                  Store</span>
+              </a>
+              <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+                aria-label="Toggle navigation">
 
-                        <div style="margin-right: 200px; color: white;">
-                            <i class="fa-solid fa-phone-volume"></i>
-                            <span
-                                style="color: orangered; font-size: 20px; font-weight: 500; margin-left: 10px;">+84
-                                0123456789</span>
-                        </div>
-                    </div>
-                </nav>
+                <span class="navbar-toggler-icon"></span>
+              </button>
+              <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav" style="margin-right: 30px;">
+                  <li class="nav-item custom-link">
+                    <a class="nav-link" id="goHome" href="../home/home.html" aria-expanded="false">
+
+                      <span class="nav-item" style=" color: white;">Home</span>
+                    </a>
+                  </li>
+                </ul>
+                <ul class="navbar-nav" style="margin-right: 30px;">
+                  <li class="nav-item custom-link">
+                    <a class="nav-link" href="../shop/shop.html" aria-expanded="false">
+
+                      <span class="nav-item" style=" color: white;">Book</span>
+                    </a>
+                  </li>
+                </ul>
+                <ul class="navbar-nav" style="margin-right: 30px;">
+                  <li class="nav-item custom-link">
+                    <a class="nav-link" href="#" aria-expanded="false">
+                      <span class="nav-item" style=" color: white;">Author</span>
+                    </a>
+                  </li>
+                </ul>
+                <ul class="navbar-nav" style="margin-right: 30px;">
+                  <li class="nav-item custom-link">
+                    <a class="nav-link" href="#" aria-expanded="false">
+                      <span class="nav-item" style=" color: white;">Blog</span>
+                    </a>
+                  </li>
+                </ul>
+                <ul class="navbar-nav" style="margin-right: 30px;">
+                  <li class="nav-item custom-link">
+                    <a class="nav-link" href="#" aria-expanded="false">
+                      <span class="nav-item" style=" color: white;">Contact</span>
+                    </a>
+                  </li>
+                </ul>
+              </div>
+
+              <div style="margin-right: 200px; color: white;">
+                <i class="fa-solid fa-phone-volume"></i>
+                <span style="color: orangered; font-size: 20px; font-weight: 500; margin-left: 10px;">+84
+
+                  0123456789</span>
+              </div>
             </div>
+          </nav>
         </div>
       </div>
+    </div>
 
-        <hr class="horizontal-line" />
-        <!-- Section 1 -->
-        <!-- <div class="section-one">
+    <hr class="horizontal-line" />
+    <!-- Section 1 -->
+    <!-- <div class="section-one">
           <div class="container">
             <div class="row">
               <div class="col-xl-12">
@@ -195,85 +205,121 @@
             </div>
           </div>
         </div> -->
-        <!-- End Section 1 -->
+    <!-- End Section 1 -->
 
-        <!-- Section 2 -->
-        <!-- Section 2 -->
-        <div class="section-two">
+    <!-- Section 2 -->
+    <div class="section-two">
 
-          <div class="container">
-            <div class="row">
-              <div class="col-xl-6">
-                <div class="inner-image box">
-                  <img id="book-image" src="" alt="Book Image" />
-                </div>
+      <div class="container">
+        <div class="row">
+          <div class="col-xl-6">
+            <div class="inner-image box">
+              <img id="book-image" src="" alt="Book Image" />
+            </div>
+          </div>
+          <div class="col-xl-6">
+            <div class="inner-content box">
 
+              <!-- Title -->
+              <div class="inner-title">
+                <h1 id="book-title">Loading...</h1>
               </div>
-              <div class="col-xl-6">
-                <div class="inner-content box">
-                  <div class="inner-title">
-                    <h2 id="book-title">Loading...</h2>
-                  </div>
-                  <div class="inner-info">
-                    <p id="book-author" class="author">Author: </p>
-                    <div class="separator"></div>
-                    <i class="fa-solid fa-star">
-                      <span id="book-rating">0.0</span>
-                    </i>
-                  </div>
-                  <hr class="horizontal-line" />
-                  <div id="book-price" class="inner-price"></div>
-                  <div id="book-desc" class="inner-desc"></div>
-                  <div class="inner-type">
-                    <p>Select Format:</p>
-                    <ul id="book-formats"></ul>
-                    <div class="current-price">
-                      <span id="current-price">$0.00</span>
+
+              <!-- Rating -->
+              <div class="inner-rating">
+                <span id="book-rating">0.0</span>
+              </div>
+
+              <!-- Information -->
+              <div class="inner-info">
+                <div class="row">
+                  <div class="col-xl-5">
+                    <div id="book-author" class="author">
+
+                    </div>
+                    <div id="book-publisher" class="publisher">
                     </div>
                   </div>
-                  <hr class="horizontal-line" />
-                  <div class="inner-quantity">
-                    <div class="quantity-selector">
-                      <button id="decrease" class="quantity-btn">-</button>
-                      <span id="quantity" class="quantity-value">1</span>
-                      <button id="increase" class="quantity-btn">+</button>
+                  <div class="col-xl-5">
+                    <div id="book-categories" class="categories">
                     </div>
-                    <button class="add-to-cart">
-                      <i class="fa-solid fa-basket-shopping"></i> Add to cart
-                    </button>
-                    <i class="fa-solid fa-heart wishlist"></i>
-                    <a href="#">Browse wishlist</a>
-                  </div>
-                  <hr class="horizontal-line" />
-                  <div class="inner-file">
-                    <div id="book-categories" class="categories"></div>
-                    <div id="book-tags" class="tags"></div>
-                    <div class="share">
-                      <a href="#" class="facebook">
-                        <i class="fa-brands fa-square-facebook"></i>
-                      </a>
-                      <a href="#" class="twitter">
-                        <i class="fa-brands fa-square-twitter"></i>
-                      </a>
-                      <a href="#" class="linkedin">
-                        <i class="fa-brands fa-invision"></i>
-                      </a>
-                      <a href="#" class="pinterest">
-                        <i class="fa-brands fa-square-pinterest"></i>
-                      </a>
+                    <div id="book-publishDate" class="publishDate">
                     </div>
                   </div>
+                </div>
+              </div>
+
+              <!-- Price -->
+              <div id="book-price" class="inner-price">
+                <div class="main-price">
+                  <span id="current-price">$0.00</span>
+                  <span id="discount">0%</span>
+                </div>
+                <div id="old-price">$0.00</div>
+              </div>
+
+              <!-- Desc -->
+              <div id="book-desc" class="inner-desc">
+                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolorum debitis quae
+                  eius vitae, officiis provident asperiores eligendi aperiam itaque vero adipisci
+                  doloremque eaque ipsa velit repellat. Dolore libero nesciunt magnam!
+                  Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolorum debitis quae <br>
+                  eius vitae, <br>officiis provident asperiores eligendi aperiam itaque vero
+                  adipisci doloremque eaque ipsa velit repellat. Dolore libero nesciunt magnam!
+                  Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolorum debitis quae <br>
+                  eius vitae, <br>officiis provident asperiores eligendi aperiam itaque vero
+                  adipisci doloremque eaque ipsa velit repellat. Dolore libero nesciunt magnam!
+                  Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolorum debitis quae eius
+                  vitae, officiis provident asperiores eligendi aperiam itaque vero adipisci
+                  doloremque eaque ipsa velit repellat. Dolore libero nesciunt magnam!
+                </p>
+              </div>
+
+              <!-- Select Format -->
+              <div class="inner-quantity">
+                <div class="quantity-selector">
+                  <button id="decrease" class="quantity-btn">-</button>
+                  <span id="quantity" class="quantity-value">1</span>
+                  <button id="increase" class="quantity-btn">+</button>
+                </div>
+                <button class="add-to-cart">
+                  <i class="fa-solid fa-basket-shopping"></i>
+                  <span>Add to cart</span>
+                </button>
+                <div class="wishlist">
+                  <i class="fa-solid fa-heart"></i>
+                  <span>wishlist</span>
+                </div>
+              </div>
+
+              <!-- Link -->
+              <div class="inner-file">
+                <div class="share">
+                  <a href="#" class="facebook">
+                    <i class="fa-brands fa-square-facebook"></i>
+                  </a>
+                  <a href="#" class="twitter">
+                    <i class="fa-brands fa-square-twitter"></i>
+                  </a>
+                  <a href="#" class="linkedin">
+                    <i class="fa-brands fa-invision"></i>
+                  </a>
+                  <a href="#" class="pinterest">
+                    <i class="fa-brands fa-square-pinterest"></i>
+                  </a>
                 </div>
               </div>
             </div>
           </div>
         </div>
+      </div>
+    </div>
 
 
-        <!-- End Section 2 -->
+    <!-- End Section 2 -->
 
-        <!-- Section 3 -->
-        <div class="section-three">
+    <!-- Section 3 -->
+    <div class="section-three">
       <div class="container">
         <!-- Tab Navigation -->
         <div class="tab-container">
@@ -367,7 +413,7 @@
                 now.
               </p>
             </div>
-            
+
             <!-- Thêm các đánh giá khác nếu cần -->
 
             <div class="form-review-container" style="margin-top: 100px">
@@ -385,20 +431,23 @@
                 </div>
 
                 <!-- Review Section -->
-                <textarea class="form-text" id="review" name="review" placeholder="Your review *" required></textarea>
+                <textarea class="form-text" id="review" name="review" placeholder="Your review *"
+                  required></textarea>
                 <div class="row form-row">
                   <div class="col-xl-6">
-                    <input class="form" type="text" id="name" name="name" placeholder="Name *" required>
+                    <input class="form" type="text" id="name" name="name" placeholder="Name *"
+                      required>
                   </div>
                   <div class="col-xl-6">
-                    <input class="form" type="email" id="email" name="email" placeholder="Email *" required>
+                    <input class="form" type="email" id="email" name="email" placeholder="Email *"
+                      required>
                   </div>
                 </div>
 
                 <!-- Save Details Checkbox -->
                 <label class="checkbox">
                   <input type="checkbox" id="saveDetails">
-                    Save my name, email, and website in this browser for the next time I comment.
+                  Save my name, email, and website in this browser for the next time I comment.
                 </label>
 
                 <!-- Submit Button -->
@@ -408,18 +457,25 @@
           </div>
         </div>
       </div>
-        </div>
-        <!-- End Section 3 -->
+    </div>
+    <!-- End Section 3 -->
 
-        <!-- Section 4 -->
-        <div class="section-four">
+    <!-- Section 4 -->
+    <div class="section-four">
       <div class="container">
         <div class="row">
           <div class="col-xl-6">
             <div class="inner-content">
               <p>ABOUT THE AUTHOR</p>
-              <div class="title"><h1>"My enthusiasm for writing never stops" - John Doe</h1></div>
-              <div class="desc">Nullam venenatis neque dis viverra hendrerit faucibus ornare feugiat urna. Tristique sollicitudin penatibus velit a class auctor himenaeos. Mollis semper luctus sit efficitur nam vitae feugiat enim tortor. Tortor montes integer cras massa donec ex ligula. Aliquet fringilla tellus mattis augue nam dui justo aliquam quisque suspendisse maximus. Pede velit ut dapibus suspendisse vivamus pulvinar nostra morbi curae potenti netus.</div>
+              <div class="title">
+                <h1>"My enthusiasm for writing never stops" - John Doe</h1>
+              </div>
+              <div class="desc">Nullam venenatis neque dis viverra hendrerit faucibus ornare feugiat
+                urna. Tristique sollicitudin penatibus velit a class auctor himenaeos. Mollis semper
+                luctus sit efficitur nam vitae feugiat enim tortor. Tortor montes integer cras massa
+                donec ex ligula. Aliquet fringilla tellus mattis augue nam dui justo aliquam quisque
+                suspendisse maximus. Pede velit ut dapibus suspendisse vivamus pulvinar nostra morbi
+                curae potenti netus.</div>
               <div><a href="#">VIEW ALL MY BOOK</a></div>
             </div>
           </div>
@@ -432,269 +488,244 @@
           </div>
         </div>
       </div>
-        </div>
-        <!-- End Section 4 -->
-        
-        <!-- Section 5 -->
-        <div class="section-five">
-          <div class="container">
-              <div class="inner-head">
-                  <div class="row">
-                      <div class="col-xl-3 d-flex justify-content-center align-items-center">
-                          <div class="inner-title">Related Products</div>
-                      </div>
-                      <div class="col-xl-9">
-                          <hr />
-                      </div>
-                    </div>
-
-              <div class="inner-list position-relative">
-                  <!-- Nút điều hướng bên trái -->
-                  <button class="btn-nav left" id="btn-left">
-                      <i class="fa fa-chevron-left"></i>
-                  </button>
-                  <!-- Danh sách sản phẩm -->
-                  <div class="row flex-nowrap overflow-hidden" id="product-list">
-                  </div>
-                  <!-- Nút điều hướng bên phải -->
-                  <button class="btn-nav right" id="btn-right">
-                      <i class="fa fa-chevron-right"></i>
-                  </button>
-              </div>
-          </div>
-      </div>
-        
-        <!-- End Section 5 -->
-
-        <div class="row">
-            <div class="footer">
-                <div class="container" style="margin-bottom: 20px;">
-                    <div class="column contact-info">
-                        <h3>
-                            Contact Info
-                        </h3>
-                        <p>
-                            1418 River Drive, Suite 35
-                            <br />
-                            Cottonhall, CA 9622
-                        </p>
-                        <p>
-                            Monday – Friday: 9:00-20:00
-                            <br />
-                            Saturday: 11:00 – 15:00
-                        </p>
-                        <a href="mailto:contact@example.com">
-                            contact@example.com
-                        </a>
-                    </div>
-                    <div class="column">
-                        <h3>
-                            Company
-                        </h3>
-                        <p>
-                            <a href="#">
-                                About us
-                            </a>
-                        </p>
-                        <p>
-                            <a href="#">
-                                Delivery Information
-                            </a>
-                        </p>
-                        <p>
-                            <a href="#">
-                                Privacy Policy
-                            </a>
-                        </p>
-                        <p>
-                            <a href="#">
-                                Terms &amp; Conditions
-                            </a>
-                        </p>
-                        <p>
-                            <a href="#">
-                                Contact Us
-                            </a>
-                        </p>
-                        <p>
-                            <a href="#">
-                                Support Center
-                            </a>
-                        </p>
-                    </div>
-                    <div style="border-right: 1px solid #b3b3b3; margin-right: 20px;"></div>
-                    <div class="column logo" style="margin-left: 20px;">
-                        <h2>
-                            Bookory
-                        </h2>
-                        <p>
-                            Got Questions? Call us 24/7!
-                        </p>
-                        <p style="color: #ff5e3a; font-size: 24px;">
-                            +(84) - 1800 - 4635
-                        </p>
-                        <div class="social-icons">
-                            <a href="#">
-                                <i class="fab fa-facebook-f">
-                                </i>
-                            </a>
-                            <a href="#">
-                                <i class="fab fa-twitter">
-                                </i>
-                            </a>
-                            <a href="#">
-                                <i class="fab fa-instagram">
-                                </i>
-                            </a>
-                            <a href="#">
-                                <i class="fab fa-pinterest">
-                                </i>
-                            </a>
-                        </div>
-                    </div>
-                    <div style="border-right: 1px solid #b3b3b3; margin-left: 40px; margin-right: 20px;"></div>
-                    <div class="column">
-                        <h3>
-                            Corporate
-                        </h3>
-                        <p>
-                            <a href="#">
-                                Become a Vendor
-                            </a>
-                        </p>
-                        <p>
-                            <a href="#">
-                                Affiliate Program
-                            </a>
-                        </p>
-                        <p>
-                            <a href="#">
-                                Our Suppliers
-                            </a>
-                        </p>
-                        <p>
-                            <a href="#">
-                                Accessibility
-                            </a>
-                        </p>
-                        <p>
-                            <a href="#">
-                                Promotions
-                            </a>
-                        </p>
-                        <p>
-                            <a href="#">
-                                Careers
-                            </a>
-                        </p>
-                    </div>
-                    <div class="column">
-                        <h3>
-                            Our Service
-                        </h3>
-                        <p>
-                            <a href="#">
-                                Help Center
-                            </a>
-                        </p>
-                        <p>
-                            <a href="#">
-                                Returns
-                            </a>
-                        </p>
-                        <p>
-                            <a href="#">
-                                Product Recalls
-                            </a>
-                        </p>
-                        <p>
-                            <a href="#">
-                                Accessibility
-                            </a>
-                        </p>
-                        <p>
-                            <a href="#">
-                                Contact Us
-                            </a>
-                        </p>
-                        <p>
-                            <a href="#">
-                                Store Pickup
-                            </a>
-                        </p>
-                    </div>
-                </div>
-                <div style="border-bottom: 1px solid #b3b3b3; margin-bottom: 20px;">
-                </div>
-                <div class="bottom-bar">
-                    <p>
-                        Copyright © 2024
-                        <a href="#">
-                            Bookory
-                        </a>
-                        . All rights reserved.
-                    </p>
-                    <div class="payment-icons">
-                        <img alt="PayPal logo" style="height: 50px; width: 70px;" src="./image/paypal.png" />
-                        <img alt="MasterCard logo" style="height: 50px; width: 70px;" src="./image/masterCard.png" />
-                        <img alt="American Express logo" style="height: 50px; width: 70px;"
-                            src="./image/american-express.png" />
-                        <img alt="Bitcoin logo" style="height: 50px; width: 70px;" src="./image/bitcoin_card.png" />
-                        <img alt="Discover logo" style="height: 50px; width: 70px;" src="./image/discover_card.png" />
-                        <img alt="Visa logo" style="height: 50px; width: 70px;" src="./image/visa.png" />
-                    </div>
-                </div>
-            </div>
-        </div>
     </div>
-    
+    <!-- End Section 4 -->
+
+    <!-- Section 5 -->
+    <div class="section-five">
+      <div class="container">
+        <div class="inner-head">
+          <div class="row">
+            <div class="col-xl-3 d-flex justify-content-center align-items-center">
+              <div class="inner-title">Related Products</div>
+            </div>
+            <div class="col-xl-9">
+              <hr />
+            </div>
+          </div>
+
+          <div class="inner-list position-relative">
+            <!-- Danh sách sản phẩm fetch từ API -->
+            <div class="row flex-nowrap overflow-hidden" id="product-list">
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- End Section 5 -->
+
+      <div class="row">
+        <div class="footer">
+          <div class="container" style="margin-bottom: 20px;">
+            <div class="column contact-info">
+              <h3>
+                Contact Info
+              </h3>
+              <p>
+                1418 River Drive, Suite 35
+                <br />
+                Cottonhall, CA 9622
+              </p>
+              <p>
+                Monday – Friday: 9:00-20:00
+                <br />
+                Saturday: 11:00 – 15:00
+              </p>
+              <a href="mailto:contact@example.com">
+                contact@example.com
+              </a>
+            </div>
+            <div class="column">
+              <h3>
+                Company
+              </h3>
+              <p>
+                <a href="#">
+                  About us
+                </a>
+              </p>
+              <p>
+                <a href="#">
+                  Delivery Information
+                </a>
+              </p>
+              <p>
+                <a href="#">
+                  Privacy Policy
+                </a>
+              </p>
+              <p>
+                <a href="#">
+                  Terms &amp; Conditions
+                </a>
+              </p>
+              <p>
+                <a href="#">
+                  Contact Us
+                </a>
+              </p>
+              <p>
+                <a href="#">
+                  Support Center
+                </a>
+              </p>
+            </div>
+            <div style="border-right: 1px solid #b3b3b3; margin-right: 20px;"></div>
+            <div class="column logo" style="margin-left: 20px;">
+              <h2>
+                Bookory
+              </h2>
+              <p>
+                Got Questions? Call us 24/7!
+              </p>
+              <p style="color: #ff5e3a; font-size: 24px;">
+                +(84) - 1800 - 4635
+              </p>
+              <div class="social-icons">
+                <a href="#">
+                  <i class="fab fa-facebook-f">
+                  </i>
+                </a>
+                <a href="#">
+                  <i class="fab fa-twitter">
+                  </i>
+                </a>
+                <a href="#">
+                  <i class="fab fa-instagram">
+                  </i>
+                </a>
+                <a href="#">
+                  <i class="fab fa-pinterest">
+                  </i>
+                </a>
+              </div>
+            </div>
+            <div style="border-right: 1px solid #b3b3b3; margin-left: 40px; margin-right: 20px;">
+            </div>
+            <div class="column">
+              <h3>
+                Corporate
+              </h3>
+              <p>
+                <a href="#">
+                  Become a Vendor
+                </a>
+              </p>
+              <p>
+                <a href="#">
+                  Affiliate Program
+                </a>
+              </p>
+              <p>
+                <a href="#">
+                  Our Suppliers
+                </a>
+              </p>
+              <p>
+                <a href="#">
+                  Accessibility
+                </a>
+              </p>
+              <p>
+                <a href="#">
+                  Promotions
+                </a>
+              </p>
+              <p>
+                <a href="#">
+                  Careers
+                </a>
+              </p>
+            </div>
+            <div class="column">
+              <h3>
+                Our Service
+              </h3>
+              <p>
+                <a href="#">
+                  Help Center
+                </a>
+              </p>
+              <p>
+                <a href="#">
+                  Returns
+                </a>
+              </p>
+              <p>
+                <a href="#">
+                  Product Recalls
+                </a>
+              </p>
+              <p>
+                <a href="#">
+                  Accessibility
+                </a>
+              </p>
+              <p>
+                <a href="#">
+                  Contact Us
+                </a>
+              </p>
+              <p>
+                <a href="#">
+                  Store Pickup
+                </a>
+              </p>
+            </div>
+          </div>
+          <div style="border-bottom: 1px solid #b3b3b3; margin-bottom: 20px;">
+          </div>
+          <div class="bottom-bar">
+            <p>
+              Copyright © 2024
+              <a href="#">
+                Bookory
+              </a>
+              . All rights reserved.
+            </p>
+            <div class="payment-icons">
+              <img alt="PayPal logo" style="height: 50px; width: 70px;" src="./image/paypal.png" />
+              <img alt="MasterCard logo" style="height: 50px; width: 70px;" src="./image/masterCard.png" />
+              <img alt="American Express logo" style="height: 50px; width: 70px;" src="./image/american-express.png" />
+              <img alt="Bitcoin logo" style="height: 50px; width: 70px;" src="./image/bitcoin_card.png" />
+              <img alt="Discover logo" style="height: 50px; width: 70px;" src="./image/discover_card.png" />
+
+              <img alt="Visa logo" style="height: 50px; width: 70px;" src="./image/visa.png" />
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
     <script>
-        document.addEventListener("DOMContentLoaded", () => {
-        const options = document.querySelectorAll(".select-box");
-        const priceDisplay = document.getElementById("current-price");
-        const clearButton = document.querySelector(".clear");
+      // Get all tabs and tab contents
+      const tabs = document.querySelectorAll(".tab");
+      const tabContents = document.querySelectorAll(".tab-content");
 
-        options.forEach((option) => {
-          option.addEventListener("click", () => {
-            // Xóa lớp 'active' khỏi tất cả các lựa chọn
-            options.forEach((opt) => opt.classList.remove("active"));
 
-            // Thêm lớp 'active' vào lựa chọn hiện tại và cập nhật giá
-            option.classList.add("active");
-            const price = option.getAttribute("data-price");
-            priceDisplay.textContent = `$${price}.00`;
-          });
-        });
-
-        // Sự kiện Clear để đặt lại giá về 0 và xóa lớp 'active'
-        clearButton.addEventListener("click", (event) => {
-          event.preventDefault();
-          options.forEach((opt) => opt.classList.remove("active"));
-          priceDisplay.textContent = "$0.00";
-        });
-      });
-    </script>
-        
-    <script>
-        // Get all tabs and tab contents
-        const tabs = document.querySelectorAll(".tab");
-        const tabContents = document.querySelectorAll(".tab-content");
-
-        // Add click event for each tab
-            tabs.forEach((tab) => {
-            tab.addEventListener("click", () => {
-        // Remove active class from all tabs and contents
-            tabs.forEach((t) => t.classList.remove("active"));
-            tabContents.forEach((content) => content.classList.remove("active"));
-
-        // Add active class to clicked tab and corresponding content
-            tab.classList.add("active");
-            document
+      // Add click event for each tab
+      tabs.forEach((tab) => {
+        tab.addEventListener("click", () => {
+          // Remove active class from all tabs and contents
+          tabs.forEach((t) => t.classList.remove("active"));
+          tabContents.forEach((content) => content.classList.remove("active"));
+          // Add active class to clicked tab and corresponding content
+          tab.classList.add("active");
+          document
             .getElementById(tab.getAttribute("data-tab"))
             .classList.add("active");
         });
       });
+
+    </script>
+    <script>
+      document.querySelector(".wishlist").addEventListener("click", function () {
+        // Thêm hoặc loại bỏ class 'active' khi click vào wishlist
+        this.classList.toggle("active");
+      });
+
     </script>
     <script src="detail.js"></script>
-  </body>
+</body>
+
 </html>
