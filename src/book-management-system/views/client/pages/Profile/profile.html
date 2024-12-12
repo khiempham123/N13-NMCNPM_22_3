@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Profile</title>
-    <link rel="stylesheet" href="editProfileStyle.css">
+    <link rel="stylesheet" href="fixProfile.css">
     <link rel="stylesheet" href="../publicStyle/base.css">
     <link rel="stylesheet" href="../publicStyle/home.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css"
@@ -110,12 +110,17 @@
                       </div>
                     </div>
                   </div>
-                  <i class="fa-regular fa-heart" style="margin-left: 5px;"> |
-                  </i>
-                  <a href="https://example.com"
+                  <a href="../Favourite/fav.html"
                     style="color: inherit; text-decoration: none;">
-                    <i class="fa-solid fa-cart-shopping "
-                      style="margin-left: 5px;"></i>
+                    <i class="fa-regular fa-heart"
+                        style="margin-left: 5px;"> |
+                    </i>
+                  </a>
+                  <a href="../Cart/Cart.html"
+                      style="color: inherit; text-decoration: none;">
+                      <i
+                          class="fa-solid fa-cart-shopping "
+                          style="margin-left: 5px;"></i>
                   </a>
                 </div>
               </div>
@@ -150,7 +155,7 @@
                   id="navbarSupportedContent">
                   <ul class="navbar-nav" style="margin-right: 30px;">
                     <li class="nav-item custom-link">
-                      <a class="nav-link" id="goHome" href="#"
+                      <a class="nav-link" id="goHome" href="../home/home.html"
                         aria-expanded="false">
                         <span class="nav-item" style=" color: white;">Home</span>
                       </a>
@@ -158,7 +163,7 @@
                   </ul>
                   <ul class="navbar-nav" style="margin-right: 30px;">
                     <li class="nav-item custom-link">
-                      <a class="nav-link" href="#" aria-expanded="false">
+                      <a class="nav-link" href="../shop/shop.html" aria-expanded="false">
                         <span class="nav-item" style=" color: white;">Book</span>
                       </a>
                     </li>
@@ -201,27 +206,42 @@
       <body>
         <div class="employee-form-container">
           <div class="employee-form-box">
-            <div class="form-header">
-              <h1 class="form-title">User Information</h1>
-              <button id="editButton">Edit</button>
-              <button id="cancelButton" style="display: none;">Cancel</button>
+            <!-- Tabs -->
+            <div class="tabs">
+              <button class="tab-button active" data-tab="personal-info">Personal Information</button>
+              <button class="tab-button" data-tab="account-security">Account & Security</button>
             </div>
-
-            <div>
-              <form id="employeeForm" class="employee-form-info">
-                <div>
+        
+            <!-- Personal Info Tab -->
+            <div id="personal-info" class="tab-content active">
+              <div class="form-header">
+                <h1 class="form-title">Manage Information</h1>
+              </div>
+              <div class="form-layout">
+                <!-- Avatar Section -->
+                <div class="photo-section">
+                  <img
+                    id="photoPreview"
+                    class="photo-preview"
+                    src="https://via.placeholder.com/120"
+                    alt="Profile Picture"
+                  />
+                  <button type="button" id="changePhotoButton" class="btn btn-secondary">Change Photo</button>
+                  <input type="file" id="photoUpload" accept="image/*" style="display: none;" />
+                </div>
+                
+                
+        
+                <!-- Form Fields Section -->
+                <form id="employeeForm" class="employee-form-info">
                   <div class="form-field">
-                    <label for="name">Name</label>
+                    <label for="name">Full Name</label>
                     <input type="text" id="name" disabled />
                   </div>
-            
-                  <!-- Date of Birth -->
                   <div class="form-field">
                     <label for="dateOfBirth">Date of Birth</label>
-                    <input type="text" id="dateOfBirth" disabled placeholder="dd/mm/yyyy"/>
+                    <input type="text" id="dateOfBirth" disabled />
                   </div>
-            
-                  <!-- Gender -->
                   <div class="form-field">
                     <label for="gender">Gender</label>
                     <select id="gender" disabled>
@@ -230,36 +250,55 @@
                       <option value="other">Other</option>
                     </select>
                   </div>
-            
-                  <!-- Phone -->
                   <div class="form-field">
-                    <label for="phone">Phone</label>
+                    <label for="phone">Phone Number</label>
                     <input type="text" id="phone" disabled />
                   </div>
-            
-                  <!-- Address -->
                   <div class="form-field">
                     <label for="address">Address</label>
                     <input type="text" id="address" disabled />
                   </div>
+                </form>
+              </div>
+        
+              <!-- Buttons Section -->
+              <div class="form-actions">
+                <button id="editButton" class="btn btn-secondary">Edit</button>
+                <button id="cancelButton" class="btn btn-danger" style="display: none;">Cancel</button>
+                <button id="saveButton" class="btn btn-primary" style="display: none;">Save</button>
+              </div>
+            </div>
+        
+            <!-- Account Security Tab -->
+            <div id="account-security" class="tab-content">
+              <div class="form-header">
+                <h1 class="form-title">Change Password</h1>
+              </div>
+              <form id="securityForm" class="employee-form-info">
+                <div class="form-field">
+                  <label for="currentPassword">Current Password</label>
+                  <input type="password" id="currentPassword" placeholder="Enter current password" />
                 </div>
-                <div class="form-photo-section">
-                  <div class="photo-wrapper">
-                    <img id="photoPreview" class="photo-preview"
-                      src="https://images.unsplash.com/photo-1633332755192-727a05c4013d?w=500&h=500"
-                      alt="Employee Photo" />
-                    <label for="photoUpload" class="photo-upload-label" style="display: none">Upload</label>
-                    <input type="file" id="photoUpload" accept="image/*" style="display: none" />
-                  </div>
+                <div class="form-field">
+                  <label for="newPassword">New Password</label>
+                  <input type="password" id="newPassword" placeholder="Enter new password" />
                 </div>
-
-                <!-- Name -->
-                <button type="submit" id="saveButton" style="display: none;">Save</button>
+                <div class="form-field">
+                  <label for="confirmPassword">Confirm New Password</label>
+                  <input type="password" id="confirmPassword" placeholder="Confirm new password" />
+                </div>
+                <button type="submit" id="changePasswordButton" class="btn" style="background-color: rgb(170, 170, 233);">Change Password</button>
               </form>
             </div>
           </div>
         </div>
         
+        
+        
+        
+        
+        
+      </body>  
         
 
 
@@ -458,5 +497,6 @@
       </div>
     </div>
     <script src="profile.js"></script>
+    <script src="../../../../helpers/upload.js"></script>
   </body>
 </html>

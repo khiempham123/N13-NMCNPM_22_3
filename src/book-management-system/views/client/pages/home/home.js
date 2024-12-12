@@ -1,4 +1,3 @@
-
 const API_BASE_URL = "http://localhost:3000";
 
 // DOM elements
@@ -412,58 +411,69 @@ document.addEventListener("DOMContentLoaded", function () {
 // end deals of the week
 
 //Handle pre and next click on children type
-//Xử lý các sự kiện click tại modal User
 document.addEventListener("DOMContentLoaded", () => {
-  const userIcon = document.querySelector(".user-icon");
-  const profileCard = document.querySelector(".profile-card");
-  const closeBtn = document.querySelector(".close-btn");
-  const historyBtn = document.getElementById('btn-history');
-  const addProductModal = document.querySelector('addProductModal');
-  // Hiển thị/hide khi click vào icon
+  const userIcon = document.querySelector(".user-icon"); // Biểu tượng người dùng
+  const loggedOutProfile = document.querySelector("#logged-out-profile"); // Modal khi chưa đăng nhập
+  const loggedInProfile = document.querySelector("#logged-in-profile"); // Modal khi đã đăng nhập
+  const closeBtns = document.querySelectorAll(".close-btn"); // Nút đóng của modal
+
+  // Kiểm tra token từ localStorage
+  const token = localStorage.getItem("token");
+
+  // Ẩn modal khi mới tải trang
+  loggedOutProfile.style.display = "none";
+  loggedInProfile.style.display = "none";
+
+  // Function to toggle the profile modal visibility
+  const toggleProfileModal = () => {
+    // Kiểm tra trạng thái đăng nhập dựa trên token
+    if (token) {
+      // Nếu có token (đã đăng nhập), hiển thị modal profile của người dùng
+      loggedInProfile.style.display =
+        loggedInProfile.style.display === "none" ||
+        loggedInProfile.style.display === ""
+          ? "flex"
+          : "none";
+      loggedOutProfile.style.display = "none"; // Ẩn modal đăng nhập/đăng ký
+    } else {
+      // Nếu không có token (chưa đăng nhập), hiển thị modal đăng nhập/đăng ký
+      loggedOutProfile.style.display =
+        loggedOutProfile.style.display === "none" ||
+        loggedOutProfile.style.display === ""
+          ? "flex"
+          : "none";
+      loggedInProfile.style.display = "none"; // Ẩn modal profile của người dùng
+    }
+  };
+
+  // Hiển thị modal khi người dùng bấm vào icon
   userIcon.addEventListener("click", (event) => {
-    event.preventDefault();
-    profileCard.style.display =
-      profileCard.style.display === "none" || profileCard.style.display === ""
-        ? "block"
-        : "none";
+    event.preventDefault(); // Ngăn chặn hành vi mặc định
+    toggleProfileModal(); // Gọi hàm toggle để hiển thị hoặc ẩn modal
   });
 
-  // Đóng khi click vào nút đóng
-  closeBtn.addEventListener("click", () => {
-    profileCard.style.display = "none";
+  // Đóng modal khi người dùng bấm vào nút đóng (x)
+  closeBtns.forEach((btn) => {
+    btn.addEventListener("click", () => {
+      loggedOutProfile.style.display = "none";
+      loggedInProfile.style.display = "none";
+    });
   });
-  historyBtn.addEventListener("click", () => {
 
-    profileCard.style.display = "none";
-    addProductModal.style.display = 'block';
-  });
-  // Ẩn profile-card khi click ngoài khu vực
+  // Đóng modal khi người dùng bấm ra ngoài modal
   document.addEventListener("click", (event) => {
+    // Kiểm tra nếu người dùng bấm vào vùng ngoài modal
     if (
-      !profileCard.contains(event.target) &&
+      !loggedOutProfile.contains(event.target) &&
+      !loggedInProfile.contains(event.target) &&
       !userIcon.contains(event.target)
     ) {
-      profileCard.style.display = "none";
+      loggedOutProfile.style.display = "none"; // Ẩn modal đăng nhập/đăng ký
+      loggedInProfile.style.display = "none"; // Ẩn modal profile của người dùng
     }
   });
 });
-//Phải có đoạn code này thì mới đóng modal User và mở Modal history được
-const addProductBtn = document.getElementById('btn-history');
-const closeBtn = document.getElementsByClassName('close')[0];
 
-addProductBtn.addEventListener('click', () => {
-    addProductModal.style.display = 'block';
-});
-
-closeBtn.addEventListener('click', () => {
-    addProductModal.style.display = 'none';
-});
-
-window.addEventListener('click', (event) => {
-    if (event.target == addProductModal) {
-        addProductModal.style.display = 'none';
-    }
-});
 //////////////////////////////////////////////////////////////////////////////////
 //////////////////////////////////////// Phần sách ///////////////////////////////
 // Hàm fetch và hiển thị sách lên giao diện

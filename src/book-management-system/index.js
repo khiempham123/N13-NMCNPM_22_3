@@ -9,6 +9,15 @@ const ForgotPassword = require("./models/forgot-password.models");
 const cron = require("node-cron");
 const session = require("express-session");
 
+const cloudinary = require("cloudinary");
+// Cấu hình Cloudinary
+cloudinary.v2.config({
+  cloud_name: "dp1s19mxg",
+  api_key: "813724476411169",
+  api_secret: "VvRED_fbBL-Wp_mqXw1x7rbCSic",
+  secure: true,
+});
+
 const app = express();
 const port = process.env.PORT;
 
@@ -19,7 +28,7 @@ app.use(express.json());
 
 app.use(
   cors({
-    origin: "http://127.0.0.1:5501",
+    origin: ["http://127.0.0.1:5501", "http://127.0.0.1:5500"],
     methods: ["GET", "POST", "PUT", "DELETE", "PATCH"],
     headers: ["Content-Type", "authorization"],
   })
@@ -32,6 +41,21 @@ app.use(
     cookie: { secure: false }, // Đặt `true` nếu sử dụng HTTPS
   })
 );
+
+// API để tạo chữ ký xác thực
+app.get("/generate-signature", (req, res) => {
+  const timestamp = Math.round(new Date().getTime() / 1000);
+
+  const signature = cloudinary.utils.api_sign_request(
+    {
+      timestamp: timestamp,
+      upload_preset: "ml_default",
+    },
+    cloudinary.config().api_secret
+  );
+
+  res.json({ timestamp, signature });
+});
 
 // Kết nối tới MongoDB
 connect();
