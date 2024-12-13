@@ -6,6 +6,7 @@ const favRouter = require("./fav.route");
 const vendorRouter = require("./vendor.route");
 const profileRouter = require("./profile.route");
 const bookRouter = require("./book.route");
+const authorRouter = require("./author.route");
 
 module.exports = (app) => {
   app.use("/", homeRouter);
@@ -16,4 +17,5 @@ module.exports = (app) => {
   app.use("/vendor", vendorRouter);
   app.use("/profile", profileRouter);
   app.use("/book", bookRouter);
+  app.use("/author", authorRouter);
 };
