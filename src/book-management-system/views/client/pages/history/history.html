@@ -5,6 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Vendor</title>
+    <link rel="stylesheet" href="./historyDetails.css">
     <link rel="stylesheet" href="../publicStyle/base.css">
     <link rel="stylesheet" href="../publicStyle/home.css">
     <link rel="stylesheet" href="./history.css">
@@ -198,25 +199,9 @@
                         Cancelled(22)
                     </a>
                 </div>
-
-                <div class="date-picker">
-                    <input type="input" value="2023-11-01" style="text-align: center; width: 150px; border-radius: 20px; " />
-                    <span>
-                        To
-                    </span>
-                    <input type="input" value="2023-11-01" style="text-align: center; width: 150px; border-radius: 20px; " />
-                </div>
             </div>
             <div class="search-bar">
                 <input placeholder="Search...." type="text" style="border-radius: 20px;" />
-
-                <div class="sort-by">
-                    <span>
-                        Short By
-                    </span>
-                    <i class="fa-solid fa-arrow-down-wide-short"></i>
-                    </i>
-                </div>
             </div>
             <table>
                 <thead>
@@ -228,7 +213,7 @@
                             Product Name
                         </th>
                         <th>
-                            Payment
+                            Order Date
                         </th>
                         <th>
                             Status
@@ -255,88 +240,10 @@
                             Sport Shoes
                         </td>
                         <td class="payment-paid">
-                            Paid
+                            2023-11-01
                         </td>
                         <td class="status-pending">
                             Pending
-                        </td>
-                        <td>
-                            $20
-                        </td>
-                        <td>
-                            <i class="fas fa-file-invoice invoice-icon">
-                            </i>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <a href="#">
-                                #52689
-                            </a>
-                        </td>
-                        <td>
-                            <img alt="Watch" height="40"
-                                src="https://storage.googleapis.com/a1aa/image/WdU0IQfBYk2KYyxEkgE0z00gVMHWXFCHtDrjwMDsNpYI9N9JA.jpg"
-                                width="40" />
-                            Watch
-                        </td>
-                        <td class="payment-cod">
-                            COD
-                        </td>
-                        <td class="status-cancelled">
-                            Cancelled
-                        </td>
-                        <td>
-                            $20
-                        </td>
-                        <td>
-                            <i class="fas fa-file-invoice invoice-icon">
-                            </i>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <a href="#">
-                                #52648
-                            </a>
-                        </td>
-                        <td>
-                            <img alt="Headphone" height="40"
-                                src="https://storage.googleapis.com/a1aa/image/peBMbdzB0JWZRSsxyTYapQbi83upA700B8t6zaARmZiH9N9JA.jpg"
-                                width="40" />
-                            Headphone
-                        </td>
-                        <td class="payment-cod">
-                            COD
-                        </td>
-                        <td class="status-cancelled">
-                            Cancelled
-                        </td>
-                        <td>
-                            $20
-                        </td>
-                        <td>
-                            <i class="fas fa-file-invoice invoice-icon">
-                            </i>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <a href="#">
-                                #23845
-                            </a>
-                        </td>
-                        <td>
-                            <img alt="COCO Perfume" height="40"
-                                src="https://storage.googleapis.com/a1aa/image/SzobVcefYxtbJkpIhdmtSVhBWprnl7yZjJQKMyrd5IkM6b6TA.jpg"
-                                width="40" />
-                            COCO Perfume
-                        </td>
-                        <td class="payment-paid">
-                            Paid
-                        </td>
-                        <td class="status-delivered">
-                            Delivered
                         </td>
                         <td>
                             $20
@@ -520,6 +427,81 @@
                 </div>
             </div>
         </div>
+        <!-- Modal Order Summary -->
+        <div id="orderSummaryModal" class="modal">
+            <div class="modal-content">
+                <span class="close">&times;</span>
+                <div class="order-summary">
+                    <div class="summary-details">
+                        <h2>Order Summary</h2>
+                        <hr>
+                        <p>Product Cost <span style="color: black;">$360.00</span></p>
+                        <p>Shipping <span style="color: black;">$40.00</span></p>
+                        <p>Coupon Code <span class="green">#APPLIED</span></p>
+                        <hr>
+                        <h2 style="margin-top: 20px;">Subtotal <span class="purple">$400.00</span></h2>
+                    </div>
+                    <div class="product-list">
+                        <div class="product">
+                            <img src="https://via.placeholder.com/60" alt="Dark Denim Jacket">
+                            <div class="product-info">
+                                <h4>Dark Denim Jacket</h4>
+                                <p>By: Dust Studios</p>
+                            </div>
+                            <div class="product-price">
+                                <span>$120.00</span>
+                            </div>
+                        </div>
+                        <div class="product">
+                            <img src="https://via.placeholder.com/60" alt="Leather Military Boots">
+                            <div class="product-info">
+                                <h4>Leather Military Boots</h4>
+                                <p>Lethal Lifestyle</p>
+                            </div>
+                            <div class="product-price">
+                                <span>$120.00</span>
+                            </div>
+                        </div>
+                        <div class="product">
+                            <img src="https://via.placeholder.com/60" alt="Writing Pad">
+                            <div class="product-info">
+                                <h4>Writing Pad</h4>
+                                <p>Books</p>
+                            </div>
+                            <div class="product-price">
+                                <span>$120.00</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <script>
+            document.addEventListener("DOMContentLoaded", function () {
+                const invoiceIcons = document.querySelectorAll(".invoice-icon");
+                const orderSummaryModal = document.getElementById("orderSummaryModal");
+                const closeModalBtn = document.querySelector(".modal .close");
+
+                // Hiển thị modal khi nhấn vào biểu tượng hóa đơn
+                invoiceIcons.forEach(icon => {
+                    icon.addEventListener("click", () => {
+                        orderSummaryModal.style.display = "block";
+                    });
+                });
+
+                // Đóng modal khi nhấn vào nút close
+                closeModalBtn.addEventListener("click", () => {
+                    orderSummaryModal.style.display = "none";
+                });
+
+                // Đóng modal khi nhấn ra ngoài modal
+                window.addEventListener("click", (event) => {
+                    if (event.target == orderSummaryModal) {
+                        orderSummaryModal.style.display = "none";
+                    }
+                });
+            });
+        </script>
 </body>
 
 </html>

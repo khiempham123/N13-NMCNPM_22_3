@@ -1,0 +1,145 @@
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: auto;
+    height: auto;
+    overflow: auto;
+    background-color: rgb(0, 0, 0);
+    background-color: rgba(0, 0, 0, 0.4);
+}
+
+.modal-content {
+    background-color: lightskyblue;
+    margin: 15% auto;
+    padding: 20px;
+    border: 1px solid #888;
+    width: auto;
+    max-width: 1040px;
+    border-radius: 20px;
+    display: flex;
+    justify-content: center;
+}
+
+.close {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.order-summary {
+    background: #fff;
+    border-radius: 20px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    height: 500px;
+    width: 1000px;
+    display: flex;
+    justify-content: space-between;
+  }
+
+  .order-summary h2 {
+    font-size: 24px;
+    margin-bottom: 20px;
+  }
+
+  .summary-details {
+    border-radius: 20px;
+    border: 1px solid whitesmoke;
+    padding: 20px;
+    width: 350px;
+    height: fit-content;
+  }
+  .summary-details:hover{
+    border: 1px solid #b3b3b3;
+  }
+  .summary-details p {
+    color: gray;
+    margin: 5px 0;
+    display: flex;
+    justify-content: space-between;
+  }
+
+  .summary-details h2 {
+    margin: 5px 0;
+    display: flex;
+    justify-content: space-between;
+  }
+
+  .summary-details p span {
+    font-weight: bold;
+  }
+
+  .summary-details p span.green {
+    color: green;
+  }
+
+  .summary-details h2 span.purple {
+    color: blue;
+    font-size: 18px;
+  }
+
+  .product-list {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    gap: 15px;
+    width: 600px;
+  }
+
+  .product {
+    display: flex;
+    align-items: center;
+    background: #f9f9f9;
+    justify-content: space-between;
+    border-radius: 20px;
+    padding: 10px;
+    height: 200px;
+  }
+  .product:hover{
+    border: 1px solid #b3b3b3;
+  }
+  .product img {
+    width: 60px;
+    height: 60px;
+    border-radius: 4px;
+    object-fit: cover;
+    margin-right: 15px;
+  }
+
+  .product-info {
+    flex-grow: 1;
+    width: 200px;
+  }
+
+  .product-info h4 {
+    margin: 0;
+    font-size: 20px;
+  }
+
+  .product-info p {
+    margin: 5px 0 0;
+    font-size: 14px;
+    color: gray;
+  }
+
+  .product-price {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    font-weight: bold;
+  }
+
+  .product-price span {
+    color: purple;
+  }
