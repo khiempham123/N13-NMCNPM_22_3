@@ -156,132 +156,6 @@
                                                 </div>
                                             </div>
 
-                                            <!--modal history sau khi đã đăng nhập-->
-                                            <div id="addProductModal"
-                                                class="modal-History">
-                                                <div
-                                                    class="modal-content-History">
-                                                    <span class="close">&times;</span>
-                                                    <h2 style="color: black;"></h2>
-                                                    <div
-                                                        class="container-History">
-                                                        <div
-                                                            class="form-section">
-                                                            <h2>History Orders</h2>
-                                                            <div
-                                                                class="details recentOrders">
-                                                                <table
-                                                                    style="color: black;">
-                                                                    <thead
-                                                                        style="background-color: #74C0FC; border-radius: 10px;">
-                                                                        <tr>
-                                                                            <td>ID</td>
-                                                                            <td>Product</td>
-                                                                            <td>Price</td>
-                                                                            <td>Payment</td>
-                                                                            <td>Date</td>
-                                                                            <td>Status</td>
-                                                                        </tr>
-                                                                    </thead>
-
-                                                                    <tbody>
-                                                                        <tr>
-                                                                            <td>1</td>
-                                                                            <td>Star
-                                                                                Refrigerator</td>
-                                                                            <td>$1200</td>
-                                                                            <td>Paid</td>
-                                                                            <td>2024-11-11</td>
-                                                                            <td><span
-                                                                                    class="status delivered">Delivered</span></td>
-                                                                        </tr>
-
-                                                                        <tr>
-                                                                            <td>2</td>
-                                                                            <td>Dell
-                                                                                Laptop</td>
-                                                                            <td>$110</td>
-                                                                            <td>Due</td>
-                                                                            <td>2024-11-11</td>
-                                                                            <td><span
-                                                                                    class="status pending">Pending</span></td>
-                                                                        </tr>
-
-                                                                        <tr>
-                                                                            <td>3</td>
-                                                                            <td>Apple
-                                                                                Watch</td>
-                                                                            <td>$1200</td>
-                                                                            <td>Paid</td>
-                                                                            <td>2024-11-11</td>
-                                                                            <td><span
-                                                                                    class="status return">Return</span></td>
-                                                                        </tr>
-
-                                                                        <tr>
-                                                                            <td>4</td>
-                                                                            <td>Addidas
-                                                                                Shoes</td>
-                                                                            <td>$620</td>
-                                                                            <td>Due</td>
-                                                                            <td>2024-11-11</td>
-                                                                            <td><span
-                                                                                    class="status inProgress">In
-                                                                                    Progress</span></td>
-                                                                        </tr>
-
-                                                                        <tr>
-                                                                            <td>5</td>
-                                                                            <td>Star
-                                                                                Refrigerator</td>
-                                                                            <td>$1200</td>
-                                                                            <td>Paid</td>
-                                                                            <td>2024-11-11</td>
-                                                                            <td><span
-                                                                                    class="status delivered">Delivered</span></td>
-                                                                        </tr>
-
-                                                                        <tr>
-                                                                            <td>6</td>
-                                                                            <td>Dell
-                                                                                Laptop</td>
-                                                                            <td>$110</td>
-                                                                            <td>Due</td>
-                                                                            <td>2024-11-11</td>
-                                                                            <td><span
-                                                                                    class="status pending">Pending</span></td>
-                                                                        </tr>
-
-                                                                        <tr>
-                                                                            <td>7</td>
-                                                                            <td>Apple
-                                                                                Watch</td>
-                                                                            <td>$1200</td>
-                                                                            <td>Paid</td>
-                                                                            <td>2024-11-11</td>
-                                                                            <td><span
-                                                                                    class="status return">Return</span></td>
-                                                                        </tr>
-
-                                                                        <tr>
-                                                                            <td>8</td>
-                                                                            <td>Addidas
-                                                                                Shoes</td>
-                                                                            <td>$620</td>
-                                                                            <td>Due</td>
-                                                                            <td>2024-11-11</td>
-                                                                            <td><span
-                                                                                    class="status inProgress">In
-                                                                                    Progress</span></td>
-                                                                        </tr>
-                                                                    </tbody>
-                                                                </table>
-                                                            </div>
-
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
                                             <!--modal hiển thị trước khi đăng nhập-->
                                             <div class="profile-card"
                                                 id="logged-out-profile"
@@ -797,22 +671,8 @@
                         </div>
                     </div>
                 </div>
-                <script src="historyView.js"></script>
                 <script src="home.js"></script>
-                <!-- <script src="../../helpers/nav.js"></script> -->
-                <script>
-                    const profileButton = document.querySelector(".manage-account")
-                    profileButton.addEventListener('click', ()=>{
-                        window.location.href = "../Profile/profile.html"
-                    })
-                </script>
-                <script>
-                    const logoutButton = document.getElementById("logout")
-                    logoutButton.addEventListener('click', ()=>{
-                        localStorage.removeItem("token")
-                        window.location.href="../login/login.html"
-                    })
-                </script>
+                <script src="../../helpers/nav.js"></script>
             </body>
 
         </html>

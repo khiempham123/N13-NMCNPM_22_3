@@ -9,7 +9,7 @@ const getCart = async (req, res) => {
     // Tìm giỏ hàng của người dùng
     const cart = await Cart.findOne({ userId }).populate("items.bookId");
 
-    if (!cart) {
+    if (!cart || cart.items.length === 0) {
       return res.status(404).json({ message: "Giỏ hàng trống" });
     }
 

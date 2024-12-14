@@ -1,0 +1,150 @@
+/* section-one */
+.section-one {
+  padding: 40px 0px;
+  text-align: center;
+  background: #f0f0f0;
+}
+
+.section-one .title h1 {
+  color: var(--color-one);
+  margin-bottom: 10px;
+}
+
+/* End section-one */
+
+/* section-two */
+.section-two {
+  padding: 40px 0px;
+  text-align: left;
+  background: #fff;
+}
+
+.section-two .main-content {
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.section-two .main-content .inner-map iframe {
+  border-radius: 8px;
+  border: none;
+}
+
+.section-two .main-content .inner-form {
+  margin-left: 40px;
+}
+
+.section-two .main-content .inner-form .form-group {
+  margin: 40px 0;
+}
+
+.section-two .main-content .inner-form .form-group .form-control {
+  width: 100%;
+  padding: 15px 20px;
+  font-size: 16px;
+  border: 1px solid #ddd;
+  border-radius: 20px;
+  color: #666;
+  /* background: #e6f1ff; Light blue */
+  box-sizing: border-box;
+}
+
+.section-two .main-content .inner-form .form-group textarea.form-control {
+  height: 100px;
+  resize: none;
+}
+
+.section-two .main-content .inner-form .form-group label {
+  font-size: 14px;
+  color: #666;
+}
+
+.section-two .main-content .inner-form .form-group .submit-btn {
+  padding: 15px;
+  font-size: 16px;
+  color: #fff;
+  background-color: #ff6c5c;
+  /* Orange-red */
+  border: none;
+  border-radius: 20px;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+.section-two .main-content .inner-form .form-group .submit-btn:hover {
+  background-color: #e05a4a;
+  /* Darker orange-red */
+}
+
+/* End section-two */
+
+/* section-three */
+.section-three {
+  padding: 40px 0px;
+  background: #fff;
+  margin-bottom: 40px;
+}
+
+.section-three .location {
+  padding: 0px 10px;
+}
+
+.section-three .title {
+  text-align: center;
+  margin-bottom: 40px;
+}
+
+.section-three .location-branch,
+.section-three .location-hour {
+  padding: 0 20px;
+}
+
+.section-three .location-branch h4,
+.section-three .location-hour h4 {
+  margin: 30px 0;
+}
+
+.section-three .location-branch p,
+.section-three .location-hour p {
+  margin: 5px 0;
+  color: #666;
+}
+
+/* End section-three */
+
+/* section-four */
+.section-four {
+  padding: 40px 0px;
+  text-align: center;
+  background: #fff;
+}
+
+.section-four .main-section {
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  /* Đổ bóng phía dưới */
+}
+
+.section-four .main-section .box {
+  margin: 40px 0;
+}
+
+.section-four .main-section .box img {
+  margin: 12px 0;
+}
+
+.section-four .main-section .box h6 {
+  margin: 12px 0;
+  font-weight: 700;
+}
+
+.section-four .main-section .box p {
+  margin: 3px;
+}
+
+.section-four .main-section .box p span {
+  color: var(--color-one);
+}
+
+/* End section-four */
