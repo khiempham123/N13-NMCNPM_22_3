@@ -316,17 +316,40 @@ body {
   color: var(--white);
 }
 .details .recentOrders table tr td {
+  height: 80px;
   padding: 10px;
 }
 .details .recentOrders table tr td:last-child {
-  text-align: end;
+  text-align: end !important;
 }
+
 .details .recentOrders table tr td:nth-child(2) {
-  text-align: end;
+  text-align: center;
 }
 .details .recentOrders table tr td:nth-child(3) {
   text-align: center;
 }
+.details .recentOrders table tr td:nth-child(4) {
+  text-align: center;
+}
+.details .recentOrders table tr td:nth-child(5) {
+  text-align: center;
+}
+.img-Product
+{
+  width: 70px;
+  height: 70px;
+  border-radius: 10%;
+  object-fit: cover;
+}
+.img-Staff
+{
+  width: 70px;
+  height: 70px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
 .status.delivered {
   padding: 2px 4px;
   background: #8de02c;
