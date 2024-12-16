@@ -1,0 +1,131 @@
+/* Modal container */
+.modal {
+  display: none;
+  position: fixed;
+  z-index: 1;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-color: rgb(0, 0, 0);
+  background-color: rgba(0, 0, 0, 0.4);
+}
+
+/* Modal content */
+.modal-content {
+  background-color: #fefefe;
+  margin: 15% auto;
+  padding: 20px;
+  border: 1px solid #888;
+  width: 80%;
+  border-radius: 20px;
+}
+
+/* Close button */
+.close {
+  color: #aaa;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+  color: black;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.container-Product {
+  max-width: 1000px;
+  margin: 20px auto;
+  background: #fff;
+  border-radius: 10px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+}
+
+h1 {
+  text-align: center;
+  font-size: 24px;
+  color: #333;
+}
+
+.form-section {
+  margin-bottom: 40px;
+}
+
+.form-section h2 {
+  font-size: 18px;
+  color: white;
+  background-color: #6c4efc;
+  padding: 10px;
+  margin: 0 -20px 20px;
+  border-radius: 8px;
+}
+
+.form-group {
+  display: flex;
+  margin-bottom: 15px;
+  align-items: center;
+}
+
+.form-group label {
+  flex: 1;
+  font-weight: bold;
+}
+
+.form-group input,
+.form-group select,
+.form-group textarea {
+  flex: 2;
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+.form-group textarea {
+  resize: none;
+  height: 60px;
+}
+
+.form-group input[type="file"] {
+  padding: 3px;
+}
+
+.form-group input[type="checkbox"] {
+  flex: 0;
+  margin-right: 10px;
+}
+
+.form-buttons {
+  text-align: center;
+}
+
+.form-buttons button {
+  background-color: #6c4efc;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.form-buttons button:hover {
+  background-color: #5a3edc;
+}
+
+.split {
+  display: flex;
+  justify-content: space-between;
+}
+
+.split > div {
+  flex: 1;
+  margin-right: 10px;
+}
+
+.split > div:last-child {
+  margin-right: 0;
+}
