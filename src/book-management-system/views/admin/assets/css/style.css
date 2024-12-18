@@ -268,6 +268,31 @@ body {
   /* margin-top: 10px; */
 }
 
+.report {
+  position: relative;
+  width: 100%;
+  padding: 20px;
+  display: grid;
+  grid-gap: 30px;
+  /* margin-top: 10px; */
+  min-height: 500px;
+  background: var(--white);
+  padding: 20px;
+  box-shadow: 0 7px 25px rgba(0, 0, 0, 0.08);
+  border-radius: 20px;
+}
+
+.report .reportHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+}
+
+.reportHeader h2 {
+  font-weight: 600;
+  color: var(--blue);
+}
+
 .details .recentOrders {
   position: relative;
   display: grid;

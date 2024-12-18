@@ -3,6 +3,7 @@ const express = require("express");
 const cors = require("cors"); // Import thư viện CORS
 require("dotenv").config();
 const route = require("./routes/client/index.route");
+const routeAdmin = require("./routes/admin/index.route");
 const { connect } = require("./config/database"); // Import hàm connect từ database.js
 const ForgotPassword = require("./models/forgot-password.models");
 
@@ -61,6 +62,7 @@ app.get("/generate-signature", (req, res) => {
 connect();
 // Định tuyến
 route(app);
+routeAdmin(app);
 // Xóa OTP hết hạn mỗi giờ
 cron.schedule("0 * * * *", async () => {
   const currentTime = Date.now();
