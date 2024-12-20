@@ -25,12 +25,28 @@ if (signInForm) {
                 body: JSON.stringify(data)
             });
             if (response.ok) {
+                const { accessToken, refreshToken, username, role } = await response.json();
+    
+                // Lưu accessToken vào localStorage
+                localStorage.setItem('token', accessToken);
+                localStorage.setItem('refreshToken', refreshToken); // Lưu refreshToken nếu cần
+                localStorage.setItem('username', username);
+                localStorage.setItem('role', role);
                 signInMessage.style.display = 'block'; // Hiển thị thông báo
                 signInMessage.className = 'form-message success'; // Thêm lớp thành công
                 signInMessage.textContent = 'Đăng nhập thành công! Đang chuyển hướng...';
                 
+                // Phân hướng dựa trên vai trò
                 setTimeout(() => {
-                    window.location.href = '../staff.html'; // Chuyển hướng sau 2 giây
+                    if (role === 'staff') {
+                        window.location.href = '../staff.html'; // Chuyển hướng đến trang staff
+                    } else if (role === 'admin') {
+                        window.location.href = '../admin.html'; // Chuyển hướng đến trang admin
+                    } else {
+                        alert('Role không hợp lệ!');
+                        localStorage.clear(); // Xóa token và thông tin không hợp lệ
+                        window.location.href = 'login.html';
+                    }
                 }, 2000);
             } else {
                 const error = await response.json();

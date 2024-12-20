@@ -1,14 +1,15 @@
 [
-    {
-      "username": "admin1",
-      "password": "password123"
-    },
-    {
-      "username": "staff2",
-      "password": "password456"
-    },
-    {
-      "username": "staff3",
-      "password": "password789"
-    }
-  ]
+  {
+    "username": "staff5",
+    "password": "admin4", 
+    "name": "Nguyễn Tấn Đạt",
+    "birthDay": "1990-05-15",
+    "phone": "123456789",
+    "email": "staff1@example.com",
+    "address": "123 Main Street",
+    "position": "Sales Representative",
+    "salary": 3000,
+    "role": "staff",
+    "refreshToken": null
+  }
+]

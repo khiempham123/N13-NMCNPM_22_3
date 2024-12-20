@@ -1,0 +1,12 @@
+[{
+  "_id": {
+    "$oid": "6755b1c8f178554da75acd89"
+  },
+  "username": "Chang trai thu gian",
+  "password": "$2b$10$FCdv4OXG3ONrhhq8ICf6xuQ2DH9DeZBWHkJKX6i7PH2uhY6DL0ehe",
+  "email": "chillguynguyen@example12.com",
+  "createdAt": {
+    "$date": "2024-12-08T14:48:40.101Z"
+  },
+  "__v": 0
+}]

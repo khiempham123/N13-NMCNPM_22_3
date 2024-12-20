@@ -1,17 +1,55 @@
-// // Mở popup edit sách
-// document.getElementById("editOrder").addEventListener("click", function () {
-//   document.getElementById("editOrderPopup").style.display = "flex";
-// });
-
-// // Đóng popup edit sách
-// document
-//   .getElementById("closeEditOrderPopup")
-//   .addEventListener("click", function () {
-//     document.getElementById("editOrderPopup").style.display = "none";
-//   });
 
 // Ensure the DOM is fully loaded before running the script
 document.addEventListener("DOMContentLoaded", () => {
+  
+
+  const ordersTableBody = document.querySelector("#ordersTable tbody");
+
+  // Hàm fetch dữ liệu từ API
+  async function fetchOrders() {
+    try {
+      const response = await fetch("http://localhost:3000/staff/order");
+      if (!response.ok) {
+        throw new Error("Failed to fetch orders");
+      }
+
+      const orders = await response.json();
+      console.log(orders.orders)
+      // Xóa nội dung cũ trước khi thêm dữ liệu mới
+      ordersTableBody.innerHTML = "";
+
+      // Duyệt qua danh sách đơn hàng và thêm vào bảng
+      orders.orders.forEach((order, index) => {
+        const row = document.createElement("tr");
+        row.setAttribute("data-id", order._id);
+        // Thêm các cột dữ liệu
+        row.innerHTML = `
+          <td>${index + 1}</td>
+          <td>${order.userFullName}</td>
+          <td>${order.address.street}, ${order.address.ward}, ${order.address.district}, ${order.address.city}</td>
+          <td>$${order.totalAmount.toFixed(2)}</td>
+          <td>${order.status}</td>
+          <td>
+            <button class="editOrder">
+              <i class="fa-solid fa-pen-to-square"></i>
+            </button>
+          </td>
+        `;
+
+        // Thêm hàng vào bảng
+        ordersTableBody.appendChild(row);
+        attachEditEvent();
+      });
+    } catch (error) {
+      console.error("Error fetching orders:", error);
+    }
+  }
+
+  // Gọi hàm fetchOrders khi tải trang
+  document.getElementById("order").addEventListener("click", () => {
+    fetchOrders(); // Chỉ gọi hàm fetchBooks khi nhấn vào trang Books
+  });
+  function attachEditEvent() {
   // Select all edit buttons within the table
   const editButtons = document.querySelectorAll(".editOrder");
 
@@ -66,21 +104,51 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 
   // Function to save the updated data back to the table
-  saveBtn.addEventListener("click", () => {
+  saveBtn.addEventListener("click", async () => {
     if (currentRow) {
-      // Retrieve all cells (td) in the current row
       const cells = currentRow.querySelectorAll("td");
-
-      // Update the table cells with the new values from the popup
-      cells[1].textContent = nameInput.value.trim();
-      cells[2].textContent = addressInput.value.trim();
-      cells[4].textContent = statusSelect.value;
-
-      // Optionally, update the "Total" or other fields if needed
-      // cells[3].textContent = updatedTotalValue;
-
-      // Hide the popup after saving
-      popup.style.display = "none";
+  
+      // Thu thập dữ liệu đã chỉnh sửa
+      const orderId = currentRow.dataset.id; // Lấy ID đơn hàng từ thuộc tính data-id
+      console.log(orderId)
+      const updatedData = {
+        userFullName: nameInput.value.trim(),
+        address: {
+          street: addressInput.value.trim().split(", ")[0], // Giả định format "street, ward, district, city"
+          ward: addressInput.value.trim().split(", ")[1],
+          district: addressInput.value.trim().split(", ")[2],
+          city: addressInput.value.trim().split(", ")[3],
+        },
+        status: statusSelect.value,
+      };
+  
+      try {
+        // Gửi yêu cầu cập nhật đến backend
+        const response = await fetch(`http://localhost:3000/staff/order/${orderId}`, {
+          method: "PUT",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(updatedData),
+        });
+  
+        if (!response.ok) {
+          throw new Error("Failed to update order");
+        }
+  
+        const updatedOrder = await response.json();
+  
+        // Cập nhật bảng với dữ liệu mới
+        cells[1].textContent = updatedOrder.userFullName;
+        cells[2].textContent = `${updatedOrder.address.street}, ${updatedOrder.address.ward}, ${updatedOrder.address.district}, ${updatedOrder.address.city}`;
+        cells[4].textContent = updatedOrder.status;
+  
+        // Ẩn popup sau khi lưu thành công
+        popup.style.display = "none";
+      } catch (error) {
+        console.error("Error updating order:", error);
+        alert("Failed to update order. Please try again.");
+      }
     }
   });
 
@@ -90,4 +158,5 @@ document.addEventListener("DOMContentLoaded", () => {
       popup.style.display = "none";
     }
   });
+  }
 });

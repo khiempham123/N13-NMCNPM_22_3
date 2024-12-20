@@ -717,7 +717,7 @@
 }
 
 .main .content .page .section-main .main-box .book-box:hover {
-  box-shadow: 0px 10px 30px -5px rgba(0, 0, 0, 0.25);
+  box-shadow: 0px 10px 30px -5px rgba(4, 4, 4, 0.25);
 }
 
 .main .content .page .section-main .main-box .book-box .book-image {
@@ -933,3 +933,29 @@
   margin-right: 10px;
 }
 /* END personal */
+
+
+.input-wrapper input {
+  width: 100%; /* Đảm bảo input chiếm toàn bộ container */
+  max-width: 400px; /* Giới hạn chiều rộng tối đa */
+  padding: 10px 40px 10px 10px; /* Padding để chừa chỗ cho placeholder */
+  border: 1px solid #ccc;
+  border-radius: 10px; /* Làm tròn góc */
+  font-size: 16px; /* Tăng kích thước chữ */
+  font-family: inherit;
+  box-sizing: border-box; /* Đảm bảo padding không làm tăng kích thước */
+}
+.input-group {
+  margin-bottom: 20px; /* Khoảng cách giữa các nhóm */
+  display: flex;
+  flex-direction: column; /* Căn chỉnh label và input theo chiều dọc */
+  align-items: flex-start; /* Căn label và input về phía trái */
+}
+
+.input-wrapper {
+  width: 100%; /* Đảm bảo wrapper chiếm hết container */
+  max-width: 400px; /* Tăng chiều rộng tối đa của input */
+  position: relative;
+  display: flex;
+  align-items: center;
+}

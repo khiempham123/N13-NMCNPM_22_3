@@ -45,25 +45,25 @@
             >
           </li>
           <li>
-            <a href="#books" onclick="navigateTo('books')">
+            <a href="#books" onclick="navigateTo('books') " id="book" >
               <i class="fa-solid fa-book"></i>
               BOOKS</a
             >
           </li>
           <li>
-            <a href="#orders" onclick="navigateTo('orders')">
+            <a href="#orders" onclick="navigateTo('orders')" id="order">
               <i class="fa-solid fa-box"></i>
               ORDERS</a
             >
           </li>
           <li>
-            <a href="#sales" onclick="navigateTo('sales')">
+            <a href="#sales" onclick="navigateTo('sales')" id="sale">
               <i class="fa-solid fa-tags"></i>
               SALES</a
             >
           </li>
           <li>
-            <a href="#personal" onclick="navigateTo('personal')">
+            <a href="#personal" onclick="navigateTo('personal')" id="personals">
               <i class="fa-solid fa-user"></i>
               PERSONAL</a
             >
@@ -134,15 +134,13 @@
                     <input type="text" placeholder="Search..." />
                     <i class="fa fa-search"></i>
                   </div>
-                  <button id="openAddCustomerModal">
-                    <i class="fa-solid fa-plus"></i>
-                    <span>New Customer</span>
-                  </button>
+                  
                 </div>
                 <table id="customerTable">
                   <thead>
                     <tr>
                       <th>No</th>
+                      <th>Username</th>
                       <th>Name</th>
                       <th>BirthDay</th>
                       <th>Email</th>
@@ -299,73 +297,10 @@
                     <span>New Book</span>
                   </button>
                 </div>
-                <div class="row">
-                  <!-- book-1 -->
-                  <div class="col-xl-3">
-                    <div class="book-box">
-                      <div class="book-image">
-                        <img src="assets/images/popup.jpg" alt="book-1" />
-                      </div>
-                      <div class="book-content">
-                        <h4>Book 1</h4>
-                        <p>Author: Author 1</p>
-                        <p>Price: $10</p>
-                        <p>Quantity: 10</p>
-                        <button id="editBtn" class="editBtn">Edit</button>
-                        <button id="deleteBtn" class="deleteBtn">Delete</button>
-                      </div>
-                    </div>
-                  </div>
-                  <!-- book-2 -->
-                  <div class="col-xl-3">
-                    <div class="book-box">
-                      <div class="book-image">
-                        <img src="assets/images/popup.jpg" alt="book-2" />
-                      </div>
-                      <div class="book-content">
-                        <h4>Book 2</h4>
-                        <p>Author: Author 2</p>
-                        <p>Price: $10</p>
-                        <p>Quantity: 12</p>
-                        <button id="editBtn" class="editBtn">Edit</button>
-                        <button id="" class="deleteBtn">Delete</button>
-                      </div>
-                    </div>
-                  </div>
-                  <!-- book-3 -->
-                  <div class="col-xl-3">
-                    <div class="book-box">
-                      <div class="book-image">
-                        <img src="assets/images/popup.jpg" alt="book-3" />
-                      </div>
-                      <div class="book-content">
-                        <h4>Book 3</h4>
-                        <p>Author: Author 3</p>
-                        <p>Price: $33</p>
-                        <p>Quantity: 3</p>
-                        <button id="editBtn" class="editBtn">Edit</button>
-                        <button id="" class="deleteBtn">Delete</button>
-                      </div>
-                    </div>
-                  </div>
-                  <!-- book-4 -->
-                  <div class="col-xl-3">
-                    <div class="book-box">
-                      <div class="book-image">
-                        <img src="assets/images/popup.jpg" alt="book-4" />
-                      </div>
-                      <div class="book-content">
-                        <h4>Book 4</h4>
-                        <p>Author: Author 4</p>
-                        <p>Price: $14</p>
-                        <p>Quantity: 7</p>
-                        <button id="editBtn" class="editBtn">Edit</button>
-                        <button id="" class="deleteBtn">Delete</button>
-                      </div>
-                    </div>
-                  </div>
-                </div>
+                <div id="bookRow" class= "row">
+              <!-- Dữ liệu sách được thêm vào đây -->
               </div>
+
               <!-- Add Book Modal -->
               <div class="popup" id="addBookPopup">
                 <div class="popup-frame">
@@ -399,13 +334,6 @@
                             type="number"
                             id="addBookStock"
                             placeholder="Stock"
-                          />
-                        </div>
-                        <div style="margin-bottom: 20px">
-                          <input
-                            type="number"
-                            id="addBookPrice"
-                            placeholder="Price"
                           />
                         </div>
                         <div style="margin-bottom: 20px">
@@ -444,7 +372,7 @@
                           </textarea>
                         </div>
                         <!-- Thêm ô input vào đây -->
-                        <button id="">SAVE</button>
+                        <button id="saveAddBookBtn">SAVE</button>
                         <button id="closeAddBookPopup">CLOSE</button>
                       </div>
                     </div>
@@ -462,13 +390,13 @@
                   <div class="row">
                     <div class="col-xl-5">
                       <div class="popup-image">
-                        <img src="assets/images/popup.jpg" alt="popup.img" />
+                        <img src="assets/images/popup.jpg" alt="popup.img" id="addBookImage"/>
                       </div>
                     </div>
                     <div class="col-xl-7">
                       <div class="popup-content">
                         <h2
-                          style="margin-bottom: 40px; color: var(--color-one)"
+                        id="addBookTitle" style="margin-bottom: 40px; color: var(--color-one)"
                         >
                           Name: The Book of books
                         </h2>
@@ -502,16 +430,7 @@
                             placeholder="Stock"
                           />
                         </div>
-                        <div style="margin-bottom: 10px">
-                          <label style="margin-right: 66px" for="editBookPrice"
-                            >Price:
-                          </label>
-                          <input
-                            type="number"
-                            id="editBookPrice"
-                            placeholder="Price"
-                          />
-                        </div>
+          
                         <div style="margin-bottom: 10px">
                           <label
                             style="margin-right: 34px"
@@ -555,11 +474,17 @@
                             >Thumbnail:
                           </label>
                           <input
-                            type="text"
-                            id="editBookThumbnail"
-                            placeholder="Image url"
-                          />
-                        </div>
+                          type="text"
+                          id="editBookThumbnail"
+                          placeholder="Image url"
+                          style="margin-right: 10px;"
+                        />
+                        <input
+                          type="file"
+                          id="editBookThumbnailFile"
+                          accept="image/*"
+                          style="max-width: 150px;"
+                        />
                         <div style="margin-bottom: 10px">
                           <label for="editBookDescription">Description: </label>
                           <textarea
@@ -570,13 +495,14 @@
                           </textarea>
                         </div>
                         <div class="button-box">
-                          <button id="">SAVE</button>
+                          <button id="saveEditBtn">SAVE</button>
                           <button id="closeEditBookPopup">CLOSE</button>
                         </div>
                       </div>
                     </div>
                   </div>
                 </div>
+              </div>
               </div>
               <!-- Popup Delete Book -->
               <div class="popup" id="deleteBookPopup">
@@ -595,7 +521,7 @@
           </div>
           <div class="footer"></div>
         </div>
-
+        </div>
         <!-- trang orders -->
         <div id="orders" class="page">
           <div class="header">
@@ -642,18 +568,7 @@
                   </thead>
                   <tbody>
                     <!-- Dữ liệu đơn hàng sẽ được thêm vào đây -->
-                    <tr>
-                      <td>1</td>
-                      <td>Nguyễn Văn A</td>
-                      <td>123 ABC</td>
-                      <td>$100</td>
-                      <td>shipped</td>
-                      <td>
-                        <button id="editOrder" class="editOrder">
-                          <i class="fa-solid fa-pen-to-square"></i>
-                        </button>
-                      </td>
-                    </tr>
+                    
                   </tbody>
                 </table>
                 <div class="page-number">
@@ -754,25 +669,9 @@
                     <span>New Deal</span>
                   </button>
                 </div>
-                <div class="row">
+                <div id="salesBookList" class="row">
                   <!-- book-1 -->
-                  <div class="col-xl-3">
-                    <div class="book-box">
-                      <div class="book-image">
-                        <img src="assets/images/popup.jpg" alt="sale-1" />
-                      </div>
-                      <div class="book-content">
-                        <h4>Book 1</h4>
-                        <p>Author: Author 1</p>
-                        <p>New Price: $10</p>
-                        <p>Prime Price: $12</p>
-                        <button id="editSale" class="editSale">Edit</button>
-                        <button id="deleteSale" class="deleteBtn">
-                          Delete
-                        </button>
-                      </div>
-                    </div>
-                  </div>
+                  
                 </div>
               </div>
               <!-- Add Sale Modal -->
@@ -788,28 +687,36 @@
                         <div class="input-edit" style="margin-bottom: 20px">
                           <input
                             type="number"
-                            id="editDiscountPrice"
+                            id="editAddDiscountPrice"
                             placeholder="Discount Price"
                           />
                         </div>
                         <div class="input-edit" style="margin-bottom: 20px">
                           <input
                             type="number"
-                            id="editOriginPrice"
-                            placeholder="Origin Price"
-                          />
-                        </div>
-                        <div class="input-edit" style="margin-bottom: 20px">
-                          <input
-                            type="number"
-                            id="editDiscountPercent"
+                            id="editAddDiscountPercent"
                             placeholder="Percent"
                           />
                         </div>
+                        <div class="input-group">
+                          <label for="editAddStartDate">Start Date</label>
+                          <div class="input-wrapper">
+                            <input type="date" id="editAddStartDate" />
+                            
+                          </div>
+                        </div>
+                        
+                        <div class="input-group">
+                          <label for="editAddEndDate">End Date</label>
+                          <div class="input-wrapper">
+                            <input type="date" id="editAddEndDate" />
+                            
+                          </div>
+                        </div>
                         <div class="input-edit" style="margin-bottom: 20px">
                           <input
                             type="number"
-                            id="editSoldCount"
+                            id="editAddSoldCount"
                             placeholder="Sold Count"
                           />
                         </div>
@@ -820,14 +727,6 @@
                             placeholder="Max Quality"
                           />
                         </div>
-                        <div class="input-edit" style="margin-bottom: 20px">
-                          <input
-                            type="text"
-                            id="editSaleThumbnail:"
-                            placeholder="Image url"
-                          >
-                          </input>
-                        </div>
                         <div class="input-edit" style="margin-bottom: 20px">                          <textarea
                             type=""
                             id="editSaleDescription"
@@ -836,7 +735,7 @@
                           </textarea>
                         </div>
                         <!-- Thêm ô input vào đây -->
-                        <button id="">SAVE</button>
+                        <button id="saveAddSaleBtn">SAVE</button>
                         <button id="closeAddSalePopup">CLOSE</button>
                       </div>
                     </div>
@@ -864,12 +763,8 @@
                         >
                           Name: The Book of books
                         </h2>
-                        <div class="input-edit" style="margin-bottom: 10px">
-                          <label style="margin-right: 51px" for="editSaleID"
-                            >ID Book:
-                          </label>
-                          <input type="text" id="editSaleID" placeholder="ID" />
-                        </div>
+                        <input type="hidden" id="editSaleID" value="">
+                        <input type="hidden" id="hiddenOriginPrice" value="100" />
                         <div class="input-edit" style="margin-bottom: 10px">
                           <label
                             style="margin-right: 5px"
@@ -880,18 +775,6 @@
                             type="number"
                             id="editDiscountPrice"
                             placeholder="Discount Price"
-                          />
-                        </div>
-                        <div class="input-edit" style="margin-bottom: 10px">
-                          <label
-                            style="margin-right: 25px"
-                            for="editOriginPrice"
-                            >Origin Price:
-                          </label>
-                          <input
-                            type="number"
-                            id="editOriginPrice"
-                            placeholder="Origin Price"
                           />
                         </div>
                         <div class="input-edit" style="margin-bottom: 10px">
@@ -927,25 +810,28 @@
                           />
                         </div>
                         <div class="input-edit" style="margin-bottom: 10px">
-                          <label style="margin-right: 54px" for="editDaleActive"
+                          <label style="margin-right: 54px" for="editDealActive"
                             >Active:
                           </label>
+                          <!-- Radio button cho True -->
                           <input
-                            type="radio"
-                            id="option1"
-                            name="group1"
-                            value="Option 1"
-                            style="width: 40px"
-                          />
-                          <label for="option1">True</label>
-                          <input
-                            type="radio"
-                            id="option2"
-                            name="group1"
-                            value="Option 2"
-                            style="width: 40px"
-                          />
-                          <label for="option2">False</label>
+                          type="radio"
+                          id="activeTrue"
+                          name="active"
+                          value="true"
+                          style="width: 40px"
+                        />
+                        <label for="activeTrue">True</label>
+
+                        <!-- Radio button cho False -->
+                        <input
+                          type="radio"
+                          id="activeFalse"
+                          name="active"
+                          value="false"
+                          style="width: 40px"
+                        />
+                        <label for="activeFalse">False</label>
                         </div>
                         <div class="input-edit" style="margin-bottom: 10px">
                           <label style="margin-right: 30px" for="editSoldCount"
@@ -963,30 +849,12 @@
                           </label>
                           <input
                             type="number"
-                            id="saleMaxQuality"
+                            id="editMaxQuality"
                             placeholder="Max Quality"
                           />
                         </div>
-                        <div class="input-edit" style="margin-bottom: 10px">
-                          <label style="margin-right: 33px" for="editSaleThubmnail">Thumbnail: </label>
-                          <input
-                            type="text"
-                            id="editSaleThumbnail:"
-                            placeholder="Image url"
-                          >
-                          </input>
-                        </div>
-                        <div class="input-edit" style="margin-bottom: 10px">
-                          <label for="editSaleDescription">Description: </label>
-                          <textarea
-                            type=""
-                            id="editSaleDescription"
-                            placeholder="Description"
-                          >
-                          </textarea>
-                        </div>
                         <div class="button-box">
-                          <button id="">SAVE</button>
+                          <button id="saveEditSalePopup">SAVE</button>
                           <button id="closeEditSalePopup">CLOSE</button>
                         </div>
                       </div>
@@ -1065,62 +933,23 @@
                 </div>
                 <div class="profile-info">
                   <div class="row">
+                    <!-- Cột Thứ Nhất -->
                     <div class="col-xl-6">
                       <div class="info">
-                        <h2>Introduce</h2>
-                        <p>
-                          <i class="fa-solid fa-signature"></i>
-                          <span>Name: Định Hình Phương Hướng</span>
-                        </p>
-                        <p>
-                          <i class="fa-solid fa-gift"></i>
-                          <span>BirthDay: 1990-01-01</span>
-                        </p>
-                        <p>
-                          <i class="fa-solid fa-mobile"></i>
-                          <span>Phone: 0979797997</span>
-                        </p>
-                        <p>
-                          <i class="fa-solid fa-paper-plane"></i>
-                          <span>Email: chuatedomdom1997@gmail.com</span>
-                        </p>
-                        <p>
-                          <i class="fa-solid fa-building"></i>
-                          <span>Living in: HoChiMinh city</span>
-                        </p>
-                        <p>
-                          <i class="fa-solid fa-house"></i>
-                          <span>From: Ben Tre</span>
-                        </p>
+                        <p><i class="fa-solid fa-signature"></i><span>Name: Loading...</span></p>
+                        <p><i class="fa-solid fa-gift"></i><span>BirthDay: Loading...</span></p>
+                        <p><i class="fa-solid fa-mobile"></i><span>Phone: Loading...</span></p>
+                        <p><i class="fa-solid fa-paper-plane"></i><span>Email: Loading...</span></p>
+                        <p><i class="fa-solid fa-building"></i><span>Address: Loading...</span></p>
+                        
                       </div>
                     </div>
+                    <!-- Cột Thứ Hai -->
                     <div class="col-xl-6">
                       <div class="info">
-                        <h2>Operations</h2>
-                        <p>
-                          <i class="fa-solid fa-briefcase"></i>
-                          <span>On-position: Father</span>
-                        </p>
-                        <p>
-                          <i class="fa-solid fa-coins"></i>
-                          <span>Salary: 5,000,000 vnđ</span>
-                        </p>
-                        <p>
-                          <i class="fa-solid fa-calendar-days"></i>
-                          <span>Working time: 8h - 17h</span>
-                        </p>
-                        <p>
-                          <i class="fa-solid fa-calendar-xmark"></i>
-                          <span>Day off: Sunday</span>
-                        </p>
-                        <p>
-                          <i class="fa-solid fa-signal"></i>
-                          <span>Level of experience: 03/10</span>
-                        </p>
-                        <p>
-                          <i class="fa-solid fa-business-time"></i>
-                          <span>Timekeeping: 25/26</span>
-                        </p>
+                        <p><i class="fa-solid fa-briefcase"></i><span>On-position: Loading...</span></p>
+                        <p><i class="fa-solid fa-coins"></i><span>Salary: Loading...</span></p>
+                        <p><i class="fa-solid fa-calendar-days"></i><span>Role: Loading...</span></p>
                       </div>
                     </div>
                   </div>
@@ -1158,48 +987,12 @@
                         <br />
                         <input
                           type="text"
-                          id="staffLiving"
-                          placeholder="Living in"
+                          id="staffAddress"
+                          placeholder="Address"
                         />
-                        <br />
-                        <input type="text" id="staffFrom" placeholder="From" />
-                        <br />
-                        <!-- <input
-                          type="text"
-                          id="staffPosition"
-                          placeholder="On position"
-                        /><br /> -->
-                        <!-- <input
-                          type="number"
-                          id="staffSalary"
-                          placeholder="Salary"
-                        />
-                        <br />
-                        <input
-                          type="text"
-                          id="staffWorkingTime"
-                          placeholder="Working time"
-                        />
-                        <br />
-                        <input
-                          type="text"
-                          id="staffDayOff"
-                          placeholder="Day off"
-                        />
-                        <br />
-                        <input
-                          type="Level"
-                          id="staffLevel"
-                          placeholder="Level of experience"
-                        />
-                        <br />
-                        <input
-                          type="timeKeeping"
-                          id="stafftimeKeeping"
-                          placeholder="Timekeeping"
-                        />
-                        <br /> -->
-                        <button id="">ADD</button>
+                        
+                        
+                        <button id="updateEditPersonalPopup">UPDATE</button>
                         <button id="closeEditPersonalPopup">CLOSE</button>
                       </div>
                     </div>
@@ -1226,6 +1019,7 @@
     <script src="changePassword.js"></script>
     <script src="sale.js"></script>
     <script src="order.js"></script>
+    <script src="logout.js"></script>
 
     <script>
       function toggleDropdown(event) {
