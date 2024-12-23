@@ -3,6 +3,7 @@ const express = require("express");
 const cors = require("cors"); // Import thư viện CORS
 require("dotenv").config();
 const route = require("./routes/client/index.route");
+
 const routeAdmin = require("./routes/admin/index.route");
 const { connect } = require("./config/database"); // Import hàm connect từ database.js
 const ForgotPassword = require("./models/forgot-password.models");
@@ -19,9 +20,10 @@ cloudinary.v2.config({
   secure: true,
 });
 
+const Staffroute = require("./routes/staff/index.route");
+
 const app = express();
 const port = process.env.PORT;
-
 app.use(express.static("public"));
 
 app.use(express.json());
@@ -62,7 +64,10 @@ app.get("/generate-signature", (req, res) => {
 connect();
 // Định tuyến
 route(app);
+
 routeAdmin(app);
+Staffroute(app);
+
 // Xóa OTP hết hạn mỗi giờ
 cron.schedule("0 * * * *", async () => {
   const currentTime = Date.now();
@@ -70,6 +75,7 @@ cron.schedule("0 * * * *", async () => {
   await ForgotPassword.deleteMany({ expireAt: { $lt: currentTime } });
   console.log("Expired OTPs cleaned successfully.");
 });
+
 app.listen(port, () => {
   console.log(`Example app listening on port ${port}`);
 });

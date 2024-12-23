@@ -1,0 +1,69 @@
+:root {
+  --color-one: #f97316;
+  --color-one: #ff704d;
+  --color-two: #1e3a8a;
+  --color-three: #ffffff;
+  --color-background: #ebecf1;
+}
+
+a {
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: none;
+}
+
+ul {
+  list-style-type: none;
+  margin: 0px;
+  padding: 0px;
+}
+
+select {
+  border: none;
+  border-radius: 15px;
+}
+
+hr {
+  background-color: var(--color-three);
+}
+
+p {
+  margin: 0px;
+}
+
+button {
+  padding: 10px 15px;
+  background-color: #a7a7a7;
+  color: var(--color-three);
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  margin: 10px 0;
+  transition: background-color 0.3s ease;
+}
+
+button:hover {
+  background-color: var(--color-one);
+}
+
+select {
+  border: none;
+  outline: none; /* Xóa đường viền khi focus vào select */
+  /* background: transparent; Tùy chọn: làm nền trong suốt */
+}
+
+.scrollable::-webkit-scrollbar {
+  display: none; /* Ẩn thanh cuộn */
+}
+
+textarea::placeholder {
+  color: gray; /* Màu của placeholder */
+  opacity: 1; /* Đảm bảo placeholder không bị mờ */
+}
+input:focus,
+textarea:focus {
+  border: 2px solid #4caf50; /* Màu viền khi textarea được chọn */
+  outline: none; /* Loại bỏ outline mặc định */
+}

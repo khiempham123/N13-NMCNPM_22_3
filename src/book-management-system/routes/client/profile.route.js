@@ -7,4 +7,8 @@ router.get("/get-info", authenticateUser, controller.getInfo);
 
 router.put("/edit-info", authenticateUser, controller.editInfo);
 
+
+router.get("/getUser", controller.getUser);
+router.put("/update/:id", controller.updateCustomer);
+router.delete("/delete/:id",controller.deleteCustomer)
 module.exports = router;

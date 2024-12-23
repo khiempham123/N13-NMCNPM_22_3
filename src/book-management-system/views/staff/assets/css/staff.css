@@ -1,0 +1,961 @@
+.main {
+  display: flex;
+  height: 100vh;
+  overflow: hidden;
+}
+
+.main .sidebar {
+  position: relative;
+  background: var(--color-one);
+  width: 22%;
+  height: 100vh;
+  padding: 20px;
+  color: var(--color-three);
+  box-shadow: 4px 0 20px rgba(0, 0, 0, 0.5); /* Đổ bóng */
+}
+
+.main .sidebar .logo {
+  font-size: 30px;
+  padding: 10px;
+}
+
+.main .sidebar .logo i {
+  margin-right: 10px;
+}
+
+.main .sidebar a {
+  color: var(--color-three);
+  font-size: 16px;
+  font-weight: 500;
+  display: block;
+  margin: 10px 15px;
+  padding: 20px 30px;
+  border: 1px solid var(--color-one);
+  border-radius: 35px;
+  background-color: var(--color-one);
+  transition: background-color 0.3s ease;
+}
+
+.main .sidebar a.active {
+  color: var(--color-one);
+  border: 1px solid var(--color-three);
+  background-color: var(--color-three);
+}
+
+.main .sidebar a:hover {
+  /* border: 1px solid rgba(255, 255, 255, 0.2); */
+  background-color: rgba(255, 255, 255, 0.2);
+}
+
+.main .sidebar a.active:hover {
+  color: var(--color-one);
+  border: 1px solid var(--color-three);
+  background-color: var(--color-three);
+}
+
+.main .sidebar a i {
+  margin-right: 20px;
+  font-size: 20px;
+}
+
+.main .sidebar .change-password {
+  position: absolute;
+  bottom: 20px;
+  left: 40px;
+  cursor: pointer;
+  padding: 5px 12px;
+  background-color: rgba(17, 14, 14, 0.25);
+  border-radius: 10px;
+}
+
+.main .sidebar .change-password:hover {
+  color: var(--color-three);
+  background-color: rgba(255, 255, 255, 0.2);
+  border-radius: 35px;
+}
+
+.main .sidebar .change-password i {
+  margin-right: 10px;
+}
+
+.main .sidebar .frame-password {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+.main .sidebar .frame-password .popup-frame {
+  background: var(--color-three);
+  padding: 20px;
+  border-radius: 30px;
+  width: 100%;
+  max-width: 500px;
+}
+
+.main .sidebar .frame-password .popup-frame .popup-content {
+  padding: 20px;
+  border-radius: 30px;
+  /* max-width: 500px; */
+  width: 100%;
+  border: 1px solid #fff;
+  text-align: center !important;
+  /* height: 473.75px; */
+  overflow-y: auto;
+}
+
+.main .sidebar .frame-password .popup-frame .popup-content h2 {
+  font-weight: 800;
+  color: black;
+  margin-bottom: 50px;
+}
+
+.main .sidebar .frame-password .popup-frame .popup-content input {
+  display: block;
+  width: 100%;
+  padding: 10px 20px;
+  border-radius: 40px;
+  border: 1px solid black;
+  color: black;
+}
+
+.main .sidebar .frame-password .popup-frame .popup-content button {
+  width: 100%;
+  max-width: 250px;
+  color: black;
+  background: var(--color-three);
+  border: 1px solid var(--color-one);
+  box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.5);
+  font-weight: 700;
+}
+
+.main .sidebar .frame-password .popup-frame .popup-content button:hover {
+  background: rgba(76, 175, 80, 1);
+  border: none;
+}
+
+.main
+  .sidebar
+  .frame-password
+  .popup-frame
+  .popup-content
+  button:last-child:hover {
+  background: rgba(244, 67, 54, 01);
+}
+
+/* Popup changePassword */
+
+/* end sidebar */
+
+.main .content {
+  width: 100%;
+  background: var(--color-background);
+  overflow-y: auto;
+}
+
+.main .content .page {
+  display: none; /* Ẩn các trang mặc định */
+  flex-grow: 1;
+}
+
+.main .content .page.active {
+  display: block; /* Hiển thị trang đang được chọn */
+}
+
+/* header */
+.main .content .header {
+  /* background: linear-gradient(90deg, #1a2a6c, #b21f1f, #fdbb2d); */
+  background: linear-gradient(90deg, #1e3a8a, #f97316);
+  height: 40vh;
+  color: #fff;
+  padding: 15px 16px 15px 16px;
+}
+
+.main .content .page .top-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background-color: rgba(255, 255, 255, 0.1);
+  padding: 10px 20px;
+  border-radius: 20px;
+  width: 100%;
+}
+
+.main .content .page .top-bar .title {
+  font-size: 20px;
+  font-weight: bold;
+}
+
+.main .content .page .top-bar .inner-right {
+  display: flex;
+  align-items: center;
+}
+
+/* .main .content .page .top-bar .search-container {
+  display: flex;
+  align-items: center;
+  background-color: rgba(255, 255, 255, 0.2);
+  border-radius: 20px;
+  padding: 5px 10px;
+  margin-right: 100px;
+}
+
+.main .content .page .top-bar .search-container input {
+  background: transparent;
+  border: none;
+  outline: none;
+  color: #fff;
+  font-size: 16px;
+  padding: 5px;
+  width: 200px;
+}
+
+.main .content .page .top-bar .search-container input::placeholder {
+  color: rgba(255, 255, 255, 0.7);
+}
+
+.main .content .page .top-bar .search-container i {
+  color: #fff;
+  margin: 0 10px;
+  cursor: pointer;
+} */
+
+.main .content .page .top-bar .icons {
+  display: flex;
+  align-items: center;
+  gap: 30px;
+}
+
+.main .content .page .top-bar .icons i {
+  font-size: 20px;
+  cursor: pointer;
+}
+
+.main .content .page .bot-bar {
+  text-align: center !important;
+  margin-top: 30px;
+  padding: 20px;
+}
+.main .content .page .bot-bar h1 {
+  font-size: 50px;
+  font-weight: bold;
+  margin-bottom: 20px;
+}
+/* end header */
+
+/* customer */
+/* section-main */
+.main .content .page .section-main .box-table {
+  background: var(--color-three);
+  padding: 20px;
+  border-radius: 20px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+  margin-top: -25px;
+}
+
+.main .content .page .section-main .box-table .head-box {
+  align-items: right;
+  margin-bottom: 20px;
+}
+
+.main .content .page .section-main .box-table .head-box .search-container {
+  display: inline;
+  align-items: center;
+  border-radius: 20px;
+  padding: 5px 10px;
+  border: 1px solid var(--color-one);
+  margin-left: 20px;
+}
+
+.main
+  .content
+  .page
+  .section-main
+  .box-table
+  .head-box
+  .search-container
+  input {
+  background: transparent;
+  border: none;
+  outline: none;
+  font-size: 16px;
+  padding: 5px;
+  width: 200px;
+}
+
+.main .content .page .section-main .box-table .head-box .search-container i {
+  margin: 0 10px;
+  cursor: pointer;
+}
+
+.main .content .page .section-main .box-table .head-box button {
+  float: right;
+  padding: 4px 9px;
+  margin: 0px 5px;
+}
+
+.main .content .page .section-main table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 30px;
+}
+
+.main .content .page .section-main table button:last-child:hover {
+  background: #f44336;
+}
+
+.main .content .page .section-main table th,
+.main .content .page .section-main table td {
+  padding: 10px;
+  text-align: center;
+  border-bottom: 1px solid #ddd;
+}
+
+.main .content .page .section-main table th {
+  color: #f97316;
+  font-size: large;
+}
+
+/* làm sáng 1 dòng khi hover */
+/* .main .content .page .section-main table tbody tr:hover {
+        background-color: #f1f1f1;
+      } */
+
+/* page number */
+.main .content .page .section-main .page-number ul {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  margin-top: 20px;
+  color: white;
+}
+
+.main .content .page .section-main .page-number ul li {
+  list-style: none;
+  padding: 5px 10px;
+  background-color: #a7a7a7;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.main .content .page .section-main .page-number ul .current {
+  background-color: var(--color-one);
+}
+
+.main .content .page .section-main .page-number ul li:hover {
+  background-color: var(--color-one);
+}
+/* end page-number */
+/* section-main */
+
+/* popup */
+.main .content .page .section-main .popup {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  justify-content: center;
+  align-items: center;
+}
+
+.main .content .page .section-main .popup-frame {
+  position: relative;
+  left: 35px;
+  top: 15px;
+}
+
+.main .content .page .section-main .popup-frame .popup-content input {
+  display: block;
+  width: 100%;
+  padding: 10px 20px;
+  border-radius: 20px;
+  border: 1px solid black;
+  color: black;
+}
+
+.main .content .page .section-main .popup-frame .popup-content select {
+  display: block;
+  width: 100%;
+  padding: 10px 20px;
+  border-radius: 30px;
+  border: 1px solid black;
+  color: black;
+}
+
+.main .content .page .section-main .popup-frame {
+  /* background: linear-gradient(-180deg, #1e3a8a, #f97316); */
+  background: var(--color-three);
+  padding: 20px;
+  border-radius: 30px;
+  width: 100%;
+  max-width: 800px;
+}
+
+.main .content .page .section-main .popup-frame .popup-content {
+  padding: 20px;
+  border-radius: 30px;
+  /* max-width: 500px; */
+  width: 100%;
+  border: 1px solid #fff;
+  text-align: center !important;
+  height: 473.75px;
+  overflow-y: auto;
+}
+
+.main .content .page .section-main .popup-frame .popup-delete {
+  padding: 20px;
+  border-radius: 30px;
+  width: 100%;
+  border: 1px solid #fff;
+  text-align: center !important;
+  overflow-y: auto;
+}
+
+.main .content .page .section-main .popup-frame .popup-delete h2 {
+  font-weight: 800;
+  color: black;
+  margin-bottom: 50px;
+}
+
+.main .content .page .section-main .popup-frame .popup-delete button {
+  width: 100%;
+  max-width: 250px;
+  color: black;
+  background: rgba(76, 175, 80, 0.5);
+  box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.5);
+  font-weight: 700;
+}
+
+.main
+  .content
+  .page
+  .section-main
+  .popup-frame
+  .popup-delete
+  button:last-child {
+  background: rgba(244, 67, 54, 0.5);
+}
+
+.main .content .page .section-main .popup-frame .popup-delete button:hover {
+  background: rgba(76, 175, 80, 1);
+  border: none;
+}
+
+.main
+  .content
+  .page
+  .section-main
+  .popup-frame
+  .popup-delete
+  button:last-child:hover {
+  background: rgba(244, 67, 54, 01);
+}
+
+.main
+  .content
+  .page
+  .section-main
+  .popup-frame
+  .popup-content::-webkit-scrollbar {
+  display: none; /* Ẩn thanh cuộn */
+}
+
+.main .content .page .section-main .popup-frame .popup-content h2 {
+  font-weight: 800;
+  color: black;
+  margin-bottom: 50px;
+}
+
+.main .content .page .section-main .popup-frame .popup-content button {
+  width: 100%;
+  max-width: 250px;
+  color: black;
+  background: rgba(76, 175, 80, 0.5);
+  box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.5);
+  font-weight: 700;
+}
+
+.main
+  .content
+  .page
+  .section-main
+  .popup-frame
+  .popup-content
+  button:last-child {
+  background: rgba(244, 67, 54, 0.5);
+}
+
+.main .content .page .section-main .popup-frame .popup-content button:hover {
+  background: rgba(76, 175, 80, 1);
+  border: none;
+}
+
+.main
+  .content
+  .page
+  .section-main
+  .popup-frame
+  .popup-content
+  button:last-child:hover {
+  background: rgba(244, 67, 54, 01);
+}
+
+.main .content .page .section-main .popup-frame .popup-content textarea {
+  width: 100%;
+  height: 100px;
+  padding: 3px 20px;
+  border-radius: 20px;
+  border: 1px solid black;
+  color: black;
+}
+
+.main .content .page .section-main .popup-frame .popup-image {
+  width: 100%;
+}
+.main .content .page .section-main .popup-frame .popup-image img {
+  width: 100%;
+  border-radius: 20px;
+}
+
+.main .content .page .section-main .popup-frame-book {
+  background: var(--color-three);
+  padding: 20px;
+  border-radius: 30px;
+  width: 100%;
+  max-width: 1000px;
+}
+
+.main .content .page .section-main .popup-frame-book .popup-image {
+  width: 100%;
+}
+.main .content .page .section-main .popup-frame-book .popup-image img {
+  width: 100%;
+  border-radius: 20px;
+}
+
+.main .content .page .section-main .popup-frame-book .popup-content {
+  padding: 20px;
+  border-radius: 30px;
+  /* max-width: 500px; */
+  width: 100%;
+  border: 1px solid #fff;
+  height: 473.75px;
+  overflow-y: auto;
+}
+
+.main .content .page .section-main .popup-frame-book .popup-content label {
+  font-size: 16px;
+  font-weight: 700;
+  margin-bottom: 10px;
+  color: black;
+}
+
+.main .content .page .section-main .popup-frame-book .popup-content input {
+  width: 70%;
+  padding: 5px 20px;
+  border-radius: 15px;
+  border: 1px solid black;
+  color: black;
+}
+
+.main .content .page .section-main .popup-frame-book .popup-content textarea {
+  width: 100%;
+  height: 100px;
+  padding: 3px 20px;
+  border-radius: 10px;
+  border: 1px solid black;
+  color: black;
+}
+
+.main
+  .content
+  .page
+  .section-main
+  .popup-frame-book
+  .popup-content
+  .button-box {
+  display: flex;
+  justify-content: end;
+  margin-top: 20px;
+}
+
+.main .content .page .section-main .popup-frame-book .popup-content button {
+  width: 40%;
+  max-width: 100px;
+  color: black;
+  box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.5);
+  font-weight: 700;
+  margin-right: 10px;
+}
+
+.main
+  .content
+  .page
+  .section-main
+  .popup-frame-book
+  .popup-content
+  button:first-child {
+  background: rgba(76, 175, 80, 0.5);
+}
+
+.main
+  .content
+  .page
+  .section-main
+  .popup-frame-book
+  .popup-content
+  button:last-child {
+  background: rgba(244, 67, 54, 0.5);
+}
+
+.main
+  .content
+  .page
+  .section-main
+  .popup-frame-book
+  .popup-content
+  button:first-child:hover {
+  background: rgba(76, 175, 80, 1);
+  border: none;
+}
+
+.main
+  .content
+  .page
+  .section-main
+  .popup-frame-book
+  .popup-content
+  button:last-child:hover {
+  background: rgba(244, 67, 54, 1);
+}
+
+/* end popup */
+
+/* footer */
+.main .content .page .footer {
+  background: var(--color-background);
+  margin: 40px;
+}
+/* end footer */
+
+/* orders */
+
+/* Màu cho từng trạng thái */
+.status-order-received {
+  color: #4caf50; /* Màu xanh lá */
+}
+
+.status-processing {
+  color: #ff9800; /* Màu cam */
+}
+
+.status-packed {
+  color: #2196f3; /* Màu xanh dương */
+}
+
+.status-shipped {
+  color: #f44336; /* Màu đỏ */
+}
+/* end orders */
+
+/* book */
+/* section-main */
+.main .content .page .section-main .main-box {
+  background: var(--color-three);
+  padding: 20px;
+  border-radius: 20px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+  margin-top: -25px;
+}
+
+.main .content .page .section-main .main-box .head-box .search-container {
+  display: inline;
+  align-items: center;
+  border-radius: 20px;
+  padding: 5px 10px;
+  border: 1px solid var(--color-one);
+  margin-left: 20px;
+}
+
+.main .content .page .section-main .main-box .head-box .search-container input {
+  background: transparent;
+  border: none;
+  outline: none;
+  font-size: 16px;
+  padding: 5px;
+  width: 200px;
+}
+
+.main .content .page .section-main .main-box .head-box .search-container i {
+  margin: 0 10px;
+  cursor: pointer;
+}
+
+.main .content .page .section-main .main-box .head-box button {
+  float: right;
+  padding: 4px 9px;
+  margin: 0px 5px;
+}
+
+.main .content .page .section-main .main-box .book-box {
+  position: relative;
+  padding: 10px;
+  border-radius: 15px;
+  background: white;
+  transition: box-shadow 0.3s ease;
+  margin: 10px 0;
+}
+
+.main .content .page .section-main .main-box .book-box:hover {
+  box-shadow: 0px 10px 30px -5px rgba(4, 4, 4, 0.25);
+}
+
+.main .content .page .section-main .main-box .book-box .book-image {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 1/1;
+  display: inline-block; /* Đảm bảo khung ảnh bao quanh vừa vặn */
+  overflow: hidden;
+}
+
+.main .content .page .section-main .main-box .book-box .book-image img {
+  width: 100%;
+  height: auto;
+  object-fit: cover;
+  border-radius: 15px;
+  transition: transform 0.3s ease;
+}
+
+.main .content .page .section-main .main-box .book-box:hover .book-image img {
+  transform: scale(1.2);
+}
+
+.main .content .page .section-main .main-box .book-box .book-content {
+  align-items: center;
+  justify-content: space-between;
+}
+
+.main .content .page .section-main .main-box .book-box .book-content button {
+  width: 110px;
+}
+
+.main .content .page .section-main .main-box .book-box .book-content button {
+  background: rgba(76, 175, 80, 0.5);
+}
+
+.main
+  .content
+  .page
+  .section-main
+  .main-box
+  .book-box
+  .book-content
+  button:hover {
+  background: #4caf50;
+}
+
+.main
+  .content
+  .page
+  .section-main
+  .main-box
+  .book-box
+  .book-content
+  button:last-child {
+  background: rgba(244, 67, 54, 0.5);
+}
+
+.main
+  .content
+  .page
+  .section-main
+  .main-box
+  .book-box
+  .book-content
+  button:last-child:hover {
+  background: #f44336;
+}
+
+.main .content .page .section-main .main-box .head-box {
+  align-items: right;
+  margin-bottom: 20px;
+}
+
+.main .content .page .section-main .main-box .head-box button {
+  float: right;
+  padding: 4px 9px;
+  margin: 0px 5px;
+}
+
+/* personal */
+
+.main .content .page .section-main .profile-box {
+  background: var(--color-three);
+  padding: 20px;
+  border-radius: 20px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+  margin-top: -25px;
+  position: relative; /* Thêm vị trí cho phần tử cha */
+}
+
+.main .content .page .section-main .profile-box .wallpaper {
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+  margin-bottom: 150px;
+}
+
+.main .content .page .section-main .profile-box .wallpaper img {
+  width: 100%;
+  height: 300px;
+  border-radius: 15px;
+  object-fit: cover;
+}
+
+.main .content .page .section-main .profile-box .edit-gear {
+  position: absolute;
+  font-size: 20px;
+  top: 25px;
+  right: 25px;
+  cursor: pointer;
+  padding: 5px 12px;
+  background: rgba(255, 255, 255, 0.5);
+  border-radius: 50%;
+  color: rgba(0, 0, 0, 0.3);
+  transition: background 0.3s ease, color 0.3s ease;
+}
+
+.main .content .page .section-main .profile-box .edit-gear:hover {
+  background: rgba(255, 255, 255, 0.8);
+  color: var(--color-one);
+}
+
+.main .content .page .section-main .profile-box .profile-picture {
+  position: absolute; /* Đặt ảnh đại diện lên trên */
+  top: 200px; /* Căn ảnh xuống dưới chút để vào vị trí khung đỏ */
+  left: 50%; /* Căn giữa ngang */
+  transform: translateX(-50%); /* Căn giữa hoàn toàn theo chiều ngang */
+  border-radius: 50%;
+  border: 5px solid white; /* Thêm viền trắng để ảnh rõ hơn */
+  padding: 5px; /* Khoảng cách từ viền */
+}
+
+.main .content .page .section-main .profile-box .profile-picture img {
+  width: 200px;
+  height: 200px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.main
+  .content
+  .page
+  .section-main
+  .profile-box
+  .profile-picture
+  .dropdown-menu {
+  display: none;
+  position: absolute;
+  top: 90%;
+  left: 12px;
+  background-color: white;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  width: 190px;
+  text-align: center;
+}
+
+.main
+  .content
+  .page
+  .section-main
+  .profile-box
+  .profile-picture
+  .dropdown-menu
+  li {
+  padding: 10px;
+  cursor: pointer;
+}
+
+.main
+  .content
+  .page
+  .section-main
+  .profile-box
+  .profile-picture
+  .dropdown-menu
+  li:hover {
+  background-color: rgba(255, 112, 77, 0.5);
+}
+
+.main .content .page .section-main .profile-box .profile-info {
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 20px;
+  padding: 20px;
+}
+
+.main .content .page .section-main .profile-box .profile-info .info {
+  align-items: center;
+  padding: 40px;
+  border-radius: 20px;
+  box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.2);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.main .content .page .section-main .profile-box .profile-info .info:hover {
+  transform: translateY(-10px); /* Nâng box lên khi hover */
+  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2); /* Thêm bóng đổ để box nổi bật hơn */
+}
+
+.main .content .page .section-main .profile-box .profile-info .info h2 {
+  text-align: center !important;
+  margin-bottom: 40px;
+}
+
+.main .content .page .section-main .profile-box .profile-info .info p {
+  font-size: 20px;
+  margin: 20px;
+}
+
+.main .content .page .section-main .profile-box .profile-info .info i {
+  margin-right: 10px;
+}
+/* END personal */
+
+
+.input-wrapper input {
+  width: 100%; /* Đảm bảo input chiếm toàn bộ container */
+  max-width: 400px; /* Giới hạn chiều rộng tối đa */
+  padding: 10px 40px 10px 10px; /* Padding để chừa chỗ cho placeholder */
+  border: 1px solid #ccc;
+  border-radius: 10px; /* Làm tròn góc */
+  font-size: 16px; /* Tăng kích thước chữ */
+  font-family: inherit;
+  box-sizing: border-box; /* Đảm bảo padding không làm tăng kích thước */
+}
+.input-group {
+  margin-bottom: 20px; /* Khoảng cách giữa các nhóm */
+  display: flex;
+  flex-direction: column; /* Căn chỉnh label và input theo chiều dọc */
+  align-items: flex-start; /* Căn label và input về phía trái */
+}
+
+.input-wrapper {
+  width: 100%; /* Đảm bảo wrapper chiếm hết container */
+  max-width: 400px; /* Tăng chiều rộng tối đa của input */
+  position: relative;
+  display: flex;
+  align-items: center;
+}

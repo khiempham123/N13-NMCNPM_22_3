@@ -1,0 +1,1059 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, shrink-to-fit=no"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css"
+      integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+    <!-- Bootstrap CSS -->
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css"
+      integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N"
+      crossorigin="anonymous"
+    />
+    <link rel="stylesheet" href="assets/css/base.css" />
+    <link rel="stylesheet" href="assets/css/staff.css" />
+    <title>Staff</title>
+  </head>
+  <body>
+    <div class="main">
+      <nav class="sidebar">
+        <div class="logo">
+          <i class="fa-solid fa-book-open-reader"></i>
+          <span>Staff</span>
+        </div>
+        <hr />
+        <ul>
+          <li>
+            <a
+              href="#customers"
+              class="active"
+              onclick="navigateTo('customers')"
+            >
+              <i class="fa-solid fa-circle-user"></i>
+              CUSTOMERS</a
+            >
+          </li>
+          <li>
+            <a href="#books" onclick="navigateTo('books') " id="book" >
+              <i class="fa-solid fa-book"></i>
+              BOOKS</a
+            >
+          </li>
+          <li>
+            <a href="#orders" onclick="navigateTo('orders')" id="order">
+              <i class="fa-solid fa-box"></i>
+              ORDERS</a
+            >
+          </li>
+          <li>
+            <a href="#sales" onclick="navigateTo('sales')" id="sale">
+              <i class="fa-solid fa-tags"></i>
+              SALES</a
+            >
+          </li>
+          <li>
+            <a href="#personal" onclick="navigateTo('personal')" id="personals">
+              <i class="fa-solid fa-user"></i>
+              PERSONAL</a
+            >
+          </li>
+        </ul>
+        <div id="changePassword" class="change-password">
+          <i class="fa-solid fa-key"></i>
+          <span>Change Password</span>
+        </div>
+        <div class="frame-password" id="changePasswordPopup">
+          <div class="popup-frame">
+            <div class="popup-content">
+              <h2>CHANGE PASSWORD</h2>
+              <input
+                type="password"
+                id="oldPassword"
+                placeholder="Old Password"
+              />
+              <br />
+              <input
+                type="password"
+                id="newPassword"
+                placeholder="New Password"
+              />
+              <br />
+              <input
+                type="password"
+                id="confirmPassword"
+                placeholder="Confirm Password"
+              />
+              <br />
+              <button id="changePasswordBtn">CHANGE</button>
+              <button id="closeChangePasswordPopup">CLOSE</button>
+            </div>
+          </div>
+        </div>
+      </nav>
+
+      <div class="content" id="content">
+        <!-- trang customers -->
+        <div id="customers" class="page active">
+          <div class="header">
+            <div class="container-fluid">
+              <div class="top-bar">
+                <!-- Tiêu đề -->
+                <div class="title">Notifications</div>
+
+                <div class="inner-right">
+                  <!-- Các biểu tượng -->
+                  <div class="icons">
+                    <i class="fa-solid fa-calendar"></i>
+                    <i class="fa fa-globe"></i>
+                    <i class="fa-solid fa-right-from-bracket"></i>
+                  </div>
+                </div>
+              </div>
+              <div class="bot-bar">
+                <h1>Customers</h1>
+                <p>Manage and take care of your Customers</p>
+              </div>
+            </div>
+          </div>
+          <div class="section-main">
+            <div class="container">
+              <div class="box-table">
+                <div class="head-box">
+                  <div class="search-container">
+                    <input type="text" placeholder="Search..." />
+                    <i class="fa fa-search"></i>
+                  </div>
+                  
+                </div>
+                <table id="customerTable">
+                  <thead>
+                    <tr>
+                      <th>No</th>
+                      <th>Username</th>
+                      <th>Name</th>
+                      <th>BirthDay</th>
+                      <th>Email</th>
+                      <th>Action</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <!-- Dữ liệu nhân viên sẽ được thêm vào đây -->
+                  </tbody>
+                </table>
+                <div class="page-number">
+                  <ul>
+                    <li class="current">
+                      <span>1</span>
+                    </li>
+                    <li>
+                      <span>2</span>
+                    </li>
+                    <li>
+                      <span>3</span>
+                    </li>
+                    <li>
+                      <span><i class="fa-solid fa-chevron-right"></i></span>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+              <!-- Popup Add Customer -->
+              <div class="popup" id="addCustomerPopup">
+                <div class="popup-frame">
+                  <div class="row">
+                    <div class="col-xl-6">
+                      <div class="popup-content">
+                        <h2>ADD CUSTOMER</h2>
+                        <input
+                          type="text"
+                          id="customerName"
+                          placeholder="Name"
+                        /><br />
+                        <input
+                          type="date"
+                          id="customerBirthDay"
+                          placeholder="BirthDay"
+                        />
+                        <br />
+                        <input
+                          type="email"
+                          id="customerEmail"
+                          placeholder="Email"
+                        />
+                        <br />
+                        <button id="addCustomerBtn">ADD</button>
+                        <button id="closeAddCustomerPopup">CLOSE</button>
+                      </div>
+                    </div>
+                    <div class="col-xl-6">
+                      <div class="popup-image">
+                        <img src="assets/images/popup.jpg" alt="popup.img" />
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <!-- Popup Edit Customer -->
+              <div class="popup" id="editCustomerPopup">
+                <div class="popup-frame">
+                  <div class="row">
+                    <div class="col-xl-6">
+                      <div class="popup-content">
+                        <h2>EDIT CUSTOMER</h2>
+                        <input
+                          type="text"
+                          id="editCustomerName"
+                          placeholder="Name"
+                        />
+                        <br />
+                        <input
+                          type="date"
+                          id="editCustomerBirthDay"
+                          placeholder="BirthDay"
+                        />
+                        <br />
+                        <input
+                          type="email"
+                          id="editCustomerEmail"
+                          placeholder="Email"
+                        />
+                        <br />
+                        <button id="saveEditCustomerBtn">SAVE</button>
+                        <button id="closeEditCustomerPopup">CLOSE</button>
+                      </div>
+                    </div>
+                    <div class="col-xl-6">
+                      <div class="popup-image">
+                        <img src="assets/images/popup.jpg" alt="popup.img" />
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <!-- Popup Delete Customer -->
+              <div class="popup" id="deleteCustomerPopup">
+                <div class="popup-frame">
+                  <div class="popup-delete">
+                    <h2>DELETE CUSTOMER</h2>
+                    <h5 style="margin-bottom: 30px">
+                      Are you sure you want to delete this customer?
+                    </h5>
+                    <button id="deleteCustomerBtn">YES</button>
+                    <button id="closeDeleteCustomerPopup">NO</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="footer"></div>
+        </div>
+
+        <!-- trang books -->
+        <div id="books" class="page">
+          <div class="header">
+            <div class="container-fluid">
+              <div class="top-bar">
+                <!-- Tiêu đề -->
+                <div class="title">Books</div>
+
+                <div class="inner-right">
+                  <!-- Thanh tìm kiếm -->
+
+                  <!-- Các biểu tượng -->
+                  <div class="icons">
+                    <i class="fa-solid fa-calendar"></i>
+                    <i class="fa fa-globe"></i>
+                    <i class="fa-solid fa-right-from-bracket"></i>
+                  </div>
+                </div>
+              </div>
+              <div class="bot-bar">
+                <h1>Books</h1>
+                <p>Manage and take care of your Books</p>
+              </div>
+            </div>
+          </div>
+          <div class="section-main">
+            <div class="container">
+              <div class="main-box">
+                <div class="head-box">
+                  <div class="search-container">
+                    <input type="text" placeholder="Search..." />
+                    <i class="fa fa-search"></i>
+                  </div>
+                  <button id="openAddBookModal">
+                    <i class="fa-solid fa-plus"></i>
+                    <span>New Book</span>
+                  </button>
+                </div>
+                <div id="bookRow" class= "row">
+              <!-- Dữ liệu sách được thêm vào đây -->
+              </div>
+
+              <!-- Add Book Modal -->
+              <div class="popup" id="addBookPopup">
+                <div class="popup-frame">
+                  <div class="row">
+                    <div class="col-xl-6">
+                      <div class="popup-content">
+                        <h2>ADD BOOK</h2>
+                        <div style="margin-bottom: 20px">
+                          <input
+                            type="text"
+                            id="addBookName"
+                            placeholder="Name book"
+                          />
+                        </div>
+                        <div style="margin-bottom: 20px">
+                          <input
+                            type="text"
+                            id="addBookAuthor"
+                            placeholder="Author"
+                          />
+                        </div>
+                        <div style="margin-bottom: 20px">
+                          <input
+                            type="number"
+                            id="addBookPrice"
+                            placeholder="Price"
+                          />
+                        </div>
+                        <div style="margin-bottom: 20px">
+                          <input
+                            type="number"
+                            id="addBookStock"
+                            placeholder="Stock"
+                          />
+                        </div>
+                        <div style="margin-bottom: 20px">
+                          <input
+                            type="text"
+                            id="addBookCategory"
+                            placeholder="Category"
+                          />
+                        </div>
+                        <div style="margin-bottom: 20px">
+                          <input
+                            type="text"
+                            id="addBookPublisher"
+                            placeholder="Publisher"
+                          />
+                        </div>
+                        <div style="margin-bottom: 20px">
+                          <input
+                            type="date"
+                            id="addBookPublishDate"
+                            placeholder="Publish Date"
+                          />
+                        </div>
+                        <div style="margin-bottom: 20px">
+                          <input
+                            type="text"
+                            id="addBookThumbnail"
+                            placeholder="Image url"
+                          />
+                        </div>
+                        <div style="margin-bottom: 20px">
+                          <textarea
+                            id="addBookDescription"
+                            placeholder="Description"
+                          >
+                          </textarea>
+                        </div>
+                        <!-- Thêm ô input vào đây -->
+                        <button id="saveAddBookBtn">SAVE</button>
+                        <button id="closeAddBookPopup">CLOSE</button>
+                      </div>
+                    </div>
+                    <div class="col-xl-6">
+                      <div class="popup-image">
+                        <img src="assets/images/popup.jpg" alt="popup.img" />
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <!-- Edit Book Modal (For Settings) -->
+              <div class="popup" id="editBookPopup">
+                <div class="popup-frame-book">
+                  <div class="row">
+                    <div class="col-xl-5">
+                      <div class="popup-image">
+                        <img src="assets/images/popup.jpg" alt="popup.img" id="addBookImage"/>
+                      </div>
+                    </div>
+                    <div class="col-xl-7">
+                      <div class="popup-content">
+                        <h2
+                        id="addBookTitle" style="margin-bottom: 40px; color: var(--color-one)"
+                        >
+                          Name: The Book of books
+                        </h2>
+                        <div style="margin-bottom: 10px">
+                          <label style="margin-right: 50px" for="editBookAuthor"
+                            >Author:
+                          </label>
+                          <input
+                            type="text"
+                            id="editBookAuthor"
+                            placeholder="Author"
+                          />
+                        </div>
+                        <div style="margin-bottom: 10px">
+                          <label style="margin-right: 66px" for="editBookPrice"
+                            >Price:
+                          </label>
+                          <input
+                            type="number"
+                            id="editBookPrice"
+                            placeholder="Price"
+                          />
+                        </div>
+                        <div style="margin-bottom: 10px">
+                          <label style="margin-right: 62px" for="editBookStock"
+                            >Stock:
+                          </label>
+                          <input
+                            type="number"
+                            id="editBookStock"
+                            placeholder="Stock"
+                          />
+                        </div>
+          
+                        <div style="margin-bottom: 10px">
+                          <label
+                            style="margin-right: 34px"
+                            for="editBookCategory"
+                            >Category:
+                          </label>
+                          <input
+                            type="text"
+                            id="editBookCategory"
+                            placeholder="Category"
+                          />
+                        </div>
+                        <div style="margin-bottom: 10px">
+                          <label
+                            style="margin-right: 31px"
+                            for="editBookPublisher"
+                            >Publisher:
+                          </label>
+                          <input
+                            type="text"
+                            id="editBookPublisher"
+                            placeholder="Publisher"
+                          />
+                        </div>
+                        <div style="margin-bottom: 10px">
+                          <label
+                            style="margin-right: 9px"
+                            for="editBookPublishDate"
+                            >Publish Date:
+                          </label>
+                          <input
+                            type="date"
+                            id="editBookPublishDate"
+                            placeholder="Publish Date"
+                          />
+                        </div>
+                        <div style="margin-bottom: 10px">
+                          <label
+                            style="margin-right: 24px"
+                            for="editBookThumbnail"
+                            >Thumbnail:
+                          </label>
+                          <input
+                          type="text"
+                          id="editBookThumbnail"
+                          placeholder="Image url"
+                          style="margin-right: 10px;"
+                        />
+                        <input
+                          type="file"
+                          id="editBookThumbnailFile"
+                          accept="image/*"
+                          style="max-width: 150px;"
+                        />
+                        <div style="margin-bottom: 10px">
+                          <label for="editBookDescription">Description: </label>
+                          <textarea
+                            type=""
+                            id="editBookDescription"
+                            placeholder="Description"
+                          >
+                          </textarea>
+                        </div>
+                        <div class="button-box">
+                          <button id="saveEditBtn">SAVE</button>
+                          <button id="closeEditBookPopup">CLOSE</button>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              </div>
+              <!-- Popup Delete Book -->
+              <div class="popup" id="deleteBookPopup">
+                <div class="popup-frame">
+                  <div class="popup-delete">
+                    <h2>DELETE BOOK</h2>
+                    <h5 style="margin-bottom: 30px">
+                      Are you sure you want to delete this book?
+                    </h5>
+                    <button id="deleteBookBtn">YES</button>
+                    <button id="closeDeleteBookPopup">NO</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="footer"></div>
+        </div>
+        </div>
+        <!-- trang orders -->
+        <div id="orders" class="page">
+          <div class="header">
+            <div class="container-fluid">
+              <div class="top-bar">
+                <!-- Tiêu đề -->
+                <div class="title">Orders</div>
+
+                <div class="inner-right">
+                  <!-- Thanh tìm kiếm -->
+                  <!-- Các biểu tượng -->
+                  <div class="icons">
+                    <i class="fa-solid fa-calendar"></i>
+                    <i class="fa fa-globe"></i>
+                    <i class="fa-solid fa-right-from-bracket"></i>
+                  </div>
+                </div>
+              </div>
+              <div class="bot-bar">
+                <h1>Orders</h1>
+                <p>Manage and take care of your Orders</p>
+              </div>
+            </div>
+          </div>
+          <div class="section-main">
+            <div class="container">
+              <div class="box-table">
+                <div class="head-box">
+                  <div class="search-container">
+                    <input type="text" placeholder="Search..." />
+                    <i class="fa fa-search"></i>
+                  </div>
+                </div>
+                <table id="ordersTable">
+                  <thead>
+                    <tr>
+                      <th>No</th>
+                      <th>Name</th>
+                      <th>Address</th>
+                      <th>Total</th>
+                      <th>Status</th>
+                      <th></th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <!-- Dữ liệu đơn hàng sẽ được thêm vào đây -->
+                    
+                  </tbody>
+                </table>
+                <div class="page-number">
+                  <ul>
+                    <li class="current">
+                      <span>1</span>
+                    </li>
+                    <li>
+                      <span>2</span>
+                    </li>
+                    <li>
+                      <span>3</span>
+                    </li>
+                    <li>
+                      <span><i class="fa-solid fa-chevron-right"></i></span>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+              <!-- Edit Order Modal -->
+              <div class="popup" id="editOrderPopup">
+                <div class="popup-frame">
+                  <div class="row">
+                    <div class="col-xl-6">
+                      <div class="popup-content">
+                        <h2>EDIT ORDER</h2>
+                        <input
+                          type="text"
+                          id="editOrderName"
+                          placeholder="Name"
+                        />
+                        <br />
+                        <input
+                          type="text"
+                          id="editOrderAddress"
+                          placeholder="Address"
+                        />
+                        <br />
+                        <select id="order-status">
+                          <option value="Order Received">Order Received</option>
+                          <option value="Processing">Processing</option>
+                          <option value="Packed">Packed</option>
+                          <option value="Shipped">Shipped</option>
+                        </select>
+                        <br />
+                        <button id="saveOrderBtn">SAVE</button>
+                        <button id="closeEditOrderPopup">CLOSE</button>
+                      </div>
+                    </div>
+                    <div class="col-xl-6">
+                      <div class="popup-image">
+                        <img src="assets/images/popup.jpg" alt="popup.img" />
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="footer"></div>
+        </div>
+
+        <!-- trang sales -->
+        <div id="sales" class="page">
+          <div class="header">
+            <div class="container-fluid">
+              <div class="top-bar">
+                <!-- Tiêu đề -->
+                <div class="title">Sales</div>
+
+                <div class="inner-right">
+                  <!-- Thanh tìm kiếm -->
+
+                  <!-- Các biểu tượng -->
+                  <div class="icons">
+                    <i class="fa-solid fa-calendar"></i>
+                    <i class="fa fa-globe"></i>
+                    <i class="fa-solid fa-right-from-bracket"></i>
+                  </div>
+                </div>
+              </div>
+              <div class="bot-bar">
+                <h1>Sales</h1>
+                <p>Books eligible for special services</p>
+              </div>
+            </div>
+          </div>
+          <div class="section-main">
+            <div class="container">
+              <div class="main-box">
+                <div class="head-box">
+                  <div class="search-container">
+                    <input type="text" placeholder="Search..." />
+                    <i class="fa fa-search"></i>
+                  </div>
+                  <button id="openAddSaleModal">
+                    <i class="fa-solid fa-plus"></i>
+                    <span>New Deal</span>
+                  </button>
+                </div>
+                <div id="salesBookList" class="row">
+                  <!-- book-1 -->
+                  
+                </div>
+              </div>
+              <!-- Add Sale Modal -->
+              <div class="popup" id="addSalePopup">
+                <div class="popup-frame">
+                  <div class="row">
+                    <div class="col-xl-6">
+                      <div class="popup-content">
+                        <h2>ADD SALEBOOK</h2>
+                        <div class="input-edit" style="margin-bottom: 20px">
+                          <input type="text" id="editSaleID" placeholder="ID" />
+                        </div>
+                        <div class="input-edit" style="margin-bottom: 20px">
+                          <input
+                            type="number"
+                            id="editAddDiscountPrice"
+                            placeholder="Discount Price"
+                          />
+                        </div>
+                        <div class="input-edit" style="margin-bottom: 20px">
+                          <input
+                            type="number"
+                            id="editAddDiscountPercent"
+                            placeholder="Percent"
+                          />
+                        </div>
+                        <div class="input-group">
+                          <label for="editAddStartDate">Start Date</label>
+                          <div class="input-wrapper">
+                            <input type="date" id="editAddStartDate" />
+                            
+                          </div>
+                        </div>
+                        
+                        <div class="input-group">
+                          <label for="editAddEndDate">End Date</label>
+                          <div class="input-wrapper">
+                            <input type="date" id="editAddEndDate" />
+                            
+                          </div>
+                        </div>
+                        <div class="input-edit" style="margin-bottom: 20px">
+                          <input
+                            type="number"
+                            id="editAddSoldCount"
+                            placeholder="Sold Count"
+                          />
+                        </div>
+                        <div class="input-edit" style="margin-bottom: 20px">
+                          <input
+                            type="number"
+                            id="saleMaxQuality"
+                            placeholder="Max Quality"
+                          />
+                        </div>
+                        <div class="input-edit" style="margin-bottom: 20px">                          <textarea
+                            type=""
+                            id="editSaleDescription"
+                            placeholder="Description"
+                          >
+                          </textarea>
+                        </div>
+                        <!-- Thêm ô input vào đây -->
+                        <button id="saveAddSaleBtn">SAVE</button>
+                        <button id="closeAddSalePopup">CLOSE</button>
+                      </div>
+                    </div>
+                    <div class="col-xl-6">
+                      <div class="popup-image">
+                        <img src="assets/images/popup.jpg" alt="popup.img" />
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <!-- Edit Sale Modal (For Settings) -->
+              <div class="popup" id="editSalePopup">
+                <div class="popup-frame-book">
+                  <div class="row">
+                    <div class="col-xl-5">
+                      <div class="popup-image">
+                        <img src="assets/images/popup.jpg" alt="popup.img" />
+                      </div>
+                    </div>
+                    <div class="col-xl-7">
+                      <div class="popup-content">
+                        <h2
+                          style="margin-bottom: 40px; color: var(--color-one)"
+                        >
+                          Name: The Book of books
+                        </h2>
+                        <input type="hidden" id="editSaleID" value="">
+                        <input type="hidden" id="hiddenOriginPrice" value="100" />
+                        <div class="input-edit" style="margin-bottom: 10px">
+                          <label
+                            style="margin-right: 5px"
+                            for="editDiscountPrice"
+                            >Discount Price:
+                          </label>
+                          <input
+                            type="number"
+                            id="editDiscountPrice"
+                            placeholder="Discount Price"
+                          />
+                        </div>
+                        <div class="input-edit" style="margin-bottom: 10px">
+                          <label
+                            style="margin-right: 56px"
+                            for="editDiscountPercent"
+                            >Percent:
+                          </label>
+                          <input
+                            type="number"
+                            id="editDiscountPercent"
+                            placeholder="Percent"
+                          />
+                        </div>
+                        <div class="input-edit" style="margin-bottom: 10px">
+                          <label style="margin-right: 36px" for="editStartDate"
+                            >Start Date:
+                          </label>
+                          <input
+                            type="date"
+                            id="editStartDate"
+                            placeholder="Start Date"
+                          />
+                        </div>
+                        <div class="input-edit" style="margin-bottom: 10px">
+                          <label style="margin-right: 44px" for="editEndDate"
+                            >End Date:
+                          </label>
+                          <input
+                            type="date"
+                            id="editEndDate"
+                            placeholder="End Date"
+                          />
+                        </div>
+                        <div class="input-edit" style="margin-bottom: 10px">
+                          <label style="margin-right: 54px" for="editDealActive"
+                            >Active:
+                          </label>
+                          <!-- Radio button cho True -->
+                          <input
+                          type="radio"
+                          id="activeTrue"
+                          name="active"
+                          value="true"
+                          style="width: 40px"
+                        />
+                        <label for="activeTrue">True</label>
+
+                        <!-- Radio button cho False -->
+                        <input
+                          type="radio"
+                          id="activeFalse"
+                          name="active"
+                          value="false"
+                          style="width: 40px"
+                        />
+                        <label for="activeFalse">False</label>
+                        </div>
+                        <div class="input-edit" style="margin-bottom: 10px">
+                          <label style="margin-right: 30px" for="editSoldCount"
+                            >Sold Count:
+                          </label>
+                          <input
+                            type="number"
+                            id="editSoldCount"
+                            placeholder="Sold Count"
+                          />
+                        </div>
+                        <div class="input-edit" style="margin-bottom: 10px">
+                          <label style="margin-right: 22px" for="editMaxQuality"
+                            >Max Quality:
+                          </label>
+                          <input
+                            type="number"
+                            id="editMaxQuality"
+                            placeholder="Max Quality"
+                          />
+                        </div>
+                        <div class="button-box">
+                          <button id="saveEditSalePopup">SAVE</button>
+                          <button id="closeEditSalePopup">CLOSE</button>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <!-- Popup Delete Sale -->
+              <div class="popup" id="deleteSalePopup">
+                <div class="popup-frame">
+                  <div class="popup-delete">
+                    <h2>DELETE SALE</h2>
+                    <h5 style="margin-bottom: 30px">
+                      Are you sure you want to delete this sale?
+                    </h5>
+                    <button id="deleteSaleBtn">YES</button>
+                    <button id="closeDeleteSalePopup">NO</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="footer"></div>
+        </div>
+
+        <!-- trang personal -->
+        <div id="personal" class="page">
+          <div class="header">
+            <div class="container-fluid">
+              <div class="top-bar">
+                <!-- Tiêu đề -->
+                <div class="title">Personal</div>
+
+                <div class="inner-right">
+                  <!-- Thanh tìm kiếm -->
+
+                  <!-- Các biểu tượng -->
+                  <div class="icons">
+                    <i class="fa-solid fa-calendar"></i>
+                    <i class="fa fa-globe"></i>
+                    <i class="fa-solid fa-right-from-bracket"></i>
+                  </div>
+                </div>
+              </div>
+              <div class="bot-bar">
+                <h1>Personal</h1>
+                <p>Personal information of employees</p>
+              </div>
+            </div>
+          </div>
+          <div class="section-main">
+            <div class="container">
+              <div class="profile-box">
+                <div class="wallpaper">
+                  <img
+                    src="assets/images/hinh-nen-thien-nhien-do-phan-giai-cao.jpg"
+                    alt="anh nen dai dien"
+                  />
+                </div>
+                <div id="openEditPersonalModal" class="edit-gear">
+                  <i class="fa-solid fa-gear"></i>
+                </div>
+                <div class="profile-picture">
+                  <img
+                    src="assets/images/anhdaidiencuoi.jpg"
+                    alt="avatar"
+                    id="avatar"
+                    onclick="toggleDropdown(event)"
+                  />
+                  <!-- Dropdown menu -->
+                  <div id="avatarDropdown" class="dropdown-menu">
+                    <ul>
+                      <li>Change Your Avatar</li>
+                    </ul>
+                  </div>
+                </div>
+                <div class="profile-info">
+                  <div class="row">
+                    <!-- Cột Thứ Nhất -->
+                    <div class="col-xl-6">
+                      <div class="info">
+                        <p><i class="fa-solid fa-signature"></i><span>Name: Loading...</span></p>
+                        <p><i class="fa-solid fa-gift"></i><span>BirthDay: Loading...</span></p>
+                        <p><i class="fa-solid fa-mobile"></i><span>Phone: Loading...</span></p>
+                        <p><i class="fa-solid fa-paper-plane"></i><span>Email: Loading...</span></p>
+                        <p><i class="fa-solid fa-building"></i><span>Address: Loading...</span></p>
+                        
+                      </div>
+                    </div>
+                    <!-- Cột Thứ Hai -->
+                    <div class="col-xl-6">
+                      <div class="info">
+                        <p><i class="fa-solid fa-briefcase"></i><span>On-position: Loading...</span></p>
+                        <p><i class="fa-solid fa-coins"></i><span>Salary: Loading...</span></p>
+                        <p><i class="fa-solid fa-calendar-days"></i><span>Role: Loading...</span></p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <!-- Popup Edit Personal -->
+              <div class="popup" id="editPersonalPopup">
+                <div class="popup-frame">
+                  <div class="row">
+                    <div class="col-xl-6">
+                      <div class="popup-content">
+                        <h2>Personal Information</h2>
+                        <input
+                          type="text"
+                          id="staffName"
+                          placeholder="Name"
+                        /><br />
+                        <input
+                          type="date"
+                          id="staffBirthDay"
+                          placeholder="BirthDay"
+                        />
+                        <br />
+                        <input
+                          type="phone"
+                          id="staffPhone"
+                          placeholder="Phone"
+                        />
+                        <br />
+                        <input
+                          type="email"
+                          id="staffEmail"
+                          placeholder="Email"
+                        />
+                        <br />
+                        <input
+                          type="text"
+                          id="staffAddress"
+                          placeholder="Address"
+                        />
+                        
+                        
+                        <button id="updateEditPersonalPopup">UPDATE</button>
+                        <button id="closeEditPersonalPopup">CLOSE</button>
+                      </div>
+                    </div>
+                    <div class="col-xl-6">
+                      <div class="popup-image">
+                        <img src="assets/images/popup.jpg" alt="popup.img" />
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="footer"></div>
+        </div>
+      </div>
+    </div>
+
+    <script src="page.js"></script>
+    <script src="customer.js"></script>
+    <script src="books.js"></script>
+    <script src="personal.js"></script>
+    <script src="book.js"></script>
+    <script src="changePassword.js"></script>
+    <script src="sale.js"></script>
+    <script src="order.js"></script>
+    <script src="logout.js"></script>
+
+    <script>
+      function toggleDropdown(event) {
+        event.stopPropagation(); // Ngừng sự kiện click nổi bọt
+        const dropdown = document.getElementById("avatarDropdown");
+        dropdown.style.display =
+          dropdown.style.display === "block" ? "none" : "block";
+      }
+
+      // Đóng dropdown nếu click ra ngoài
+      document.addEventListener("click", function (event) {
+        const dropdown = document.getElementById("avatarDropdown");
+        const avatar = document.getElementById("avatar");
+
+        // Kiểm tra xem click có xảy ra bên ngoài ảnh đại diện và dropdown không
+        if (
+          !avatar.contains(event.target) &&
+          !dropdown.contains(event.target)
+        ) {
+          dropdown.style.display = "none";
+        }
+      });
+    </script>
+    <!-- Bootstrap 4 -->
+    <script
+      src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js"
+      integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-Fy6S3B9q64WdZWQUiU+q4/2Lc9npb8tCaSX9FK7E8HnRr0Jz8D6OP9dO5Vg3Q9ct"
+      crossorigin="anonymous"
+    ></script>
+    <!-- End Bootstrap 4 -->
+  </body>
+</html>
