@@ -1,6 +1,37 @@
 let customers = [];
 let currentEditId = null;
+async function checkToken() {
+  const token = localStorage.getItem('token');
+  console.log(token)
+  if (!token) {
+    alert('Bạn chưa đăng nhập!');
+    window.location.href = './login/login.html';
+    return false;
+  }
 
+  try {
+    const response = await fetch('http://localhost:3000/staff/auth/verify-token', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: `Bearer ${token}`,
+      },
+    });
+
+    if (response.ok) {
+      return true; // Token hợp lệ
+    } else {
+      alert('Token không hợp lệ, vui lòng đăng nhập lại!');
+      window.location.href = './login/login.html';
+      return false;
+    }
+  } catch (error) {
+    console.error('Lỗi khi xác thực token:', error);
+    alert('Đã xảy ra lỗi khi xác thực token!');
+    window.location.href = 'login.html';
+    return false;
+  }
+}
 // Hàm hiển thị bảng khách hàng
 function renderCustomerTable() {
   const tableBody = document.querySelector("#customerTable tbody");
@@ -28,22 +59,69 @@ function renderCustomerTable() {
 }
 
 // Fetch customers from the backend API
-async function fetchCustomers() {
+async function fetchCustomers(page = 1) {
+  if (!(await checkToken())) return;
   try {
-    const response = await fetch("http://localhost:3000/profile/getUser");
+    const response = await fetch(
+      `http://localhost:3000/profile/getUser?page=${page}&limit=5`
+    );
     if (!response.ok) {
       throw new Error(`HTTP error! status: ${response.status}`);
     }
-    customers = await response.json();
-    renderCustomerTable();
+    const data = await response.json();
+    customers = data.users; // Lấy danh sách khách hàng từ API
+    renderCustomerTable(); // Hiển thị bảng khách hàng
+    renderCustomerPagination(data.totalPages, data.currentPage); // Hiển thị phân trang
   } catch (error) {
     console.error("Error fetching customers:", error);
     alert("Failed to load customer data.");
   }
 }
+function renderCustomerPagination(totalPages, currentPage) {
+  const paginationList = document.getElementById("customerpagination-list");
+  paginationList.innerHTML = ""; // Xóa nội dung cũ
 
+  // Nút "Previous"
+  const prevButton = document.createElement("li");
+  prevButton.innerHTML = `<a href="#topCustomers"><i class="fa-solid fa-chevron-left"></i></a>`;
+  if (currentPage === 1) prevButton.classList.add("disabled");
+  prevButton.addEventListener("click", () => {
+    if (currentPage > 1) {
+      fetchCustomers(currentPage - 1);
+    }
+  });
+  paginationList.appendChild(prevButton);
+
+  // Số trang
+  for (let i = 1; i <= totalPages; i++) {
+    const pageButton = document.createElement("li");
+    pageButton.innerHTML = `<a href="#topCustomers">${i}</a>`;
+    if (currentPage === i) pageButton.classList.add("current");
+
+    pageButton.addEventListener("click", () => {
+      if (currentPage !== i) {
+        fetchCustomers(i);
+      }
+    });
+    paginationList.appendChild(pageButton);
+  }
+
+  // Nút "Next"
+  const nextButton = document.createElement("li");
+  nextButton.innerHTML = `<a href="#topCustomers"><i class="fa-solid fa-chevron-right"></i></a>`;
+  if (currentPage === totalPages) nextButton.classList.add("disabled");
+  nextButton.addEventListener("click", () => {
+    if (currentPage < totalPages) {
+      fetchCustomers(currentPage + 1);
+    }
+  });
+  paginationList.appendChild(nextButton);
+}
 // Initial fetch when the page loads
-document.addEventListener("DOMContentLoaded", fetchCustomers);
+document.addEventListener("DOMContentLoaded", () => {
+  currentPage = 1; // Đặt currentPage về trang đầu tiên
+  fetchCustomers(currentPage); // Gọi fetchCustomers và truyền currentPage vào
+});
 
 
 // Mở popup chỉnh sửa khách hàng
@@ -145,4 +223,11 @@ document.getElementById("deleteCustomerBtn").addEventListener("click", async () 
     console.error("Error deleting customer:", error);
     alert("Failed to delete customer.");
   }
+
+  
+
+
+
+
+
 });

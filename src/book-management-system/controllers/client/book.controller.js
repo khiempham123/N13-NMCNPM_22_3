@@ -144,3 +144,21 @@ module.exports.add = async (req, res) => {
   }
 
 }
+
+module.exports.searchBar = async (req, res) => {
+  try {
+    const query = req.query.query || ""; // Lấy từ khóa tìm kiếm từ query
+    const books = await Book.find({
+      title: { $regex: query, $options: "i" }, // Tìm kiếm không phân biệt hoa thường
+    })
+      .select("title author") // Chỉ lấy các trường cần thiết
+      .limit(5); // Giới hạn kết quả trả về tối đa 5
+    res.status(200).json(books);
+  } catch (error) {
+    console.error("Error searching books:", error);
+    res.status(500).json({ message: "Failed to search books" });
+  }
+
+
+
+}

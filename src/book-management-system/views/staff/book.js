@@ -1,23 +1,66 @@
+let currentPage = 1;
 // Hàm lấy dữ liệu sách từ API
-async function fetchBooks() {
+async function fetchBooks(page = 1) {
   try {
-    const response = await fetch("http://localhost:3000/book/search");
+    const response = await fetch(`http://localhost:3000/book/?page=${page}`);
     if (!response.ok) {
       throw new Error(`HTTP error! status: ${response.status}`);
     }
 
-    const data = await response.json(); // Lấy toàn bộ object từ API
-    console.log("Data from API:", data); // Kiểm tra cấu trúc dữ liệu
-    console.log(data.books)
-
-    renderBooks(data.books);
-
+    const data = await response.json(); // Lấy dữ liệu từ API
+    console.log(data)
+    renderBooks(data.books); // Hiển thị sách
+    renderPagination(data.totalPages, page); // Hiển thị phân trang
   } catch (error) {
     console.error("Error fetching books:", error);
     alert("Failed to load book data.");
   }
 }
+function renderPagination(totalPages, currentPage) {
+  const paginationList = document.getElementById("bookpagination-list");
+  if (!paginationList) {
+    console.error("Element with id 'bookpagination-list' not found.");
+    return;
+  }
+  paginationList.innerHTML = ""; // Xóa nội dung cũ
 
+  // Nút "Previous"
+  const prevButton = document.createElement("li");
+  prevButton.innerHTML = `<a href="#topBook"><span><i class="fa-solid fa-chevron-left"></i></span></a>`;
+  if (currentPage === 1) prevButton.classList.add("disabled");
+  prevButton.addEventListener("click", () => {
+    if (currentPage > 1) {
+      fetchBooks(currentPage - 1);
+    }
+  });
+  paginationList.appendChild(prevButton);
+
+  // Số trang
+  for (let i = 1; i <= totalPages; i++) {
+    const pageButton = document.createElement("li");
+    if (currentPage === i) {
+      pageButton.classList.add("current");
+    }
+    pageButton.innerHTML = `<a href="#topBook"><span>${i}</span></a>`;
+    pageButton.addEventListener("click", () => {
+      if (currentPage !== i) {
+        fetchBooks(i);
+      }
+    });
+    paginationList.appendChild(pageButton);
+  }
+
+  // Nút "Next"
+  const nextButton = document.createElement("li");
+  nextButton.innerHTML = `<a href="#topBook"><span><i class="fa-solid fa-chevron-right"></i></span></a>`;
+  if (currentPage === totalPages) nextButton.classList.add("disabled");
+  nextButton.addEventListener("click", () => {
+    if (currentPage < totalPages) {
+      fetchBooks(currentPage + 1);
+    }
+  });
+  paginationList.appendChild(nextButton);
+}
 function renderBooks(books) {
   const bookRow = document.getElementById("bookRow");
   bookRow.innerHTML = ""; // Xóa nội dung cũ trước khi render mới
@@ -46,7 +89,7 @@ function renderBooks(books) {
 }
 document.addEventListener("DOMContentLoaded", () => {
   document.getElementById("book").addEventListener("click", () => {
-    fetchBooks(); // Chỉ gọi hàm fetchBooks khi nhấn vào trang Books
+    fetchBooks(currentPage); // Chỉ gọi hàm fetchBooks khi nhấn vào trang Books
   });
   // Mở popup Add Book
 document.getElementById("openAddBookModal").addEventListener("click", function () {
@@ -89,7 +132,7 @@ document.getElementById("saveAddBookBtn").addEventListener("click", async () => 
     document.getElementById("addBookPopup").style.display = "none";
 
     // Reload lại danh sách sách
-    fetchBooks();
+    fetchBooks(currentPage);
   } catch (error) {
     console.error("Error adding book:", error);
     alert("Failed to add book. Please try again.");
@@ -194,7 +237,7 @@ document.getElementById("saveAddBookBtn").addEventListener("click", async () => 
       document.getElementById("editBookPopup").style.display = "none";
 
       // Reload lại danh sách sách
-      fetchBooks();
+      fetchBooks(currentPage);
     } catch (error) {
       console.error("Error updating book:", error);
       alert("Failed to update book.");
@@ -227,7 +270,7 @@ document.getElementById("saveAddBookBtn").addEventListener("click", async () => 
         document.getElementById("deleteBookPopup").style.display = "none"; // Đóng popup
     
         deleteBookId = null; // Reset biến lưu ID
-        fetchBooks(); // Reload lại danh sách sách
+        fetchBooks(currentPage); // Reload lại danh sách sách
       } catch (error) {
         console.error("Error deleting book:", error);
         alert("Failed to delete book. Please try again.");
@@ -241,5 +284,59 @@ document.getElementById("saveAddBookBtn").addEventListener("click", async () => 
         document.getElementById("deleteBookPopup").style.display = "none";
         deleteBookId = null; // Reset biến tạm
       });
+
+      const searchInput = document.getElementById("searchBookInput");
+  const suggestionBox = document.getElementById("bookSuggestionBox");
+
+  // Hàm hiển thị danh sách sách gợi ý
+  function renderSuggestions(books) {
+    suggestionBox.innerHTML = ""; // Xóa nội dung cũ
+
+    books.slice(0, 5).forEach((book) => {
+      const suggestionItem = document.createElement("div");
+      suggestionItem.className = "suggestion-item";
+      suggestionItem.textContent = `${book.title} (${book.author})`;
+      suggestionBox.appendChild(suggestionItem);
+
+      // Gắn sự kiện khi chọn một đề xuất
+      suggestionItem.addEventListener("click", () => {
+        searchInput.value = book.title; // Gán giá trị vào ô input
+        suggestionBox.innerHTML = ""; // Xóa danh sách gợi ý
+      });
+    });
+
+    // Hiển thị container nếu có kết quả
+    suggestionBox.style.display = books.length > 0 ? "block" : "none";
+  }
+
+  // Hàm gửi yêu cầu tìm kiếm
+  async function searchBooks(query) {
+    try {
+      const response = await fetch(`http://localhost:3000/books/searchbar?query=${query}`);
+      if (!response.ok) throw new Error("Failed to fetch search results");
+      const books = await response.json();
+      renderSuggestions(books); // Cập nhật container kết quả
+    } catch (error) {
+      console.error("Error searching books:", error);
+    }
+  }
+
+  // Sự kiện khi nhập vào ô tìm kiếm
+  searchInput.addEventListener("input", (event) => {
+    const query = event.target.value.trim();
+    if (query.length > 0) {
+      searchBooks(query);
+    } else {
+      suggestionBox.innerHTML = ""; // Xóa kết quả nếu không có từ khóa
+      suggestionBox.style.display = "none";
+    }
+  });
+
+  // Đóng suggestion box khi click ra ngoài
+  document.addEventListener("click", (event) => {
+    if (!suggestionBox.contains(event.target) && event.target !== searchInput) {
+      suggestionBox.style.display = "none";
+    }
+  });
 });
 

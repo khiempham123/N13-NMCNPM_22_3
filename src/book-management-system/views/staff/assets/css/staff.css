@@ -959,3 +959,15 @@
   display: flex;
   align-items: center;
 }
+#ordersTable td div {
+  margin-bottom: 5px;
+}
+
+#ordersTable td div strong {
+  font-weight: bold;
+}
+
+#ordersTable td div em {
+  color: gray;
+  font-size: 0.9em;
+}

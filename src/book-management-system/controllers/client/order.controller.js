@@ -5,10 +5,10 @@ const mongoose = require("mongoose");
 // GET: Lấy danh sách các đơn hàng hoặc chi tiết đơn hàng cụ thể
 const getOrders = async (req, res) => {
   try {
-    const { orderId, status } = req.query; // Destructure status from query
+    const { orderId, status, page = 1, limit = 5 } = req.query; // Thêm page và limit
     const userId = req.user._id;
 
-    // If `orderId` is provided, return specific order details
+    // Nếu `orderId` được cung cấp, trả về chi tiết đơn hàng
     if (orderId) {
       const order = await Order.findOne({ _id: orderId, userId })
         .populate("items.bookId")
@@ -19,15 +19,31 @@ const getOrders = async (req, res) => {
       return res.status(200).json(order);
     }
 
-    // Build query object based on status
+    // Xây dựng query object
     const query = { userId };
     if (status && status.toLowerCase() !== "all") {
       query.status = status.toLowerCase();
     }
 
-    // Fetch orders based on the query
-    const orders = await Order.find(query).populate("items.bookId").exec();
-    res.status(200).json(orders);
+    // Tính toán `skip` dựa trên `page` và `limit`
+    const skip = (page - 1) * limit;
+
+    // Fetch danh sách đơn hàng với phân trang
+    const orders = await Order.find(query)
+      .populate("items.bookId")
+      .skip(skip)
+      .limit(Number(limit))
+      .exec();
+
+    // Tổng số đơn hàng
+    const totalOrders = await Order.countDocuments(query);
+
+    res.status(200).json({
+      totalOrders,
+      totalPages: Math.ceil(totalOrders / limit),
+      currentPage: Number(page),
+      orders,
+    });
   } catch (error) {
     console.error(error);
     res.status(500).json({ message: "Failed to fetch orders", error });

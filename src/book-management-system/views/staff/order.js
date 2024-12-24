@@ -1,53 +1,170 @@
 
+
 // Ensure the DOM is fully loaded before running the script
 document.addEventListener("DOMContentLoaded", () => {
-  
+  async function checkToken() {
+    const token = localStorage.getItem('token');
+    console.log(token)
+    if (!token) {
+      alert('Bạn chưa đăng nhập!');
+      window.location.href = './login/login.html';
+      return false;
+    }
+
+    try {
+      const response = await fetch('http://localhost:3000/staff/auth/verify-token', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: `Bearer ${token}`,
+        },
+      });
+
+      if (response.ok) {
+        return true; // Token hợp lệ
+      } else {
+        alert('Token không hợp lệ, vui lòng đăng nhập lại!');
+        window.location.href = './login/login.html';
+        return false;
+      }
+    } catch (error) {
+      console.error('Lỗi khi xác thực token:', error);
+      alert('Đã xảy ra lỗi khi xác thực token!');
+      window.location.href = 'login.html';
+      return false;
+    }
+  }
 
   const ordersTableBody = document.querySelector("#ordersTable tbody");
 
   // Hàm fetch dữ liệu từ API
-  async function fetchOrders() {
+  async function fetchOrders(page = 1) {
     try {
-      const response = await fetch("http://localhost:3000/staff/order");
+      const token = localStorage.getItem('token'); // Lấy token từ localStorage
+      if (!token) {
+        alert('Bạn chưa đăng nhập!');
+        window.location.href = './login/login.html';
+        return;
+      }
+  
+      const response = await fetch(
+        `http://localhost:3000/staff/order?page=${page}&limit=5`,
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
+  
       if (!response.ok) {
         throw new Error("Failed to fetch orders");
       }
-
-      const orders = await response.json();
-      console.log(orders.orders)
-      // Xóa nội dung cũ trước khi thêm dữ liệu mới
-      ordersTableBody.innerHTML = "";
-
-      // Duyệt qua danh sách đơn hàng và thêm vào bảng
-      orders.orders.forEach((order, index) => {
-        const row = document.createElement("tr");
-        row.setAttribute("data-id", order._id);
-        // Thêm các cột dữ liệu
-        row.innerHTML = `
-          <td>${index + 1}</td>
-          <td>${order.userFullName}</td>
-          <td>${order.address.street}, ${order.address.ward}, ${order.address.district}, ${order.address.city}</td>
-          <td>$${order.totalAmount.toFixed(2)}</td>
-          <td>${order.status}</td>
-          <td>
-            <button class="editOrder">
-              <i class="fa-solid fa-pen-to-square"></i>
-            </button>
-          </td>
-        `;
-
-        // Thêm hàng vào bảng
-        ordersTableBody.appendChild(row);
-        attachEditEvent();
-      });
+  
+      const data = await response.json();
+      const { orders, totalPages, currentPage } = data;
+      console.log(data)
+      // Hiển thị danh sách đơn hàng
+      renderOrders(orders);
+  
+      // Hiển thị phân trang
+      renderOrderPagination(totalPages, currentPage);
     } catch (error) {
       console.error("Error fetching orders:", error);
     }
   }
+  function renderOrders(orders) {
+    const ordersTableBody = document.querySelector("#ordersTable tbody");
+    ordersTableBody.innerHTML = ""; // Xóa nội dung cũ
+  
+    orders.forEach((order, index) => {
+      const row = document.createElement("tr");
+      row.setAttribute("data-id", order._id);
+  
+      // Tạo danh sách sản phẩm đã mua, xử lý nếu dữ liệu thiếu
+      const itemsHtml = order.items
+        .map((item) => {
+          const title = item.title || "Unknown Product";
+          const quantity = item.quantity || 0;
+          const price = item.price || 0;
+          const totalPrice = item.totalPrice || 0;
+  
+          return `
+            <div>
+              <strong>${title}</strong> - ${quantity} x $${price.toFixed(2)} 
+              <em>(Total: $${totalPrice.toFixed(2)})</em>
+            </div>
+          `;
+        })
+        .join("");
+  
+      row.innerHTML = `
+        <td>${index + 1}</td>
+        <td>${order.userFullName}</td>
+        <td>${order.address.street}, ${order.address.ward}, ${order.address.district}, ${order.address.city}</td>
+        <td>${itemsHtml}</td> <!-- Hiển thị sản phẩm đã mua -->
+        <td>$${order.totalAmount?.toFixed(2) || "0.00"}</td>
+        <td>${order.status}</td>
+        <td>
+          <button class="editOrder">
+            <i class="fa-solid fa-pen-to-square"></i>
+          </button>
+        </td>
+      `;
+  
+      ordersTableBody.appendChild(row);
+    });
+  
+    // Gắn sự kiện cho nút "Edit"
+    attachEditEvent();
+  }
+  
+  function renderOrderPagination(totalPages, currentPage) {
+    const paginationList = document.getElementById("orderpagination-list");
+    paginationList.innerHTML = ""; // Xóa nội dung cũ
+  
+    // Nút "Previous"
+    const prevButton = document.createElement("li");
+    prevButton.innerHTML = `<a href="#topOrders"><i class="fa-solid fa-chevron-left"></i></a>`;
+    if (currentPage === 1) prevButton.classList.add("disabled");
+    prevButton.addEventListener("click", () => {
+      if (currentPage > 1) {
+        fetchOrders(currentPage - 1);
+      }
+    });
+    paginationList.appendChild(prevButton);
+  
+    // Số trang
+    for (let i = 1; i <= totalPages; i++) {
+      const pageButton = document.createElement("li");
+      pageButton.innerHTML = `<a href="#topOrders">${i}</a>`;
+      if (Number(currentPage) === Number(i)) {
+        pageButton.classList.add("current");
+      }
+  
+      pageButton.addEventListener("click", () => {
+        if (currentPage !== i) {
+          fetchOrders(i);
+        }
+      });
+      paginationList.appendChild(pageButton);
+    }
+    // Nút "Next"
+    const nextButton = document.createElement("li");
+    nextButton.innerHTML = `<a href="#topOrders"><i class="fa-solid fa-chevron-right"></i></a>`;
+    if (currentPage === totalPages) nextButton.classList.add("disabled");
+    nextButton.addEventListener("click", () => {
+      if (currentPage < totalPages) {
+        currentPage = Number(currentPage) + 1;
+        fetchOrders(currentPage);
+      }
+    });
+    paginationList.appendChild(nextButton);
+  }
 
   // Gọi hàm fetchOrders khi tải trang
   document.getElementById("order").addEventListener("click", () => {
-    fetchOrders(); // Chỉ gọi hàm fetchBooks khi nhấn vào trang Books
+    currentPage = 1; 
+    fetchOrders(currentPage); // Chỉ gọi hàm fetchBooks khi nhấn vào trang Books
   });
   function attachEditEvent() {
   // Select all edit buttons within the table
@@ -106,20 +223,32 @@ document.addEventListener("DOMContentLoaded", () => {
   // Function to save the updated data back to the table
   saveBtn.addEventListener("click", async () => {
     if (currentRow) {
+      console.log(currentRow)
       const cells = currentRow.querySelectorAll("td");
   
       // Thu thập dữ liệu đã chỉnh sửa
       const orderId = currentRow.dataset.id; // Lấy ID đơn hàng từ thuộc tính data-id
-      console.log(orderId)
+      const fullName = nameInput.value.trim();
+      const addressText = addressInput.value.trim();
+      const status = statusSelect.value;
+  
+      // Kiểm tra dữ liệu đầu vào
+      if (!fullName || !addressText || !status) {
+        alert("Please fill in all fields before saving.");
+        return;
+      }
+  
+      // Tách địa chỉ thành các phần
+      const addressParts = addressText.split(", ");
       const updatedData = {
-        userFullName: nameInput.value.trim(),
+        userFullName: fullName,
         address: {
-          street: addressInput.value.trim().split(", ")[0], // Giả định format "street, ward, district, city"
-          ward: addressInput.value.trim().split(", ")[1],
-          district: addressInput.value.trim().split(", ")[2],
-          city: addressInput.value.trim().split(", ")[3],
+          street: addressParts[0] || "",
+          ward: addressParts[1] || "",
+          district: addressParts[2] || "",
+          city: addressParts[3] || "",
         },
-        status: statusSelect.value,
+        status: status,
       };
   
       try {
@@ -133,7 +262,8 @@ document.addEventListener("DOMContentLoaded", () => {
         });
   
         if (!response.ok) {
-          throw new Error("Failed to update order");
+          const errorDetails = await response.json();
+          throw new Error(errorDetails.message || "Failed to update order");
         }
   
         const updatedOrder = await response.json();
@@ -147,12 +277,12 @@ document.addEventListener("DOMContentLoaded", () => {
         popup.style.display = "none";
       } catch (error) {
         console.error("Error updating order:", error);
-        alert("Failed to update order. Please try again.");
+        alert(`Failed to update order: ${error.message}`);
       }
     }
   });
-
-  // Optional: Close the popup when clicking outside of it
+  
+  // Đóng popup khi nhấp ra ngoài
   window.addEventListener("click", (e) => {
     if (e.target === popup) {
       popup.style.display = "none";

@@ -152,19 +152,8 @@
                   </tbody>
                 </table>
                 <div class="page-number">
-                  <ul>
-                    <li class="current">
-                      <span>1</span>
-                    </li>
-                    <li>
-                      <span>2</span>
-                    </li>
-                    <li>
-                      <span>3</span>
-                    </li>
-                    <li>
-                      <span><i class="fa-solid fa-chevron-right"></i></span>
-                    </li>
+                  <ul id="customerpagination-list">
+                    <!-- Nút phân trang sẽ được render tại đây -->
                   </ul>
                 </div>
               </div>
@@ -261,11 +250,11 @@
 
         <!-- trang books -->
         <div id="books" class="page">
-          <div class="header">
+          <div class="header" >
             <div class="container-fluid">
               <div class="top-bar">
                 <!-- Tiêu đề -->
-                <div class="title">Books</div>
+                <div class="title" id="topBook">Books</div>
 
                 <div class="inner-right">
                   <!-- Thanh tìm kiếm -->
@@ -289,8 +278,9 @@
               <div class="main-box">
                 <div class="head-box">
                   <div class="search-container">
-                    <input type="text" placeholder="Search..." />
+                    <input type="text" id="searchBookInput" placeholder="Search..." />
                     <i class="fa fa-search"></i>
+                    <div id="bookSuggestionBox" class="suggestion-box"></div>
                   </div>
                   <button id="openAddBookModal">
                     <i class="fa-solid fa-plus"></i>
@@ -299,8 +289,13 @@
                 </div>
                 <div id="bookRow" class= "row">
               <!-- Dữ liệu sách được thêm vào đây -->
+              
               </div>
-
+              <div class="page-number">
+                <ul id="bookpagination-list">
+                  <!-- Nút phân trang sẽ được render tại đây -->
+                </ul>
+              </div>
               <!-- Add Book Modal -->
               <div class="popup" id="addBookPopup">
                 <div class="popup-frame">
@@ -528,7 +523,7 @@
             <div class="container-fluid">
               <div class="top-bar">
                 <!-- Tiêu đề -->
-                <div class="title">Orders</div>
+                <div class="title" id="topOrders">Orders</div>
 
                 <div class="inner-right">
                   <!-- Thanh tìm kiếm -->
@@ -541,7 +536,7 @@
                 </div>
               </div>
               <div class="bot-bar">
-                <h1>Orders</h1>
+                <h1 >Orders</h1>
                 <p>Manage and take care of your Orders</p>
               </div>
             </div>
@@ -561,6 +556,7 @@
                       <th>No</th>
                       <th>Name</th>
                       <th>Address</th>
+                      <th>Items</th>
                       <th>Total</th>
                       <th>Status</th>
                       <th></th>
@@ -572,19 +568,8 @@
                   </tbody>
                 </table>
                 <div class="page-number">
-                  <ul>
-                    <li class="current">
-                      <span>1</span>
-                    </li>
-                    <li>
-                      <span>2</span>
-                    </li>
-                    <li>
-                      <span>3</span>
-                    </li>
-                    <li>
-                      <span><i class="fa-solid fa-chevron-right"></i></span>
-                    </li>
+                  <ul id="orderpagination-list">
+                    <!-- Nút phân trang sẽ được render tại đây -->
                   </ul>
                 </div>
               </div>
@@ -672,6 +657,11 @@
                 <div id="salesBookList" class="row">
                   <!-- book-1 -->
                   
+                </div>
+                <div class="page-number">
+                  <ul id="salespagination-list">
+                    <!-- Nút phân trang sẽ được render tại đây -->
+                  </ul>
                 </div>
               </div>
               <!-- Add Sale Modal -->
