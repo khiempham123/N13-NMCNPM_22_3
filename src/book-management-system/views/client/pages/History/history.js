@@ -97,9 +97,9 @@ document.addEventListener("DOMContentLoaded", function () {
 
       const data = await response.json();
 
-      ordersData = data; // Store fetched orders (assuming the response has an 'orders' field)
-
-      displayOrders(data); // Display orders in the table
+      ordersData = data.orders; // Store fetched orders (assuming the response has an 'orders' field)
+  
+      displayOrders(ordersData); // Display orders in the table
     } catch (error) {
       console.error("Error fetching orders:", error);
       // Optionally, display an error message to the user here
@@ -130,7 +130,6 @@ document.addEventListener("DOMContentLoaded", function () {
       orderList.innerHTML = `<tr><td colspan="7" style="text-align: center;">No orders found.</td></tr>`;
       return;
     }
-
     orders.forEach((order) => {
       const statusClass = getStatusClass(order.status);
       const isPending = order.status.toLowerCase() === "pending";
@@ -204,6 +203,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
     // Populate Product List in Modal
     order.items.forEach((item) => {
+      console.log(order.items)
       const productDiv = document.createElement("div");
       productDiv.classList.add("product");
 
@@ -242,6 +242,7 @@ document.addEventListener("DOMContentLoaded", function () {
   searchInput.addEventListener("input", () => {
     const searchQuery = searchInput.value.toLowerCase();
     const filteredOrders = ordersData.filter(
+      
       (order) =>
         order._id.toLowerCase().includes(searchQuery) ||
         order.items.some((item) =>

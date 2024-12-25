@@ -50,6 +50,7 @@ const getRelatedProducts = async (req, res) => {
     const relatedProducts = await Book.aggregate([
       {
         $match: {
+          author:book.author,
           category: book.category, // Match category
           _id: { $ne: book._id }, // Exclude the current product
           deleted: false, // Ensure the product is not deleted

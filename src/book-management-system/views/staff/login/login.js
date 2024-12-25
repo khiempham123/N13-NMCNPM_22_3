@@ -41,7 +41,7 @@ if (signInForm) {
                     if (role === 'staff') {
                         window.location.href = '../staff.html'; // Chuyển hướng đến trang staff
                     } else if (role === 'admin') {
-                        window.location.href = '../admin.html'; // Chuyển hướng đến trang admin
+                        window.location.href = '../../admin/index.html'; // Chuyển hướng đến trang admin
                     } else {
                         alert('Role không hợp lệ!');
                         localStorage.clear(); // Xóa token và thông tin không hợp lệ

@@ -239,6 +239,7 @@ table td a:hover {
 .product-list {
   display: flex;
   flex-direction: column;
+  overflow-y: auto;
   gap: 15px;
   width: 600px;
 }

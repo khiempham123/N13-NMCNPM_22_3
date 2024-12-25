@@ -154,11 +154,44 @@ const logout = async (req, res) => {
     res.status(500).json({ message: "Failed to logout" });
   }
 };
+const updateAvatar = async (req, res) => {
+  try {
+    const { avatar } = req.body; // URL của avatar từ client
+    const staffId = req.user.id; // Lấy ID nhân viên từ token
 
+    // Kiểm tra nếu avatar không được gửi
+    if (!avatar) {
+      return res.status(400).json({ error: 'Avatar URL is required.' });
+    }
+
+    // Cập nhật avatar trong cơ sở dữ liệu
+    const updatedStaff = await Staff.findByIdAndUpdate(
+      staffId,
+      { avatar }, // Cập nhật trường avatar
+      { new: true } // Trả về dữ liệu đã cập nhật
+    );
+
+    // Nếu không tìm thấy nhân viên
+    if (!updatedStaff) {
+      return res.status(404).json({ error: 'Staff not found.' });
+    }
+
+    // Trả về kết quả thành công
+    res.status(200).json({
+      message: 'Avatar updated successfully.',
+      updatedStaff,
+    });
+  } catch (error) {
+    console.error('Error updating avatar:', error);
+    res.status(500).json({ error: 'Internal server error.' });
+  }
+
+}
 module.exports = {
   login,
   changePassword,
   getProfile,
   updateProfile,
   logout,
+  updateAvatar,
 };

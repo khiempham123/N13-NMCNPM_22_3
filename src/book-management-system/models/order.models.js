@@ -10,7 +10,17 @@ const orderItemSchema = new mongoose.Schema(
     quantity: { type: Number, required: true },
     price: { type: Number, required: true },
     title: { type: String, required: true },
+    author: { type: String},
     totalPrice: { type: Number, required: true }, // quantity * price
+    thumbnail: {
+      type: String,
+      validate: {
+        validator: function (v) {
+          return /^(http|https):\/\/[^ "]+$/.test(v); // Kiểm tra URL hợp lệ
+        },
+        message: "Invalid URL format for thumbnail",
+      },
+    },
   },
   { timestamps: true }
 );

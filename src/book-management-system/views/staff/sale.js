@@ -13,7 +13,7 @@ document.addEventListener('DOMContentLoaded', () => {
     document.getElementById('editAddDiscountPrice').value = '';
     document.getElementById('editAddDiscountPercent').value = '';
     document.getElementById('editStartDate').value ='';
-    document.getElementById('editEndDate').value =
+    document.getElementById('editEndDate').value ='';
     document.getElementById('editAddSoldCount').value = '';
     document.getElementById('saleMaxQuality').value = '';
     document.getElementById('editSaleDescription').value = '';
@@ -41,43 +41,91 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // Sự kiện đóng modal Delete
   closeDeleteSalePopupBtn.addEventListener('click', () => hideModal(deleteSalePopup));
-
+  let currentPage =1;
   // Hàm tải dữ liệu sách
-  function fetchBooks() {
-    const BOOKS_PER_ROW = 4; // Số sách tối đa trong một row
-
-    fetch('http://localhost:3000/staff/sales')
+  function fetchBooks(page = 1) {
+    const BOOKS_PER_PAGE = 4;
+  
+    fetch(`http://localhost:3000/staff/sales?page=${page}&limit=${BOOKS_PER_PAGE}`)
       .then((response) => response.json())
-      .then((books) => {
-        salesContainer.innerHTML = ''; // Xóa dữ liệu cũ
-
-        let rowHTML = ''; // HTML của một row
-        books.forEach((book, index) => {
-          rowHTML += `
-            <div class="col-xl-3">
-              <div class="book-box">
-                <div class="book-image">
-                  <img src="${book.thumbnail}" alt="${book.title}" />
-                </div>
-                <div class="book-content">
-                  <h4>${book.title}</h4>
-                  <p>Author: ${book.author}</p>
-                  <p>New Price: $${(book.price * (1 - book.percentDiscount / 100)).toFixed(2)}</p>
-                  <p>Prime Price: $${book.price}</p>
-                  <button class="editSale" data-id="${book._id}">Edit</button>
-                  <button class="deleteBtn" data-id="${book._id}">Delete</button>
-                </div>
-              </div>
-            </div>
-          `;
-
-          if ((index + 1) % BOOKS_PER_ROW === 0 || index === books.length - 1) {
-            salesContainer.insertAdjacentHTML('beforeend', rowHTML);
-            rowHTML = '';
-          }
-        });
+      .then((data) => {
+        const { books, totalPages, currentPage } = data;
+  
+        // Hiển thị danh sách sách
+        renderSalesBooks(books);
+  
+        // Hiển thị phân trang
+        renderSalesPagination(totalPages, currentPage);
       })
       .catch((error) => console.error('Error fetching books:', error));
+  }
+  function renderSalesBooks(books) {
+    const salesContainer = document.getElementById('salesBookList');
+    salesContainer.innerHTML = ''; // Xóa dữ liệu cũ
+  
+    books.forEach((book) => {
+      const bookHTML = `
+        <div class="col-xl-3">
+          <div class="book-box">
+            <div class="book-image">
+              <img src="${book.thumbnail}" alt="${book.title}" />
+            </div>
+            <div class="book-content">
+              <h4>${book.title}</h4>
+              <p>Author: ${book.author}</p>
+              <p>New Price: $${(book.price * (1 - book.percentDiscount / 100)).toFixed(2)}</p>
+              <p>Prime Price: $${book.price}</p>
+              <button class="editSale" data-id="${book._id}">Edit</button>
+              <button class="deleteBtn" data-id="${book._id}">Delete</button>
+            </div>
+          </div>
+        </div>
+      `;
+      salesContainer.insertAdjacentHTML('beforeend', bookHTML);
+    });
+  }
+  function renderSalesPagination(totalPages, currentPage) {
+    const paginationList = document.getElementById('salespagination-list');
+    paginationList.innerHTML = ''; // Xóa nội dung cũ
+  
+    // Nút "Previous"
+    const prevButton = document.createElement('li');
+    prevButton.innerHTML = `<a href="#topSales"><i class="fa-solid fa-chevron-left"></i></a>`;
+    if (currentPage === 1) prevButton.classList.add('disabled');
+    prevButton.addEventListener('click', () => {
+      if (currentPage > 1) {
+        fetchBooks(currentPage - 1);
+      }
+    });
+    paginationList.appendChild(prevButton);
+  
+    // Số trang
+    for (let i = 1; i <= totalPages; i++) {
+      const pageButton = document.createElement('li');
+      pageButton.innerHTML = `<a href="#topSales">${i}</a>`;
+      if (currentPage === i) {
+        pageButton.classList.add("current");
+      }
+  
+      pageButton.addEventListener('click', () => {
+        if (currentPage !== i) {
+          fetchBooks(i);
+        }
+      });
+      paginationList.appendChild(pageButton);
+      
+    }
+  
+    // Nút "Next"
+    const nextButton = document.createElement('li');
+    nextButton.innerHTML = `<a href="#topSales"><i class="fa-solid fa-chevron-right"></i></a>`;
+    if (currentPage === totalPages) nextButton.classList.add('disabled');
+    nextButton.addEventListener('click', () => {
+      if (currentPage < totalPages) {
+        fetchBooks(currentPage + 1);
+      }
+    });
+    paginationList.appendChild(nextButton);
   }
 ////////////////////////////////////////////////////////////////EDIT//////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -130,7 +178,7 @@ document.addEventListener('DOMContentLoaded', () => {
             if (response.ok) {
               alert('Discount removed successfully!');
               hideModal(deleteSalePopup);
-              fetchBooks(); // Làm mới giao diện
+              fetchBooks(currentPage); // Làm mới giao diện
             } else {
               alert('Failed to remove discount.');
             }
@@ -165,12 +213,15 @@ document.addEventListener('DOMContentLoaded', () => {
         alert('Discount updated successfully!');
         hideModal(editSalePopup);
 
-        fetchBooks(); // Làm mới danh sách sách
+        fetchBooks(currentPage); // Làm mới danh sách sách
       })
       .catch((error) => console.error('Error updating discount:', error));
   });
   // Gọi hàm fetchBooks khi nhấn vào nút "sale"
-  document.getElementById("sale").addEventListener("click", fetchBooks);
+  document.getElementById("sale").addEventListener("click", () => {
+    currentPage = 1; // Đặt lại currentPage về 1 khi chuyển sang trang Sale
+    fetchBooks(currentPage); // Truyền currentPage vào hàm fetchBooks
+  });
   const discountPriceInput = document.getElementById('editDiscountPrice');
   const discountPercentInput = document.getElementById('editDiscountPercent');
   const originPriceInput = document.getElementById('hiddenOriginPrice');
@@ -235,7 +286,7 @@ document.addEventListener('DOMContentLoaded', () => {
           alert('Sale added successfully!');
           addSalePopup.style.display = 'none'; // Ẩn popup
           resetPopupFields();
-          fetchBooks(); // Làm mới danh sách sách
+          fetchBooks(currentPage); // Làm mới danh sách sách
         } else {
           alert('Failed to add sale.');
         }
@@ -243,10 +294,3 @@ document.addEventListener('DOMContentLoaded', () => {
       .catch((error) => console.error('Error adding sale:', error));
   });
 });
-
-
-
-
-
-
-

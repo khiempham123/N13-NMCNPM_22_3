@@ -39,16 +39,28 @@ const editInfo = async (req, res) => {
 
 // Lấy danh sách tất cả người dùng và sắp xếp theo thời gian tạo
 const getUser = async (req, res) => {
-    try {
-      // Lấy tất cả người dùng, sắp xếp theo `createdAt` (mới nhất trước)
-      const users = await User.find().sort({ createdAt: -1 }); // -1: giảm dần, 1: tăng dần
-  
-      res.status(200).json(users);
-    } catch (error) {
-      res.status(500).json({ message: "Error fetching users2", error });
-    }
-  };
+  try {
+    const { page = 1, limit = 10 } = req.query; // Lấy tham số page và limit từ query
+    const skip = (page - 1) * limit; // Tính số bản ghi bỏ qua
 
+    // Lấy danh sách người dùng với phân trang
+    const users = await User.find()
+      .sort({ createdAt: -1 }) // Sắp xếp giảm dần theo createdAt
+      .skip(skip)
+      .limit(Number(limit)); // Giới hạn số lượng bản ghi trả về
+
+    const totalUsers = await User.countDocuments(); // Tổng số người dùng
+
+    res.status(200).json({
+      users,
+      totalUsers,
+      totalPages: Math.ceil(totalUsers / limit),
+      currentPage: Number(page),
+    });
+  } catch (error) {
+    res.status(500).json({ message: "Error fetching users", error });
+  }
+};
 // Hàm cập nhật thông tin khách hàng
 const updateCustomer = async (req, res) => {
     try {

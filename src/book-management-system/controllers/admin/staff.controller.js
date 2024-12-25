@@ -1,4 +1,4 @@
-const Staff = require("../../models/staff.models.js");
+const Staff = require("../../models/staff_admin.models.js");
 
 // Thêm một staff mới
 const addStaff = async (req, res) => {
@@ -27,7 +27,7 @@ const addStaff = async (req, res) => {
 // Lấy danh sách tất cả staff
 const getAllStaffs = async (req, res) => {
   try {
-    const staffs = await Staff.find();
+    const staffs = await Staff.find({ role: "staff" }); // Thêm điều kiện role = 'staff'
     res.status(200).json(staffs);
   } catch (error) {
     res

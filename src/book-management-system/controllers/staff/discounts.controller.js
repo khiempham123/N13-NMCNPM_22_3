@@ -3,14 +3,27 @@ const Discount=require('../../models/discounts')
 const mongoose = require('mongoose');
 
 module.exports.sales = async (req, res) => {
-    try {
-        const discountedBooks = await Book.find({ percentDiscount: { $gt: 0 }, deleted: false });
-        res.status(200).json(discountedBooks);
-      } catch (error) {
-        res.status(500).json({ message: 'Error fetching books', error });
-      }
+  try {
+    const { page = 1, limit = 5 } = req.query; // Lấy tham số page và limit từ query
+    const skip = (page - 1) * limit;
 
-}
+    // Lấy danh sách sách đang được giảm giá với phân trang
+    const discountedBooks = await Book.find({ percentDiscount: { $gt: 0 }, deleted: false })
+      .skip(skip)
+      .limit(Number(limit));
+
+    const totalBooks = await Book.countDocuments({ percentDiscount: { $gt: 0 }, deleted: false });
+
+    res.status(200).json({
+      books: discountedBooks,
+      totalBooks,
+      totalPages: Math.ceil(totalBooks / limit),
+      currentPage: Number(page),
+    });
+  } catch (error) {
+    res.status(500).json({ message: 'Error fetching books', error });
+  }
+};
 
 module.exports.index = async (req, res) => {
 

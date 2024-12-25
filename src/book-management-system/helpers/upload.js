@@ -9,9 +9,9 @@ async function getSignature() {
   }
   return response.json();
 }
-
+window.uploadImageWithSignature = async function(file) {
 // Hàm để upload ảnh
-async function uploadImageWithSignature(file) {
+
   try {
     const { signature, timestamp } = await getSignature();
 
@@ -38,10 +38,12 @@ async function uploadImageWithSignature(file) {
     }
 
     const data = await response.json();
+    console.log("Cloudinary response:", data);
     console.log("Uploaded image URL:", data.secure_url);
     return data.secure_url; // URL ảnh trên Cloudinary
   } catch (error) {
     console.error("Error uploading image:", error);
     throw error;
   }
-}
+
+};

@@ -83,6 +83,7 @@ document.addEventListener("DOMContentLoaded", function () {
   const districtSelect = document.getElementById("district");
   const wardSelect = document.getElementById("ward");
 
+
   // Hàm lấy thông tin thành phố từ API
   async function fetchCities() {
     try {

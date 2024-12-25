@@ -88,7 +88,10 @@ document.addEventListener('DOMContentLoaded', () => {
       // Hiển thị thông tin Operations
       document.querySelector(".profile-info .col-xl-6:nth-child(2) .info p:nth-child(1) span").textContent = `On-position: ${staff.position}`;
       document.querySelector(".profile-info .col-xl-6:nth-child(2) .info p:nth-child(2) span").textContent = `Salary: ${staff.salary.toLocaleString()} vnđ`;
-      document.querySelector(".profile-info .col-xl-6:nth-child(2) .info p:nth-child(3) span").textContent = `Role: ${staff.role}`;
+      document.querySelector(".profile-info .col-xl-6:nth-child(2) .info p:nth-child(3) span").textContent = `Position: ${staff.position}`;
+      const avatarImg = document.getElementById("avatar"); // Thẻ <img> hiển thị avatar
+        avatarImg.src = staff.avatar || "assets/images/default-avatar.jpg"; // Hiển thị avatar hoặc ảnh mặc định
+        avatarImg.alt = `${staff.name}'s Avatar`; // Cập nhật thuộc tính alt
     } catch (error) {
       console.error(error);
     }
@@ -155,12 +158,88 @@ document.addEventListener('DOMContentLoaded', () => {
   updatePersonalBtn.addEventListener('click', updatePersonalInfo);
 
 
+  document.getElementById('avatar').addEventListener('click', () => {
+    document.getElementById('changeAvatarPopup').style.display = 'flex';
+    
+  });
+  
+  document.getElementById('closeAvatarPopup').addEventListener('click', () => {
+    document.getElementById('changeAvatarPopup').style.display = 'none';
+  });
+  
+  const avatarDropdown = document.getElementById('avatarDropdown');
+  const changeAvatarOption = document.getElementById('changeAvatar');
+  const avatarPopup = document.getElementById('changeAvatarPopup'); // Popup đổi avatar
+
+  // Hàm mở popup đổi avatar
+  function openAvatarPopup() {
+    avatarPopup.style.display = 'block'; // Hiển thị popup
+  }
+
+  // Gắn sự kiện cho mục "Change Your Avatar"
+  changeAvatarOption.addEventListener('click', () => {
+    openAvatarPopup(); // Gọi hàm mở popup
+  });
+
+  // Đóng dropdown khi click bên ngoài
+  document.addEventListener('click', (event) => {
+    if (!avatarDropdown.contains(event.target)) {
+      avatarDropdown.style.display = 'none'; // Ẩn dropdown
+    }
+  });
+
+  // Mở dropdown khi nhấn vào avatar
+  document.getElementById('avatar').addEventListener('click', (event) => {
+    event.stopPropagation(); // Ngăn chặn sự kiện nổi lên
+    avatarDropdown.style.display = avatarDropdown.style.display === 'block' ? 'none' : 'block';
+  });
+  document.getElementById('uploadAvatarBtn').addEventListener('click', async () => {
+    const fileInput = document.getElementById('avatarFileInput');
+    const file = fileInput.files[0];
+  
+    if (!file) {
+      alert('Please select an image.');
+      return;
+    }
+  
+    try {
+      // Sử dụng hàm uploadImageWithSignature để upload ảnh
+      const avatarUrl = await uploadImageWithSignature(file);
+  
+      // Gửi yêu cầu cập nhật avatar
+      const token = localStorage.getItem('token'); // Lấy token từ localStorage
+      if (!token) {
+        alert('Please log in first.');
+        window.location.href = './login/login.html';
+        return;
+      }
+  
+      const updateResponse = await fetch('http://localhost:3000/staff/profile/avatar', {
+        method: 'PUT',
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: `Bearer ${token}`,
+        },
+        body: JSON.stringify({ avatar: avatarUrl }), // Gửi URL avatar đến API
+      });
+  
+      if (!updateResponse.ok) {
+        throw new Error('Failed to update avatar.');
+      }
+  
+      const result = await updateResponse.json();
+      alert('Avatar updated successfully!');
+  
+      // Cập nhật hiển thị avatar
+      document.getElementById('avatar').src = avatarUrl;
+      document.getElementById('changeAvatarPopup').style.display = 'none';
+    } catch (error) {
+      console.error('Error updating avatar:', error);
+      alert('Failed to change avatar. Please try again.');
+    }
+  });
+
+
 
 })
   
-
-
-
-
-
-

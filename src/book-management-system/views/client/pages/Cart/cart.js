@@ -225,10 +225,13 @@ document.querySelector(".btn-complete").addEventListener("click", async () => {
     const firstName = document.getElementById("firstName").value.trim();
     const lastName = document.getElementById("lastName").value.trim();
     const address = document.getElementById("address").value.trim();
-    const city = document.getElementById("city").value;
-    const district = document.getElementById("district").value;
-    const ward = document.getElementById("ward").value;
+    const citySelect = document.getElementById("city");
+    const districtSelect = document.getElementById("district");
+    const wardSelect = document.getElementById("ward");
 
+    const city = citySelect.options[citySelect.selectedIndex].text;
+    const district = districtSelect.options[districtSelect.selectedIndex].text;
+    const ward = wardSelect.options[wardSelect.selectedIndex].text;
     // Kiểm tra nếu thiếu thông tin
     if (!firstName || !lastName || !address || !city || !district || !ward) {
       alert("Vui lòng điền đầy đủ thông tin giao hàng!");
@@ -268,6 +271,7 @@ document.querySelector(".btn-complete").addEventListener("click", async () => {
       shippingFee,
       grandTotal: totalWithVAT,
     };
+    console.log(orderData)
 
     // Gửi yêu cầu lưu đơn hàng vào cơ sở dữ liệu
     const response = await fetch(`${API_BASE_URL}/order`, {
