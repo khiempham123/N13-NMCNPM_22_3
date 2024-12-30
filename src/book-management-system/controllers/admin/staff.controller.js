@@ -1,26 +1,42 @@
-const Staff = require("../../models/staff_admin.models.js");
+const Staff = require("../../models/user.models.js");
 
 // Thêm một staff mới
 const addStaff = async (req, res) => {
   try {
-    const { name, gender, position, salary, avatar } = req.body;
-
-    const newStaff = new Staff({
-      name,
+    const {
+      username,
+      email,
+      phone,
+      password,
+      fullName,
+      dateOfBirth,
       gender,
       position,
       salary,
-      avatar,
+      address,
+    } = req.body;
+
+    // Tạo staff mới
+    const newStaff = new Staff({
+      username,
+      email,
+      phone,
+      password,
+      fullName,
+      dateOfBirth,
+      gender,
+      position,
+      salary,
+      address,
+      role: 'staff', // Mặc định là staff
     });
 
+    // Lưu vào DB
     await newStaff.save();
-    res
-      .status(201)
-      .json({ message: "Staff added successfully", staff: newStaff });
+    res.status(201).json({ message: 'Staff added successfully!' });
   } catch (error) {
-    res
-      .status(500)
-      .json({ message: "Failed to add staff", error: error.message });
+    console.error(error);
+    res.status(500).json({ message: 'Failed to add staff', error });
   }
 };
 
@@ -57,32 +73,37 @@ const deleteStaff = async (req, res) => {
 // Sửa thông tin staff
 const updateStaff = async (req, res) => {
   try {
-    const { id } = req.params;
-    const { name, gender, position, salary, avatar } = req.body;
-
-    const updatedStaff = await Staff.findByIdAndUpdate(
-      id,
-      { name, gender, position, salary, avatar },
-      { new: true, runValidators: true }
-    );
-
+    const updatedStaff = await Staff.findByIdAndUpdate(req.params.id, req.body, {
+      new: true,
+    });
     if (!updatedStaff) {
       return res.status(404).json({ message: "Staff not found" });
     }
-
-    res
-      .status(200)
-      .json({ message: "Staff updated successfully", staff: updatedStaff });
+    res.json({ message: "Staff updated successfully", updatedStaff });
   } catch (error) {
-    res
-      .status(500)
-      .json({ message: "Failed to update staff", error: error.message });
+    console.error(error);
+    res.status(500).json({ message: "Failed to update staff" });
   }
 };
+const getStaff = async (req, res) => {
+  try {
+    const staff = await Staff.findById(req.params.id);
+    if (!staff) {
+      return res.status(404).json({ message: "Staff not found" });
+    }
+    res.json(staff);
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ message: "Failed to fetch staff" });
+  }
+
+
+}
 
 module.exports = {
   addStaff,
   getAllStaffs,
   deleteStaff,
   updateStaff,
+  getStaff,
 };

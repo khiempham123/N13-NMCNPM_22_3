@@ -4,7 +4,6 @@ const booksContainer = document.getElementById("books-container");
 async function fetchAndDisplayBooksByCategory() {
     const url = new URL(window.location.href);
     const category = url.searchParams.get("category");
-    console.log("Category:", category);
     try {
         const response = await fetch(`${API_BASE_URL}/categories/${category}`);
         const books = await response.json();

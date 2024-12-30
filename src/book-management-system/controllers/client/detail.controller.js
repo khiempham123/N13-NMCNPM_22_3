@@ -56,7 +56,7 @@ const getRelatedProducts = async (req, res) => {
           deleted: false, // Ensure the product is not deleted
         },
       },
-      { $sample: { size: 6 } }, // Get 6 random products
+      { $sample: { size: 4 } }, // Get 4 random products
     ]);
 
     res.status(200).json(relatedProducts);

@@ -160,8 +160,7 @@ const getBestSeller = async (req, res) => {
 
 const addBookToCart = async (req, res) => {
   const { bookId, title, thumbnail, price, quantity } = req.body;
-  const userId = req.user._id; // Giả sử bạn đã có user authentication
-
+  const userId = req.user?.id; // Giả sử bạn đã có user authentication
   try {
     // Kiểm tra xem giỏ hàng đã có cho người dùng chưa
     let cart = await Cart.findOne({ userId });
@@ -229,7 +228,7 @@ const addBookToCart = async (req, res) => {
 
 const addBookToFav = async (req, res) => {
   const { bookId, title, thumbnail, price, rating } = req.body;
-  const userId = req.user._id; // Giả sử bạn đã có user authentication
+  const userId = req.user.id; // Giả sử bạn đã có user authentication
 
   try {
     // Kiểm tra xem danh sách yêu thích đã có cho người dùng chưa

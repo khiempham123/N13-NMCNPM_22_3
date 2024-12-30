@@ -102,3 +102,6 @@ const handleDelete = async (id) => {
 
 // Gọi hàm fetch dữ liệu khi trang load
 document.addEventListener("DOMContentLoaded", fetchCustomers);
+
+
+

@@ -45,7 +45,7 @@ const orderSchema = new mongoose.Schema(
     grandTotal: { type: Number, required: true }, // Tổng tiền sau khi cộng phí giao hàng
     status: {
       type: String,
-      enum: ["pending", "processing", "completed", "cancelled"],
+      enum: ["pending", "processing", "completed", "shiped","canceled"],
       default: "pending",
     }, // Trạng thái đơn hàng
   },

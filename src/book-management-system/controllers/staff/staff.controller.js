@@ -1,6 +1,6 @@
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
-const Staff = require("../../models/staff_admin.models");
+const Staff = require("../../models/user.models");
 
 const login = async (req, res) => {
   const { username, password } = req.body;
@@ -94,9 +94,8 @@ const changePassword = async (req, res) => {
 const getProfile = async (req, res) => {
   try {
     const userId = req.user.id; // Lấy userId từ token
-    console.log(userId);
     const staff = await Staff.findById(userId);
-    console.log(staff);
+
     if (!staff) {
       return res.status(404).json({ message: "Staff not found" });
     }
@@ -134,7 +133,6 @@ const logout = async (req, res) => {
   try {
     // Nếu bạn lưu refreshToken trong DB, hãy xóa nó
     const token = req.body.refreshToken; // Lấy refreshToken từ request
-    console.log(token);
     if (!token) {
       return res.status(400).json({ message: "No token provided" });
     }

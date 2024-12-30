@@ -1,7 +1,7 @@
 const Favorite = require("../../models/fav.models.js");
 
 const getFav = async (req, res) => {
-  const userId = req.user._id;
+  const userId = req.user.id;
 
   try {
     // Tìm danh sách yêu thích của người dùng
@@ -21,7 +21,7 @@ const getFav = async (req, res) => {
 
 const removeFavItem = async (req, res) => {
   const { itemId } = req.params;
-  const userId = req.user._id;
+  const userId = req.user.id;
 
   try {
     // Tìm danh sách yêu thích của người dùng

@@ -188,7 +188,7 @@ async function fetchTopCategories() {
       throw new Error("Failed to fetch top categories");
     }
     const categories = await response.json();
-
+    
     // Render categories to the existing divs
     const container = document.querySelector(".container");
     if (!container) return; // Nếu không có container, không làm gì cả
@@ -196,6 +196,7 @@ async function fetchTopCategories() {
     const divs = container.querySelectorAll(".topseller-item");
 
     categories.forEach((category, index) => {
+      console.log(category)
       if (index < divs.length) {
         // Set the title for each category
         const link = divs[index];
@@ -212,7 +213,7 @@ async function fetchTopCategories() {
 
         // Lắng nghe sự kiện click để chuyển hướng
         link.addEventListener("click", () => {
-          window.location.href = `../category/category.html?category=${category._id}`;
+          window.location.href = `../shop/shop.html?genre=${category._id}`;
         });
       }
     });
@@ -280,7 +281,6 @@ document.addEventListener("DOMContentLoaded", function () {
 
           // Thêm event click để chuyển hướng đến trang chi tiết
           dealItem.addEventListener("click", function () {
-            console.log(deal._id);
             window.location.href = `../detail/detail.html?id=${deal._id}`;
           });
 
@@ -419,7 +419,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
   // Kiểm tra token từ localStorage
   const token = localStorage.getItem("token");
-
   // Ẩn modal khi mới tải trang
   loggedOutProfile.style.display = "none";
   loggedInProfile.style.display = "none";
@@ -494,7 +493,7 @@ async function loadBestSellers() {
     // Duyệt qua danh sách sách và tạo HTML cho từng sách
     books.forEach((book) => {
       const bookHTML = `
-        <div class="col-xl-3 col-lg-4 col-md-6 col-sm-6">
+        <div class="col-lg-3 col-md-4 col-sm-6 col-12">
           <div class="inner-box" onclick="goToBookDetail('${book._id}')">
             <div class="inner-image">
               <img src="${book.thumbnail}" alt="${book.title}">
@@ -558,13 +557,17 @@ function goToBookDetail(bookId) {
 async function addToFav(event, bookId, title, thumbnail, price, rating) {
   // Ngừng sự kiện để không lan ra các phần tử cha
   event.stopPropagation();
-
+  const token = localStorage.getItem("token");
+  if(!token){
+    alert("Thêm vào giỏ hàng thất bại. Đăng nhập và thử lại.");
+    return;
+  }
   try {
     // Gửi yêu cầu POST đến API để thêm sách vào danh sách yêu thích
     const response = await fetch(`${API_BASE_URL}/add-to-fav`, {
       method: "POST",
       headers: {
-        authorization: localStorage.getItem("token"),
+        authorization: `Bearer ${localStorage.getItem("token")}`,
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
@@ -584,8 +587,7 @@ async function addToFav(event, bookId, title, thumbnail, price, rating) {
       alert("Sản phẩm đã được thêm vào danh sách yêu thích!");
     } else {
       // Nếu có lỗi từ phía server
-      console.error(result.message);
-      alert("Có lỗi xảy ra khi thêm sản phẩm vào danh sách yêu thích.");
+      alert(result.message);
     }
   } catch (error) {
     // Xử lý lỗi khi không thể kết nối tới API
@@ -597,13 +599,17 @@ async function addToFav(event, bookId, title, thumbnail, price, rating) {
 async function addToCart(event, bookId, title, thumbnail, price) {
   // Ngừng sự kiện để không lan ra các phần tử cha
   event.stopPropagation();
-
+  const token = localStorage.getItem("token");
+  if(!token){
+    alert("Thêm vào giỏ hàng thất bại. Đăng nhập và thử lại.");
+    return;
+  }
   try {
     const response = await fetch(`${API_BASE_URL}/add-to-cart`, {
       method: "POST",
       headers: {
-        authorization: localStorage.getItem("token"),
         "Content-Type": "application/json",
+        authorization: `Bearer ${localStorage.getItem("token")}`,
       },
       body: JSON.stringify({
         bookId,
@@ -620,7 +626,7 @@ async function addToCart(event, bookId, title, thumbnail, price) {
       alert("Sản phẩm đã được thêm vào giỏ hàng!");
     } else {
       console.error(result.message);
-      alert("Sách đã tồn tại trong danh sách yêu thích của bạn!");
+      alert(result.message);
     }
   } catch (error) {
     console.error("Error adding to cart:", error);
@@ -689,3 +695,9 @@ function renderStars(rating) {
 
 // Fetch dữ liệu khi trang được load
 document.addEventListener("DOMContentLoaded", fetchVendors);
+
+
+document.addEventListener("DOMContentLoaded", () => {
+  page = "home";
+  window.setupPageWebSocket(page)
+});

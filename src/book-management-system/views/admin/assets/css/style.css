@@ -378,7 +378,7 @@ body {
   object-fit: cover;
 }
 
-.status.delivered {
+.status.processing {
   padding: 2px 4px;
   background: #8de02c;
   color: var(--white);
@@ -394,7 +394,7 @@ body {
   font-size: 16px;
   font-weight: 500;
 }
-.status.return {
+.status.packed {
   padding: 2px 4px;
   background: #f00;
   color: var(--white);
@@ -402,9 +402,17 @@ body {
   font-size: 16px;
   font-weight: 500;
 }
-.status.inProgress {
+.status.shipped {
   padding: 2px 4px;
   background: #1795ce;
+  color: var(--white);
+  border-radius: 4px;
+  font-size: 16px;
+  font-weight: 500;
+}
+.status.canceled {
+  padding: 2px 4px;
+  background: #bc17ce;
   color: var(--white);
   border-radius: 4px;
   font-size: 16px;
@@ -516,4 +524,77 @@ body {
     right: 0;
     left: initial;
   }
+}
+
+
+/* Container của phân trang */
+.pagination {
+  display: flex;
+  justify-content: center; /* Căn giữa các nút */
+  gap: 10px; /* Khoảng cách giữa các nút */
+  margin-top: 20px; /* Khoảng cách phía trên */
+}
+
+/* Phong cách từng nút phân trang */
+.pagination li {
+  list-style: none;
+  padding: 5px 10px;
+  background-color: #a7a7a7; /* Màu nền mặc định */
+  border-radius: 5px; /* Bo góc */
+  cursor: pointer; /* Con trỏ khi hover */
+  transition: background-color 0.3s ease; /* Hiệu ứng hover */
+  text-align: center; /* Căn giữa nội dung bên trong */
+}
+
+/* Hiệu ứng khi hover */
+.pagination li:hover {
+  background-color: #6c6c6c; /* Màu khi hover */
+}
+
+/* Nút hiện tại đang được chọn */
+.pagination li.current {
+  background-color: #4caf50; /* Màu nền khi được chọn */
+  color: white;
+  font-weight: bold;
+  pointer-events: none; /* Không thể click */
+}
+
+/* Nút bị vô hiệu hóa */
+.pagination li.disabled {
+  background-color: #d3d3d3;
+  color: #aaa;
+  pointer-events: none;
+  cursor: not-allowed;
+}
+
+.numbers {
+  font-size: 2.5rem;
+  font-weight: bold;
+  text-align: center;
+  color: #4caf50; /* Màu xanh lá cho số người online */
+}
+
+.cardName {
+  font-size: 1.2rem;
+  text-align: center;
+  color: #555; /* Màu xám cho nhãn */
+}
+
+.dateFilter {
+  margin-bottom: 20px;
+  display: flex;
+  gap: 10px;
+  align-items: center;
+}
+
+.dateFilter input,
+.dateFilter button {
+  padding: 5px 10px;
+  font-size: 14px;
+}
+#myChart {
+  max-width: 1800px; /* Giới hạn chiều rộng của biểu đồ */
+  max-height: 600px; /* Giới hạn chiều cao của biểu đồ */
+  margin: 0 auto; /* Căn giữa biểu đồ */
+  display: block;
 }

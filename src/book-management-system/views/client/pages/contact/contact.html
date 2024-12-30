@@ -1,532 +1,631 @@
 <!DOCTYPE html>
 <html lang="en">
 
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Contact</title>
-  <link rel="stylesheet" href="../publicStyle/dropProfile.css">
-  <link rel="stylesheet" href="../publicStyle/base.css">
-  <link rel="stylesheet" href="../publicStyle/home.css">
-  <script src="../publicStyle/dropProfile.js"></script>
-  <link rel="stylesheet" href="./contact.css">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact</title>
+    <link rel="stylesheet" href="../publicStyle/dropProfile.css">
+    <link rel="stylesheet" href="../publicStyle/base.css">
+    <link rel="stylesheet" href="../publicStyle/home.css">
+    <link rel="stylesheet" href="./contact.css">
 
-  <!-- chèn css -->
-  <link rel="stylesheet" href="assets/css/style.css">
-  <link rel="stylesheet" href="assets/css/base.css">
-  <link rel="stylesheet" href="assets/css/home.css">
-  <!-- chèn css -->
+    <!-- chèn css -->
+    <link rel="stylesheet" href="assets/css/style.css">
+    <link rel="stylesheet" href="assets/css/base.css">
+    <link rel="stylesheet" href="assets/css/home.css">
+    <!-- chèn css -->
 
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css"
-    integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg=="
-    crossorigin="anonymous" referrerpolicy="no-referrer" />
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
-    integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
-    integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
-    crossorigin="anonymous"></script>
-  <script src="https://code.jquery.com/jquery-3.7.1.js"></script>
-  <script src="https://code.jquery.com/ui/1.14.0/jquery-ui.js"></script>
+    <link rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css"
+      integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg=="
+      crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH"
+      crossorigin="anonymous">
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+      crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.7.1.js"></script>
+    <script src="https://code.jquery.com/ui/1.14.0/jquery-ui.js"></script>
 
-<body>
-  <div class="container-fluid">
-    <div class="row" style="border: none;padding: none;">
-      <div class="card" style="margin: 0; padding: 0; border: none; border-radius: 0%;">
-        <div class="card-body"
-          style="background: rgb(201,129,161);
+    <body>
+      <div class="container-fluid">
+        <div class="row" style="border: none;padding: none;">
+          <div class="card"
+            style="margin: 0; padding: 0; border: none; border-radius: 0%;">
+            <div class="card-body"
+              style="background: rgb(201,129,161);
                 background: radial-gradient(circle, rgba(201,129,161,1) 22%, rgba(133,193,189,1) 79%);border-radius: 0%;">
-          <nav class="navbar navbar-expand-lg">
-            <div class="container-fluid">
-              <a class="navbar-brand" href="#" style="margin: 0px 300px 0px 50px; color: #fff; font-size: 30px;">
-                <i class="fa-solid fa-book"></i>
-                Bookory
-              </a>
-              <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
-                data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
-                aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-              </button>
-              <!-- test -->
-              <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                <ul class="navbar-nav">
-                  <li class="nav-item dropdown custom-link">
-                    <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
-                      aria-expanded="false" style="color: #fff;">
-                      <i class="fa-solid fa-table-list"></i>
-                      Categories
-                    </a>
-                    <ul class="dropdown-menu" id="categories-dropdown">
-                      <!-- Categories sẽ được thêm vào đây bằng JavaScript -->
-                    </ul>
-                  </li>
-                </ul>
-                <!-- Thanh search -->
-                <div class="input-group" style="width: 60%; position: relative;">
-                  <input class="form-control" type="search" placeholder="Search Product..." aria-label="Search"
-                    style="border-radius: 30px 0 0 30px;">
-                  <span class="input-group-text" style="border-radius: 0 30px 30px 0; cursor: pointer;">
-                    <i class="fa fa-search"></i>
-                  </span>
-                  <!-- Phần tử để hiển thị kết quả tìm kiếm -->
-                  <div id="results-container" style="margin-top: 5px;"></div>
-                </div>
-              </div>
-
-
-              <!-- categories -->
-
-              <div style="color: #fff; font-size: 20px; display: flex; justify-content: center; align-items: center;">
-                <div class="user-menu" style="width: fit-content;">
-                  <!-- Ban đầu khi User chưa đăng nhập tất cả thông tin ở img, email, greeting, manage-account chưa xuất hiện 
-                                 sau khi login or register thành công thì thay thế img bằng ký tự đầu trong tên lót, email = email user, greeting = user name, manage-account chưa có sẽ xuất hiện, 
-                                 sau đó thay thế các nút register, login lần lượt bằng thay đổi tài khoản, đăng xuất. 
-                                 Xử lý điều này và các thao tác click tại cái btn để di chuyển đến đúng trang, những css liên quan được đặt trong dropProfile.css-->
-                  <a class="user-icon" href="#" style="color: inherit; text-decoration: none;">
-                    <i class="fa-regular fa-user"> | </i>
+              <nav class="navbar navbar-expand-lg">
+                <div class="container-fluid">
+                  <a class="navbar-brand" href="#"
+                    style="margin: 0px 300px 0px 50px; color: #fff; font-size: 30px;">
+                    <i class="fa-solid fa-book"></i>
+                    Bookory
                   </a>
-                  <div class="profile-card"
-                    style="display: none; flex-direction: column; align-items: center; justify-content: center; text-align: center;">
-                    <div class="close-btn">&times;</div>
-                    <div class="profile-img"><i class="fa-regular fa-user"></i></div>
-                    <div class="email">pgk06052018@gmail.com</div>
-                    <div class="greeting">Hi 12_0159 Pham,</div>
-                    <div class="manage-account">Management Your Account</div>
-                    <div class="btn-group">
-                      <button class="btn btn-light border"><i class="fa-solid fa-circle-plus"
-                          style="font-size: 18px; color: #74C0FC; margin-right: 5px;"></i>
-                        Switch Accounts</button>
-                      <button class="btn btn-light border"><i class="fa-solid fa-arrow-right-to-bracket"
-                          style="font-size: 18px; color: #74C0FC; margin-right: 5px;"></i> Log
-                        out</button>
-                    </div>
-                    <div class="profile-footer">
-                      Chính sách quyền riêng tư · Điều khoản dịch vụ
+                  <button class="navbar-toggler" type="button"
+                    data-bs-toggle="collapse"
+                    data-bs-target="#navbarSupportedContent"
+                    aria-controls="navbarSupportedContent" aria-expanded="false"
+                    aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                  </button>
+                  <!-- test -->
+                  <div class="collapse navbar-collapse"
+                    id="navbarSupportedContent">
+                    <ul class="navbar-nav">
+                      <li class="nav-item dropdown custom-link">
+                        <a class="nav-link dropdown-toggle" href="#"
+                          role="button" data-bs-toggle="dropdown"
+                          aria-expanded="false" style="color: #fff;">
+                          <i class="fa-solid fa-table-list"></i>
+                          Categories
+                        </a>
+                        <ul class="dropdown-menu" id="categories-dropdown">
+                          <!-- Categories sẽ được thêm vào đây bằng JavaScript -->
+                        </ul>
+                      </li>
+                    </ul>
+                    <!-- Thanh search -->
+                    <div class="input-group"
+                      style="width: 60%; position: relative;">
+                      <input class="form-control" type="search"
+                        placeholder="Search Product..." aria-label="Search"
+                        style="border-radius: 30px 0 0 30px;">
+                      <span class="input-group-text"
+                        style="border-radius: 0 30px 30px 0; cursor: pointer;">
+                        <i class="fa fa-search"></i>
+                      </span>
+                      <!-- Phần tử để hiển thị kết quả tìm kiếm -->
+                      <div id="results-container"
+                        style="margin-top: 5px;"></div>
                     </div>
                   </div>
-                </div>
-                <a href="../Favourite/fav.html"
-                  style="color: inherit; text-decoration: none;">
-                  <i class="fa-regular fa-heart"
-                      style="margin-left: 5px;"> |
-                  </i>
-              </a>
-              <a href="../Cart/Cart.html"
-                  style="color: inherit; text-decoration: none;">
-                  <i
-                      class="fa-solid fa-cart-shopping "
-                      style="margin-left: 5px;"></i>
-              </a>
-              </div>
 
+                  <!-- categories -->
+
+                  <div
+                    style="color: #fff; font-size: 20px; display: flex; justify-content: center; align-items: center;">
+                    <div class="user-menu"
+                      style="width: fit-content;">
+                      <!-- Ban đầu khi User chưa đăng nhập tất cả thông tin ở img, email, greeting, manage-account chưa xuất hiện 
+                                     sau khi login or register thành công thì thay thế img bằng ký tự đầu trong tên lót, email = email user, greeting = user name, manage-account chưa có sẽ xuất hiện, 
+                                     sau đó thay thế các nút register, login lần lượt bằng thay đổi tài khoản, đăng xuất. 
+                                     Xử lý điều này và các thao tác click tại cái btn để di chuyển đến đúng trang, những css liên quan được đặt trong dropProfile.css-->
+                      <a class="user-icon" href="#"
+                        style="color: inherit; text-decoration: none;">
+                        <i class="fa-regular fa-user"> |
+                        </i>
+                      </a>
+                      <!-- modal hiển thị khi đã đăng nhập -->
+                      <div class="profile-card"
+                        id="logged-in-profile"
+                        style="display: none; flex-direction: column; align-items: center; justify-content: center; text-align: center;">
+                        <div class="close-btn">&times;</div>
+                        <div class="profile-img"><i
+                            class="fa-regular fa-user"></i></div>
+                        <div class="email">pgk06052018@gmail.com</div>
+                        <div class="greeting">Hi 12_0159
+                          Pham,</div>
+                        <div class="manage-account">Management
+                          Your Account</div>
+                        <div class="btn-group">
+                          <button
+                            class="btn btn-light border"
+                            id="btn-history"><i
+                              class="fa-solid fa-circle-plus"
+                              style="font-size: 18px; color: #74C0FC; margin-right: 5px;"></i>History</button>
+                          <button id="logout"
+                            class="btn btn-light border"><i
+                              class="fa-solid fa-arrow-right-to-bracket"
+                              style="font-size: 18px; color: #74C0FC; margin-right: 5px;"></i>Log
+                            out</button>
+                        </div>
+                        <div class="profile-footer">
+                          Chính sách quyền riêng tư ·
+                          Điều khoản dịch vụ
+                        </div>
+                      </div>
+
+                      <!--modal hiển thị trước khi đăng nhập-->
+                      <div class="profile-card"
+                        id="logged-out-profile"
+                        style="display: none; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center;">
+                        <div class="close-btn">&times;</div>
+                        <div class="profile-img"><i
+                            class="fa-regular fa-user"></i></div>
+                        <div class="greeting">Hi, please
+                          log in or sign up</div>
+                        <div class="btn-group">
+                          <button
+                            class="btn btn-light border"
+                            id="btn-signup"><i
+                              class="fa-solid fa-user-plus"
+                              style="font-size: 18px; color: #74C0FC; margin-right: 5px;"></i>Sign
+                            Up</button>
+                          <button
+                            class="btn btn-light border"
+                            id="btn-login"><i
+                              class="fa-solid fa-arrow-right-to-bracket"
+                              style="font-size: 18px; color: #74C0FC; margin-right: 5px;"></i>Log
+                            In</button>
+                        </div>
+                      </div>
+
+                    </div>
+                    <a href="../Favourite/fav.html"
+                      style="color: inherit; text-decoration: none;">
+                      <i class="fa-regular fa-heart"
+                        style="margin-left: 5px;"> |
+                      </i>
+                    </a>
+                    <a href="../Cart/Cart.html"
+                      style="color: inherit; text-decoration: none;">
+                      <i
+                        class="fa-solid fa-cart-shopping "
+                        style="margin-left: 5px;"></i>
+                    </a>
+                  </div>
+
+                </div>
+              </nav>
             </div>
-          </nav>
-        </div>
-        <div class="card-footer" style="background: rgb(133,193,189);
+            <div class="card-footer" style="background: rgb(133,193,189);
                         background: radial-gradient(circle, rgba(133,193,189,1) 11%, rgba(129,152,201,1) 90%); 
                         margin: 0; padding: none; border: none; border-radius: 0%;">
-          <nav class="navbar navbar-expand-lg w-100" style="margin: 0; padding: 0; border: none;">
-            <div class="container-fluid " style="margin: 0; padding: none; border: none;">
-              <div class="col-1"></div>
-              <a class="navbar-brand" href="https://maps.app.goo.gl/2MXnCG5jVrdjcQYZA" target="_blank"
-                style="width:35px; margin: 0px 400px 0px 50px; text-align: center; justify-content: center; color: white;">
-                <i class="fa-solid fa-location-dot"></i>
-                <span style="font-size: 15px; text-decoration: underline; font-weight: 500; color: white;">Find
-                  a Book
-                  Store</span>
-              </a>
-              <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
-                data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
-                aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-              </button>
-              <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                <ul class="navbar-nav" style="margin-right: 30px;">
-                    <li class="nav-item custom-link">
-                        <a class="nav-link" id="goHome" href="../home/home.html" aria-expanded="false">
-                            <span class="nav-item" style=" color: white;">Home</span>
+              <nav class="navbar navbar-expand-lg w-100"
+                style="margin: 0; padding: 0; border: none;">
+                <div class="container-fluid "
+                  style="margin: 0; padding: none; border: none;">
+                  <div class="col-1"></div>
+                  <a class="navbar-brand"
+                    href="https://maps.app.goo.gl/2MXnCG5jVrdjcQYZA"
+                    target="_blank"
+                    style="width:35px; margin: 0px 400px 0px 50px; text-align: center; justify-content: center; color: white;">
+                    <i class="fa-solid fa-location-dot"></i>
+                    <span
+                      style="font-size: 15px; text-decoration: underline; font-weight: 500; color: white;">Find
+                      a Book
+                      Store</span>
+                  </a>
+                  <button class="navbar-toggler" type="button"
+                    data-bs-toggle="collapse"
+                    data-bs-target="#navbarSupportedContent"
+                    aria-controls="navbarSupportedContent" aria-expanded="false"
+                    aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                  </button>
+                  <div class="collapse navbar-collapse"
+                    id="navbarSupportedContent">
+                    <ul class="navbar-nav" style="margin-right: 30px;">
+                      <li class="nav-item custom-link">
+                        <a class="nav-link" id="goHome" href="../home/home.html"
+                          aria-expanded="false">
+                          <span class="nav-item"
+                            style=" color: white;">Home</span>
                         </a>
-                    </li>
-                </ul>
-                <ul class="navbar-nav" style="margin-right: 30px;">
-                    <li class="nav-item custom-link">
-                        <a class="nav-link" href="../shop/shop.html" aria-expanded="false">
-                            <span class="nav-item" style=" color: white;">Book</span>
+                      </li>
+                    </ul>
+                    <ul class="navbar-nav" style="margin-right: 30px;">
+                      <li class="nav-item custom-link">
+                        <a class="nav-link" href="../shop/shop.html"
+                          aria-expanded="false">
+                          <span class="nav-item"
+                            style=" color: white;">Book</span>
                         </a>
-                    </li>
-                </ul>
-                <ul class="navbar-nav" style="margin-right: 30px;">
-                    <li class="nav-item custom-link">
-                        <a class="nav-link" href="../author/author.html" aria-expanded="false">
-                            <span class="nav-item" style=" color: white;">Author</span>
+                      </li>
+                    </ul>
+                    <ul class="navbar-nav" style="margin-right: 30px;">
+                      <li class="nav-item custom-link">
+                        <a class="nav-link" href="../author/author.html"
+                          aria-expanded="false">
+                          <span class="nav-item"
+                            style=" color: white;">Author</span>
                         </a>
-                    </li>
-                </ul>
-                <ul class="navbar-nav" style="margin-right: 30px;">
-                    <li class="nav-item custom-link">
+                      </li>
+                    </ul>
+                    <ul class="navbar-nav" style="margin-right: 30px;">
+                      <li class="nav-item custom-link">
                         <a class="nav-link" href="#" aria-expanded="false">
-                            <span class="nav-item" style=" color: white;">Blog</span>
+                          <span class="nav-item"
+                            style=" color: white;">Blog</span>
                         </a>
-                    </li>
-                </ul>
-                <ul class="navbar-nav" style="margin-right: 30px;">
-                    <li class="nav-item custom-link">
-                        <a class="nav-link" href="./contact.html" aria-expanded="false">
-                            <span class="nav-item" style=" color: white;">Contact</span>
+                      </li>
+                    </ul>
+                    <ul class="navbar-nav" style="margin-right: 30px;">
+                      <li class="nav-item custom-link">
+                        <a class="nav-link" href="./contact.html"
+                          aria-expanded="false">
+                          <span class="nav-item"
+                            style=" color: white;">Contact</span>
                         </a>
-                    </li>
-                </ul>
-                
-            </div>
+                      </li>
+                    </ul>
 
-              <div style="margin-right: 200px; color: white;">
-                <i class="fa-solid fa-phone-volume"></i>
-                <span style="color: orangered; font-size: 20px; font-weight: 500; margin-left: 10px;">+84
-                  0123456789</span>
+                  </div>
+
+                  <div style="margin-right: 200px; color: white;">
+                    <i class="fa-solid fa-phone-volume"></i>
+                    <span
+                      style="color: orangered; font-size: 20px; font-weight: 500; margin-left: 10px;">+84
+                      0123456789</span>
+                  </div>
+                </div>
+              </nav>
+            </div>
+          </div>
+        </div>
+
+        <!-- section-one -->
+        <div class="section-one">
+          <div class="container">
+            <div class="row">
+              <div class="col-xl-12">
+                <div class="title">
+                  <h1 style="font-weight: bold;">Contact Us</h1>
+                </div>
               </div>
             </div>
-          </nav>
+          </div>
         </div>
-      </div>
-    </div>
+        <!-- end section-one -->
 
-    <!-- section-one -->
-    <div class="section-one">
-      <div class="container">
+        <!-- section-two -->
+        <div class="section-two">
+          <div class="container">
+            <div class="row main-content">
+              <div class="col-xl-6">
+                <div class="inner-map">
+                  <iframe
+                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d9798.382834348835!2d106.7868430043918!3d10.884492511450482!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3174d89aad780e49%3A0x54542761d4c22175!2zS8O9IHTDumMgeMOhIEtodSBCIC0gxJDhuqFpIGjhu41jIFF14buRYyBnaWEgVFAuSENN!5e1!3m2!1svi!2s!4v1734104710856!5m2!1svi!2s"
+                    width="100%" height="600px" style="border:0;"
+                    allowfullscreen loading="lazy"
+                    referrerpolicy="no-referrer-when-downgrade"></iframe>
+                </div>
+              </div>
+              <div class="col-xl-6">
+                <div class="inner-form">
+                  <h3 style="font-weight: 800; margin-bottom: 40px;">We would
+                    love to hear from you.
+                  </h3>
+                  <h6
+                    style="color: #555555; font-style: italic; margin-bottom: 40px;">Your
+                    email
+                    address will not be published. Required fields are marked
+                    *</h6>
+                  <form class="comment-form">
+                    <div class="form-group">
+                      <input type="text" placeholder="Name"
+                        class="form-control">
+                    </div>
+                    <div class="form-group">
+                      <input type="email" placeholder="Email"
+                        class="form-control">
+                    </div>
+                    <div class="form-group">
+                      <textarea placeholder="Message..."
+                        class="form-control"></textarea>
+                    </div>
+                    <div class="form-group">
+                      <label>
+                        <input type="checkbox">
+                        Save my name, email, and website in this browser for the
+                        next time I comment.
+                      </label>
+                    </div>
+                    <div class="form-group">
+                      <button type="submit" class="submit-btn">Submit ➤</button>
+                    </div>
+                  </form>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- end section-two -->
+
+        <!-- section-four -->
+        <div class="section-four">
+          <div class="container">
+            <div class="row main-section">
+              <div class="col-xl-4 box">
+                <img src="assets/image/ct1.png" alt="anh-ct-1">
+                <h6>To contribute</h6>
+                <p><span>hopthubandoc@group13.com.vn</span></p>
+              </div>
+              <div class="col-xl-4 box">
+                <img src="assets/image/ct2.png" alt="anh-ct-2">
+                <h6>To submit your work or become<br> our design/illustration
+                  collaborator:</h6>
+                <p><span>tiepnhanbanthao@group13.com.vn</span></p>
+              </div>
+              <div class="col-xl-4 box">
+                <img src="assets/image/ct3.png" alt="anh-ct-3"
+                  style="margin-bottom: 23px;">
+                <h6>To become our distributor or order in bulk</h6>
+                <p><span>phongkinhdoanh@group13.com.vn</span></p>
+              </div>
+              <div class="col-xl-4 box">
+                <img src="assets/image/ct4.png" alt="anh-ct-4">
+                <h6>To trade copyright or translation-related issues:</h6>
+                <p><span>trepublishinghouse@group13.com.vn</span></p>
+              </div>
+              <div class="col-xl-4 box">
+                <img src="assets/image/ct5.png" alt="anh-ct-5">
+                <h6>To contact our communications department:</h6>
+                <p><span>phongtruyenthong@group13.com.vn</span></p>
+              </div>
+              <div class="col-xl-4 box">
+                <img src="assets/image/ct6.png" alt="anh-ct-6">
+                <h6>To contact Group 13 Branch at</h6>
+                <p>New York: <span>chinhanhnewyork@group13.com.vn</span></p>
+                <p>Las Vegas: <span>chinhanhlasvegas@group13.com.vn</span></p>
+                <p>Los Angeles:
+                  <span>chinhanhlosangeles@group13.com.vn</span></p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- end section-four -->
+
+        <!-- section-three -->
+        <div class="section-three">
+          <div class="container">
+            <div class="row">
+              <div class="col-xl-12">
+                <div class="title">
+                  <h3 style="font-weight: bold;">Our Location</h3>
+                </div>
+              </div>
+              <div class="col-xl-4 location">
+                <div class="location-image">
+                  <img src="assets/image/contact_pic_1.png" alt="New York">
+                </div>
+                <div class="location-branch">
+                  <h4>New York</h4>
+                  <p>3164 N Delaware Rd Milan, Indiana(IN), 47031</p>
+                  <p>Hotline: +(84) 2500 888 33</p>
+                  <p>support@example.com</p>
+                </div>
+                <div class="location-hour">
+                  <h4>Working Hours</h4>
+                  <p>Open: 8:00AM - Close: 18:00PM</p>
+                  <p>Saturday - Sunday: Close</p>
+                </div>
+              </div>
+              <div class="col-xl-4 location">
+                <div class="location-image">
+                  <img src="assets/image/contact_pic_2.png" alt="Las Vegas">
+                </div>
+                <div class="location-branch">
+                  <h4>Las Vegas</h4>
+                  <p>3164 N Delaware Rd Milan, Indiana(IN), 47031</p>
+                  <p>Hotline: +(84) 2500 888 33</p>
+                  <p>support@example.com</p>
+                </div>
+                <div class="location-hour">
+                  <h4>Working Hours</h4>
+                  <p>Open: 8:00AM - Close: 18:00PM</p>
+                  <p>Saturday - Sunday: Close</p>
+                </div>
+              </div>
+              <div class="col-xl-4 location">
+                <div class="location-image">
+                  <img src="assets/image/contact_pic_3.png" alt="Los Angeles">
+                </div>
+                <div class="location-branch">
+                  <h4>Los Angeles</h4>
+                  <p>3164 N Delaware Rd Milan, Indiana(IN), 47031</p>
+                  <p>Hotline: +(84) 2500 888 33</p>
+                  <p>support@example.com</p>
+                </div>
+                <div class="location-hour">
+                  <h4>Working Hours</h4>
+                  <p>Open: 8:00AM - Close: 18:00PM</p>
+                  <p>Saturday - Sunday: Close</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- end section-three -->
+
         <div class="row">
-          <div class="col-xl-12">
-            <div class="title">
-              <h1 style="font-weight: bold;">Contact Us</h1>
+          <div class="footer">
+            <div class="container" style="margin-bottom: 20px;">
+              <div class="column contact-info">
+                <h3>
+                  Contact Info
+                </h3>
+                <p>
+                  1418 River Drive, Suite 35
+                  <br />
+                  Cottonhall, CA 9622
+                </p>
+                <p>
+                  Monday – Friday: 9:00-20:00
+                  <br />
+                  Saturday: 11:00 – 15:00
+                </p>
+                <a href="mailto:contact@example.com">
+                  contact@example.com
+                </a>
+              </div>
+              <div class="column">
+                <h3>
+                  Company
+                </h3>
+                <p>
+                  <a href="#">
+                    About us
+                  </a>
+                </p>
+                <p>
+                  <a href="#">
+                    Delivery Information
+                  </a>
+                </p>
+                <p>
+                  <a href="#">
+                    Privacy Policy
+                  </a>
+                </p>
+                <p>
+                  <a href="#">
+                    Terms &amp; Conditions
+                  </a>
+                </p>
+                <p>
+                  <a href="#">
+                    Contact Us
+                  </a>
+                </p>
+                <p>
+                  <a href="#">
+                    Support Center
+                  </a>
+                </p>
+              </div>
+              <div
+                style="border-right: 1px solid #b3b3b3; margin-right: 20px;"></div>
+              <div class="column logo" style="margin-left: 20px;">
+                <h2>
+                  Bookory
+                </h2>
+                <p>
+                  Got Questions? Call us 24/7!
+                </p>
+                <p style="color: #ff5e3a; font-size: 24px;">
+                  +(84) - 1800 - 4635
+                </p>
+                <div class="social-icons">
+                  <a href="#">
+                    <i class="fab fa-facebook-f">
+                    </i>
+                  </a>
+                  <a href="#">
+                    <i class="fab fa-twitter">
+                    </i>
+                  </a>
+                  <a href="#">
+                    <i class="fab fa-instagram">
+                    </i>
+                  </a>
+                  <a href="#">
+                    <i class="fab fa-pinterest">
+                    </i>
+                  </a>
+                </div>
+              </div>
+              <div
+                style="border-right: 1px solid #b3b3b3; margin-left: 40px; margin-right: 20px;">
+              </div>
+              <div class="column">
+                <h3>
+                  Corporate
+                </h3>
+                <p>
+                  <a href="#">
+                    Become a Vendor
+                  </a>
+                </p>
+                <p>
+                  <a href="#">
+                    Affiliate Program
+                  </a>
+                </p>
+                <p>
+                  <a href="#">
+                    Our Suppliers
+                  </a>
+                </p>
+                <p>
+                  <a href="#">
+                    Accessibility
+                  </a>
+                </p>
+                <p>
+                  <a href="#">
+                    Promotions
+                  </a>
+                </p>
+                <p>
+                  <a href="#">
+                    Careers
+                  </a>
+                </p>
+              </div>
+              <div class="column">
+                <h3>
+                  Our Service
+                </h3>
+                <p>
+                  <a href="#">
+                    Help Center
+                  </a>
+                </p>
+                <p>
+                  <a href="#">
+                    Returns
+                  </a>
+                </p>
+                <p>
+                  <a href="#">
+                    Product Recalls
+                  </a>
+                </p>
+                <p>
+                  <a href="#">
+                    Accessibility
+                  </a>
+                </p>
+                <p>
+                  <a href="#">
+                    Contact Us
+                  </a>
+                </p>
+                <p>
+                  <a href="#">
+                    Store Pickup
+                  </a>
+                </p>
+              </div>
+            </div>
+            <div style="border-bottom: 1px solid #b3b3b3; margin-bottom: 20px;">
+            </div>
+            <div class="bottom-bar">
+              <p>
+                Copyright © 2024
+                <a href="#">
+                  Bookory
+                </a>
+                . All rights reserved.
+              </p>
             </div>
           </div>
         </div>
       </div>
-    </div>
-    <!-- end section-one -->
+      <script>
 
-    <!-- section-two -->
-    <div class="section-two">
-      <div class="container">
-        <div class="row main-content">
-          <div class="col-xl-6">
-            <div class="inner-map">
-              <iframe
-                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d9798.382834348835!2d106.7868430043918!3d10.884492511450482!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3174d89aad780e49%3A0x54542761d4c22175!2zS8O9IHTDumMgeMOhIEtodSBCIC0gxJDhuqFpIGjhu41jIFF14buRYyBnaWEgVFAuSENN!5e1!3m2!1svi!2s!4v1734104710856!5m2!1svi!2s"
-                width="100%" height="600px" style="border:0;" allowfullscreen="" loading="lazy"
-                referrerpolicy="no-referrer-when-downgrade"></iframe>
-            </div>
-          </div>
-          <div class="col-xl-6">
-            <div class="inner-form">
-              <h3 style="font-weight: 800; margin-bottom: 40px;">We would love to hear from you.
-              </h3>
-              <h6 style="color: #555555; font-style: italic; margin-bottom: 40px;">Your email
-                address will not be published. Required fields are marked *</h6>
-              <form class="comment-form">
-                <div class="form-group">
-                  <input type="text" placeholder="Name" class="form-control">
-                </div>
-                <div class="form-group">
-                  <input type="email" placeholder="Email" class="form-control">
-                </div>
-                <div class="form-group">
-                  <textarea placeholder="Message..." class="form-control"></textarea>
-                </div>
-                <div class="form-group">
-                  <label>
-                    <input type="checkbox">
-                    Save my name, email, and website in this browser for the next time I comment.
-                  </label>
-                </div>
-                <div class="form-group">
-                  <button type="submit" class="submit-btn">Submit ➤</button>
-                </div>
-              </form>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-    <!-- end section-two -->
+        document.addEventListener("DOMContentLoaded", () => {
+          window.initializeProfileModals();
+          
+          page = "contact";
+          window.setupPageWebSocket(page)
 
-    <!-- section-four -->
-    <div class="section-four">
-      <div class="container">
-        <div class="row main-section">
-          <div class="col-xl-4 box">
-            <img src="assets/image/ct1.png" alt="anh-ct-1">
-            <h6>To contribute</h6>
-            <p><span>hopthubandoc@group13.com.vn</span></p>
-          </div>
-          <div class="col-xl-4 box">
-            <img src="assets/image/ct2.png" alt="anh-ct-2">
-            <h6>To submit your work or become<br> our design/illustration collaborator:</h6>
-            <p><span>tiepnhanbanthao@group13.com.vn</span></p>
-          </div>
-          <div class="col-xl-4 box">
-            <img src="assets/image/ct3.png" alt="anh-ct-3" style="margin-bottom: 23px;">
-            <h6>To become our distributor or order in bulk</h6>
-            <p><span>phongkinhdoanh@group13.com.vn</span></p>
-          </div>
-          <div class="col-xl-4 box">
-            <img src="assets/image/ct4.png" alt="anh-ct-4">
-            <h6>To trade copyright or translation-related issues:</h6>
-            <p><span>trepublishinghouse@group13.com.vn</span></p>
-          </div>
-          <div class="col-xl-4 box">
-            <img src="assets/image/ct5.png" alt="anh-ct-5">
-            <h6>To contact our communications department:</h6>
-            <p><span>phongtruyenthong@group13.com.vn</span></p>
-          </div>
-          <div class="col-xl-4 box">
-            <img src="assets/image/ct6.png" alt="anh-ct-6">
-            <h6>To contact Group 13 Branch at</h6>
-            <p>New York: <span>chinhanhnewyork@group13.com.vn</span></p>
-            <p>Las Vegas: <span>chinhanhlasvegas@group13.com.vn</span></p>
-            <p>Los Angeles: <span>chinhanhlosangeles@group13.com.vn</span></p>
-          </div>
-        </div>
-      </div>
-    </div>
-    <!-- end section-four -->
+        });
+      </script>
 
-    <!-- section-three -->
-    <div class="section-three">
-      <div class="container">
-        <div class="row">
-          <div class="col-xl-12">
-            <div class="title">
-              <h3 style="font-weight: bold;">Our Location</h3>
-            </div>
-          </div>
-          <div class="col-xl-4 location">
-            <div class="location-image">
-              <img src="assets/image/contact_pic_1.png" alt="New York">
-            </div>
-            <div class="location-branch">
-              <h4>New York</h4>
-              <p>3164 N Delaware Rd Milan, Indiana(IN), 47031</p>
-              <p>Hotline: +(84) 2500 888 33</p>
-              <p>support@example.com</p>
-            </div>
-            <div class="location-hour">
-              <h4>Working Hours</h4>
-              <p>Open: 8:00AM - Close: 18:00PM</p>
-              <p>Saturday - Sunday: Close</p>
-            </div>
-          </div>
-          <div class="col-xl-4 location">
-            <div class="location-image">
-              <img src="assets/image/contact_pic_2.png" alt="Las Vegas">
-            </div>
-            <div class="location-branch">
-              <h4>Las Vegas</h4>
-              <p>3164 N Delaware Rd Milan, Indiana(IN), 47031</p>
-              <p>Hotline: +(84) 2500 888 33</p>
-              <p>support@example.com</p>
-            </div>
-            <div class="location-hour">
-              <h4>Working Hours</h4>
-              <p>Open: 8:00AM - Close: 18:00PM</p>
-              <p>Saturday - Sunday: Close</p>
-            </div>
-          </div>
-          <div class="col-xl-4 location">
-            <div class="location-image">
-              <img src="assets/image/contact_pic_3.png" alt="Los Angeles">
-            </div>
-            <div class="location-branch">
-              <h4>Los Angeles</h4>
-              <p>3164 N Delaware Rd Milan, Indiana(IN), 47031</p>
-              <p>Hotline: +(84) 2500 888 33</p>
-              <p>support@example.com</p>
-            </div>
-            <div class="location-hour">
-              <h4>Working Hours</h4>
-              <p>Open: 8:00AM - Close: 18:00PM</p>
-              <p>Saturday - Sunday: Close</p>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-    <!-- end section-three -->
+      <script src="../../helpers/socket.js"></script>
+      <script src="./vendor.js"></script>
+      <script src="./contact.js"></script>
+      <script src="../../helpers/nav.js"></script>
+      <script src="../../helpers/login_logout.js"></script>
+      
+    </body>
 
-
-
-    <div class="row">
-      <div class="footer">
-        <div class="container" style="margin-bottom: 20px;">
-          <div class="column contact-info">
-            <h3>
-              Contact Info
-            </h3>
-            <p>
-              1418 River Drive, Suite 35
-              <br />
-              Cottonhall, CA 9622
-            </p>
-            <p>
-              Monday – Friday: 9:00-20:00
-              <br />
-              Saturday: 11:00 – 15:00
-            </p>
-            <a href="mailto:contact@example.com">
-              contact@example.com
-            </a>
-          </div>
-          <div class="column">
-            <h3>
-              Company
-            </h3>
-            <p>
-              <a href="#">
-                About us
-              </a>
-            </p>
-            <p>
-              <a href="#">
-                Delivery Information
-              </a>
-            </p>
-            <p>
-              <a href="#">
-                Privacy Policy
-              </a>
-            </p>
-            <p>
-              <a href="#">
-                Terms &amp; Conditions
-              </a>
-            </p>
-            <p>
-              <a href="#">
-                Contact Us
-              </a>
-            </p>
-            <p>
-              <a href="#">
-                Support Center
-              </a>
-            </p>
-          </div>
-          <div style="border-right: 1px solid #b3b3b3; margin-right: 20px;"></div>
-          <div class="column logo" style="margin-left: 20px;">
-            <h2>
-              Bookory
-            </h2>
-            <p>
-              Got Questions? Call us 24/7!
-            </p>
-            <p style="color: #ff5e3a; font-size: 24px;">
-              +(84) - 1800 - 4635
-            </p>
-            <div class="social-icons">
-              <a href="#">
-                <i class="fab fa-facebook-f">
-                </i>
-              </a>
-              <a href="#">
-                <i class="fab fa-twitter">
-                </i>
-              </a>
-              <a href="#">
-                <i class="fab fa-instagram">
-                </i>
-              </a>
-              <a href="#">
-                <i class="fab fa-pinterest">
-                </i>
-              </a>
-            </div>
-          </div>
-          <div style="border-right: 1px solid #b3b3b3; margin-left: 40px; margin-right: 20px;">
-          </div>
-          <div class="column">
-            <h3>
-              Corporate
-            </h3>
-            <p>
-              <a href="#">
-                Become a Vendor
-              </a>
-            </p>
-            <p>
-              <a href="#">
-                Affiliate Program
-              </a>
-            </p>
-            <p>
-              <a href="#">
-                Our Suppliers
-              </a>
-            </p>
-            <p>
-              <a href="#">
-                Accessibility
-              </a>
-            </p>
-            <p>
-              <a href="#">
-                Promotions
-              </a>
-            </p>
-            <p>
-              <a href="#">
-                Careers
-              </a>
-            </p>
-          </div>
-          <div class="column">
-            <h3>
-              Our Service
-            </h3>
-            <p>
-              <a href="#">
-                Help Center
-              </a>
-            </p>
-            <p>
-              <a href="#">
-                Returns
-              </a>
-            </p>
-            <p>
-              <a href="#">
-                Product Recalls
-              </a>
-            </p>
-            <p>
-              <a href="#">
-                Accessibility
-              </a>
-            </p>
-            <p>
-              <a href="#">
-                Contact Us
-              </a>
-            </p>
-            <p>
-              <a href="#">
-                Store Pickup
-              </a>
-            </p>
-          </div>
-        </div>
-        <div style="border-bottom: 1px solid #b3b3b3; margin-bottom: 20px;">
-        </div>
-        <div class="bottom-bar">
-          <p>
-            Copyright © 2024
-            <a href="#">
-              Bookory
-            </a>
-            . All rights reserved.
-          </p>
-        </div>
-      </div>
-    </div>
-  </div>
-  <script src="./vendor.js"></script>
-</body>
-
-</html>
+  </html>

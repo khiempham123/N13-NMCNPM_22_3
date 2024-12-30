@@ -25,13 +25,8 @@ const addProductModal = document.getElementById("addProductModal");
 const addProductBtn = document.getElementById("btn-addproduct");
 const closeBtn = document.getElementsByClassName("close")[0];
 
-addProductBtn.addEventListener("click", () => {
-  addProductModal.style.display = "block";
-});
 
-closeBtn.addEventListener("click", () => {
-  addProductModal.style.display = "none";
-});
+
 
 window.addEventListener("click", (event) => {
   if (event.target == addProductModal) {

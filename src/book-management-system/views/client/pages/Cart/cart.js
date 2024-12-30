@@ -1,18 +1,19 @@
 const API_BASE_URL = "http://localhost:3000";
 
 async function fetchCart() {
+  
   try {
     const response = await fetch(`${API_BASE_URL}/get-cart`, {
       method: "GET",
       headers: {
-        authorization: localStorage.getItem("token"),
+        authorization: `Bearer ${localStorage.getItem("token")}`,
       },
     });
 
     if (response.status === 404) {
       // Xử lý trường hợp giỏ hàng trống
       const message = await response.json();
-      alert(message.message); // Hiển thị "Giỏ hàng trống"
+      //alert(message.message); // Hiển thị "Giỏ hàng trống"
       displayEmptyCart(); // Hàm xử lý giao diện khi giỏ hàng trống
       return;
     }
@@ -34,8 +35,7 @@ async function fetchCart() {
 // Hàm hiển thị giao diện giỏ hàng trống
 function displayEmptyCart() {
   const cartItemsContainer = document.getElementById("cartItems");
-  cartItemsContainer.innerHTML = "<p>Giỏ hàng của bạn đang trống.</p>";
-
+  cartItemsContainer.innerHTML = '<p style="font-weight: bold; font-size: 1.5em; color : red">Giỏ hàng của bạn đang trống.</p>';
   // Cập nhật tổng giá trị giỏ hàng
   document.getElementById("totalPrice").textContent = "0 $";
   document.getElementById("totalAmount").textContent = "0 $";
@@ -144,7 +144,7 @@ function updateCartInDatabase(itemId, quantity, totalPrice) {
   fetch(`${API_BASE_URL}/update/${itemId}`, {
     method: "PATCH",
     headers: {
-      authorization: localStorage.getItem("token"),
+      authorization: `Bearer ${localStorage.getItem("token")}`,
       "Content-Type": "application/json",
     },
     body: JSON.stringify({
@@ -201,7 +201,7 @@ function deleteItemFromDatabase(itemId) {
   fetch(`${API_BASE_URL}/remove/${itemId}`, {
     method: "DELETE",
     headers: {
-      authorization: localStorage.getItem("token"),
+      authorization: `Bearer ${localStorage.getItem("token")}`,
       "Content-Type": "application/json",
     },
     body: JSON.stringify({ itemId }),
@@ -215,7 +215,11 @@ function deleteItemFromDatabase(itemId) {
 }
 
 // Tải giỏ hàng khi trang được load
-window.onload = fetchCart;
+document.addEventListener("DOMContentLoaded", () => {
+  fetchCart();
+  window.initializeProfileModals();
+});
+
 
 // complete checkout
 // Xử lý sự kiện khi nhấn nút "Complete Order"
@@ -242,7 +246,7 @@ document.querySelector(".btn-complete").addEventListener("click", async () => {
     const cartResponse = await fetch(`${API_BASE_URL}/get-cart`, {
       method: "GET",
       headers: {
-        authorization: localStorage.getItem("token"),
+        authorization: `Bearer ${localStorage.getItem("token")}`,
       },
     });
 
@@ -271,14 +275,13 @@ document.querySelector(".btn-complete").addEventListener("click", async () => {
       shippingFee,
       grandTotal: totalWithVAT,
     };
-    console.log(orderData)
 
     // Gửi yêu cầu lưu đơn hàng vào cơ sở dữ liệu
     const response = await fetch(`${API_BASE_URL}/order`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
-        authorization: localStorage.getItem("token"),
+        authorization: `Bearer ${localStorage.getItem("token")}`,
       },
       body: JSON.stringify(orderData),
     });
@@ -291,7 +294,6 @@ document.querySelector(".btn-complete").addEventListener("click", async () => {
 
     // Hiển thị thông báo thành công
     alert("Đơn hàng của bạn đã được tạo thành công!");
-    console.log("Order created:", result);
 
     // Điều hướng người dùng đến trang xác nhận đơn hàng
     window.location.href = "../history/history.html";
@@ -299,4 +301,8 @@ document.querySelector(".btn-complete").addEventListener("click", async () => {
     console.error(error);
     alert("Có lỗi xảy ra khi hoàn tất đơn hàng. Vui lòng thử lại!");
   }
+});
+document.addEventListener("DOMContentLoaded", () => {
+  page = "cart";
+  window.setupPageWebSocket(page)
 });

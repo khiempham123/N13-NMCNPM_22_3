@@ -1,12 +1,17 @@
 const User = require("../../models/user.models.js");
 const Order = require("../../models/order.models.js");
 const bcrypt = require("bcryptjs");
-
+const mongoose = require("mongoose");
 // Lấy thông tin tất cả khách hàng
 const getAllCustomers = async (req, res) => {
   try {
     // Tìm thông tin user và lấy tổng số đơn hàng cùng tổng tiền
     const customers = await User.aggregate([
+      {
+        $match: {
+          role: "customer", // Chỉ lấy những user có role là "customer"
+        },
+      },
       {
         $lookup: {
           from: "orders", // Tên collection "orders"
@@ -42,54 +47,6 @@ const getAllCustomers = async (req, res) => {
   }
 };
 
-// Lấy thông tin chi tiết của một khách hàng
-const getCustomerById = async (req, res) => {
-  try {
-    const { id } = req.params;
-
-    const customer = await User.aggregate([
-      {
-        $match: { _id: new mongoose.Types.ObjectId(id) },
-      },
-      {
-        $lookup: {
-          from: "orders", // Tên collection "orders"
-          localField: "_id",
-          foreignField: "userId",
-          as: "orders",
-        },
-      },
-      {
-        $addFields: {
-          totalOrders: { $size: "$orders" },
-          totalAmount: { $sum: "$orders.grandTotal" },
-        },
-      },
-      {
-        $project: {
-          username: 1,
-          fullName: 1,
-          phone: 1,
-          email: 1,
-          address: 1,
-          avatar: 1,
-          totalOrders: 1,
-          totalAmount: 1,
-          orders: 1,
-        },
-      },
-    ]);
-
-    if (!customer.length) {
-      return res.status(404).json({ message: "Customer not found" });
-    }
-
-    return res.status(200).json(customer[0]);
-  } catch (error) {
-    console.error(error);
-    return res.status(500).json({ message: "Failed to fetch customer" });
-  }
-};
 
 // Reset mật khẩu khách hàng
 const resetCustomerPassword = async (req, res) => {
@@ -144,7 +101,7 @@ const deleteCustomerAccount = async (req, res) => {
 
 module.exports = {
   getAllCustomers,
-  getCustomerById,
+  //getCustomerById,
   resetCustomerPassword,
   deleteCustomerAccount,
 };

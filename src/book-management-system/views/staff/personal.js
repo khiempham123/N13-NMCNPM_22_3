@@ -27,7 +27,6 @@ document.addEventListener('DOMContentLoaded', () => {
   });
   async function checkToken() {
     const token = localStorage.getItem('token');
-    console.log(token)
     if (!token) {
       alert('Bạn chưa đăng nhập!');
       window.location.href = './login/login.html';
@@ -39,7 +38,7 @@ document.addEventListener('DOMContentLoaded', () => {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
-          Authorization: `Bearer ${token}`,
+          authorization: `Bearer ${token}`,
         },
       });
 
@@ -53,7 +52,7 @@ document.addEventListener('DOMContentLoaded', () => {
     } catch (error) {
       console.error('Lỗi khi xác thực token:', error);
       alert('Đã xảy ra lỗi khi xác thực token!');
-      window.location.href = 'login.html';
+      window.location.href = './login/login.html';
       return false;
     }
   }
@@ -62,7 +61,6 @@ document.addEventListener('DOMContentLoaded', () => {
     if (!(await checkToken())) return;
     try {
       const token = localStorage.getItem("token"); // Lấy token từ localStorage hoặc session
-      console.log(token)
       const response = await fetch("http://localhost:3000/staff/profile", {
         method: "GET",
         headers: {
@@ -76,18 +74,17 @@ document.addEventListener('DOMContentLoaded', () => {
       }
   
       const staff = await response.json();
-      console.log("Staff Info:", staff);
-      console.log(staff.name)
+   
       // Hiển thị thông tin nhân viên lên HTML
-      document.querySelector(".profile-info .info p:nth-child(1) span").textContent = `Name: ${staff.name}`;
-      document.querySelector(".profile-info .info p:nth-child(2) span").textContent = `BirthDay: ${staff.birthDay.split("T")[0]}`; // Chỉ lấy ngày từ chuỗi ISO
+      document.querySelector(".profile-info .info p:nth-child(1) span").textContent = `Name: ${staff.fullName}`;
+      document.querySelector(".profile-info .info p:nth-child(2) span").textContent = `BirthDay: ${staff.dateOfBirth.split("T")[0]}`; // Chỉ lấy ngày từ chuỗi ISO
       document.querySelector(".profile-info .info p:nth-child(3) span").textContent = `Phone: ${staff.phone}`;
       document.querySelector(".profile-info .info p:nth-child(4) span").textContent = `Email: ${staff.email}`;
       document.querySelector(".profile-info .info p:nth-child(5) span").textContent = `Address: ${staff.address}`;
       
       // Hiển thị thông tin Operations
-      document.querySelector(".profile-info .col-xl-6:nth-child(2) .info p:nth-child(1) span").textContent = `On-position: ${staff.position}`;
-      document.querySelector(".profile-info .col-xl-6:nth-child(2) .info p:nth-child(2) span").textContent = `Salary: ${staff.salary.toLocaleString()} vnđ`;
+      document.querySelector(".profile-info .col-xl-6:nth-child(2) .info p:nth-child(1) span").textContent = `Gender: ${staff.gender}`;
+      document.querySelector(".profile-info .col-xl-6:nth-child(2) .info p:nth-child(2) span").textContent = `Salary: ${staff.salary.toLocaleString()} $`;
       document.querySelector(".profile-info .col-xl-6:nth-child(2) .info p:nth-child(3) span").textContent = `Position: ${staff.position}`;
       const avatarImg = document.getElementById("avatar"); // Thẻ <img> hiển thị avatar
         avatarImg.src = staff.avatar || "assets/images/default-avatar.jpg"; // Hiển thị avatar hoặc ảnh mặc định
@@ -120,7 +117,6 @@ document.addEventListener('DOMContentLoaded', () => {
         address: document.getElementById('staffAddress').value,
       };
 
-      console.log('Dữ liệu gửi đi:', updatedData);
 
       // Gửi yêu cầu cập nhật
       const response = await fetch('http://localhost:3000/staff/profile/update', {
@@ -137,13 +133,12 @@ document.addEventListener('DOMContentLoaded', () => {
       }
 
       const result = await response.json();
-      console.log('Kết quả cập nhật:', result);
 
       alert('Cập nhật thông tin thành công!');
       editPersonalPopup.style.display = 'none'; // Ẩn popup sau khi cập nhật
       // Cập nhật thông tin hiển thị mà không reload trang
-      document.querySelector(".profile-info .info p:nth-child(1) span").textContent = `Name: ${result.updatedStaff.name}`;
-      document.querySelector(".profile-info .info p:nth-child(2) span").textContent = `BirthDay: ${result.updatedStaff.birthDay.split('T')[0]}`;
+      document.querySelector(".profile-info .info p:nth-child(1) span").textContent = `Name: ${result.updatedStaff.fullName}`;
+      document.querySelector(".profile-info .info p:nth-child(2) span").textContent = `BirthDay: ${result.updatedStaff.dayOfBirth.split('T')[0]}`;
       document.querySelector(".profile-info .info p:nth-child(3) span").textContent = `Phone: ${result.updatedStaff.phone}`;
       document.querySelector(".profile-info .info p:nth-child(4) span").textContent = `Email: ${result.updatedStaff.email}`;
       document.querySelector(".profile-info .info p:nth-child(5) span").textContent = `Address: ${result.updatedStaff.address}`;

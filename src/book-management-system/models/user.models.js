@@ -10,7 +10,9 @@ const userSchema = new mongoose.Schema(
     token: { type: String }, // Added token field
     resetPasswordToken: String,
     resetPasswordExpires: Date,
-
+    salary: { type: Number },
+    position: { type: String },
+    role: { type: String, enum: ['staff', 'admin','customer'], required: true },
     // infoUser
     fullName: {
       type: String,
@@ -33,8 +35,8 @@ const userSchema = new mongoose.Schema(
       type: String,
       default: "", // Mặc định là chuỗi rỗng
     },
+    refreshToken: { type: String, default: null },
   },
-  { collection: "user" },
   { timestamps: true }
 );
 
@@ -42,7 +44,6 @@ userSchema.pre("save", async function (next) {
   if (!this.isModified("password")) return next();
 
   try {
-    console.log("Password before hashing:", this.password);
     const saltRounds = await bcrypt.genSalt(10);
     this.password = await bcrypt.hash(this.password, saltRounds);
     next();
@@ -52,12 +53,10 @@ userSchema.pre("save", async function (next) {
 });
 
 userSchema.methods.comparePassword = function (password) {
-  console.log("Hashed password from DB:", this.password);
-  console.log("Plain password to compare:", password);
   return bcrypt.compare(password, this.password);
 };
 
-const User = mongoose.model("User", userSchema, "user");
+const User = mongoose.model("User", userSchema, "users");
 
 
 module.exports = User;

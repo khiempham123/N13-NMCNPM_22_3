@@ -11,5 +11,16 @@ historyButton.addEventListener("click", () => {
 const logoutButton = document.getElementById("logout");
 logoutButton.addEventListener("click", () => {
   localStorage.removeItem("token");
-  window.location.href = "../login/login.html";
+  window.location.href = "../../../login/login.html";
 });
+
+const signUpButton = document.getElementById("btn-signup");
+signUpButton.addEventListener("click",()=>{
+  window.location.href ="../../../login/login.html"
+}
+)
+const signInButton = document.getElementById("btn-login");
+signInButton.addEventListener("click",()=>{
+  window.location.href ="../../../login/login.html"
+}
+)

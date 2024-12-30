@@ -9,6 +9,7 @@ const getAllOrders = async (req, res) => {
     try {
         const orders = await Order.find()
             .skip(skip)
+            .sort({ createdAt: -1 })
             .limit(limit);
         const totalOrders = await Order.countDocuments();
 

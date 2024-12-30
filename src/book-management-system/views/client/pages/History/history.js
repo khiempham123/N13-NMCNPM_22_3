@@ -1,6 +1,7 @@
 const API_BASE_URL = "http://localhost:3000";
 
 document.addEventListener("DOMContentLoaded", function () {
+  
   // Essential Variables
   const orderList = document.getElementById("order-list"); // Container for order rows
   const orderSummaryModal = document.getElementById("orderSummaryModal"); // Modal for order summary
@@ -42,7 +43,7 @@ document.addEventListener("DOMContentLoaded", function () {
       const response = await fetch(url, {
         method: "GET",
         headers: {
-          authorization: localStorage.getItem("token"), // Correctly format the Authorization header
+          authorization: `Bearer ${localStorage.getItem("token")}`,
           "Content-Type": "application/json",
         },
       });
@@ -52,7 +53,6 @@ document.addEventListener("DOMContentLoaded", function () {
       }
 
       const data = await response.json();
-      console.log(data);
       // Update Count Elements
       allOrdersCount.textContent = data.total || 0;
       pendingOrdersCount.textContent = data.pending || 0;
@@ -86,7 +86,7 @@ document.addEventListener("DOMContentLoaded", function () {
       const response = await fetch(url, {
         method: "GET",
         headers: {
-          authorization: localStorage.getItem("token"), // Correctly format the Authorization header
+          authorization: `Bearer ${localStorage.getItem("token")}`,
           "Content-Type": "application/json",
         },
       });
@@ -203,7 +203,6 @@ document.addEventListener("DOMContentLoaded", function () {
 
     // Populate Product List in Modal
     order.items.forEach((item) => {
-      console.log(order.items)
       const productDiv = document.createElement("div");
       productDiv.classList.add("product");
 
@@ -319,7 +318,7 @@ document.addEventListener("DOMContentLoaded", function () {
       const response = await fetch(`${API_BASE_URL}/order/${orderId}`, {
         method: "DELETE",
         headers: {
-          authorization: localStorage.getItem("token"), // Đảm bảo định dạng Authorization header
+          authorization: `Bearer ${localStorage.getItem("token")}`,
           "Content-Type": "application/json",
         },
       });
@@ -348,4 +347,11 @@ document.addEventListener("DOMContentLoaded", function () {
     if (cancelledOrdersTab.classList.contains("active")) return "cancelled";
     return "all";
   };
+  window.initializeProfileModals();
+});
+
+
+document.addEventListener("DOMContentLoaded", () => {
+  page = "history";
+  window.setupPageWebSocket(page)
 });

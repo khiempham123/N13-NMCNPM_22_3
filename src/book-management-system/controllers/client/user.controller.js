@@ -8,9 +8,10 @@ const generateHelper = require("../../helpers/generate");
 const sendMailHelper = require("../../helpers/sendMail");
 module.exports.register = async (req, res) => {
   try {
-    console.log(req.body);
     const { username, email, password, address, phone } = req.body;
-    const user = new User({ username, email, password, address, phone });
+    const role = "customer";
+
+    const user = new User({ username, email, password, address, phone,role });
     await user.save();
     res.status(201).json({ message: "User registered successfully" });
   } catch (error) {
@@ -24,10 +25,8 @@ module.exports.register = async (req, res) => {
 module.exports.login = async (req, res) => {
   try {
     const { username, password } = req.body;
-    console.log("Login request body:", req.body);
 
     const user = await User.findOne({ username: username });
-    console.log("Found user:", user);
     if (!user) {
       return res.status(401).json({ message: "Invalid username or password" });
     }
@@ -42,7 +41,6 @@ module.exports.login = async (req, res) => {
         expiresIn: "24h", // Token sẽ hết hạn sau 1 giờ
       }
     );
-    console.log("token:", token);
     res.json({
       token: token,
     });
@@ -87,7 +85,6 @@ module.exports.forgotPassword = async (req, res) => {
 
 module.exports.verifyOtp = async (req, res) => {
   const { email, otp } = req.body;
-  console.log("Request body:", req.body);
   // Tìm kiếm OTP trong cơ sở dữ liệu cho email này
   const forgotPasswordRequest = await ForgotPassword.findOne({ email, otp });
 
@@ -141,7 +138,7 @@ module.exports.resetPassword = async (req, res) => {
 
 module.exports.changePassword = async (req, res) => {
   try {
-    const userId = req.user._id;
+    const userId = req.user.id;
     const { currentPassword, newPassword } = req.body;
 
     // Kiểm tra các trường có đầy đủ không

@@ -66,90 +66,68 @@ document.addEventListener("DOMContentLoaded", () => {
     wrapper.classList.add("active"); // Hiển thị form Đăng nhập mặc định
   }
 
-  console.log("Default wrapper classes:", wrapper.classList);
 });
 
 // Chuyển đổi giữa các form Đăng nhập, Đăng ký, Quên mật khẩu, Đặt lại mật khẩu
-const signUpBtnLink = document.querySelector(".signUp-link");
-const signInBtnLink = document.querySelector(".signIn-link");
-const forgotPasswordLink = document.querySelector(".forgotPassword-link"); // Link "Forgot Password"
-const backToSignInLink = document.querySelector(".backToSignIn-link");
-const wrapper = document.querySelector(".wrapper");
+const signUpBtnLink = document.querySelector('.signUp-link');
+const signInBtnLink = document.querySelector('.signIn-link');
+const forgotPasswordLink = document.querySelector('.remember-forgot a'); // Link "Forgot Password"
+const wrapper = document.querySelector('.wrapper');
 
-signUpBtnLink.addEventListener("click", () => {
-  wrapper.classList.add("active");
-  wrapper.classList.remove("forgot-active");
-});
+// Khi nhấn vào "Đăng ký"
+if (signUpBtnLink) {
+    signUpBtnLink.addEventListener('click', (e) => {
+        e.preventDefault();
+        wrapper.classList.add('sign-up-active'); // Thêm lớp để hiển thị form Đăng ký
+        wrapper.classList.remove('active', 'forgot-active', 'reset-active'); // Ẩn các form khác
+    });
+}
+// Khi nhấn vào "Đăng nhập"
+if (signInBtnLink) {
+    signInBtnLink.addEventListener('click', (e) => {
+        e.preventDefault();
+        wrapper.classList.add('active'); // Hiển thị form Đăng nhập
+        wrapper.classList.remove('sign-up-active', 'forgot-active', 'reset-active'); // Ẩn các form khác
 
-// Quay lại Sign In từ Sign Up
-signInBtnLink.addEventListener("click", () => {
-  wrapper.classList.remove("active");
-  wrapper.classList.remove("forgot-active");
-});
-
-// Chuyển sang Forgot Password
-forgotPasswordLink.addEventListener("click", (e) => {
-  e.preventDefault();
-  wrapper.classList.add("forgot-active");
-  wrapper.classList.remove("active");
-});
-
-// Quay lại Sign In từ Forgot Password
-backToSignInLink.addEventListener("click", (e) => {
-  e.preventDefault();
-  wrapper.classList.remove("forgot-active");
-  wrapper.classList.remove("active");
-});
-// Khi nhấn vào "Quên mật khẩu"
-if (forgotPasswordLink) {
-  forgotPasswordLink.addEventListener("click", (e) => {
-    e.preventDefault();
-    wrapper.classList.add("forgot-active"); // Hiển thị form Quên mật khẩu
-    wrapper.classList.remove("active", "reset-active"); // Ẩn các form khác
-    console.log("Current wrapper classes (Quên mật khẩu):", wrapper.classList);
-  });
+    });
 }
 
+// Khi nhấn vào "Quên mật khẩu"
+if (forgotPasswordLink) {
+    forgotPasswordLink.addEventListener('click', (e) => {
+        e.preventDefault();
+        wrapper.classList.add('forgot-active'); // Hiển thị form Quên mật khẩu
+        wrapper.classList.remove('active', 'reset-active'); // Ẩn các form khác
+    });
+}
+
+
 // Xử lý quay lại đăng nhập từ Quên mật khẩu
-const forgotPasswordSignInLink = document.querySelector(
-  ".forgot-password .signIn-link"
-);
+const forgotPasswordSignInLink = document.querySelector('.forgot-password .signIn-link');
 if (forgotPasswordSignInLink) {
-  forgotPasswordSignInLink.addEventListener("click", (e) => {
-    e.preventDefault();
-    wrapper.classList.add("active"); // Hiển thị form Đăng nhập
-    wrapper.classList.remove("forgot-active"); // Ẩn form Quên mật khẩu
+    forgotPasswordSignInLink.addEventListener('click', (e) => {
+        e.preventDefault();
+        wrapper.classList.add('active'); // Hiển thị form Đăng nhập
+        wrapper.classList.remove('forgot-active'); // Ẩn form Quên mật khẩu
 
-    // Xóa tham số email trong URL
-    const newUrl = window.location.pathname; // Lấy URL gốc (không có query parameters)
-    window.history.replaceState(null, "", newUrl);
-
-    console.log(
-      "Current wrapper classes (Trở lại Đăng nhập):",
-      wrapper.classList
-    );
-  });
+        // Xóa tham số email trong URL
+        const newUrl = window.location.pathname; // Lấy URL gốc (không có query parameters)
+        window.history.replaceState(null, '', newUrl);
+    });
 }
 
 // Xử lý quay lại đăng nhập từ Reset mật khẩu
-const resetPasswordSignInLink = document.querySelector(
-  ".reset-password .signIn-link"
-);
+const resetPasswordSignInLink = document.querySelector('.reset-password .signIn-link');
 if (resetPasswordSignInLink) {
-  resetPasswordSignInLink.addEventListener("click", (e) => {
-    e.preventDefault(); // Ngăn hành động mặc định của thẻ <a>
-    wrapper.classList.add("active"); // Hiển thị form Đăng nhập
-    wrapper.classList.remove("reset-active"); // Ẩn form Reset mật khẩu
+    resetPasswordSignInLink.addEventListener('click', (e) => {
+        e.preventDefault(); // Ngăn hành động mặc định của thẻ <a>
+        wrapper.classList.add('active'); // Hiển thị form Đăng nhập
+        wrapper.classList.remove('reset-active'); // Ẩn form Reset mật khẩu
 
-    // Xóa tham số email trong URL
-    const newUrl = window.location.pathname; // Lấy URL gốc (không có query parameters)
-    window.history.replaceState(null, "", newUrl);
-
-    console.log(
-      "Current wrapper classes (Quay lại Đăng nhập từ Reset mật khẩu):",
-      wrapper.classList
-    );
-  });
+        // Xóa tham số email trong URL
+        const newUrl = window.location.pathname; // Lấy URL gốc (không có query parameters)
+        window.history.replaceState(null, '', newUrl);
+    });
 }
 function validatePhone(inputElement, errorElement) {
   // Biểu thức regex kiểm tra số điện thoại (phải bắt đầu bằng 0 và chỉ chứa 10 số)
@@ -230,7 +208,6 @@ if (signUpForm) {
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(data),
     });
-
     if (response.ok) {
       usernameError.style.display = "none"; // Ẩn thông báo lỗi nếu đăng ký thành công
       // Hiển thị modal thông báo thành công
@@ -248,55 +225,59 @@ if (signUpForm) {
 const signInMessage = document.createElement("div");
 signInMessage.className = "form-message";
 signInMessage.style.display = "none"; // Ẩn thông báo mặc định
+const signInForm = document.getElementById('signInForm');
 signInForm.insertBefore(signInMessage, signInForm.firstChild); // Thêm vào đầu form
-
 if (signInForm) {
-  signInForm.addEventListener("submit", async (e) => {
-    e.preventDefault(); // Ngăn hành động submit mặc định
-    const username = document.getElementById("loginUsername").value;
-    const password = document.getElementById("loginPassword").value;
-    const data = { username, password };
-    console.log("Login data being sent:", { username, password });
-
-    try {
-      const response = await fetch("http://localhost:3000/api/client/login", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(data),
-      });
-
-      if (response.ok) {
-        // Lấy token từ phản hồi (giả sử API trả về token trong response JSON)
-        const responseData = await response.json();
-        const token = responseData.token; // Lấy token từ response
-
-        if (token) {
-          localStorage.setItem("token", token); // Lưu token vào localStorage
-          signInMessage.style.display = "block"; // Hiển thị thông báo
-          signInMessage.className = "form-message success"; // Thêm lớp thành công
-          signInMessage.textContent =
-            "Đăng nhập thành công! Đang chuyển hướng...";
-
-          setTimeout(() => {
-            window.location.href = "../home/home.html"; // Chuyển hướng sau 2 giây
-          }, 2000);
-        } else {
-          signInMessage.style.display = "block"; // Hiển thị thông báo lỗi nếu không có token
-          signInMessage.className = "form-message error";
-          signInMessage.textContent = "Không có token trong phản hồi.";
-        }
-      } else {
-        const error = await response.json();
-        signInMessage.style.display = "block"; // Hiển thị thông báo lỗi
-        signInMessage.className = "form-message error";
-        signInMessage.textContent = "Đăng nhập thất bại: " + error.message;
+  signInForm.addEventListener('submit', async (e) => {
+      e.preventDefault(); // Ngăn hành động submit mặc định
+      const username = document.getElementById('loginUsername').value;
+      const password = document.getElementById('loginPassword').value;
+      const data = { username, password };
+      try {
+          const response = await fetch('http://localhost:3000/staff/login', {
+              method: 'POST',
+              headers: { 'Content-Type': 'application/json' },
+              body: JSON.stringify(data)
+          });
+          if (response.ok) {
+              const { accessToken, refreshToken, username, role } = await response.json();
+  
+              // Lưu accessToken vào localStorage
+              localStorage.setItem('token', accessToken);
+              localStorage.setItem('refreshToken', refreshToken); // Lưu refreshToken nếu cần
+              localStorage.setItem('username', username);
+              localStorage.setItem('role', role);
+              signInMessage.style.display = 'block'; // Hiển thị thông báo
+              signInMessage.className = 'form-message success'; // Thêm lớp thành công
+              signInMessage.textContent = 'Đăng nhập thành công! Đang chuyển hướng...';
+              
+              // Phân hướng dựa trên vai trò
+              setTimeout(() => {
+                  if (role === 'staff') {
+                      window.location.href = '../staff/staff.html'; // Chuyển hướng đến trang staff
+                  } else if (role === 'admin') {
+                      window.location.href = '../admin/index.html'; // Chuyển hướng đến trang admin
+                  } else if (role === 'customer') {
+                    window.location.href = '../client/pages/home/home.html'; // Chuyển hướng đến trang admin
+                } 
+                  else {
+                      alert('Role không hợp lệ!');
+                      localStorage.clear(); // Xóa token và thông tin không hợp lệ
+                      window.location.href = './login/login.html';
+                  }
+              }, 2000);
+          } else {
+              const error = await response.json();
+              signInMessage.style.display = 'block'; // Hiển thị thông báo lỗi
+              signInMessage.className = 'form-message error'; // Thêm lớp lỗi
+              signInMessage.textContent = 'Đăng nhập thất bại: ' + error.message;
+          }
+      } catch (err) {
+          console.error('Error:', err);
+          signInMessage.style.display = 'block'; // Hiển thị lỗi kết nối
+          signInMessage.className = 'form-message error'; // Thêm lớp lỗi
+          signInMessage.textContent = 'Có lỗi xảy ra. Vui lòng thử lại sau.';
       }
-    } catch (err) {
-      console.error("Error:", err);
-      signInMessage.style.display = "block"; // Hiển thị lỗi kết nối
-      signInMessage.className = "form-message error";
-      signInMessage.textContent = "Có lỗi xảy ra. Vui lòng thử lại sau.";
-    }
   });
 }
 

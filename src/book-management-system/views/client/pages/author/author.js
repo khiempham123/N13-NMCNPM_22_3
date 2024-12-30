@@ -1,6 +1,7 @@
 const API_BASE_URL = "http://localhost:3000";
 
 document.addEventListener("DOMContentLoaded", function () {
+  window.initializeProfileModals();
   // Function to fetch and display authors
   async function fetchAuthors() {
     try {
@@ -118,4 +119,16 @@ document.addEventListener("DOMContentLoaded", function () {
 
   // Fetch authors on page load
   fetchAuthors();
+
+  
+
+
+
+
 });
+
+document.addEventListener("DOMContentLoaded", () => {
+  page = "author";
+  window.setupPageWebSocket(page)
+});
+

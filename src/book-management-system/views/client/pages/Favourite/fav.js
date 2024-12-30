@@ -5,7 +5,7 @@ async function fetchFav() {
     const response = await fetch(`${API_BASE_URL}/get-fav`, {
       method: "GET",
       headers: {
-        authorization: localStorage.getItem("token"),
+        authorization: `Bearer ${localStorage.getItem("token")}`,
       },
     });
 
@@ -91,9 +91,7 @@ function removeFromFav(itemId) {
 
   // Nếu người dùng xác nhận, thực hiện xóa sản phẩm
   if (isConfirmed) {
-    console.log(itemId);
     const itemElement = document.getElementById(`fav-item-${itemId}`);
-    console.log(itemElement);
     itemElement.remove();
     // Gửi yêu cầu API để xóa sản phẩm khỏi danh sách yêu thích trong cơ sở dữ liệu
     deleteItemFromFavDatabase(itemId);
@@ -106,7 +104,7 @@ function deleteItemFromFavDatabase(itemId) {
   fetch(`${API_BASE_URL}/remove-fav/${itemId}`, {
     method: "DELETE",
     headers: {
-      authorization: localStorage.getItem("token"),
+      authorization: `Bearer ${localStorage.getItem("token")}`,
       "Content-Type": "application/json",
     },
     body: JSON.stringify({ itemId }),
@@ -147,3 +145,9 @@ function updateFavList(favItems) {
 
 // Gọi hàm fetchFav để lấy dữ liệu khi trang được tải
 document.addEventListener("DOMContentLoaded", fetchFav);
+
+
+document.addEventListener("DOMContentLoaded", () => {
+  page = "fav";
+  window.setupPageWebSocket(page)
+});

@@ -6,7 +6,7 @@ const mongoose = require("mongoose");
 const getOrders = async (req, res) => {
   try {
     const { orderId, status, page = 1, limit = 5 } = req.query; // Thêm page và limit
-    const userId = req.user._id;
+    const userId = req.user.id;
 
     // Nếu `orderId` được cung cấp, trả về chi tiết đơn hàng
     if (orderId) {
@@ -31,10 +31,11 @@ const getOrders = async (req, res) => {
     // Fetch danh sách đơn hàng với phân trang
     const orders = await Order.find(query)
       .populate("items.bookId")
+      .sort({ createdAt: -1 })
       .skip(skip)
       .limit(Number(limit))
       .exec();
-
+  
     // Tổng số đơn hàng
     const totalOrders = await Order.countDocuments(query);
 
@@ -52,7 +53,7 @@ const getOrders = async (req, res) => {
 
 const getOrderCounts = async (req, res) => {
   try {
-    const userId = req.user._id;
+    const userId = req.user.id;
 
     // Validate userId
     if (!mongoose.Types.ObjectId.isValid(userId)) {
@@ -93,7 +94,7 @@ const createOrder = async (req, res) => {
     } = req.body;
 
     // Lấy userId từ token (middleware gán thông tin user vào req.user)
-    const userId = req.user._id;
+    const userId = req.user.id;
 
     // Tạo đối tượng order mới
     const newOrder = new Order({
@@ -126,7 +127,7 @@ const createOrder = async (req, res) => {
 // Function để xóa đơn hàng
 const deleteOrder = async (req, res) => {
   try {
-    const userId = req.user._id; // Giả sử middleware authenticate đã gắn thông tin người dùng vào req.user
+    const userId = req.user.id; // Giả sử middleware authenticate đã gắn thông tin người dùng vào req.user
     const { orderId } = req.params;
 
     // Kiểm tra định dạng orderId
@@ -158,9 +159,41 @@ const deleteOrder = async (req, res) => {
   }
 };
 
+
+const countOrders = async (req, res) => {
+  try {
+    // Giả sử bạn có mô hình Order trong cơ sở dữ liệu
+    const totalOrders = await Order.countDocuments(); // MongoDB example
+    res.json({ total: totalOrders });
+  } catch (error) {
+    res.status(500).json({ error: 'Internal Server Error' });
+  }
+
+
+}
+const totalShiped = async (req, res) => {
+  try {
+    // Truy vấn các đơn hàng có trạng thái 'shipped'
+    const shippedOrders = await Order.find({  status: 'Shipped' } );
+    // Tính tổng tiền
+    const totalShipped = shippedOrders.reduce((sum, order) => sum + order.grandTotal, 0);
+
+    res.json({ totalShipped });
+} catch (error) {
+    console.error('Error fetching orders:', error);
+    res.status(500).json({ message: 'Error calculating total shipped orders' });
+}
+
+
+}
+
+
+
 module.exports = {
   getOrders,
   getOrderCounts,
   createOrder,
   deleteOrder,
+  countOrders,
+  totalShiped,
 };

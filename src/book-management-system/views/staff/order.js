@@ -4,7 +4,6 @@
 document.addEventListener("DOMContentLoaded", () => {
   async function checkToken() {
     const token = localStorage.getItem('token');
-    console.log(token)
     if (!token) {
       alert('Bạn chưa đăng nhập!');
       window.location.href = './login/login.html';
@@ -16,7 +15,7 @@ document.addEventListener("DOMContentLoaded", () => {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
-          Authorization: `Bearer ${token}`,
+          authorization: `Bearer ${token}`,
         },
       });
 
@@ -30,7 +29,7 @@ document.addEventListener("DOMContentLoaded", () => {
     } catch (error) {
       console.error('Lỗi khi xác thực token:', error);
       alert('Đã xảy ra lỗi khi xác thực token!');
-      window.location.href = 'login.html';
+      window.location.href = './login/login.html';
       return false;
     }
   }
@@ -62,7 +61,6 @@ document.addEventListener("DOMContentLoaded", () => {
       const data = await response.json();
       ordersData = data.orders;
       const { orders, totalPages, currentPage } = data;
-      console.log(data)
       // Hiển thị danh sách đơn hàng
       renderOrders(orders);
   
@@ -255,7 +253,6 @@ document.addEventListener("DOMContentLoaded", () => {
   // Function to save the updated data back to the table
   saveBtn.addEventListener("click", async () => {
     if (currentRow) {
-      console.log(currentRow)
       const cells = currentRow.querySelectorAll("td");
   
       // Thu thập dữ liệu đã chỉnh sửa
@@ -316,7 +313,6 @@ document.addEventListener("DOMContentLoaded", () => {
   const searchInput = document.getElementById("search-input-Orders"); 
   searchInput.addEventListener("input", () => {
     const searchQuery = searchInput.value;
-    console.log(searchQuery)
     const filteredOrders = ordersData.filter(
       
       (order) =>
@@ -325,7 +321,6 @@ document.addEventListener("DOMContentLoaded", () => {
           item.title.toLowerCase().includes(searchQuery)
         )
     );
-    console.log(filteredOrders)
     renderOrders(filteredOrders);
   });
   // Đóng popup khi nhấp ra ngoài

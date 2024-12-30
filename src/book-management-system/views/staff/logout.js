@@ -22,7 +22,6 @@ function handleLogout() {
   })
     .then((response) => {
       if (response.ok) {
-        console.log('Logged out successfully');
       } else {
         console.error('Failed to log out on server.');
       }
@@ -30,5 +29,5 @@ function handleLogout() {
     .catch((error) => console.error('Error logging out:', error));
 
   alert('You have been logged out.');
-  window.location.href = './login/login.html';
+  window.location.href = '../login/login.html';
 }

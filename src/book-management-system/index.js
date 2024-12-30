@@ -12,6 +12,9 @@ const cron = require("node-cron");
 const session = require("express-session");
 
 const cloudinary = require("cloudinary");
+const http = require("http");
+const { Server } = require("ws");
+const { setupWebSocket } = require("./controllers/admin/websocket.controller");
 // Cấu hình Cloudinary
 cloudinary.v2.config({
   cloud_name: "dp1s19mxg",
@@ -71,11 +74,13 @@ Staffroute(app);
 // Xóa OTP hết hạn mỗi giờ
 cron.schedule("0 * * * *", async () => {
   const currentTime = Date.now();
-  console.log("Cron job running to clean expired OTPs...");
   await ForgotPassword.deleteMany({ expireAt: { $lt: currentTime } });
-  console.log("Expired OTPs cleaned successfully.");
 });
 
-app.listen(port, () => {
-  console.log(`Example app listening on port ${port}`);
+const server = http.createServer(app);
+const wss = new Server({ server });
+setupWebSocket(wss);
+// Lắng nghe trên HTTP server
+server.listen(port, () => {
+  console.log(`Server running on http://localhost:${port}`);
 });

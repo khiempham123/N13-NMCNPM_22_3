@@ -2,7 +2,6 @@ let customers = [];
 let currentEditId = null;
 async function checkToken() {
   const token = localStorage.getItem('token');
-  console.log(token)
   if (!token) {
     alert('Bạn chưa đăng nhập!');
     window.location.href = './login/login.html';
@@ -28,7 +27,7 @@ async function checkToken() {
   } catch (error) {
     console.error('Lỗi khi xác thực token:', error);
     alert('Đã xảy ra lỗi khi xác thực token!');
-    window.location.href = 'login.html';
+    window.location.href = './login/login.html';
     return false;
   }
 }

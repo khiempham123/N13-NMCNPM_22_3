@@ -23,7 +23,6 @@ window.uploadImageWithSignature = async function(file) {
     formData.append("api_key", "813724476411169");
 
     for (let [key, value] of formData.entries()) {
-      console.log(`${key}:`, value);
     }
 
     const response = await fetch(CLOUDINARY_URL, {
@@ -38,8 +37,6 @@ window.uploadImageWithSignature = async function(file) {
     }
 
     const data = await response.json();
-    console.log("Cloudinary response:", data);
-    console.log("Uploaded image URL:", data.secure_url);
     return data.secure_url; // URL ảnh trên Cloudinary
   } catch (error) {
     console.error("Error uploading image:", error);

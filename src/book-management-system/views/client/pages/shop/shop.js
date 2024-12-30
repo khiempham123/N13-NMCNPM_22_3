@@ -114,33 +114,7 @@ filterButton.addEventListener("click", () => {
 ////////////////////////////////////////////////PROFILE-CARD//////////////////////////////////////////////////////
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 document.addEventListener("DOMContentLoaded", () => {
-  const userIcon = document.querySelector(".user-icon");
-  const profileCard = document.querySelector(".profile-card");
-  const closeBtn = document.querySelector(".close-btn");
-
-  // Hiển thị/hide khi click vào icon
-  userIcon.addEventListener("click", (event) => {
-    event.preventDefault();
-    profileCard.style.display =
-      profileCard.style.display === "none" || profileCard.style.display === ""
-        ? "block"
-        : "none";
-  });
-
-  // Đóng khi click vào nút đóng
-  closeBtn.addEventListener("click", () => {
-    profileCard.style.display = "none";
-  });
-
-  // Ẩn profile-card khi click ngoài khu vực
-  document.addEventListener("click", (event) => {
-    if (
-      !profileCard.contains(event.target) &&
-      !userIcon.contains(event.target)
-    ) {
-      profileCard.style.display = "none";
-    }
-  });
+  window.initializeProfileModals();
 });
 ////////////////////////////////////////////////////API LIST BOOK//////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -218,7 +192,7 @@ async function addToFav(event, bookId, title, thumbnail, price, rating) {
     const response = await fetch(`http://localhost:3000/add-to-fav`, {
       method: "POST",
       headers: {
-        authorization: localStorage.getItem("token"),
+        authorization: `Bearer ${localStorage.getItem("token")}`,
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
@@ -238,8 +212,7 @@ async function addToFav(event, bookId, title, thumbnail, price, rating) {
       alert("Sản phẩm đã được thêm vào danh sách yêu thích!");
     } else {
       // Nếu có lỗi từ phía server
-      console.error(result.message);
-      alert("Có lỗi xảy ra khi thêm sản phẩm vào danh sách yêu thích.");
+      alert(result.message);
     }
   } catch (error) {
     // Xử lý lỗi khi không thể kết nối tới API
@@ -256,7 +229,7 @@ async function addToCart(event, bookId, title, thumbnail, price) {
     const response = await fetch(`http://localhost:3000/add-to-cart`, {
       method: "POST",
       headers: {
-        authorization: localStorage.getItem("token"),
+        authorization: `Bearer ${localStorage.getItem("token")}`,
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
@@ -370,7 +343,6 @@ function searchBooks() {
         data.books.forEach((book) => {
           const bookDiv = document.createElement("div");
           bookDiv.classList.add("book");
-          console.log("concak");
           bookDiv.innerHTML = `
                   <div class="book-item">
                   <div class="inner-box" onclick="goToBookDetail('${
@@ -485,6 +457,7 @@ document.addEventListener("DOMContentLoaded", async () => {
 
   // Gọi hàm fetch để lấy dữ liệu sách khi trang tải
   await fetchbooks(currentPage);
+  
 });
 
 // Fetch books
@@ -603,3 +576,13 @@ function getCurrentPageFromURL() {
   const page = urlParams.get("page");
   return page ? parseInt(page) : 1;
 }
+
+
+
+
+
+
+document.addEventListener("DOMContentLoaded", () => {
+  page = "book";
+  window.setupPageWebSocket(page)
+});

@@ -29,7 +29,7 @@ document.addEventListener("DOMContentLoaded", () => {
       const token = localStorage.getItem("token");
       if (!token) {
         alert("You are not logged in!");
-        window.location.href = "login.html";
+        window.location.href = "./login/login.html";
         return;
       }
 

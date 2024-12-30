@@ -137,12 +137,10 @@ document.addEventListener('DOMContentLoaded', () => {
     if (target.classList.contains('editSale')) {
       const bookId = target.dataset.id;
       document.getElementById('editSaleID').value = bookId;
-      console.log(bookId)
       // Fetch thông tin Discount liên quan
       fetch(`http://localhost:3000/staff/sales/discount/${bookId}`)
         .then((response) => response.json())
         .then((data) => {
-          console.log(data);
           // Lấy dữ liệu từ discount
           document.getElementById('hiddenOriginPrice').value = data.originalPrice || 0;
           document.getElementById('editDiscountPrice').value = data.discountPrice ||'';
@@ -190,7 +188,6 @@ document.addEventListener('DOMContentLoaded', () => {
   });
   document.getElementById('saveEditSalePopup').addEventListener('click', () => {
     const bookId = document.getElementById('editSaleID').value;
-    console.log("BookID",bookId)
     // Dữ liệu từ form
     const discountData = {
       discountPrice: parseFloat(document.getElementById('editDiscountPrice').value),
@@ -201,8 +198,6 @@ document.addEventListener('DOMContentLoaded', () => {
       soldCount: parseInt(document.getElementById('editSoldCount').value, 10),
       maxQuantity: parseInt(document.getElementById('editMaxQuality').value, 10),
     };
-    console.log(discountData)
-    // Gửi dữ liệu lên server
     fetch(`http://localhost:3000/staff/sales/discount/${bookId}`, {
       method: 'PUT',
       headers: { 'Content-Type': 'application/json' },

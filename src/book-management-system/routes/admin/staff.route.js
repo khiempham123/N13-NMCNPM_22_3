@@ -13,5 +13,5 @@ router.delete("/:id", controller.deleteStaff);
 
 // Route sửa thông tin staff
 router.put("/:id", controller.updateStaff);
-
+router.get("/:id", controller.getStaff);
 module.exports = router;

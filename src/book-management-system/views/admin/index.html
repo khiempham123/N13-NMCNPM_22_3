@@ -8,6 +8,7 @@
     <!-- ======= Styles ====== -->
     <link rel="stylesheet" href="assets/css/style.css" />
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
   </head>
 
   <body>
@@ -56,7 +57,7 @@
             <hr style="margin: 40px 20px 20px 0px" />
           </li>
           <li>
-            <a href="#">
+            <a href="../login/login.html">
               <span class="icon">
                 <ion-icon name="log-out-outline"></ion-icon>
               </span>
@@ -89,8 +90,8 @@
         <div class="cardBox">
           <div class="card">
             <div>
-              <div class="numbers">1,504</div>
-              <div class="cardName">Daily Views</div>
+              <div class="numbers" id="liveViews">0</div>
+              <div class="cardName">Users Online</div>
             </div>
 
             <div class="iconBx">
@@ -100,8 +101,8 @@
 
           <div class="card">
             <div>
-              <div class="numbers">80</div>
-              <div class="cardName">Sales</div>
+              <div class="numbers" id="orderNumbers">Loading...</div>
+              <div class="cardName">Orders</div>
             </div>
 
             <div class="iconBx">
@@ -111,10 +112,10 @@
 
           <div class="card">
             <div>
-              <div class="numbers">284</div>
+              <div class="numbers" id="comment-count">Loading...</div>
               <div class="cardName">Comments</div>
             </div>
-
+          
             <div class="iconBx">
               <ion-icon name="chatbubbles-outline"></ion-icon>
             </div>
@@ -122,7 +123,7 @@
 
           <div class="card">
             <div>
-              <div class="numbers">$7,842</div>
+              <div class="numbers" id="totalShipped">Loading...</div>
               <div class="cardName">Earning</div>
             </div>
 
@@ -135,6 +136,15 @@
         <div class="report">
           <div class="reportHeader">
             <h2>Report Revenue</h2>
+            <div class="dateFilter">
+              <label for="startDate">Start Date:</label>
+              <input type="date" id="startDate" />
+        
+              <label for="endDate">End Date:</label>
+              <input type="date" id="endDate" />
+        
+              <button id="loadReport" onclick="loadReport()">Load Report</button>
+            </div>
           </div>
           <canvas id="myChart"></canvas>
         </div>
@@ -142,80 +152,28 @@
         <!-- ================ Order Details List ================= -->
         <div class="details">
           <div class="recentOrders">
-            <div class="cardHeader">
+            <div class="reportHeader">
               <h2>Recent Orders</h2>
-              <a class="btn" style="cursor: pointer">View All</a>
             </div>
-
             <table>
               <thead>
                 <tr>
-                  <td>Name</td>
-                  <td>Price</td>
-                  <td>Payment</td>
+                  <td>OrderID</td>
+                  <td>CustomerID</td>
+                  <td>Total Amount</td>
                   <td>Status</td>
                 </tr>
               </thead>
 
-              <tbody>
-                <tr>
-                  <td>Star Refrigerator</td>
-                  <td>$1200</td>
-                  <td>Paid</td>
-                  <td><span class="status delivered">Delivered</span></td>
-                </tr>
-
-                <tr>
-                  <td>Dell Laptop</td>
-                  <td>$110</td>
-                  <td>Due</td>
-                  <td><span class="status pending">Pending</span></td>
-                </tr>
-
-                <tr>
-                  <td>Apple Watch</td>
-                  <td>$1200</td>
-                  <td>Paid</td>
-                  <td><span class="status return">Return</span></td>
-                </tr>
-
-                <tr>
-                  <td>Addidas Shoes</td>
-                  <td>$620</td>
-                  <td>Due</td>
-                  <td><span class="status inProgress">In Progress</span></td>
-                </tr>
-
-                <tr>
-                  <td>Star Refrigerator</td>
-                  <td>$1200</td>
-                  <td>Paid</td>
-                  <td><span class="status delivered">Delivered</span></td>
-                </tr>
-
-                <tr>
-                  <td>Dell Laptop</td>
-                  <td>$110</td>
-                  <td>Due</td>
-                  <td><span class="status pending">Pending</span></td>
-                </tr>
-
-                <tr>
-                  <td>Apple Watch</td>
-                  <td>$1200</td>
-                  <td>Paid</td>
-                  <td><span class="status return">Return</span></td>
-                </tr>
-
-                <tr>
-                  <td>Addidas Shoes</td>
-                  <td>$620</td>
-                  <td>Due</td>
-                  <td><span class="status inProgress">In Progress</span></td>
-                </tr>
+              <tbody id="orderTableBody">
+                <!-- Rows will be dynamically inserted here -->
               </tbody>
             </table>
+            
           </div>
+          <ul id="orderpagination-list" class="pagination">
+            <!-- Phân trang sẽ được thêm vào đây -->
+          </ul>
 
           <!-- ================= New Customers ================ -->
           <!-- <div class="recentCustomers">

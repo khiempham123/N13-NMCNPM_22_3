@@ -1,25 +1,23 @@
 const jwt = require("jsonwebtoken");
-
 const authenticateUser = (req, res, next) => {
-  const token = req.headers["authorization"]; // Lấy token từ header Authorization
-  console.log("data:", token);
-  if (!token) {
-    // alert("Bạn cần đăng nhập để truy cập");
-    return res.status(401).json({ message: "Bạn cần đăng nhập để truy cập" });
-  }
+    const token = req.headers['authorization']?.split(' ')[1];
+    if (!token) return res.status(403).json({ message: 'No token provided' });
 
-  // Kiểm tra token
-  jwt.verify(token, "secretkey", (err, decoded) => {
-    if (err) {
-      return res.status(403).json({ message: "Token không hợp lệ" });
+    try {
+        const decoded = jwt.verify(token, process.env.JWT_SECRET || 'your_secret_key');
+        req.user = decoded;
+        next();
+    } catch (err) {
+        res.status(401).json({ message: 'Invalid token' });
     }
-
-    // Gán thông tin người dùng vào req.user
-    req.user = decoded;
-    next(); // Tiếp tục xử lý yêu cầu
-  });
 };
 
+const authorize = (role) => (req, res, next) => {
+    if (!role.includes(req.user.role)) {
+        return res.status(403).json({ message: 'Access denied' });
+    }
+    next();
+};
 
-module.exports = authenticateUser;
+module.exports = {authenticateUser, authorize};
 

@@ -73,7 +73,6 @@ document.addEventListener("DOMContentLoaded", () => {
       const avatar = document.getElementById("photoPreview").value;
 
       // Giả sử bạn gửi dữ liệu này đến server để lưu (bằng AJAX, hoặc gửi qua API...)
-      // console.log("Saved Data:", { name, dateOfBirth, gender, phone, address });
       editInfo(name, dateOfBirth, gender, phone, address, avatar);
       // Sau khi lưu xong, bạn có thể cập nhật giao diện (nếu cần)
       // Chuyển sang chế độ xem (read-only)
@@ -98,7 +97,7 @@ document.addEventListener("DOMContentLoaded", () => {
       const response = await fetch(`${API_BASE_URL}/profile/get-info`, {
         method: "GET",
         headers: {
-          authorization: localStorage.getItem("token"),
+          authorization: `Bearer ${localStorage.getItem("token")}`,
         },
       });
 
@@ -107,7 +106,6 @@ document.addEventListener("DOMContentLoaded", () => {
       }
 
       const userData = await response.json();
-      // console.log(userData);
       // Hiển thị thông tin người dùng vào các trường trong form
       document.getElementById("name").value = userData.fullName;
       document.getElementById("dateOfBirth").value = userData.dateOfBirth;
@@ -138,7 +136,7 @@ document.addEventListener("DOMContentLoaded", () => {
       const response = await fetch(`${API_BASE_URL}/profile/edit-info`, {
         method: "PUT",
         headers: {
-          authorization: localStorage.getItem("token"),
+          authorization: `Bearer ${localStorage.getItem("token")}`,
           "Content-Type": "application/json",
         },
         body: JSON.stringify(updatedData),
@@ -149,7 +147,6 @@ document.addEventListener("DOMContentLoaded", () => {
       }
 
       const result = await response.json();
-      console.log("User info updated:", result);
 
       // Hiển thị thông báo hoặc cập nhật giao diện sau khi lưu thành công
       alert("User info updated successfully!");
@@ -173,12 +170,10 @@ const photoPreview = document.getElementById("photoPreview");
 
 photoUpload.addEventListener("change", async (event) => {
   const file = event.target.files[0];
-  console.log(file);
   if (file) {
     try {
       // Upload ảnh và nhận URL từ Cloudinary
       const imageUrl = await uploadImageWithSignature(file);
-      console.log("Image URL:", imageUrl);
 
       // Hiển thị ảnh mới
       photoPreview.src = imageUrl;
@@ -200,7 +195,7 @@ async function savePhotoToDatabase(photoUrl) {
     const response = await fetch(`${API_BASE_URL}/profile/edit-info`, {
       method: "PUT",
       headers: {
-        authorization: localStorage.getItem("token"),
+        authorization: `Bearer ${localStorage.getItem("token")}`,
         "Content-Type": "application/json",
       },
       body: JSON.stringify(updatedData),
@@ -209,8 +204,6 @@ async function savePhotoToDatabase(photoUrl) {
     if (!response.ok) {
       throw new Error("Failed to save photo URL to the database.");
     }
-
-    console.log("Photo URL saved to database.");
   } catch (error) {
     console.error("Error saving photo URL:", error);
   }
@@ -247,7 +240,7 @@ document.addEventListener("DOMContentLoaded", () => {
         {
           method: "POST",
           headers: {
-            authorization: localStorage.getItem("token"),
+            authorization: `Bearer ${localStorage.getItem("token")}`,
             "Content-Type": "application/json",
           },
           body: JSON.stringify({
@@ -272,4 +265,10 @@ document.addEventListener("DOMContentLoaded", () => {
       alert("An error occurred while changing the password. Please try again.");
     }
   });
+});
+
+
+document.addEventListener("DOMContentLoaded", () => {
+  page = "profile";
+  window.setupPageWebSocket(page)
 });

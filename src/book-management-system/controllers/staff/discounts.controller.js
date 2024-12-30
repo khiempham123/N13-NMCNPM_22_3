@@ -109,7 +109,6 @@ module.exports.deleteDiscount = async (req, res) => {
 
 module.exports.getDiscount = async (req, res) => {
     try {
-        console.log(req.params.id)
         const discount = await Discount.findOne({ bookId: req.params.id }).populate('bookId'); 
 
         if (!discount) {

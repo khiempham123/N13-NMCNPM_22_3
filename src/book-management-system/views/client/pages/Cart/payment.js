@@ -130,9 +130,7 @@ document.addEventListener("DOMContentLoaded", function () {
         `https://provinces.open-api.vn/api/d/${districtCode}?depth=2`
       );
       const districtData = await response.json();
-      //   console.log(districtData);
       wardSelect.innerHTML = "<option selected>--Select Ward--</option>"; // reset wards
-      console.log(districtData.wards);
       districtData.wards.forEach((ward) => {
         const option = document.createElement("option");
         option.value = ward.code;
@@ -156,7 +154,6 @@ document.addEventListener("DOMContentLoaded", function () {
   // Lắng nghe sự kiện chọn quận huyện
   districtSelect.addEventListener("change", function () {
     const districtCode = districtSelect.value;
-    console.log(districtCode);
     if (districtCode !== "Select District") {
       fetchWards(districtCode);
     }

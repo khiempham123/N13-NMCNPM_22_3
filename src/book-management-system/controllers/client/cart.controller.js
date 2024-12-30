@@ -3,8 +3,7 @@ const Cart = require("../../models/cart.models.js");
 // lấy sách theo tk người dùng từ dtb
 
 const getCart = async (req, res) => {
-  const userId = req.user._id;
-  console.log(userId);
+  const userId = req.user.id;
   try {
     // Tìm giỏ hàng của người dùng
     const cart = await Cart.findOne({ userId }).populate("items.bookId");

@@ -71,43 +71,87 @@
                             <!-- categories -->
 
                             <div
-                                style="color: #fff; font-size: 20px; display: flex; justify-content: center; align-items: center;">
-                                <div class="user-menu" style="width: fit-content;">
-                                    <!-- Ban đầu khi User chưa đăng nhập tất cả thông tin ở img, email, greeting, manage-account chưa xuất hiện 
-                                 sau khi login or register thành công thì thay thế img bằng ký tự đầu trong tên lót, email = email user, greeting = user name, manage-account chưa có sẽ xuất hiện, 
-                                 sau đó thay thế các nút register, login lần lượt bằng thay đổi tài khoản, đăng xuất. 
-                                 Xử lý điều này và các thao tác click tại cái btn để di chuyển đến đúng trang, những css liên quan được đặt trong dropProfile.css-->
-                                    <a class="user-icon" href="#" style="color: inherit; text-decoration: none;">
-                                        <i class="fa-regular fa-user"> | </i>
-                                    </a>
-                                    <div class="profile-card"
-                                        style="display: none; flex-direction: column; align-items: center; justify-content: center; text-align: center;">
-                                        <div class="close-btn">&times;</div>
-                                        <div class="profile-img"><i class="fa-regular fa-user"></i></div>
-                                        <div class="email">pgk06052018@gmail.com</div>
-                                        <div class="greeting">Hi 12_0159 Pham,</div>
-                                        <div class="manage-account">Management Your Account</div>
-                                        <div class="btn-group">
-                                            <button class="btn btn-light border"><i class="fa-solid fa-circle-plus"
-                                                    style="font-size: 18px; color: #74C0FC; margin-right: 5px;"></i>
-                                                Switch Accounts</button>
-                                            <button class="btn btn-light border"><i
-                                                    class="fa-solid fa-arrow-right-to-bracket"
-                                                    style="font-size: 18px; color: #74C0FC; margin-right: 5px;"></i> Log
-                                                out</button>
-                                        </div>
-                                        <div class="profile-footer">
-                                            Chính sách quyền riêng tư · Điều khoản dịch vụ
-                                        </div>
-                                    </div>
-                                </div>
-                                <a href="../Favourite/fav.html" style="color: inherit; text-decoration: none;">
-                                    <i class="fa-regular fa-heart" style="margin-left: 5px;"> | </i>
-                                </a>
-                                <a href="../Cart/Cart.html" style="color: inherit; text-decoration: none;">
-                                    <i class="fa-solid fa-cart-shopping " style="margin-left: 5px;"></i>
-                                </a>
-                            </div>
+                    style="color: #fff; font-size: 20px; display: flex; justify-content: center; align-items: center;">
+                    <div class="user-menu"
+                      style="width: fit-content;">
+                      <!-- Ban đầu khi User chưa đăng nhập tất cả thông tin ở img, email, greeting, manage-account chưa xuất hiện 
+                                     sau khi login or register thành công thì thay thế img bằng ký tự đầu trong tên lót, email = email user, greeting = user name, manage-account chưa có sẽ xuất hiện, 
+                                     sau đó thay thế các nút register, login lần lượt bằng thay đổi tài khoản, đăng xuất. 
+                                     Xử lý điều này và các thao tác click tại cái btn để di chuyển đến đúng trang, những css liên quan được đặt trong dropProfile.css-->
+                      <a class="user-icon" href="#"
+                        style="color: inherit; text-decoration: none;">
+                        <i class="fa-regular fa-user"> |
+                        </i>
+                      </a>
+                      <!-- modal hiển thị khi đã đăng nhập -->
+                      <div class="profile-card"
+                        id="logged-in-profile"
+                        style="display: none; flex-direction: column; align-items: center; justify-content: center; text-align: center;">
+                        <div class="close-btn">&times;</div>
+                        <div class="profile-img"><i
+                            class="fa-regular fa-user"></i></div>
+                        <div class="email">pgk06052018@gmail.com</div>
+                        <div class="greeting">Hi 12_0159
+                          Pham,</div>
+                        <div class="manage-account">Management
+                          Your Account</div>
+                        <div class="btn-group">
+                          <button
+                            class="btn btn-light border"
+                            id="btn-history"><i
+                              class="fa-solid fa-circle-plus"
+                              style="font-size: 18px; color: #74C0FC; margin-right: 5px;"></i>History</button>
+                          <button id="logout"
+                            class="btn btn-light border"><i
+                              class="fa-solid fa-arrow-right-to-bracket"
+                              style="font-size: 18px; color: #74C0FC; margin-right: 5px;"></i>Log
+                            out</button>
+                        </div>
+                        <div class="profile-footer">
+                          Chính sách quyền riêng tư ·
+                          Điều khoản dịch vụ
+                        </div>
+                      </div>
+
+                      <!--modal hiển thị trước khi đăng nhập-->
+                      <div class="profile-card"
+                        id="logged-out-profile"
+                        style="display: none; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center;">
+                        <div class="close-btn">&times;</div>
+                        <div class="profile-img"><i
+                            class="fa-regular fa-user"></i></div>
+                        <div class="greeting">Hi, please
+                          log in or sign up</div>
+                        <div class="btn-group">
+                          <button
+                            class="btn btn-light border"
+                            id="btn-signup"><i
+                              class="fa-solid fa-user-plus"
+                              style="font-size: 18px; color: #74C0FC; margin-right: 5px;"></i>Sign
+                            Up</button>
+                          <button
+                            class="btn btn-light border"
+                            id="btn-login"><i
+                              class="fa-solid fa-arrow-right-to-bracket"
+                              style="font-size: 18px; color: #74C0FC; margin-right: 5px;"></i>Log
+                            In</button>
+                        </div>
+                      </div>
+
+                    </div>
+                    <a href="../Favourite/fav.html"
+                      style="color: inherit; text-decoration: none;">
+                      <i class="fa-regular fa-heart"
+                        style="margin-left: 5px;"> |
+                      </i>
+                    </a>
+                    <a href="../Cart/Cart.html"
+                      style="color: inherit; text-decoration: none;">
+                      <i
+                        class="fa-solid fa-cart-shopping "
+                        style="margin-left: 5px;"></i>
+                    </a>
+                  </div>
 
                         </div>
                     </nav>
@@ -427,8 +471,11 @@
                 </div>
             </div>
         </div>
-
+        <script src="../../helpers/socket.js"></script>
+        <script src="../../helpers/login_logout.js"></script>
         <script src="history.js"></script>
+        <script src="../../helpers/nav.js"></script>
+        
 </body>
 
 </html>

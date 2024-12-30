@@ -4,7 +4,7 @@ const User = require("../../models/user.models");
 const getInfo = async (req, res) => {
   try {
     // Lấy thông tin người dùng từ request (được thêm vào từ middleware)
-    const user = await User.findOne({ _id: req.user._id });
+    const user = await User.findOne({ _id: req.user.id });
     if (!user) {
       return res.status(404).json({ message: "User not found" });
     }
@@ -22,7 +22,7 @@ const editInfo = async (req, res) => {
     const { fullName, dateOfBirth, gender, avatar, address, phone } = req.body;
 
     const updatedUser = await User.findByIdAndUpdate(
-      req.user._id, // Dùng _id người dùng từ token
+      req.user.id, // Dùng _id người dùng từ token
       { fullName, dateOfBirth, gender, avatar, address, phone },
       { new: true } // Trả về đối tượng đã cập nhật
     );
@@ -44,7 +44,7 @@ const getUser = async (req, res) => {
     const skip = (page - 1) * limit; // Tính số bản ghi bỏ qua
 
     // Lấy danh sách người dùng với phân trang
-    const users = await User.find()
+    const users = await User.find({role : "customer"})
       .sort({ createdAt: -1 }) // Sắp xếp giảm dần theo createdAt
       .skip(skip)
       .limit(Number(limit)); // Giới hạn số lượng bản ghi trả về

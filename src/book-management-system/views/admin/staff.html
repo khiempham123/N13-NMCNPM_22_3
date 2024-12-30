@@ -56,7 +56,7 @@
             <hr style="margin: 40px 20px 20px 0px" />
           </li>
           <li>
-            <a href="#">
+            <a href="../login/login.html">
               <span class="icon">
                 <ion-icon name="log-out-outline"></ion-icon>
               </span>
@@ -96,7 +96,6 @@
               </div>
             </div>
 
-            <!-- Add Staff Modal -->
             <div id="addProductModal" class="modal">
               <div class="modal-content">
                 <span class="close">&times;</span>
@@ -106,39 +105,55 @@
                     <div class="form-section">
                       <h2>GENERAL</h2>
                       <div class="form-group">
-                        <label for="name">Name:</label>
-                        <input type="text" id="name" name="name" />
+                        <label for="username">Username:</label>
+                        <input type="text" id="username" name="username" required />
+                      </div>
+                      <div class="form-group">
+                        <label for="email">Email:</label>
+                        <input type="email" id="email" name="email" required />
+                      </div>
+                      <div class="form-group">
+                        <label for="phone">Phone:</label>
+                        <input type="text" id="phone" name="phone" required />
+                      </div>
+                      <div class="form-group">
+                        <label for="password">Password:</label>
+                        <input type="password" id="password" name="password" required />
+                      </div>
+                      <div class="form-group">
+                        <label for="fullName">Full Name:</label>
+                        <input type="text" id="fullName" name="fullName" />
+                      </div>
+                      <div class="form-group">
+                        <label for="dateOfBirth">Date of Birth:</label>
+                        <input type="date" id="dateOfBirth" name="dateOfBirth" />
                       </div>
                       <div class="form-group">
                         <label for="gender">Gender:</label>
                         <select id="gender" name="gender">
-                          <option>Select a Gender</option>
-                          <option>Male</option>
-                          <option>Female</option>
-                          <option>Other</option>
+                          <option value="">Select a Gender</option>
+                          <option value="Male">Male</option>
+                          <option value="Female">Female</option>
+                          <option value="Other">Other</option>
                         </select>
                       </div>
                       <div class="form-group">
                         <label for="position">Position:</label>
                         <select id="position" name="position">
-                          <option>Select a Position</option>
-                          <option>Manager</option>
-                          <option>Staff</option>
+                          <option value="">Select a Position</option>
+                          <option value="Manager">Manager</option>
+                          <option value="Staff">Staff</option>
                         </select>
                       </div>
                       <div class="form-group">
                         <label for="salary">Salary:</label>
-                        <input type="text" id="salary" name="salary" />
+                        <input type="number" id="salary" name="salary" />
                       </div>
-                      <!-- <div class="form-group">
-                        <label for="avatar">Avatar:</label>
-                        <input
-                          type="text"
-                          id="avatar"
-                          name="avatar"
-                          placeholder="url image"
-                        />
-                      </div> -->
+                      <div class="form-group">
+                        <label for="address">Address:</label>
+                        <input type="text" id="address" name="address" />
+                      </div>
+                    
                     </div>
                     <div class="form-buttons">
                       <button type="submit">Save Staff</button>
@@ -147,7 +162,67 @@
                 </div>
               </div>
             </div>
-
+            <div id="editStaffModal" class="modal">
+              <div class="modal-content">
+                <span class="close" id="closeEditModal">&times;</span>
+                <h2 id="modalTitle">Edit Staff</h2>
+                <div class="container-Product">
+                  <form id="editStaffForm">
+                    <div class="form-section">
+                      <h2>EDIT DETAILS</h2>
+                      <div class="form-group">
+                        <label for="editUsername">Username:</label>
+                        <input type="text" id="editUsername" name="username" disabled />
+                      </div>
+                      <div class="form-group">
+                        <label for="editEmail">Email:</label>
+                        <input type="email" id="editEmail" name="email" />
+                      </div>
+                      <div class="form-group">
+                        <label for="editPhone">Phone:</label>
+                        <input type="text" id="editPhone" name="phone" />
+                      </div>
+                      <div class="form-group">
+                        <label for="editFullName">Full Name:</label>
+                        <input type="text" id="editFullName" name="fullName" />
+                      </div>
+                      <div class="form-group">
+                        <label for="editDateOfBirth">Date of Birth:</label>
+                        <input type="date" id="editDateOfBirth" name="dateOfBirth" />
+                      </div>
+                      <div class="form-group">
+                        <label for="editGender">Gender:</label>
+                        <select id="editGender" name="gender">
+                          <option value="">Select a Gender</option>
+                          <option value="Male">Male</option>
+                          <option value="Female">Female</option>
+                          <option value="Other">Other</option>
+                        </select>
+                      </div>
+                      <div class="form-group">
+                        <label for="editPosition">Position:</label>
+                        <select id="editPosition" name="position">
+                          <option value="">Select a Position</option>
+                          <option value="Manager">Manager</option>
+                          <option value="Staff">Staff</option>
+                        </select>
+                      </div>
+                      <div class="form-group">
+                        <label for="editSalary">Salary:</label>
+                        <input type="number" id="editSalary" name="salary" />
+                      </div>
+                      <div class="form-group">
+                        <label for="editAddress">Address:</label>
+                        <input type="text" id="editAddress" name="address" />
+                      </div>
+                    </div>
+                    <div class="form-buttons">
+                      <button type="submit">Update Staff</button>
+                    </div>
+                  </form>
+                </div>
+              </div>
+            </div>
             <!-- Staff Table -->
             <table>
               <thead>

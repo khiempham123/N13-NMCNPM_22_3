@@ -8,7 +8,7 @@ const profileRouter = require("./profile.route");
 const bookRouter = require("./book.route");
 const authorRouter = require("./author.route");
 const orderRouter = require("./order.route");
-
+const contactRouter = require("./contact.route");
 module.exports = (app) => {
   app.use("/", homeRouter);
   app.use("/detail", detailRouter);
@@ -20,4 +20,5 @@ module.exports = (app) => {
   app.use("/book", bookRouter);
   app.use("/author", authorRouter);
   app.use("/order", orderRouter);
+  app.use("/contact", contactRouter);
 };

@@ -112,7 +112,7 @@ module.exports.update = async (req, res) => {
 module.exports.delete = async (req, res) => {
   try {
     const bookId = req.params.id; // Lấy ID sách từ URL
-    console.log(bookId)
+
     const deletedBook = await Book.findByIdAndDelete(bookId); // Xóa sách theo ID
 
     if (!deletedBook) {

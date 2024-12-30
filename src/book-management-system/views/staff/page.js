@@ -1,5 +1,4 @@
 function navigateTo(pageId) {
-  console.log(pageId)
   // Bỏ class 'active' khỏi tất cả các trang
   document.querySelectorAll(".page").forEach((page) => {
     page.classList.remove("active");

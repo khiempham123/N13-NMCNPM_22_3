@@ -8,7 +8,6 @@ async function fetchBooks(page = 1) {
     }
 
     const data = await response.json(); // Lấy dữ liệu từ API
-    console.log(data)
     renderBooks(data.books); // Hiển thị sách
     renderPagination(data.totalPages, page); // Hiển thị phân trang
   } catch (error) {
@@ -64,7 +63,6 @@ function renderPagination(totalPages, currentPage) {
 function renderBooks(books) {
   const bookRow = document.getElementById("bookRow");
   bookRow.innerHTML = ""; // Xóa nội dung cũ trước khi render mới
-  console.log(bookRow);
   books.forEach((book) => {
     const bookBox = document.createElement("div");
     bookBox.classList.add("col-xl-3");
@@ -140,12 +138,10 @@ document.getElementById("saveAddBookBtn").addEventListener("click", async () => 
 });
 document.getElementById("editBookThumbnailFile").addEventListener("change", async (event) => {
   const file = event.target.files[0]; // Lấy file được chọn
-  console.log(file)
   if (!file) return;
 
   try {
     const uploadedImageUrl = await uploadImageWithSignature(file); // Gọi hàm tải file
-    console.log("Uploaded Image URL:", uploadedImageUrl); // Kiểm tra URL trả về
     // Cập nhật preview ảnh
     document.getElementById("addBookImage").src = uploadedImageUrl;
     // Cập nhật giá trị vào input thumbnail
@@ -161,7 +157,6 @@ document.getElementById("addBookThumbnailFile").addEventListener("change", async
 
   try {
     const uploadedImageUrl = await uploadImageWithSignature(file); // Gọi hàm upload ảnh
-    console.log("Uploaded Image URL:", uploadedImageUrl); // Kiểm tra URL trả về
 
     // Cập nhật preview ảnh
     document.getElementById("addBookImagePreview").src = uploadedImageUrl;
@@ -177,7 +172,6 @@ document.getElementById("addBookThumbnailFile").addEventListener("change", async
   document.getElementById("bookRow").addEventListener("click", function (event) {
 
     const target = event.target; // Phần tử được click
-    console.log(target)
   // Kiểm tra nút Edit
   if (target.classList.contains("editBtn")) {
     const bookId = target.dataset.id; // Lấy ID sách từ data-id
@@ -189,13 +183,11 @@ document.getElementById("addBookThumbnailFile").addEventListener("change", async
 
   // Kiểm tra nút Delete
   if (target.classList.contains("deleteBtn")) {
-    console.log(555)
     const bookId = target.dataset.id; // Lấy ID sách từ data-id
     deleteBookId = bookId; // Lưu ID sách cần xóa vào biến tạm
     const popup = document.getElementById("deleteBookPopup");
     
     popup.style.display = "flex" ;
-    console.log(popup.style.display);
     document.getElementById("editBookPopup").style.display = "none";
     return;
   }
@@ -211,7 +203,6 @@ document.getElementById("addBookThumbnailFile").addEventListener("change", async
       if (!response.ok) throw new Error("Failed to fetch book details.");
 
       const book = await response.json();
-      console.log(book.data)
       // Điền dữ liệu vào input trong popup
       document.getElementById("editBookAuthor").value = book.data.author || "";
       document.getElementById("editBookPrice").value = book.data.price || "";
@@ -292,7 +283,6 @@ document.getElementById("addBookThumbnailFile").addEventListener("change", async
     // Xử lý sự kiện khi nhấn YES (Xác nhận xóa)
     document.getElementById("deleteBookBtn").addEventListener("click", async () => {
       if (!deleteBookId) return;
-      console.log(deleteBookId)
       try {
         // Gửi yêu cầu xóa sách lên API
         const response = await fetch(`http://localhost:3000/book/${deleteBookId}`, {
