@@ -334,8 +334,10 @@
 }
 
 .cart-header {
-  font-size: 1.25rem;
+  font-size: 1.5rem;
   font-weight: bold;
+  margin-bottom: 20px;
+  color: lightskyblue;
 }
 
 .cart-item {
@@ -386,7 +388,7 @@
 }
 
 .cart-summary .total-price-label {
-  font-size: 1rem;
+  font-size: 1.005rem;
   color: #999;
 }
 
@@ -440,4 +442,9 @@
 
 .blur {
   filter: blur(5px);
+}
+.img-thumbnail {
+  width: 50px;
+  height: 50px;
+  object-fit: cover;
 }

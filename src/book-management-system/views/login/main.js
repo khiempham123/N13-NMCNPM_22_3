@@ -202,12 +202,13 @@ if (signUpForm) {
     }
 
     const data = { username, password, email, phone };
-
+    
     const response = await fetch("http://localhost:3000/api/client/signup", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(data),
     });
+    const responseData = await response.json();
     if (response.ok) {
       usernameError.style.display = "none"; // Ẩn thông báo lỗi nếu đăng ký thành công
       // Hiển thị modal thông báo thành công
@@ -216,6 +217,7 @@ if (signUpForm) {
         window.location.href = "login.html"; // Thay đổi đường dẫn nếu cần
       }, 3000);
     } else {
+      alert(responseData.message || "Đăng ký thất bại, vui lòng thử lại.");
       usernameError.style.display = "block";
     }
   });

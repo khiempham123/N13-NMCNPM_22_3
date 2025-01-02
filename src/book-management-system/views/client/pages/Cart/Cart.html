@@ -326,14 +326,14 @@
                   <!-- Phần giỏ hàng -->
                   <div class="col-lg-8">
                     <div class="cart-container">
-                      <div class="cart-header">GIỎ HÀNG</div>
+                      <div class="cart-header">CART</div>
                       <div class="cart-controls d-flex align-items-center mt-3">
-                        <div style="width: 50%">Danh sách các sách</div>
+                        <div style="width: 47%"><h5>Books</h5></div>
                         <div class="d-flex w-50 text-center">
                           <div class="quantity-label" style="width: 50%">
-                            Số lượng
+                            <h5>Quantity</h5>
                           </div>
-                          <div class="price-label">Thành tiền</div>
+                          <div class="price-label" style="margin-left: 40px;"><h5>Price</h5></div>
                         </div>
                       </div>
                       <hr class="horizontal-line" />
@@ -341,11 +341,12 @@
                       <!-- Giỏ hàng items sẽ được thêm vào đây -->
                       <div id="cartItems"></div>
 
+                      <hr class="horizontal-line" />
                       <!-- Tổng giá trị giỏ hàng -->
                       <div class="cart-total mt-3">
                         <div class="d-flex justify-content-between">
-                          <div><strong>Tổng cộng:</strong></div>
-                          <div id="totalPrice"><strong>0 $</strong></div>
+                          <div><h5><strong>Total Price :</strong></h5></div>
+                          <div id="totalPrice" style="color : red"><h5><strong>0 $</strong></h5></div>
                         </div>
                       </div>
                     </div>
@@ -355,18 +356,18 @@
                     <div class="cart-summary">
                       <div
                         class="d-flex justify-content-between align-items-center mb-3">
-                        <div>Thành tiền</div>
-                        <div id="totalAmount">0 $</div>
+                        <div><h5>Price</h5></div>
+                        <div id="totalAmount"><h6>0 $</h6></div>
                       </div>
                       <div
                         class="d-flex justify-content-between align-items-center mb-3">
                         <div class="total-price-label">
-                          Tổng Số Tiền (gồm VAT 10%)
+                          Total Amount (VAT 10%)
                         </div>
                         <div class="total-price" id="totalWithVAT">0 $</div>
                       </div>
                       <button class="btn btn-secondary" id="checkoutButton">
-                        Thanh toán
+                        Checkout
                       </button>
                     </div>
                   </div>

@@ -48,12 +48,12 @@ const renderStaffList = () => {
         <td>${staff.position}</td>
         <td>${staff.salary}</td>
         <td>
-          <button class="status inProgress" style="cursor: pointer;" onclick="editStaff('${
+          <span class="status inProgress" style="cursor: pointer;" onclick="editStaff('${
             staff._id
-          }')">Edit</button>
-          <button class="status return" style="cursor: pointer;" onclick="deleteStaff('${
+          }')">Edit</span>
+          <span class="status return" style="cursor: pointer;" onclick="deleteStaff('${
             staff._id
-          }')">Delete</button>
+          }')">Delete</span>
         </td>
       </tr>
     `;
