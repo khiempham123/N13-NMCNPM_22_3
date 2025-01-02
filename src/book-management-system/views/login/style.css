@@ -18,7 +18,7 @@ background: radial-gradient(circle, rgba(68,200,201,1) 8%, rgba(11,42,134,1) 80%
 
 .wrapper {
     width: 450px;
-    height: 480px;
+    height: 550px;
     background-color: rgba(0, 0, 0, 0.5); /* Để dễ nhìn thấy form hơn */
     color: #fff;
     border-radius: 10px;
@@ -195,6 +195,7 @@ background: radial-gradient(circle, rgba(68,200,201,1) 8%, rgba(11,42,134,1) 80%
     transform: translate(-50%, -50%); /* Căn giữa Modal */
     z-index: 1050; /* Đảm bảo Modal luôn nằm trên các phần tử khác */
     width: 400px; /* Đặt kích thước Modal lớn hơn */
+    height:50px;
     font-size: 18px; /* Tăng kích thước chữ để dễ đọc */
     padding: 30px; /* Thêm khoảng cách trong Modal */
     background-color: #fff; /* Màu nền của Modal */

@@ -15,7 +15,7 @@ function remcl() {
 // Hàm hiển thị modal thành công
 function showSuccessModal() {
   const successModal = document.getElementById("successModal");
-  successModal.style.display = "flex"; // Hiển thị modal
+  successModal.style.display = "block"; // Hiển thị modal
 }
 function validateUsername(inputElement, errorElement) {
   // Biểu thức regex kiểm tra tên đăng nhập (chỉ cho phép chữ cái không dấu, số)
@@ -88,7 +88,7 @@ if (signInBtnLink) {
     e.preventDefault();
     wrapper.classList.add("active"); // Hiển thị form Đăng nhập
     wrapper.classList.remove("sign-up-active", "forgot-active", "reset-active"); // Ẩn các form khác
-    wrapper.style.height = "460px";
+    wrapper.style.height = "460x";
   });
 }
 
