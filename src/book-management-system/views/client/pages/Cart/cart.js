@@ -35,7 +35,7 @@ async function fetchCart() {
 // Hàm hiển thị giao diện giỏ hàng trống
 function displayEmptyCart() {
   const cartItemsContainer = document.getElementById("cartItems");
-  cartItemsContainer.innerHTML = '<p style="font-weight: bold; font-size: 1.5em; color : red">Giỏ hàng của bạn đang trống.</p>';
+  cartItemsContainer.innerHTML = '<p style="text-align: center; font-weight: bold; font-size: 1.25em; color : red">Your Cart is Empty.</p>';
   // Cập nhật tổng giá trị giỏ hàng
   document.getElementById("totalPrice").textContent = "0 $";
   document.getElementById("totalAmount").textContent = "0 $";
@@ -62,9 +62,7 @@ function displayCartItems(cart) {
           item._id
         }">
           <div class="d-flex align-items-center" style="width: 58%">
-            <img src="${item.thumbnail}" alt="${
-      item.title
-    }" style="width: 50px; height: 50px; object-fit: cover;" />
+            <img src="${item.thumbnail}"  class="img-thumbnail" />
             <div class="ms-3">
               <div><strong>${item.title}</strong></div>
               <div>${item.price} $</div>

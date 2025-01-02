@@ -24,7 +24,7 @@ function validateUsername(inputElement, errorElement) {
   if (!usernameRegex.test(inputElement.value)) {
     errorElement.style.display = "block"; // Hiển thị lỗi
     errorElement.textContent =
-      "Tên đăng nhập không được chứa dấu câu, ký tự đặc biệt hoặc dấu tiếng Việt.";
+      "Username must contain only letters and numbers."; // Thông báo lỗi
   } else {
     errorElement.style.display = "none"; // Ẩn lỗi nếu hợp lệ
   }
@@ -65,69 +65,70 @@ document.addEventListener("DOMContentLoaded", () => {
   ) {
     wrapper.classList.add("active"); // Hiển thị form Đăng nhập mặc định
   }
-
 });
 
 // Chuyển đổi giữa các form Đăng nhập, Đăng ký, Quên mật khẩu, Đặt lại mật khẩu
-const signUpBtnLink = document.querySelector('.signUp-link');
-const signInBtnLink = document.querySelector('.signIn-link');
-const forgotPasswordLink = document.querySelector('.remember-forgot a'); // Link "Forgot Password"
-const wrapper = document.querySelector('.wrapper');
+const signUpBtnLink = document.querySelector(".signUp-link");
+const signInBtnLink = document.querySelector(".signIn-link");
+const forgotPasswordLink = document.querySelector(".remember-forgot a"); // Link "Forgot Password"
+const wrapper = document.querySelector(".wrapper");
 
 // Khi nhấn vào "Đăng ký"
 if (signUpBtnLink) {
-    signUpBtnLink.addEventListener('click', (e) => {
-        e.preventDefault();
-        wrapper.classList.add('sign-up-active'); // Thêm lớp để hiển thị form Đăng ký
-        wrapper.classList.remove('active', 'forgot-active', 'reset-active'); // Ẩn các form khác
-    });
+  signUpBtnLink.addEventListener("click", (e) => {
+    e.preventDefault();
+    wrapper.classList.add("sign-up-active"); // Thêm lớp để hiển thị form Đăng ký
+    wrapper.classList.remove("active", "forgot-active", "reset-active"); // Ẩn các form khác
+    wrapper.style.height = "650px";
+  });
 }
 // Khi nhấn vào "Đăng nhập"
 if (signInBtnLink) {
-    signInBtnLink.addEventListener('click', (e) => {
-        e.preventDefault();
-        wrapper.classList.add('active'); // Hiển thị form Đăng nhập
-        wrapper.classList.remove('sign-up-active', 'forgot-active', 'reset-active'); // Ẩn các form khác
-
-    });
+  signInBtnLink.addEventListener("click", (e) => {
+    e.preventDefault();
+    wrapper.classList.add("active"); // Hiển thị form Đăng nhập
+    wrapper.classList.remove("sign-up-active", "forgot-active", "reset-active"); // Ẩn các form khác
+    wrapper.style.height = "460px";
+  });
 }
 
 // Khi nhấn vào "Quên mật khẩu"
 if (forgotPasswordLink) {
-    forgotPasswordLink.addEventListener('click', (e) => {
-        e.preventDefault();
-        wrapper.classList.add('forgot-active'); // Hiển thị form Quên mật khẩu
-        wrapper.classList.remove('active', 'reset-active'); // Ẩn các form khác
-    });
+  forgotPasswordLink.addEventListener("click", (e) => {
+    e.preventDefault();
+    wrapper.classList.add("forgot-active"); // Hiển thị form Quên mật khẩu
+    wrapper.classList.remove("active", "reset-active"); // Ẩn các form khác
+    wrapper.style.height = "400px";
+  });
 }
 
-
 // Xử lý quay lại đăng nhập từ Quên mật khẩu
-const forgotPasswordSignInLink = document.querySelector('.forgot-password .signIn-link');
-if (forgotPasswordSignInLink) {
-    forgotPasswordSignInLink.addEventListener('click', (e) => {
-        e.preventDefault();
-        wrapper.classList.add('active'); // Hiển thị form Đăng nhập
-        wrapper.classList.remove('forgot-active'); // Ẩn form Quên mật khẩu
+const forgotPasswordSignInLink = document.querySelector(".backToSignIn-link");
 
-        // Xóa tham số email trong URL
-        const newUrl = window.location.pathname; // Lấy URL gốc (không có query parameters)
-        window.history.replaceState(null, '', newUrl);
-    });
+if (forgotPasswordSignInLink) {
+  forgotPasswordSignInLink.addEventListener("click", (e) => {
+    console.log("click");
+    e.preventDefault();
+    wrapper.classList.add("active"); // Hiển thị form Đăng nhập
+    wrapper.classList.remove("sign-up-active", "forgot-active", "reset-active"); // Ẩn các form khác
+    wrapper.style.height = "460px";
+  });
 }
 
 // Xử lý quay lại đăng nhập từ Reset mật khẩu
-const resetPasswordSignInLink = document.querySelector('.reset-password .signIn-link');
+const resetPasswordSignInLink = document.querySelector(
+  ".reset-password .signIn-link"
+);
 if (resetPasswordSignInLink) {
-    resetPasswordSignInLink.addEventListener('click', (e) => {
-        e.preventDefault(); // Ngăn hành động mặc định của thẻ <a>
-        wrapper.classList.add('active'); // Hiển thị form Đăng nhập
-        wrapper.classList.remove('reset-active'); // Ẩn form Reset mật khẩu
-
-        // Xóa tham số email trong URL
-        const newUrl = window.location.pathname; // Lấy URL gốc (không có query parameters)
-        window.history.replaceState(null, '', newUrl);
-    });
+  resetPasswordSignInLink.addEventListener("click", (e) => {
+    e.preventDefault(); // Ngăn hành động mặc định của thẻ <a>
+    wrapper.classList.add("active"); // Hiển thị form Đăng nhập
+    wrapper.classList.remove("reset-active"); // Ẩn form Reset mật khẩu
+    wrapper.style.height = "460px";
+    // Xóa tham số email trong URL
+    const newUrl = window.location.pathname; // Lấy URL gốc (không có query parameters)
+    window.history.replaceState(null, "", newUrl);
+  });
 }
 function validatePhone(inputElement, errorElement) {
   // Biểu thức regex kiểm tra số điện thoại (phải bắt đầu bằng 0 và chỉ chứa 10 số)
@@ -217,7 +218,7 @@ if (signUpForm) {
         window.location.href = "login.html"; // Thay đổi đường dẫn nếu cần
       }, 3000);
     } else {
-      alert(responseData.message || "Đăng ký thất bại, vui lòng thử lại.");
+      alert(responseData.message || "Registration failed, please try again. ");
       usernameError.style.display = "block";
     }
   });
@@ -227,59 +228,60 @@ if (signUpForm) {
 const signInMessage = document.createElement("div");
 signInMessage.className = "form-message";
 signInMessage.style.display = "none"; // Ẩn thông báo mặc định
-const signInForm = document.getElementById('signInForm');
+const signInForm = document.getElementById("signInForm");
 signInForm.insertBefore(signInMessage, signInForm.firstChild); // Thêm vào đầu form
 if (signInForm) {
-  signInForm.addEventListener('submit', async (e) => {
-      e.preventDefault(); // Ngăn hành động submit mặc định
-      const username = document.getElementById('loginUsername').value;
-      const password = document.getElementById('loginPassword').value;
-      const data = { username, password };
-      try {
-          const response = await fetch('http://localhost:3000/staff/login', {
-              method: 'POST',
-              headers: { 'Content-Type': 'application/json' },
-              body: JSON.stringify(data)
-          });
-          if (response.ok) {
-              const { accessToken, refreshToken, username, role } = await response.json();
-  
-              // Lưu accessToken vào localStorage
-              localStorage.setItem('token', accessToken);
-              localStorage.setItem('refreshToken', refreshToken); // Lưu refreshToken nếu cần
-              localStorage.setItem('username', username);
-              localStorage.setItem('role', role);
-              signInMessage.style.display = 'block'; // Hiển thị thông báo
-              signInMessage.className = 'form-message success'; // Thêm lớp thành công
-              signInMessage.textContent = 'Đăng nhập thành công! Đang chuyển hướng...';
-              
-              // Phân hướng dựa trên vai trò
-              setTimeout(() => {
-                  if (role === 'staff') {
-                      window.location.href = '../staff/staff.html'; // Chuyển hướng đến trang staff
-                  } else if (role === 'admin') {
-                      window.location.href = '../admin/index.html'; // Chuyển hướng đến trang admin
-                  } else if (role === 'customer') {
-                    window.location.href = '../client/pages/home/home.html'; // Chuyển hướng đến trang admin
-                } 
-                  else {
-                      alert('Role không hợp lệ!');
-                      localStorage.clear(); // Xóa token và thông tin không hợp lệ
-                      window.location.href = './login/login.html';
-                  }
-              }, 2000);
+  signInForm.addEventListener("submit", async (e) => {
+    e.preventDefault(); // Ngăn hành động submit mặc định
+    const username = document.getElementById("loginUsername").value;
+    const password = document.getElementById("loginPassword").value;
+    const data = { username, password };
+    try {
+      const response = await fetch("http://localhost:3000/staff/login", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(data),
+      });
+      if (response.ok) {
+        const { accessToken, refreshToken, username, role } =
+          await response.json();
+
+        // Lưu accessToken vào localStorage
+        localStorage.setItem("token", accessToken);
+        localStorage.setItem("refreshToken", refreshToken); // Lưu refreshToken nếu cần
+        localStorage.setItem("username", username);
+        localStorage.setItem("role", role);
+        signInMessage.style.display = "block"; // Hiển thị thông báo
+        signInMessage.className = "form-message success"; // Thêm lớp thành công
+        signInMessage.textContent =
+          "Login successful! Redirecting to the home page...";
+
+        // Phân hướng dựa trên vai trò
+        setTimeout(() => {
+          if (role === "staff") {
+            window.location.href = "../staff/staff.html"; // Chuyển hướng đến trang staff
+          } else if (role === "admin") {
+            window.location.href = "../admin/index.html"; // Chuyển hướng đến trang admin
+          } else if (role === "customer") {
+            window.location.href = "../client/pages/home/home.html"; // Chuyển hướng đến trang admin
           } else {
-              const error = await response.json();
-              signInMessage.style.display = 'block'; // Hiển thị thông báo lỗi
-              signInMessage.className = 'form-message error'; // Thêm lớp lỗi
-              signInMessage.textContent = 'Đăng nhập thất bại: ' + error.message;
+            alert("Role không hợp lệ!");
+            localStorage.clear(); // Xóa token và thông tin không hợp lệ
+            window.location.href = "./login/login.html";
           }
-      } catch (err) {
-          console.error('Error:', err);
-          signInMessage.style.display = 'block'; // Hiển thị lỗi kết nối
-          signInMessage.className = 'form-message error'; // Thêm lớp lỗi
-          signInMessage.textContent = 'Có lỗi xảy ra. Vui lòng thử lại sau.';
+        }, 2000);
+      } else {
+        const error = await response.json();
+        signInMessage.style.display = "block"; // Hiển thị thông báo lỗi
+        signInMessage.className = "form-message error"; // Thêm lớp lỗi
+        signInMessage.textContent = "Login failed: " + error.message;
       }
+    } catch (err) {
+      console.error("Error:", err);
+      signInMessage.style.display = "block"; // Hiển thị lỗi kết nối
+      signInMessage.className = "form-message error"; // Thêm lớp lỗi
+      signInMessage.textContent = "Login failed, please try again.";
+    }
   });
 }
 
@@ -295,7 +297,7 @@ function startCountdown(duration, countdownElement, resendOtpText) {
     if (--timer < 0) {
       clearInterval(interval);
       // Hiển thị thông báo "Mã OTP đã hết hạn" và nút "Gửi lại OTP"
-      countdownElement.textContent = "Mã OTP đã hết hạn";
+      countdownElement.textContent = "OTP code has expired";
       resendOtpText.style.display = "inline";
     }
   }, 1000);
@@ -365,7 +367,7 @@ function validateEmail(inputElement, errorElement) {
   if (!emailRegex.test(inputElement.value)) {
     errorElement.style.display = "block"; // Hiển thị lỗi nếu email không hợp lệ
     errorElement.textContent =
-      "Email không hợp lệ. Vui lòng nhập đúng định dạng.";
+      "Email not valid. Please enter a valid email address.";
   } else {
     errorElement.style.display = "none"; // Ẩn lỗi nếu email hợp lệ
   }
@@ -423,12 +425,12 @@ otpSubmitBtn.addEventListener("click", async (e) => {
       otpError.style.display = "none"; // Ẩn thông báo lỗi nếu thành công
     } else {
       // OTP không hợp lệ
-      otpError.textContent = "OTP không khớp. Xin vui lòng nhập lại.";
+      otpError.textContent = "OTP code does not match. Please re-enter.";
       otpError.style.display = "block"; // Hiển thị thông báo lỗi
     }
   } catch (err) {
     console.error("Error:", err);
-    otpError.textContent = "Có lỗi xảy ra. Vui lòng thử lại sau.";
+    otpError.textContent = "An error occurred. Please try again later.";
     otpError.style.display = "block"; // Hiển thị thông báo lỗi khi có lỗi
   }
 });
@@ -462,7 +464,7 @@ if (resendOtpText) {
       }
     } catch (err) {
       console.error("Error:", err);
-      alert("Có lỗi xảy ra. Vui lòng thử lại sau.");
+      alert("An error occurred. Please try again later.");
       resendOtpText.style.display = "inline";
     }
   });
@@ -493,7 +495,7 @@ if (resetPasswordForm) {
       resetPasswordMessage.style.display = "block";
       resetPasswordMessage.className = "form-message error"; // Thêm lớp lỗi
       resetPasswordMessage.textContent =
-        "Mật khẩu xác nhận không khớp. Vui lòng thử lại.";
+        "Password confirmation does not match the new password.";
       return;
     }
 
@@ -522,7 +524,7 @@ if (resetPasswordForm) {
         resetPasswordMessage.style.display = "block";
         resetPasswordMessage.className = "form-message success"; // Thêm lớp thành công
         resetPasswordMessage.textContent =
-          "Đặt lại mật khẩu thành công! Đang chuyển hướng về trang đăng nhập...";
+          "Reset password successful! Redirecting to the login page...";
 
         setTimeout(() => {
           window.location.href = "login.html"; // Chuyển hướng sau 2 giây
@@ -532,13 +534,13 @@ if (resetPasswordForm) {
         resetPasswordMessage.style.display = "block";
         resetPasswordMessage.className = "form-message error"; // Thêm lớp lỗi
         resetPasswordMessage.textContent =
-          "Đặt lại mật khẩu thất bại: " + error.message;
+          "Reset password failed: " + error.message;
       }
     } catch (err) {
       console.error("Error:", err);
       resetPasswordMessage.style.display = "block";
       resetPasswordMessage.className = "form-message error"; // Thêm lớp lỗi
-      resetPasswordMessage.textContent = "Có lỗi xảy ra. Vui lòng thử lại sau.";
+      resetPasswordMessage.textContent = "Reset password failed. Please try again.";
     }
   });
 }
@@ -547,7 +549,7 @@ inputsToValidate.forEach((input) => {
   const errorElement = document.createElement("div");
   errorElement.className = "error-message";
   errorElement.style.display = "none";
-  errorElement.textContent = "Không được chứa ký tự đặc biệt hoặc dấu câu.";
+  errorElement.textContent = "This field is required.";
   input.parentNode.appendChild(errorElement);
 
   input.addEventListener("input", () => {

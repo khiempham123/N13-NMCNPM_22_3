@@ -25,7 +25,7 @@ const renderCustomers = (customers) => {
 
     // Tạo từng <td> và gán class đúng như HTML mẫu
     tr.innerHTML = `
-        <td>${customer.fullName}</td>
+        <td>${customer.fullName || "N/A"}</td>
         <td>${customer.phone}</td>
         <td>${customer.address || "N/A"}</td>
         <td>${customer.totalOrders} Orders</td>

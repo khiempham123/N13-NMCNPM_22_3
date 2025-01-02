@@ -352,7 +352,9 @@ body {
 .details .recentOrders table tr td:last-child {
   text-align: center !important;
 }
-
+.details .recentOrders table tr td:nth-child(1) {
+  text-align: center;
+}
 .details .recentOrders table tr td:nth-child(2) {
   text-align: center;
 }
@@ -377,8 +379,24 @@ body {
   border-radius: 50%;
   object-fit: cover;
 }
+.status.delivered {
+  padding: 2px 4px;
+  background: #0d3dc6;
+  color: var(--white);
+  border-radius: 4px;
+  font-size: 16px;
+  font-weight: 500;
+}
+.status.return {
+  padding: 2px 4px;
+  background: red;
+  color: var(--white);
+  border-radius: 4px;
+  font-size: 16px;
+  font-weight: 500;
+}
 
-.status.processing {
+.status.inProgress {
   padding: 2px 4px;
   background: #8de02c;
   color: var(--white);
@@ -462,7 +480,44 @@ body {
 .recentCustomers table tr:hover td h4 span {
   color: var(--white);
 }
+#loadReport {
 
+  padding: 2px 4px; border-radius: 6px; 
+  background-color: #1795ce; 
+  color: var(--white); 
+  font-size: 16px; 
+  font-weight: 500; 
+  border: none; 
+  height: 30px;
+}
+#loadReport:hover {
+  background-color: #0f7bb5;
+  transform: scale(1.05);
+}
+
+#loadReport:focus {
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(23, 149, 206, 0.5);
+}
+
+#loadReport:hover {
+  background-color: #0f7bb5;
+  transform: scale(1.05);
+}
+
+#loadReport:focus {
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(23, 149, 206, 0.5);
+}
+
+#loadReport:active {
+  background-color: #0c5e8a;
+  transform: scale(0.95);
+}
+#loadReport:active {
+  background-color: #0c5e8a;
+  transform: scale(0.95);
+}
 /* ====================== Responsive Design ========================== */
 @media (max-width: 991px) {
   .navigation {
