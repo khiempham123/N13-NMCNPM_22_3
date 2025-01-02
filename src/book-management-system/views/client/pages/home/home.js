@@ -196,7 +196,6 @@ async function fetchTopCategories() {
     const divs = container.querySelectorAll(".topseller-item");
 
     categories.forEach((category, index) => {
-      console.log(category)
       if (index < divs.length) {
         // Set the title for each category
         const link = divs[index];

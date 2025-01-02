@@ -66,6 +66,10 @@ function updateChart(labels, revenue) {
 function loadReport() {
   const startDate = document.getElementById("startDate").value;
   const endDate = document.getElementById("endDate").value;
+  if(startDate > endDate){
+    alert("Khoảng thời gian không hợp lệ.");
+    return;
+  }
   if (!startDate || !endDate) {
     alert("Please select both start and end dates.");
     return;

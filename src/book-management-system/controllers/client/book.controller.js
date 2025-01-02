@@ -1,6 +1,6 @@
 const Book = require("../../models/books");
 const mongoose = require("mongoose");
-
+const Author = require("../../models/authors.models");
 // GET /book
 module.exports.index = async (req, res) => {
   try {
@@ -128,9 +128,23 @@ module.exports.delete = async (req, res) => {
 }
 module.exports.add = async (req, res) => {
   try {
+    // Kiểm tra nếu tác giả đã tồn tại
+    let author = await Author.findOne({ name: req.body.author });
+    // Nếu tác giả chưa tồn tại, tạo mới
+    if (!author) {
+      author = new Author({
+        name: req.body.author,
+        bio: req.body.bio || "",
+        photo: req.body.photo || "",
+      });
+
+      await author.save();
+    }
+
+    // Tạo sách mới
     const newBook = new Book({
       title: req.body.title,
-      author: req.body.author,
+      author: req.body.author, // Liên kết với tác giả
       price: req.body.price,
       stock: req.body.stock,
       category: req.body.category,
@@ -141,6 +155,10 @@ module.exports.add = async (req, res) => {
     });
 
     const savedBook = await newBook.save();
+
+    // Thêm bookID vào danh sách sách của tác giả
+    author.books.push(savedBook._id);
+    await author.save();
     res.status(201).json({ message: "Book added successfully", data: savedBook });
   } catch (error) {
     res.status(500).json({ message: "Failed to add book", error: error.message });

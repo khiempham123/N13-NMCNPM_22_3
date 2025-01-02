@@ -227,7 +227,7 @@ async function addToCart(event, bookId, title, thumbnail, price) {
       alert("Sản phẩm đã được thêm vào giỏ hàng!");
     } else {
       console.error(result.message);
-      alert("Sách đã tồn tại trong danh sách yêu thích của bạn!");
+      alert(result.message);
     }
   } catch (error) {
     console.error("Error adding to cart:", error);

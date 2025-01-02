@@ -224,7 +224,11 @@ async function addToFav(event, bookId, title, thumbnail, price, rating) {
 async function addToCart(event, bookId, title, thumbnail, price) {
   // Ngừng sự kiện để không lan ra các phần tử cha
   event.stopPropagation();
-
+  const token =localStorage.getItem("token");
+  if (!token) {
+    alert("Vui lòng đăng nhập trước khi thêm vào giỏ hàng.");
+    return;
+  }
   try {
     const response = await fetch(`http://localhost:3000/add-to-cart`, {
       method: "POST",
@@ -247,7 +251,7 @@ async function addToCart(event, bookId, title, thumbnail, price) {
       alert("Sản phẩm đã được thêm vào giỏ hàng!");
     } else {
       console.error(result.message);
-      alert("Sách đã tồn tại trong danh sách yêu thích của bạn!");
+      alert(result.message);
     }
   } catch (error) {
     console.error("Error adding to cart:", error);

@@ -11,7 +11,23 @@ module.exports.register = async (req, res) => {
     const { username, email, password, address, phone } = req.body;
     const role = "customer";
 
-    const user = new User({ username, email, password, address, phone,role });
+    // Kiểm tra username, email và số điện thoại đã tồn tại
+    const existingUsername = await User.findOne({ username });
+    if (existingUsername) {
+      return res.status(400).json({ message: "Tên người dùng đã tồn tại" });
+    }
+
+    const existingEmail = await User.findOne({ email });
+    if (existingEmail) {
+      return res.status(400).json({ message: "Email đã tồn tại" });
+    }
+
+    const existingPhone = await User.findOne({ phone });
+    if (existingPhone) {
+      return res.status(400).json({ message: "Số điện thoại đã tồn tại" });
+    }
+
+    const user = new User({ username, email, password, address, phone, role });
     await user.save();
     res.status(201).json({ message: "User registered successfully" });
   } catch (error) {

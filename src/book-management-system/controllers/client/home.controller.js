@@ -162,6 +162,19 @@ const addBookToCart = async (req, res) => {
   const { bookId, title, thumbnail, price, quantity } = req.body;
   const userId = req.user?.id; // Giả sử bạn đã có user authentication
   try {
+    // Lấy thông tin sách từ database để kiểm tra stock
+    const book = await Book.findById(bookId);
+
+    if (!book) {
+      return res.status(404).json({ message: "Sách không tồn tại" });
+    }
+
+    if (quantity > book.stock) {
+      return res.status(400).json({
+        message: "Vượt quá số lượng còn lại",
+        availableStock: book.stock,
+      });
+    }
     // Kiểm tra xem giỏ hàng đã có cho người dùng chưa
     let cart = await Cart.findOne({ userId });
 
