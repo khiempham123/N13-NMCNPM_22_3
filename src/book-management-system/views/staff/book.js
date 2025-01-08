@@ -70,7 +70,9 @@ function renderBooks(books) {
     
       <div class="book-box">
         <div class="book-image">
-          <img src="${book.thumbnail || 'assets/images/popup.jpg'}" alt="${book.title}" />
+          <img src="${book.thumbnail || "assets/images/popup.jpg"}" alt="${
+      book.title
+    }" />
         </div>
         <div class="book-content">
           <h4>${book.title}</h4>
@@ -90,111 +92,119 @@ document.addEventListener("DOMContentLoaded", () => {
     fetchBooks(currentPage); // Chỉ gọi hàm fetchBooks khi nhấn vào trang Books
   });
   // Mở popup Add Book
-document.getElementById("openAddBookModal").addEventListener("click", function () {
-  document.getElementById("addBookPopup").style.display = "flex";
-});
-
-// Đóng popup Add Book
-document.getElementById("closeAddBookPopup").addEventListener("click", function () {
-  document.getElementById("addBookPopup").style.display = "none";
-});
-
-// Xử lý SAVE - Thêm sách mới
-document.getElementById("saveAddBookBtn").addEventListener("click", async () => {
-  // Lấy dữ liệu từ input
-  const newBook = {
-    title: document.getElementById("addBookName").value,
-    author: document.getElementById("addBookAuthor").value,
-    price: document.getElementById("addBookPrice").value,
-    stock: document.getElementById("addBookStock").value,
-    category: document.getElementById("addBookCategory").value,
-    publisher: document.getElementById("addBookPublisher").value,
-    publishDate: document.getElementById("addBookPublishDate").value,
-    thumbnail: document.getElementById("addBookThumbnail").value ,
-    description: document.getElementById("addBookDescription").value,
-  };
-
-  try {
-    // Gửi yêu cầu POST lên server
-    const response = await fetch("http://localhost:3000/book", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(newBook),
+  document
+    .getElementById("openAddBookModal")
+    .addEventListener("click", function () {
+      document.getElementById("addBookPopup").style.display = "flex";
     });
 
-    if (!response.ok) throw new Error("Failed to add new book.");
+  // Đóng popup Add Book
+  document
+    .getElementById("closeAddBookPopup")
+    .addEventListener("click", function () {
+      document.getElementById("addBookPopup").style.display = "none";
+    });
 
-    alert("Book added successfully!");
+  // Xử lý SAVE - Thêm sách mới
+  document
+    .getElementById("saveAddBookBtn")
+    .addEventListener("click", async () => {
+      // Lấy dữ liệu từ input
+      const newBook = {
+        title: document.getElementById("addBookName").value,
+        author: document.getElementById("addBookAuthor").value,
+        price: document.getElementById("addBookPrice").value,
+        stock: document.getElementById("addBookStock").value,
+        category: document.getElementById("addBookCategory").value,
+        publisher: document.getElementById("addBookPublisher").value,
+        publishDate: document.getElementById("addBookPublishDate").value,
+        thumbnail: document.getElementById("addBookThumbnail").value,
+        description: document.getElementById("addBookDescription").value,
+      };
 
-    // Đóng popup sau khi thêm thành công
-    document.getElementById("addBookPopup").style.display = "none";
+      try {
+        // Gửi yêu cầu POST lên server
+        const response = await fetch("http://localhost:3000/book", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(newBook),
+        });
 
-    // Reload lại danh sách sách
-    fetchBooks(currentPage);
-  } catch (error) {
-    console.error("Error adding book:", error);
-    alert("Failed to add book. Please try again.");
-  }
-});
-document.getElementById("editBookThumbnailFile").addEventListener("change", async (event) => {
-  const file = event.target.files[0]; // Lấy file được chọn
-  if (!file) return;
+        if (!response.ok) throw new Error("Failed to add new book.");
 
-  try {
-    const uploadedImageUrl = await uploadImageWithSignature(file); // Gọi hàm tải file
-    // Cập nhật preview ảnh
-    document.getElementById("addBookImage").src = uploadedImageUrl;
-    // Cập nhật giá trị vào input thumbnail
-    document.getElementById("editBookThumbnail").value = uploadedImageUrl;
-  } catch (error) {
-    console.error("Error uploading image:", error);
-    alert("Failed to upload image. Please try again.");
-  }
-});
-document.getElementById("addBookThumbnailFile").addEventListener("change", async (event) => {
-  const file = event.target.files[0]; // Lấy file được chọn
-  if (!file) return;
+        alert("Book added successfully!");
 
-  try {
-    const uploadedImageUrl = await uploadImageWithSignature(file); // Gọi hàm upload ảnh
+        // Đóng popup sau khi thêm thành công
+        document.getElementById("addBookPopup").style.display = "none";
 
-    // Cập nhật preview ảnh
-    document.getElementById("addBookImagePreview").src = uploadedImageUrl;
+        // Reload lại danh sách sách
+        fetchBooks(currentPage);
+      } catch (error) {
+        console.error("Error adding book:", error);
+        alert("Failed to add book. Please try again.");
+      }
+    });
+  document
+    .getElementById("editBookThumbnailFile")
+    .addEventListener("change", async (event) => {
+      const file = event.target.files[0]; // Lấy file được chọn
+      if (!file) return;
 
-    // Cập nhật giá trị vào input thumbnail
-    document.getElementById("addBookThumbnail").value = uploadedImageUrl;
-  } catch (error) {
-    console.error("Error uploading image:", error);
-    alert("Failed to upload image. Please try again.");
-  }
-});
+      try {
+        const uploadedImageUrl = await uploadImageWithSignature(file); // Gọi hàm tải file
+        // Cập nhật preview ảnh
+        document.getElementById("addBookImage").src = uploadedImageUrl;
+        // Cập nhật giá trị vào input thumbnail
+        document.getElementById("editBookThumbnail").value = uploadedImageUrl;
+      } catch (error) {
+        console.error("Error uploading image:", error);
+        alert("Failed to upload image. Please try again.");
+      }
+    });
+  document
+    .getElementById("addBookThumbnailFile")
+    .addEventListener("change", async (event) => {
+      const file = event.target.files[0]; // Lấy file được chọn
+      if (!file) return;
+
+      try {
+        const uploadedImageUrl = await uploadImageWithSignature(file); // Gọi hàm upload ảnh
+
+        // Cập nhật preview ảnh
+        document.getElementById("addBookImagePreview").src = uploadedImageUrl;
+
+        // Cập nhật giá trị vào input thumbnail
+        document.getElementById("addBookThumbnail").value = uploadedImageUrl;
+      } catch (error) {
+        console.error("Error uploading image:", error);
+        alert("Failed to upload image. Please try again.");
+      }
+    });
   // Gắn sự kiện vào phần tử cha của các nút
-  document.getElementById("bookRow").addEventListener("click", function (event) {
+  document
+    .getElementById("bookRow")
+    .addEventListener("click", function (event) {
+      const target = event.target; // Phần tử được click
+      // Kiểm tra nút Edit
+      if (target.classList.contains("editBtn")) {
+        const bookId = target.dataset.id; // Lấy ID sách từ data-id
+        fetchBookById(bookId); // Hiển thị popup Edit
+        const editPopup = document.getElementById("editBookPopup");
+        editPopup.scrollTop = 0;
+        return;
+      }
 
-    const target = event.target; // Phần tử được click
-  // Kiểm tra nút Edit
-  if (target.classList.contains("editBtn")) {
-    const bookId = target.dataset.id; // Lấy ID sách từ data-id
-    fetchBookById(bookId); // Hiển thị popup Edit
-    const editPopup = document.getElementById("editBookPopup");
-    editPopup.scrollTop = 0;
-    return;
-  }
+      // Kiểm tra nút Delete
+      if (target.classList.contains("deleteBtn")) {
+        const bookId = target.dataset.id; // Lấy ID sách từ data-id
+        deleteBookId = bookId; // Lưu ID sách cần xóa vào biến tạm
+        const popup = document.getElementById("deleteBookPopup");
 
-  // Kiểm tra nút Delete
-  if (target.classList.contains("deleteBtn")) {
-    const bookId = target.dataset.id; // Lấy ID sách từ data-id
-    deleteBookId = bookId; // Lưu ID sách cần xóa vào biến tạm
-    const popup = document.getElementById("deleteBookPopup");
-    
-    popup.style.display = "flex" ;
-    document.getElementById("editBookPopup").style.display = "none";
-    return;
-  }
-
-
-  });
-
+        popup.style.display = "flex";
+        document.getElementById("editBookPopup").style.display = "none";
+        return;
+      }
+    });
 
   // Hàm fetch thông tin sách theo ID và hiển thị trong popup
   async function fetchBookById(bookId) {
@@ -207,24 +217,31 @@ document.getElementById("addBookThumbnailFile").addEventListener("change", async
       document.getElementById("editBookAuthor").value = book.data.author || "";
       document.getElementById("editBookPrice").value = book.data.price || "";
       document.getElementById("editBookStock").value = book.data.stock || "";
-      document.getElementById("editBookCategory").value = book.data.category || "";
-      document.getElementById("editBookPublisher").value = book.data.publisher || "";
-      document.getElementById("editBookPublishDate").value =
-  book.data.publishDate ? new Date(book.data.publishDate).toISOString().split("T")[0] : "";
-      document.getElementById("editBookThumbnail").value = book.data.thumbnail || "";
+      document.getElementById("editBookCategory").value =
+        book.data.category || "";
+      document.getElementById("editBookPublisher").value =
+        book.data.publisher || "";
+      document.getElementById("editBookPublishDate").value = book.data
+        .publishDate
+        ? new Date(book.data.publishDate).toISOString().split("T")[0]
+        : "";
+      document.getElementById("editBookThumbnail").value =
+        book.data.thumbnail || "";
       document.getElementById("editBookDescription").value =
         book.data.description || "";
-      document.getElementById('addBookImage').src = book.data.thumbnail || 'assets/images/default.jpg';
-      document.getElementById('addBookTitle').textContent = `Name: ${book.data.title || 'Unknown'}`;
+      document.getElementById("addBookImage").src =
+        book.data.thumbnail || "assets/images/default.jpg";
+      document.getElementById("addBookTitle").textContent = `Name: ${
+        book.data.title || "Unknown"
+      }`;
       // Gắn ID sách vào nút SAVE để sử dụng khi cập nhật
       document.getElementById("saveEditBtn").dataset.id = bookId;
 
       // Hiển thị popup
-      
+
       const popup = document.getElementById("editBookPopup"); // Lấy popup theo ID
       popup.scrollTop = 0;
       popup.style.display = "flex"; // Hiển thị popup
-       
     } catch (error) {
       console.error("Error fetching book details:", error);
     }
@@ -276,24 +293,27 @@ document.getElementById("addBookThumbnailFile").addEventListener("change", async
     .addEventListener("click", function () {
       document.getElementById("editBookPopup").style.display = "none";
     });
-    let deleteBookId = null; // Biến tạm lưu ID của sách cần xóa
+  let deleteBookId = null; // Biến tạm lưu ID của sách cần xóa
 
-    
-    
-    // Xử lý sự kiện khi nhấn YES (Xác nhận xóa)
-    document.getElementById("deleteBookBtn").addEventListener("click", async () => {
+  // Xử lý sự kiện khi nhấn YES (Xác nhận xóa)
+  document
+    .getElementById("deleteBookBtn")
+    .addEventListener("click", async () => {
       if (!deleteBookId) return;
       try {
         // Gửi yêu cầu xóa sách lên API
-        const response = await fetch(`http://localhost:3000/book/${deleteBookId}`, {
-          method: "DELETE",
-        });
-    
+        const response = await fetch(
+          `http://localhost:3000/book/${deleteBookId}`,
+          {
+            method: "DELETE",
+          }
+        );
+
         if (!response.ok) throw new Error("Failed to delete book.");
-    
+
         alert("Book deleted successfully!");
         document.getElementById("deleteBookPopup").style.display = "none"; // Đóng popup
-    
+
         deleteBookId = null; // Reset biến lưu ID
         fetchBooks(currentPage); // Reload lại danh sách sách
       } catch (error) {
@@ -301,16 +321,16 @@ document.getElementById("addBookThumbnailFile").addEventListener("change", async
         alert("Failed to delete book. Please try again.");
       }
     });
-    
-    // Xử lý sự kiện khi nhấn NO (Đóng popup)
-    document
-      .getElementById("closeDeleteBookPopup")
-      .addEventListener("click", () => {
-        document.getElementById("deleteBookPopup").style.display = "none";
-        deleteBookId = null; // Reset biến tạm
-      });
 
-      const searchInput = document.getElementById("searchBookInput");
+  // Xử lý sự kiện khi nhấn NO (Đóng popup)
+  document
+    .getElementById("closeDeleteBookPopup")
+    .addEventListener("click", () => {
+      document.getElementById("deleteBookPopup").style.display = "none";
+      deleteBookId = null; // Reset biến tạm
+    });
+
+  const searchInput = document.getElementById("searchBookInput");
   const suggestionBox = document.getElementById("bookSuggestionBox");
 
   // Hàm hiển thị danh sách sách gợi ý
@@ -337,7 +357,9 @@ document.getElementById("addBookThumbnailFile").addEventListener("change", async
   // Hàm gửi yêu cầu tìm kiếm
   async function searchBooks(query) {
     try {
-      const response = await fetch(`http://localhost:3000/books/searchbar?query=${query}`);
+      const response = await fetch(
+        `http://localhost:3000/books/searchbar?query=${query}`
+      );
       if (!response.ok) throw new Error("Failed to fetch search results");
       const books = await response.json();
       renderSuggestions(books); // Cập nhật container kết quả
