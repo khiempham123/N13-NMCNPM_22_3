@@ -13,7 +13,7 @@
   color: black;
   background: #e6e6e6;
 }
-.sidebar{
+.sidebar {
   max-height: 100%;
 }
 .section-three .sidebar,
@@ -156,6 +156,7 @@
   background: white;
   transition: box-shadow 0.3s ease;
   margin: 10px 0;
+  max-height: 460px;
 }
 
 .section-three .listbook .inner-box:hover {
@@ -190,6 +191,8 @@
   font-size: 18px;
   font-weight: bold;
   margin: 5px 0;
+  height: 55px;
+  overflow: hidden;
 }
 
 .section-three .listbook .inner-box .inner-content .inner-author {
@@ -307,37 +310,37 @@
 }
 
 #book-list {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr); 
-    gap: 20px; 
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 20px;
 }
 
 .book-item {
-    box-sizing: border-box; 
+  box-sizing: border-box;
 }
 
 .book-item img {
-    width: 100%; 
-    height: auto;
-}   
+  width: 100%;
+  height: auto;
+}
 
- #author-list li {
-  margin-bottom: 10px; 
+#author-list li {
+  margin-bottom: 10px;
 }
 
 #author-list input[type="checkbox"] {
-  margin-right: 8px; 
+  margin-right: 8px;
 }
 
 #genre-list li {
-  margin-bottom: 10px; 
+  margin-bottom: 10px;
 }
 
 #genre-list input[type="checkbox"] {
-  margin-right: 8px; 
+  margin-right: 8px;
 }
 .centered-text {
-  display: inline-block;  /* Đảm bảo phần tử có thể căn giữa */
-  text-align: center;     /* Căn giữa nội dung */
-  font-weight: bold;      /* Làm chữ đậm */
+  display: inline-block; /* Đảm bảo phần tử có thể căn giữa */
+  text-align: center; /* Căn giữa nội dung */
+  font-weight: bold; /* Làm chữ đậm */
 }
