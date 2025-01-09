@@ -1,7 +1,5 @@
 const Order = require("../../models/order.models");
 
-// Lấy tất cả đơn hàng
-// Hàm lấy danh sách đơn hàng với phân trang
 const getAllOrders = async (req, res) => {
     const { page = 1, limit = 10 } = req.query;
     const skip = (page - 1) * limit;
@@ -24,7 +22,6 @@ const getAllOrders = async (req, res) => {
     }
 };
 
-// Lấy đơn hàng theo ID
 const getOrderById = async (req, res) => {
     try {
         const order = await Order.findById(req.params.id);
@@ -37,7 +34,6 @@ const getOrderById = async (req, res) => {
     }
 };
 
-// Thêm đơn hàng mới
 const createOrder = async (req, res) => {
     const { Name, Address, Total, Status } = req.body;
     try {
@@ -49,7 +45,6 @@ const createOrder = async (req, res) => {
     }
 };
 
-// Xóa đơn hàng
 const deleteOrder = async (req, res) => {
     try {
         const deletedOrder = await Order.findByIdAndDelete(req.params.id);
@@ -62,7 +57,6 @@ const deleteOrder = async (req, res) => {
     }
 };
 
-// Cập nhật trạng thái đơn hàng
 const updateOrderStatus = async (req, res) => {
     try {
         const { Status } = req.body;
@@ -75,7 +69,7 @@ const updateOrderStatus = async (req, res) => {
         const updatedOrder = await Order.findByIdAndUpdate(
             req.params.id, 
             { Status },
-            { new: true } // Trả về đơn hàng đã cập nhật
+            { new: true } 
         );
         
         if (!updatedOrder) {
@@ -91,10 +85,9 @@ const updateOrderStatus = async (req, res) => {
 
 const updateOrder = async (req, res) => {
     try {
-        const orderId = req.params.id; // Lấy ID từ URL
-        const { userFullName, address, status } = req.body; // Lấy dữ liệu từ body
+        const orderId = req.params.id;
+        const { userFullName, address, status } = req.body; 
     
-        // Cập nhật đơn hàng trong cơ sở dữ liệu
         const updatedOrder = await Order.findByIdAndUpdate(
           orderId,
           {
@@ -102,7 +95,7 @@ const updateOrder = async (req, res) => {
             address,
             status,
           },
-          { new: true } // Trả về bản ghi sau khi cập nhật
+          { new: true } 
         );
     
         if (!updatedOrder) {

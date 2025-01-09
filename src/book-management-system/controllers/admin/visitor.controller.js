@@ -1,6 +1,5 @@
 const Visitor = require("../../models/visitor");
 
-// Hàm tăng số người truy cập
 async function increaseVisitorCount(page) {
   let visitor = await Visitor.findOne({ page });
   if (!visitor) {
@@ -12,7 +11,6 @@ async function increaseVisitorCount(page) {
   return visitor.activeVisitors;
 }
 
-// Hàm giảm số người truy cập
 async function decreaseVisitorCount(page) {
   let visitor = await Visitor.findOne({ page });
   if (!visitor) return 0;
@@ -22,7 +20,6 @@ async function decreaseVisitorCount(page) {
   return visitor.activeVisitors;
 }
 
-// Hàm lấy số người truy cập hiện tại
 async function getVisitorCount(page) {
   const visitor = await Visitor.findOne({ page });
   return visitor ? visitor.activeVisitors : 0;
@@ -47,7 +44,6 @@ async function getVisitorsByPage(req, res) {
 }
 
 
-// Xuất tất cả các hàm từ controller
 module.exports = {
   increaseVisitorCount,
   decreaseVisitorCount,

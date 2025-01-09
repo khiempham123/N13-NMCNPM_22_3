@@ -1,7 +1,5 @@
 const Customer = require("../../models/user.models");
 
-// Lấy tất cả khách hàng
-// Hàm lấy danh sách khách hàng với phân trang
 const getAllCustomers = async (req, res) => {
     const { page = 1, limit = 10 } = req.query;
     const skip = (page - 1) * limit;
@@ -23,7 +21,6 @@ const getAllCustomers = async (req, res) => {
     }
 };
 
-// Lấy khách hàng theo ID
 const getCustomerById = async (req, res) => {
     try {
         const customer = await Customer.findById(req.params.id);
@@ -36,7 +33,6 @@ const getCustomerById = async (req, res) => {
     }
 };
 
-// Thêm mới một khách hàng
 const createCustomer = async (req, res) => {
     const { Name, BirthDay, Email } = req.body;
 
@@ -49,13 +45,12 @@ const createCustomer = async (req, res) => {
     }
 };
 
-// Cập nhật thông tin khách hàng
 const updateCustomer = async (req, res) => {
     try {
         const updatedCustomer = await Customer.findByIdAndUpdate(
             req.params.id, 
             req.body, 
-            { new: true } // Trả về tài nguyên đã được cập nhật
+            { new: true } 
         );
         if (!updatedCustomer) {
             return res.status(404).json({ message: "Customer not found" });
@@ -66,7 +61,6 @@ const updateCustomer = async (req, res) => {
     }
 };
 
-// Xóa khách hàng
 const deleteCustomer = async (req, res) => {
     try {
         const deletedCustomer = await Customer.findByIdAndDelete(req.params.id);

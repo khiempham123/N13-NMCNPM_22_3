@@ -6,34 +6,33 @@ const userSchema = new mongoose.Schema(
     username: { type: String, required: true, unique: true },
     email: { type: String, required: true, unique: true },
     password: { type: String },
-    phone: { type: String, required: true, unique: true }, // Added phone field
-    token: { type: String }, // Added token field
+    phone: { type: String, required: true, unique: true }, 
+    token: { type: String }, 
     resetPasswordToken: String,
     resetPasswordExpires: Date,
     salary: { type: Number },
     position: { type: String },
     role: { type: String, enum: ['staff', 'admin','customer'], required: true },
-    // infoUser
     fullName: {
       type: String,
-      default: "", // Mặc định là chuỗi rỗng
+      default: "", 
     },
     dateOfBirth: {
       type: String,
-      default: "", // Mặc định là chuỗi rỗng
+      default: "", 
     },
     gender: {
       type: String,
-      default: "", // Mặc định là chuỗi rỗng
+      default: "", 
     },
     avatar: {
       type: String,
       default:
-        "https://tintuc.dienthoaigiakho.vn/wp-content/uploads/2024/01/c39af4399a87bc3d7701101b728cddc9.jpg", // URL của ảnh mặc định
+        "https://tintuc.dienthoaigiakho.vn/wp-content/uploads/2024/01/c39af4399a87bc3d7701101b728cddc9.jpg", 
     },
     address: {
       type: String,
-      default: "", // Mặc định là chuỗi rỗng
+      default: "", 
     },
     refreshToken: { type: String, default: null },
   },

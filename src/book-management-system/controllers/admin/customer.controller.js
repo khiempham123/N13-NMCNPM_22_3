@@ -2,19 +2,17 @@ const User = require("../../models/user.models.js");
 const Order = require("../../models/order.models.js");
 const bcrypt = require("bcryptjs");
 const mongoose = require("mongoose");
-// Lấy thông tin tất cả khách hàng
 const getAllCustomers = async (req, res) => {
   try {
-    // Tìm thông tin user và lấy tổng số đơn hàng cùng tổng tiền
     const customers = await User.aggregate([
       {
         $match: {
-          role: "customer", // Chỉ lấy những user có role là "customer"
+          role: "customer",
         },
       },
       {
         $lookup: {
-          from: "orders", // Tên collection "orders"
+          from: "orders",
           localField: "_id",
           foreignField: "userId",
           as: "orders",
@@ -47,24 +45,20 @@ const getAllCustomers = async (req, res) => {
   }
 };
 
-
-// Reset mật khẩu khách hàng
 const resetCustomerPassword = async (req, res) => {
-  const { id } = req.params; // ID của khách hàng
-  const { isConfirm } = req.body; // Cờ xác nhận từ người dùng
+  const { id } = req.params;
+  const { isConfirm } = req.body;
 
   if (!isConfirm) {
     return res.status(400).json({ message: "Reset password not confirmed" });
   }
 
   try {
-    // Tìm khách hàng theo ID
     const user = await User.findById(id);
     if (!user) {
       return res.status(404).json({ message: "Customer not found" });
     }
 
-    // Hash mật khẩu mới (123456789)
     const newPassword = "123456789";
     user.password = newPassword;
 
@@ -76,17 +70,15 @@ const resetCustomerPassword = async (req, res) => {
   }
 };
 
-// Xóa tài khoản khách hàng
 const deleteCustomerAccount = async (req, res) => {
-  const { id } = req.params; // ID của khách hàng
-  const { isConfirm } = req.body; // Cờ xác nhận từ người dùng
+  const { id } = req.params;
+  const { isConfirm } = req.body;
 
   if (!isConfirm) {
     return res.status(400).json({ message: "Delete action not confirmed" });
   }
 
   try {
-    // Tìm và xóa khách hàng theo ID
     const user = await User.findByIdAndDelete(id);
     if (!user) {
       return res.status(404).json({ message: "Customer not found" });
@@ -101,7 +93,6 @@ const deleteCustomerAccount = async (req, res) => {
 
 module.exports = {
   getAllCustomers,
-  //getCustomerById,
   resetCustomerPassword,
   deleteCustomerAccount,
 };

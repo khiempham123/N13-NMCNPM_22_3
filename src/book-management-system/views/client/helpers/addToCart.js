@@ -1,5 +1,4 @@
 export async function addToCart(event, bookId, title, thumbnail, price) {
-  // Ngừng sự kiện để không lan ra các phần tử cha
   event.stopPropagation();
 
   try {
@@ -14,7 +13,7 @@ export async function addToCart(event, bookId, title, thumbnail, price) {
         title,
         thumbnail,
         price,
-        quantity: 1, // Mặc định là 1, có thể điều chỉnh sau
+        quantity: 1, 
       }),
     });
 

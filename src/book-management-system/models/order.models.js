@@ -11,12 +11,12 @@ const orderItemSchema = new mongoose.Schema(
     price: { type: Number, required: true },
     title: { type: String, required: true },
     author: { type: String},
-    totalPrice: { type: Number, required: true }, // quantity * price
+    totalPrice: { type: Number, required: true },
     thumbnail: {
       type: String,
       validate: {
         validator: function (v) {
-          return /^(http|https):\/\/[^ "]+$/.test(v); // Kiểm tra URL hợp lệ
+          return /^(http|https):\/\/[^ "]+$/.test(v); 
         },
         message: "Invalid URL format for thumbnail",
       },
@@ -32,22 +32,21 @@ const orderSchema = new mongoose.Schema(
       ref: "User",
       required: true,
     },
-    userFullName: { type: String, required: true }, // Tên đầy đủ của người dùng
+    userFullName: { type: String, required: true }, 
     address: {
       street: { type: String, required: true },
       city: { type: String, required: true },
       district: { type: String, required: true },
       ward: { type: String, required: true },
     },
-    items: [orderItemSchema], // Các sách đã mua
-    totalAmount: { type: Number, required: true }, // Tổng tiền đơn hàng
-    // shippingFee: { type: Number, default: 10 },
-    grandTotal: { type: Number, required: true }, // Tổng tiền sau khi cộng phí giao hàng
+    items: [orderItemSchema],
+    totalAmount: { type: Number, required: true },
+    grandTotal: { type: Number, required: true }, 
     status: {
       type: String,
       enum: ["pending", "processing", "completed", "shiped","canceled"],
       default: "pending",
-    }, // Trạng thái đơn hàng
+    }, 
   },
   { timestamps: true }
 );

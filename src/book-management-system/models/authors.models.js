@@ -4,7 +4,7 @@ const authorSchema = new mongoose.Schema(
   {
     name: { type: String, required: true },
     bio: { type: String },
-    books: [{ type: mongoose.Schema.Types.ObjectId, ref: "Book" }], // Danh sách sách của tác giả
+    books: [{ type: mongoose.Schema.Types.ObjectId, ref: "Book" }],
     photo: { type: String },
   },
   { timestamps: true }

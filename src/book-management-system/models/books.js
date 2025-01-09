@@ -7,10 +7,10 @@ const bookSchema = new mongoose.Schema(
     description: { type: String },
     category: { type: String },
     publisher: { type: String },
-    publishDate: { type: Date }, // Chuyển sang kiểu Date
+    publishDate: { type: Date }, 
     price: { type: Number, required: true },
-    percentDiscount: { type: Number, default: 0, required: false }, // Giảm giá mặc định = 0
-    rating: { type: Number, default: 0, required: false }, // Đánh giá mặc định = 0
+    percentDiscount: { type: Number, default: 0, required: false }, 
+    rating: { type: Number, default: 0, required: false },
     stock: { type: Number, required: true },
     bestSeller: { type: Boolean, default: false },
     deleted: { type: Boolean, default: false },
@@ -18,7 +18,7 @@ const bookSchema = new mongoose.Schema(
       type: String,
       validate: {
         validator: function (v) {
-          return /^(http|https):\/\/[^ "]+$/.test(v); // Kiểm tra URL hợp lệ
+          return /^(http|https):\/\/[^ "]+$/.test(v); 
         },
         message: "Invalid URL format for thumbnail",
       },

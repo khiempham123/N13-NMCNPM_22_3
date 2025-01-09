@@ -1,7 +1,6 @@
 const CLOUDINARY_URL = "https://api.cloudinary.com/v1_1/dp1s19mxg/upload";
 const UPLOAD_PRESET = "ml_default";
 
-// Hàm để lấy chữ ký từ backend
 async function getSignature() {
   const response = await fetch("http://localhost:3000/generate-signature");
   if (!response.ok) {
@@ -9,9 +8,7 @@ async function getSignature() {
   }
   return response.json();
 }
-window.uploadImageWithSignature = async function(file) {
-// Hàm để upload ảnh
-
+window.uploadImageWithSignature = async function (file) {
   try {
     const { signature, timestamp } = await getSignature();
 
@@ -31,16 +28,15 @@ window.uploadImageWithSignature = async function(file) {
     });
 
     if (!response.ok) {
-      const errorData = await response.json(); // Lấy chi tiết lỗi từ Cloudinary
+      const errorData = await response.json();
       console.error("Cloudinary error:", errorData);
       throw new Error(errorData.error?.message || "Failed to upload image.");
     }
 
     const data = await response.json();
-    return data.secure_url; // URL ảnh trên Cloudinary
+    return data.secure_url;
   } catch (error) {
     console.error("Error uploading image:", error);
     throw error;
   }
-
 };

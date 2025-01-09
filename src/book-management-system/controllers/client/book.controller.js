@@ -1,13 +1,12 @@
 const Book = require("../../models/books");
 const mongoose = require("mongoose");
 const Author = require("../../models/authors.models");
-// GET /book
+
 module.exports.index = async (req, res) => {
   try {
     const page = parseInt(req.query.page) || 1;
     const limit = 20;
     const skip = (page - 1) * limit;
-
 
     const books = await Book.find({})
       .skip(skip)
@@ -27,7 +26,6 @@ module.exports.index = async (req, res) => {
   }
 };
 
-// GET //book/search
 module.exports.search = async (req, res) => {
   try {
     const { author, genre, minPrice, maxPrice, page, sort } = req.query;
@@ -35,41 +33,36 @@ module.exports.search = async (req, res) => {
     const skip = (parseInt(page) - 1) * limit || 0;
     const filters = {};
 
-    // Xử lý tác giả
     if (author) {
       const authorList = author.split(",").map((a) => a.replace(/\+/g, " "));
       filters.author = { $in: authorList };
     }
 
-    // Xử lý thể loại
     if (genre) {
       const genreList = genre.split(",").map((g) => g.replace(/\+/g, " "));
       filters.category = { $in: genreList };
     }
 
-    // Xử lý giá
     if (minPrice || maxPrice) {
       filters.price = {};
       if (minPrice) filters.price.$gte = parseFloat(minPrice);
       if (maxPrice) filters.price.$lte = parseFloat(maxPrice);
     }
 
-    // Thiết lập sort
     let sortOptions = {};
     if (sort) {
       if (sort === "Sort by price (Ascending)") {
-        sortOptions.price = 1; // Sắp xếp tăng dần theo giá
+        sortOptions.price = 1;
       } else if (sort === "Sort by price (Descending)") {
-        sortOptions.price = -1; // Sắp xếp giảm dần theo giá
+        sortOptions.price = -1;
       }
     }
 
-    // Tìm kiếm và phân trang
     const books = await Book.find(filters)
       .skip(skip)
       .limit(limit)
-      .sort(sortOptions); // Áp dụng sắp xếp
-    const totalBooks = await Book.countDocuments(filters); // Đếm tổng số sách thỏa mãn điều kiện
+      .sort(sortOptions);
+    const totalBooks = await Book.countDocuments(filters);
 
     res.json({
       books,
@@ -82,16 +75,13 @@ module.exports.search = async (req, res) => {
   }
 };
 
-
-
 module.exports.update = async (req, res) => {
   try {
-    const bookId = req.params.id; // Lấy ID từ URL
-    const updatedData = req.body; // Lấy dữ liệu mới từ request body
+    const bookId = req.params.id;
+    const updatedData = req.body;
 
-    // Tìm sách theo ID và cập nhật
     const updatedBook = await Book.findByIdAndUpdate(bookId, updatedData, {
-      new: true, // Trả về dữ liệu sau khi cập nhật
+      new: true,
     });
 
     if (!updatedBook) {
@@ -103,34 +93,34 @@ module.exports.update = async (req, res) => {
       data: updatedBook,
     });
   } catch (error) {
-    res.status(500).json({ message: "Failed to update book", error: error.message });
+    res
+      .status(500)
+      .json({ message: "Failed to update book", error: error.message });
   }
-
-
-}
+};
 
 module.exports.delete = async (req, res) => {
   try {
-    const bookId = req.params.id; // Lấy ID sách từ URL
+    const bookId = req.params.id;
 
-    const deletedBook = await Book.findByIdAndDelete(bookId); // Xóa sách theo ID
+    const deletedBook = await Book.findByIdAndDelete(bookId);
 
     if (!deletedBook) {
-      return res.status(404).json({ message: "Book not found" }); // Nếu không tìm thấy sách
+      return res.status(404).json({ message: "Book not found" });
     }
 
-    res.status(200).json({ message: "Book deleted successfully", data: deletedBook });
+    res
+      .status(200)
+      .json({ message: "Book deleted successfully", data: deletedBook });
   } catch (error) {
-    res.status(500).json({ message: "Failed to delete book", error: error.message });
+    res
+      .status(500)
+      .json({ message: "Failed to delete book", error: error.message });
   }
-
-
-}
+};
 module.exports.add = async (req, res) => {
   try {
-    // Kiểm tra nếu tác giả đã tồn tại
     let author = await Author.findOne({ name: req.body.author });
-    // Nếu tác giả chưa tồn tại, tạo mới
     if (!author) {
       author = new Author({
         name: req.body.author,
@@ -141,10 +131,9 @@ module.exports.add = async (req, res) => {
       await author.save();
     }
 
-    // Tạo sách mới
     const newBook = new Book({
       title: req.body.title,
-      author: req.body.author, // Liên kết với tác giả
+      author: req.body.author,
       price: req.body.price,
       stock: req.body.stock,
       category: req.body.category,
@@ -156,13 +145,14 @@ module.exports.add = async (req, res) => {
 
     const savedBook = await newBook.save();
 
-    // Thêm bookID vào danh sách sách của tác giả
     author.books.push(savedBook._id);
     await author.save();
-    res.status(201).json({ message: "Book added successfully", data: savedBook });
+    res
+      .status(201)
+      .json({ message: "Book added successfully", data: savedBook });
   } catch (error) {
-    res.status(500).json({ message: "Failed to add book", error: error.message });
+    res
+      .status(500)
+      .json({ message: "Failed to add book", error: error.message });
   }
-
-}
-
+};

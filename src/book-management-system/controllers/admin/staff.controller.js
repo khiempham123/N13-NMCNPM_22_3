@@ -1,6 +1,5 @@
 const Staff = require("../../models/user.models.js");
 
-// Thêm một staff mới
 const addStaff = async (req, res) => {
   try {
     const {
@@ -16,7 +15,6 @@ const addStaff = async (req, res) => {
       address,
     } = req.body;
 
-    // Tạo staff mới
     const newStaff = new Staff({
       username,
       email,
@@ -28,10 +26,9 @@ const addStaff = async (req, res) => {
       position,
       salary,
       address,
-      role: 'staff', // Mặc định là staff
+      role: 'staff', 
     });
 
-    // Lưu vào DB
     await newStaff.save();
     res.status(201).json({ message: 'Staff added successfully!' });
   } catch (error) {
@@ -40,10 +37,9 @@ const addStaff = async (req, res) => {
   }
 };
 
-// Lấy danh sách tất cả staff
 const getAllStaffs = async (req, res) => {
   try {
-    const staffs = await Staff.find({ role: "staff" }); // Thêm điều kiện role = 'staff'
+    const staffs = await Staff.find({ role: "staff" }); 
     res.status(200).json(staffs);
   } catch (error) {
     res
@@ -52,7 +48,6 @@ const getAllStaffs = async (req, res) => {
   }
 };
 
-// Xóa staff
 const deleteStaff = async (req, res) => {
   try {
     const { id } = req.params;
@@ -70,7 +65,6 @@ const deleteStaff = async (req, res) => {
   }
 };
 
-// Sửa thông tin staff
 const updateStaff = async (req, res) => {
   try {
     const updatedStaff = await Staff.findByIdAndUpdate(req.params.id, req.body, {

@@ -7,7 +7,6 @@ const getReport = async (req, res) => {
     try {
         const { startDate, endDate } = req.query;
     
-        // Đảm bảo có ngày bắt đầu và kết thúc
         if (!startDate || !endDate) {
           return res.status(400).json({ message: "Start date and end date are required." });
         }
@@ -15,7 +14,6 @@ const getReport = async (req, res) => {
         const start = new Date(startDate);
         const end = new Date(endDate);
     
-        // Tìm các đơn hàng `shiped` trong khoảng thời gian và tính tổng tiền
         const revenueData = await Order.aggregate([
           {
             $match: {
@@ -27,15 +25,15 @@ const getReport = async (req, res) => {
             $group: {
               _id: {
                 $dateToString: { format: "%Y-%m-%d", date: "$updatedAt" },
-              }, // Nhóm theo ngày
-              totalRevenue: { $sum: "$grandTotal" }, // Tổng doanh thu của ngày
+              }, 
+              totalRevenue: { $sum: "$grandTotal" }, 
             },
           },
           {
-            $match: { _id: { $ne: null } }, // Loại bỏ nhóm có `_id: null`
+            $match: { _id: { $ne: null } }, 
           },
           {
-            $sort: { _id: 1 }, // Sắp xếp tăng dần theo ngày
+            $sort: { _id: 1 }, 
           },
         ]);
     

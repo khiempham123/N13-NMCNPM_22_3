@@ -23,7 +23,7 @@ const favSchema = new mongoose.Schema(
       ref: "User",
       required: true,
     },
-    items: [favItemSchema], // Mảng chứa các sách yêu thích
+    items: [favItemSchema], 
   },
   { timestamps: true }
 );

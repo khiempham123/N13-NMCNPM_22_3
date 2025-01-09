@@ -5,36 +5,31 @@ const Staff = require("../../models/user.models");
 const login = async (req, res) => {
   const { username, password } = req.body;
   try {
-    // Kiểm tra xem username có tồn tại không
     const staff = await Staff.findOne({ username });
     if (!staff) {
       return res.status(400).json({ message: "Username không tồn tại" });
     }
 
-    // Kiểm tra mật khẩu
     const isMatch = await bcrypt.compare(password, staff.password);
     if (!isMatch) {
       return res.status(400).json({ message: "Mật khẩu không chính xác" });
     }
 
-    // Tạo Access Token
     const accessToken = jwt.sign(
       { id: staff._id, username: staff.username, role: staff.role },
-      process.env.JWT_SECRET, // secret key từ environment variables
-      { expiresIn: "1h" } // Thời gian hết hạn của Access Token (15 phút)
+      process.env.JWT_SECRET,
+      { expiresIn: "1h" }
     );
 
     // Tạo Refresh Token
     const refreshToken = jwt.sign(
       { id: staff._id },
-      process.env.JWT_REFRESH_SECRET, // secret key cho Refresh Token
-      { expiresIn: "7d" } // Thời gian hết hạn của Refresh Token (7 ngày)
+      process.env.JWT_REFRESH_SECRET,
+      { expiresIn: "7d" }
     );
-    // Lưu Refresh Token vào database
     staff.refreshToken = refreshToken;
     await staff.save();
 
-    // Trả về Access Token và Refresh Token cho client
     res.json({
       accessToken,
       refreshToken,
@@ -47,12 +42,10 @@ const login = async (req, res) => {
   }
 };
 
-// Hàm thay đổi mật khẩu
 const changePassword = async (req, res) => {
   const { oldPassword, newPassword, confirmPassword } = req.body;
 
   try {
-    // Lấy user từ token
     const token = req.headers.authorization?.split(" ")[1];
     if (!token) {
       return res.status(403).json({ message: "Unauthorized" });
@@ -68,18 +61,15 @@ const changePassword = async (req, res) => {
       return res.status(404).json({ message: "User not found" });
     }
 
-    // Kiểm tra mật khẩu cũ
     const isMatch = await bcrypt.compare(oldPassword, staff.password);
     if (!isMatch) {
       return res.status(400).json({ message: "Old password is incorrect" });
     }
 
-    // Kiểm tra mật khẩu mới và mật khẩu xác nhận
     if (newPassword !== confirmPassword) {
       return res.status(400).json({ message: "Passwords do not match" });
     }
 
-    // Mã hóa mật khẩu mới và cập nhật
     const hashedPassword = await bcrypt.hash(newPassword, 10);
     staff.password = hashedPassword;
     await staff.save();
@@ -93,7 +83,7 @@ const changePassword = async (req, res) => {
 
 const getProfile = async (req, res) => {
   try {
-    const userId = req.user.id; // Lấy userId từ token
+    const userId = req.user.id;
     const staff = await Staff.findById(userId);
 
     if (!staff) {
@@ -108,14 +98,13 @@ const getProfile = async (req, res) => {
 };
 const updateProfile = async (req, res) => {
   try {
-    const userId = req.user.id; // Lấy ID người dùng từ token (middleware authenticate)
+    const userId = req.user.id;
     const { name, birthDay, phone, email, address, from } = req.body;
 
-    // Tìm và cập nhật thông tin nhân viên
     const updatedStaff = await Staff.findByIdAndUpdate(
       userId,
       { name, birthDay, phone, email, address },
-      { new: true, runValidators: true } // Trả về bản ghi mới nhất và validate dữ liệu
+      { new: true, runValidators: true }
     );
 
     if (!updatedStaff) {
@@ -131,13 +120,11 @@ const updateProfile = async (req, res) => {
 
 const logout = async (req, res) => {
   try {
-    // Nếu bạn lưu refreshToken trong DB, hãy xóa nó
-    const token = req.body.refreshToken; // Lấy refreshToken từ request
+    const token = req.body.refreshToken;
     if (!token) {
       return res.status(400).json({ message: "No token provided" });
     }
 
-    // Tìm và xóa refreshToken trong database
     const result = await Staff.updateOne(
       { refreshToken: token },
       { refreshToken: null }
@@ -154,37 +141,32 @@ const logout = async (req, res) => {
 };
 const updateAvatar = async (req, res) => {
   try {
-    const { avatar } = req.body; // URL của avatar từ client
-    const staffId = req.user.id; // Lấy ID nhân viên từ token
+    const { avatar } = req.body;
+    const staffId = req.user.id;
 
-    // Kiểm tra nếu avatar không được gửi
     if (!avatar) {
-      return res.status(400).json({ error: 'Avatar URL is required.' });
+      return res.status(400).json({ error: "Avatar URL is required." });
     }
 
-    // Cập nhật avatar trong cơ sở dữ liệu
     const updatedStaff = await Staff.findByIdAndUpdate(
       staffId,
-      { avatar }, // Cập nhật trường avatar
-      { new: true } // Trả về dữ liệu đã cập nhật
+      { avatar },
+      { new: true }
     );
 
-    // Nếu không tìm thấy nhân viên
     if (!updatedStaff) {
-      return res.status(404).json({ error: 'Staff not found.' });
+      return res.status(404).json({ error: "Staff not found." });
     }
 
-    // Trả về kết quả thành công
     res.status(200).json({
-      message: 'Avatar updated successfully.',
+      message: "Avatar updated successfully.",
       updatedStaff,
     });
   } catch (error) {
-    console.error('Error updating avatar:', error);
-    res.status(500).json({ error: 'Internal server error.' });
+    console.error("Error updating avatar:", error);
+    res.status(500).json({ error: "Internal server error." });
   }
-
-}
+};
 module.exports = {
   login,
   changePassword,

@@ -1,19 +1,16 @@
 const Book = require("../../models/books.js");
 const mongoose = require("mongoose");
 
-// Controller to get book details by ID
 const getBookDetailById = async (req, res) => {
   try {
     const { id } = req.params;
 
-    // Check if ID is valid
     if (!mongoose.Types.ObjectId.isValid(id)) {
       return res.status(400).json({ message: "Invalid ID format" });
     }
 
     const book = await Book.findById(id);
 
-    // Check if the book exists
     if (!book || book.deleted) {
       return res.status(404).json({ message: "Book not found" });
     }
@@ -25,38 +22,30 @@ const getBookDetailById = async (req, res) => {
   }
 };
 
-// end controller trả API thông tin sản phẩm /detail/:id
-
-// Start controller trả thông tin các sản phẩm có cùng category với sản phẩm detail /related/:id
-
 const getRelatedProducts = async (req, res) => {
   try {
     const { id } = req.params;
 
-    // Check if ID is valid
     if (!mongoose.Types.ObjectId.isValid(id)) {
       return res.status(400).json({ message: "Invalid ID format" });
     }
 
-    // Find the product by ID
     const book = await Book.findById(id);
 
-    // Check if the product exists
     if (!book || book.deleted) {
       return res.status(404).json({ message: "Book not found" });
     }
 
-    // Find 6 random related products in the same category
     const relatedProducts = await Book.aggregate([
       {
         $match: {
-          author:book.author,
-          category: book.category, // Match category
-          _id: { $ne: book._id }, // Exclude the current product
-          deleted: false, // Ensure the product is not deleted
+          author: book.author,
+          category: book.category,
+          _id: { $ne: book._id },
+          deleted: false,
         },
       },
-      { $sample: { size: 4 } }, // Get 4 random products
+      { $sample: { size: 4 } },
     ]);
 
     res.status(200).json(relatedProducts);
@@ -65,8 +54,6 @@ const getRelatedProducts = async (req, res) => {
     res.status(500).json({ success: false, message: "Server error" });
   }
 };
-
-// End controller trả thông tin các sản phẩm có cùng category với sản phẩm detail /related/:id
 
 module.exports = {
   getBookDetailById,

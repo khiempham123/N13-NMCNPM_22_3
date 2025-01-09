@@ -1,5 +1,4 @@
 const mongoose = require("mongoose");
-// id người dùng dựa vào middleware token
 const infoUserSchema = new mongoose.Schema(
   {
     fullName: { type: String, required: true },
@@ -9,7 +8,7 @@ const infoUserSchema = new mongoose.Schema(
       type: String,
       required: true,
       default:
-        "https://res.cloudinary.com/your-cloud-name/image/upload/v1234567890/default-avatar.jpg", // URL của ảnh mặc định
+        "https://res.cloudinary.com/your-cloud-name/image/upload/v1234567890/default-avatar.jpg", 
     },
     address: { type: String, required: true },
     phone: { type: String, required: true },

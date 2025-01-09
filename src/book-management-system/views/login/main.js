@@ -1,6 +1,5 @@
 const inputs = document.querySelectorAll(".input");
 
-// Xử lý hiệu ứng khi input được focus hoặc mất focus
 function addcl() {
   let parent = this.parentNode.parentNode;
   parent.classList.add("focus");
@@ -12,25 +11,22 @@ function remcl() {
     parent.classList.remove("focus");
   }
 }
-// Hàm hiển thị modal thành công
 function showSuccessModal() {
   const successModal = document.getElementById("successModal");
-  successModal.style.display = "block"; // Hiển thị modal
+  successModal.style.display = "block";
 }
 function validateUsername(inputElement, errorElement) {
-  // Biểu thức regex kiểm tra tên đăng nhập (chỉ cho phép chữ cái không dấu, số)
   const usernameRegex = /^[a-zA-Z0-9]+$/;
 
   if (!usernameRegex.test(inputElement.value)) {
-    errorElement.style.display = "block"; // Hiển thị lỗi
+    errorElement.style.display = "block";
     errorElement.textContent =
-      "Username must contain only letters and numbers."; // Thông báo lỗi
+      "Username must contain only letters and numbers.";
   } else {
-    errorElement.style.display = "none"; // Ẩn lỗi nếu hợp lệ
+    errorElement.style.display = "none";
   }
 }
-// Áp dụng kiểm tra với trường tên đăng nhập
-const usernameInput = document.getElementById("username"); // Trường nhập tên đăng nhập
+const usernameInput = document.getElementById("username");
 const usernameError = document.createElement("div");
 usernameError.className = "error-message";
 usernameError.style.display = "none";
@@ -40,12 +36,11 @@ usernameInput.addEventListener("input", () => {
   validateUsername(usernameInput, usernameError);
 });
 
-// Đóng modal khi người dùng nhấn vào nút "Đóng"
 const closeModalButton = document.getElementById("closeModal");
 if (closeModalButton) {
   closeModalButton.addEventListener("click", () => {
     const successModal = document.getElementById("successModal");
-    successModal.style.display = "none"; // Ẩn modal
+    successModal.style.display = "none";
     window.location.href = "login.html";
   });
 }
@@ -57,93 +52,83 @@ inputs.forEach((input) => {
 document.addEventListener("DOMContentLoaded", () => {
   const wrapper = document.querySelector(".wrapper");
   successModal.style.display = "none";
-  // Kiểm tra xem lớp hiện tại có phải là lớp hiển thị hay không
   if (
     !wrapper.classList.contains("active") &&
     !wrapper.classList.contains("forgot-active") &&
     !wrapper.classList.contains("reset-active")
   ) {
-    wrapper.classList.add("active"); // Hiển thị form Đăng nhập mặc định
+    wrapper.classList.add("active");
   }
 });
 
-// Chuyển đổi giữa các form Đăng nhập, Đăng ký, Quên mật khẩu, Đặt lại mật khẩu
 const signUpBtnLink = document.querySelector(".signUp-link");
 const signInBtnLink = document.querySelector(".signIn-link");
-const forgotPasswordLink = document.querySelector(".remember-forgot a"); // Link "Forgot Password"
+const forgotPasswordLink = document.querySelector(".remember-forgot a");
 const wrapper = document.querySelector(".wrapper");
 
-// Khi nhấn vào "Đăng ký"
 if (signUpBtnLink) {
   signUpBtnLink.addEventListener("click", (e) => {
     e.preventDefault();
-    wrapper.classList.add("sign-up-active"); // Thêm lớp để hiển thị form Đăng ký
-    wrapper.classList.remove("active", "forgot-active", "reset-active"); // Ẩn các form khác
+    wrapper.classList.add("sign-up-active");
+    wrapper.classList.remove("active", "forgot-active", "reset-active");
     wrapper.style.height = "650px";
   });
 }
-// Khi nhấn vào "Đăng nhập"
 if (signInBtnLink) {
   signInBtnLink.addEventListener("click", (e) => {
     e.preventDefault();
-    wrapper.classList.add("active"); // Hiển thị form Đăng nhập
-    wrapper.classList.remove("sign-up-active", "forgot-active", "reset-active"); // Ẩn các form khác
+    wrapper.classList.add("active");
+    wrapper.classList.remove("sign-up-active", "forgot-active", "reset-active");
     wrapper.style.height = "460x";
   });
 }
 
-// Khi nhấn vào "Quên mật khẩu"
 if (forgotPasswordLink) {
   forgotPasswordLink.addEventListener("click", (e) => {
     e.preventDefault();
-    wrapper.classList.add("forgot-active"); // Hiển thị form Quên mật khẩu
-    wrapper.classList.remove("active", "reset-active"); // Ẩn các form khác
+    wrapper.classList.add("forgot-active");
+    wrapper.classList.remove("active", "reset-active");
     wrapper.style.height = "400px";
   });
 }
 
-// Xử lý quay lại đăng nhập từ Quên mật khẩu
 const forgotPasswordSignInLink = document.querySelector(".backToSignIn-link");
 
 if (forgotPasswordSignInLink) {
   forgotPasswordSignInLink.addEventListener("click", (e) => {
     console.log("click");
     e.preventDefault();
-    wrapper.classList.add("active"); // Hiển thị form Đăng nhập
-    wrapper.classList.remove("sign-up-active", "forgot-active", "reset-active"); // Ẩn các form khác
+    wrapper.classList.add("active");
+    wrapper.classList.remove("sign-up-active", "forgot-active", "reset-active");
     wrapper.style.height = "460px";
   });
 }
 
-// Xử lý quay lại đăng nhập từ Reset mật khẩu
 const resetPasswordSignInLink = document.querySelector(
   ".reset-password .signIn-link"
 );
 if (resetPasswordSignInLink) {
   resetPasswordSignInLink.addEventListener("click", (e) => {
-    e.preventDefault(); // Ngăn hành động mặc định của thẻ <a>
-    wrapper.classList.add("active"); // Hiển thị form Đăng nhập
-    wrapper.classList.remove("reset-active"); // Ẩn form Reset mật khẩu
+    e.preventDefault();
+    wrapper.classList.add("active");
+    wrapper.classList.remove("reset-active");
     wrapper.style.height = "460px";
-    // Xóa tham số email trong URL
-    const newUrl = window.location.pathname; // Lấy URL gốc (không có query parameters)
+    const newUrl = window.location.pathname;
     window.history.replaceState(null, "", newUrl);
   });
 }
 function validatePhone(inputElement, errorElement) {
-  // Biểu thức regex kiểm tra số điện thoại (phải bắt đầu bằng 0 và chỉ chứa 10 số)
   const phoneRegex = /^0\d{9}$/;
 
   if (!phoneRegex.test(inputElement.value)) {
-    errorElement.style.display = "block"; // Hiển thị lỗi nếu không hợp lệ
+    errorElement.style.display = "block";
     errorElement.textContent =
       "Số điện thoại phải có 10 chữ số, bắt đầu bằng số 0 và chỉ chứa số.";
   } else {
-    errorElement.style.display = "none"; // Ẩn lỗi nếu hợp lệ
+    errorElement.style.display = "none";
   }
 }
-// Áp dụng kiểm tra với trường số điện thoại
-const phoneInput = document.getElementById("phone"); // Trường nhập số điện thoại
+const phoneInput = document.getElementById("phone");
 const phoneError = document.createElement("div");
 phoneError.className = "error-message";
 phoneError.style.display = "none";
@@ -158,21 +143,20 @@ function validatePasswordConfirmation(
   errorElement
 ) {
   if (confirmPasswordInput.value !== passwordInput.value) {
-    errorElement.style.display = "block"; // Hiển thị lỗi nếu mật khẩu không khớp
+    errorElement.style.display = "block";
     errorElement.textContent = "Mật khẩu xác nhận không khớp.";
   } else {
-    errorElement.style.display = "none"; // Ẩn lỗi nếu mật khẩu khớp
+    errorElement.style.display = "none";
   }
 }
-const passwordInput = document.getElementById("password"); // Trường mật khẩu
-const confirmPasswordInput = document.getElementById("signupconfirmPassword"); // Trường xác nhận mật khẩu
+const passwordInput = document.getElementById("password");
+const confirmPasswordInput = document.getElementById("signupconfirmPassword");
 
 const confirmPasswordError = document.createElement("div");
 confirmPasswordError.className = "error-message";
 confirmPasswordError.style.display = "none";
 confirmPasswordInput.parentNode.appendChild(confirmPasswordError);
 
-// Lắng nghe sự kiện nhập liệu trong trường xác nhận mật khẩu
 confirmPasswordInput.addEventListener("input", () => {
   validatePasswordConfirmation(
     passwordInput,
@@ -180,11 +164,11 @@ confirmPasswordInput.addEventListener("input", () => {
     confirmPasswordError
   );
 });
-// Form đăng ký
+
 const signUpForm = document.querySelector("#signUpForm");
 if (signUpForm) {
   signUpForm.addEventListener("submit", async (e) => {
-    e.preventDefault(); // Ngăn hành động submit mặc định
+    e.preventDefault();
     const username = document.getElementById("username").value;
     const password = document.getElementById("password").value;
     const confirmPassword = document.getElementById(
@@ -194,16 +178,15 @@ if (signUpForm) {
     const phone = document.getElementById("phone").value;
     const usernameError = document.getElementById("usernameError");
 
-    // Kiểm tra mật khẩu có khớp không
     if (password !== confirmPassword) {
-      confirmPasswordError.style.display = "block"; // Hiển thị thông báo lỗi nếu mật khẩu không khớp
+      confirmPasswordError.style.display = "block";
       return;
     } else {
-      confirmPasswordError.style.display = "none"; // Ẩn thông báo lỗi nếu mật khẩu khớp
+      confirmPasswordError.style.display = "none";
     }
 
     const data = { username, password, email, phone };
-    
+
     const response = await fetch("http://localhost:3000/api/client/signup", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
@@ -211,11 +194,10 @@ if (signUpForm) {
     });
     const responseData = await response.json();
     if (response.ok) {
-      usernameError.style.display = "none"; // Ẩn thông báo lỗi nếu đăng ký thành công
-      // Hiển thị modal thông báo thành công
+      usernameError.style.display = "none";
       showSuccessModal();
       setTimeout(function () {
-        window.location.href = "login.html"; // Thay đổi đường dẫn nếu cần
+        window.location.href = "login.html";
       }, 3000);
     } else {
       alert(responseData.message || "Registration failed, please try again. ");
@@ -224,15 +206,14 @@ if (signUpForm) {
   });
 }
 
-// Tạo thông báo trên form
 const signInMessage = document.createElement("div");
 signInMessage.className = "form-message";
-signInMessage.style.display = "none"; // Ẩn thông báo mặc định
+signInMessage.style.display = "none";
 const signInForm = document.getElementById("signInForm");
-signInForm.insertBefore(signInMessage, signInForm.firstChild); // Thêm vào đầu form
+signInForm.insertBefore(signInMessage, signInForm.firstChild);
 if (signInForm) {
   signInForm.addEventListener("submit", async (e) => {
-    e.preventDefault(); // Ngăn hành động submit mặc định
+    e.preventDefault();
     const username = document.getElementById("loginUsername").value;
     const password = document.getElementById("loginPassword").value;
     const data = { username, password };
@@ -246,40 +227,38 @@ if (signInForm) {
         const { accessToken, refreshToken, username, role } =
           await response.json();
 
-        // Lưu accessToken vào localStorage
         localStorage.setItem("token", accessToken);
-        localStorage.setItem("refreshToken", refreshToken); // Lưu refreshToken nếu cần
+        localStorage.setItem("refreshToken", refreshToken);
         localStorage.setItem("username", username);
         localStorage.setItem("role", role);
-        signInMessage.style.display = "block"; // Hiển thị thông báo
-        signInMessage.className = "form-message success"; // Thêm lớp thành công
+        signInMessage.style.display = "block";
+        signInMessage.className = "form-message success";
         signInMessage.textContent =
           "Login successful! Redirecting to the home page...";
 
-        // Phân hướng dựa trên vai trò
         setTimeout(() => {
           if (role === "staff") {
-            window.location.href = "../staff/staff.html"; // Chuyển hướng đến trang staff
+            window.location.href = "../staff/staff.html";
           } else if (role === "admin") {
-            window.location.href = "../admin/index.html"; // Chuyển hướng đến trang admin
+            window.location.href = "../admin/index.html";
           } else if (role === "customer") {
-            window.location.href = "../client/pages/home/home.html"; // Chuyển hướng đến trang admin
+            window.location.href = "../client/pages/home/home.html";
           } else {
             alert("Role không hợp lệ!");
-            localStorage.clear(); // Xóa token và thông tin không hợp lệ
+            localStorage.clear();
             window.location.href = "./login/login.html";
           }
         }, 2000);
       } else {
         const error = await response.json();
-        signInMessage.style.display = "block"; // Hiển thị thông báo lỗi
-        signInMessage.className = "form-message error"; // Thêm lớp lỗi
+        signInMessage.style.display = "block";
+        signInMessage.className = "form-message error";
         signInMessage.textContent = "Login failed: " + error.message;
       }
     } catch (err) {
       console.error("Error:", err);
-      signInMessage.style.display = "block"; // Hiển thị lỗi kết nối
-      signInMessage.className = "form-message error"; // Thêm lớp lỗi
+      signInMessage.style.display = "block";
+      signInMessage.className = "form-message error";
       signInMessage.textContent = "Login failed, please try again.";
     }
   });
@@ -296,7 +275,6 @@ function startCountdown(duration, countdownElement, resendOtpText) {
 
     if (--timer < 0) {
       clearInterval(interval);
-      // Hiển thị thông báo "Mã OTP đã hết hạn" và nút "Gửi lại OTP"
       countdownElement.textContent = "OTP code has expired";
       resendOtpText.style.display = "inline";
     }
@@ -307,10 +285,9 @@ const otpBox = document.querySelector(".otp-box");
 
 const otpInput = document.getElementById("otpInput");
 
-// Xử lý gửi yêu cầu quên mật khẩu
 if (forgotPasswordForm) {
   forgotPasswordForm.addEventListener("submit", async (e) => {
-    e.preventDefault(); // Ngăn hành động submit mặc định
+    e.preventDefault();
 
     const email = document.getElementById("forgotPasswordEmail").value.trim();
     const sendOtpButton = forgotPasswordForm.querySelector(
@@ -321,9 +298,8 @@ if (forgotPasswordForm) {
     const resendOtpText = document.getElementById("resendOtpText");
 
     try {
-      sendOtpButton.style.display = "none"; // Ẩn nút "Gửi yêu cầu"
+      sendOtpButton.style.display = "none";
 
-      // Gửi yêu cầu tới API
       const response = await fetch(
         "http://localhost:3000/api/client/forgot-password",
         {
@@ -337,14 +313,13 @@ if (forgotPasswordForm) {
 
       if (response.ok) {
         timerBox.style.display = "block";
-        resendOtpText.style.display = "none"; // Ẩn "Gửi lại OTP"
+        resendOtpText.style.display = "none";
         startCountdown(180, countdownElement, resendOtpText);
 
-        otpBox.style.display = "block"; // Hiển thị ô nhập OTP
+        otpBox.style.display = "block";
         otpSubmitBtn.style.display = "block";
         otpInput.required = true;
 
-        // Cập nhật URL bằng cách thêm email vào query parameters
         const newUrl = `${window.location.pathname}?email=${encodeURIComponent(
           email
         )}`;
@@ -352,27 +327,25 @@ if (forgotPasswordForm) {
       } else {
         const error = await response.json();
         alert("Gửi yêu cầu thất bại: " + error.message);
-        sendOtpButton.style.display = "block"; // Hiện lại nút nếu lỗi
+        sendOtpButton.style.display = "block";
       }
     } catch (err) {
       console.error("Error:", err);
       alert("Có lỗi xảy ra. Vui lòng thử lại sau.");
-      sendOtpButton.style.display = "block"; // Hiện lại nút nếu lỗi
+      sendOtpButton.style.display = "block";
     }
   });
 }
 function validateEmail(inputElement, errorElement) {
-  // Biểu thức regex kiểm tra email hợp lệ
   const emailRegex = /^[^\s@]+@[^\s@]+\.com+$/;
   if (!emailRegex.test(inputElement.value)) {
-    errorElement.style.display = "block"; // Hiển thị lỗi nếu email không hợp lệ
+    errorElement.style.display = "block";
     errorElement.textContent =
       "Email not valid. Please enter a valid email address.";
   } else {
-    errorElement.style.display = "none"; // Ẩn lỗi nếu email hợp lệ
+    errorElement.style.display = "none";
   }
 }
-// Lấy email từ URL và gán vào input
 const emailInput = document.getElementById("forgotPasswordEmail");
 const urlParams = new URLSearchParams(window.location.search);
 const emailFromUrl = urlParams.get("email");
@@ -388,7 +361,6 @@ emailInput2.addEventListener("input", () => {
 if (emailFromUrl) {
   emailInput.value = emailFromUrl;
 
-  // Hiển thị các thành phần liên quan đến OTP
   const timerBox = document.getElementById("timerBox");
   const resendOtpText = document.getElementById("resendOtpText");
   const otpBox = document.querySelector(".otp-box");
@@ -400,11 +372,11 @@ if (emailFromUrl) {
   otpSubmitBtn.style.display = "block";
 }
 otpSubmitBtn.addEventListener("click", async (e) => {
-  e.preventDefault(); // Ngăn hành động submit mặc định
+  e.preventDefault();
 
-  const otp = otpInput.value.trim(); // Lấy giá trị OTP
-  const email = new URLSearchParams(window.location.search).get("email"); // Lấy email từ URL
-  const otpError = document.getElementById("otpError"); // Lấy thẻ hiển thị lỗi OTP
+  const otp = otpInput.value.trim();
+  const email = new URLSearchParams(window.location.search).get("email");
+  const otpError = document.getElementById("otpError");
 
   try {
     const response = await fetch(
@@ -414,24 +386,22 @@ otpSubmitBtn.addEventListener("click", async (e) => {
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify({ email, otp }), // Gửi email và OTP tới API
+        body: JSON.stringify({ email, otp }),
       }
     );
 
     if (response.ok) {
-      // OTP hợp lệ, chuyển qua trang Reset mật khẩu
       wrapper.classList.add("reset-active");
       wrapper.classList.remove("forgot-active");
-      otpError.style.display = "none"; // Ẩn thông báo lỗi nếu thành công
+      otpError.style.display = "none";
     } else {
-      // OTP không hợp lệ
       otpError.textContent = "OTP code does not match. Please re-enter.";
-      otpError.style.display = "block"; // Hiển thị thông báo lỗi
+      otpError.style.display = "block";
     }
   } catch (err) {
     console.error("Error:", err);
     otpError.textContent = "An error occurred. Please try again later.";
-    otpError.style.display = "block"; // Hiển thị thông báo lỗi khi có lỗi
+    otpError.style.display = "block";
   }
 });
 
@@ -441,7 +411,7 @@ if (resendOtpText) {
   resendOtpText.addEventListener("click", async () => {
     const email = document.getElementById("forgotPasswordEmail").value;
     const countdownElement = document.getElementById("countdown");
-    resendOtpText.style.display = "none"; // Ẩn dòng chữ để tránh spam
+    resendOtpText.style.display = "none";
 
     try {
       const response = await fetch(
@@ -460,7 +430,7 @@ if (resendOtpText) {
       } else {
         const error = await response.json();
         alert("Gửi lại OTP thất bại: " + error.message);
-        resendOtpText.style.display = "inline"; // Hiển thị lại nếu có lỗi
+        resendOtpText.style.display = "inline";
       }
     } catch (err) {
       console.error("Error:", err);
@@ -469,37 +439,33 @@ if (resendOtpText) {
     }
   });
 }
-// Form Reset Password
 const resetPasswordForm = document.querySelector("#resetPasswordForm");
 
 if (resetPasswordForm) {
-  // Tạo thẻ thông báo trên form
   const resetPasswordMessage = document.createElement("div");
   resetPasswordMessage.className = "form-message";
-  resetPasswordMessage.style.display = "none"; // Ẩn thông báo mặc định
+  resetPasswordMessage.style.display = "none";
   resetPasswordForm.insertBefore(
     resetPasswordMessage,
     resetPasswordForm.firstChild
-  ); // Chèn thông báo vào đầu form
+  );
 
   resetPasswordForm.addEventListener("submit", async (e) => {
-    e.preventDefault(); // Ngăn hành động submit mặc định
+    e.preventDefault();
 
     const newPassword = document.getElementById("newPassword").value.trim();
     const confirmPassword = document
       .getElementById("confirmPassword")
       .value.trim();
 
-    // Kiểm tra mật khẩu
     if (newPassword !== confirmPassword) {
       resetPasswordMessage.style.display = "block";
-      resetPasswordMessage.className = "form-message error"; // Thêm lớp lỗi
+      resetPasswordMessage.className = "form-message error";
       resetPasswordMessage.textContent =
         "Password confirmation does not match the new password.";
       return;
     }
 
-    // Lấy email từ URL (nếu cần sử dụng để gửi cùng request)
     const urlParams = new URLSearchParams(window.location.search);
     const email = urlParams.get("email");
 
@@ -522,25 +488,26 @@ if (resetPasswordForm) {
 
       if (response.ok) {
         resetPasswordMessage.style.display = "block";
-        resetPasswordMessage.className = "form-message success"; // Thêm lớp thành công
+        resetPasswordMessage.className = "form-message success";
         resetPasswordMessage.textContent =
           "Reset password successful! Redirecting to the login page...";
 
         setTimeout(() => {
-          window.location.href = "login.html"; // Chuyển hướng sau 2 giây
+          window.location.href = "login.html";
         }, 2000);
       } else {
         const error = await response.json();
         resetPasswordMessage.style.display = "block";
-        resetPasswordMessage.className = "form-message error"; // Thêm lớp lỗi
+        resetPasswordMessage.className = "form-message error";
         resetPasswordMessage.textContent =
           "Reset password failed: " + error.message;
       }
     } catch (err) {
       console.error("Error:", err);
       resetPasswordMessage.style.display = "block";
-      resetPasswordMessage.className = "form-message error"; // Thêm lớp lỗi
-      resetPasswordMessage.textContent = "Reset password failed. Please try again.";
+      resetPasswordMessage.className = "form-message error";
+      resetPasswordMessage.textContent =
+        "Reset password failed. Please try again.";
     }
   });
 }

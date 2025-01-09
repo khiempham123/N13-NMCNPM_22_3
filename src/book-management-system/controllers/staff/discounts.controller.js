@@ -4,10 +4,9 @@ const mongoose = require('mongoose');
 
 module.exports.sales = async (req, res) => {
   try {
-    const { page = 1, limit = 5 } = req.query; // Lấy tham số page và limit từ query
+    const { page = 1, limit = 5 } = req.query;
     const skip = (page - 1) * limit;
 
-    // Lấy danh sách sách đang được giảm giá với phân trang
     const discountedBooks = await Book.find({ percentDiscount: { $gt: 0 }, deleted: false })
       .skip(skip)
       .limit(Number(limit));
@@ -74,12 +73,10 @@ module.exports.deleteDiscount = async (req, res) => {
   try {
     const bookId = req.params.id;
 
-    // Kiểm tra ID hợp lệ
     if (!mongoose.Types.ObjectId.isValid(bookId)) {
       return res.status(400).json({ message: 'Invalid book ID format' });
     }
 
-    // Cập nhật percentDiscount về 0 trong Book
     const updatedBook = await Book.findByIdAndUpdate(
       bookId,
       { percentDiscount: 0 },
@@ -90,7 +87,6 @@ module.exports.deleteDiscount = async (req, res) => {
       return res.status(404).json({ message: 'Book not found' });
     }
 
-    // Tìm và xóa Discount liên quan đến Book
     const deletedDiscount = await Discount.findOneAndDelete({ bookId });
 
     if (!deletedDiscount) {
@@ -121,25 +117,22 @@ module.exports.getDiscount = async (req, res) => {
 
 }
 module.exports.updateDiscount = async (req, res) => {
-  const bookId = req.params.id; // ID của sách (bookId)
+  const bookId = req.params.id;
   const discountData = req.body;
 
   try {
-    // Tìm Discount liên quan đến bookId
     const existingDiscount = await Discount.findOne({ bookId });
 
     if (!existingDiscount) {
       return res.status(404).json({ message: 'Discount not found for this book' });
     }
 
-    // Cập nhật Discount
     const updatedDiscount = await Discount.findByIdAndUpdate(
       existingDiscount._id,
       discountData,
       { new: true, runValidators: true }
     );
 
-    // Cập nhật Book liên quan
     const updatedBook = await Book.findByIdAndUpdate(
       bookId,
       {
@@ -153,7 +146,6 @@ module.exports.updateDiscount = async (req, res) => {
       return res.status(404).json({ message: 'Book not found' });
     }
 
-    // Trả về phản hồi
     res.status(200).json({
       message: 'Discount and book updated successfully',
       updatedDiscount,
@@ -169,34 +161,31 @@ module.exports.updateDiscount = async (req, res) => {
 module.exports.createDiscount = async (req, res) => {
   try {
     const {
-      bookId, // ID của sách
+      bookId, 
       discountPrice,
       discountPercent,
       soldCount,
       maxQuantity,
       description,
-      startDate, // Lấy startDate từ request body
-      endDate, // Lấy endDate từ request body
+      startDate, 
+      endDate, 
     } = req.body;
 
-    // Tìm sách theo bookId
     const book = await Book.findById(bookId);
     if (!book) {
       return res.status(404).json({ message: 'Book not found' });
     }
 
-    // Cập nhật discountPercent trong model Book
     book.percentDiscount = discountPercent;
     await book.save();
 
-    // Tạo mới bản ghi trong model Discount
     const discount = new Discount({
-      bookId, // Tham chiếu đến sách
+      bookId, 
       discountPrice,
-      originalPrice: book.price, // Giá gốc từ Book
+      originalPrice: book.price, 
       discountPercentage: discountPercent,
-      startDate, // Sử dụng giá trị từ request body
-      endDate, // Sử dụng giá trị từ request body
+      startDate, 
+      endDate, 
       dealActive: true,
       soldCount,
       maxQuantity,

@@ -1,4 +1,3 @@
-// add hovered class to selected list item
 let list = document.querySelectorAll(".navigation li");
 
 function activeLink() {
@@ -10,7 +9,6 @@ function activeLink() {
 
 list.forEach((item) => item.addEventListener("mouseover", activeLink));
 
-// Menu Toggle
 let toggle = document.querySelector(".toggle");
 let navigation = document.querySelector(".navigation");
 let main = document.querySelector(".main");
@@ -20,13 +18,9 @@ toggle.onclick = function () {
   main.classList.toggle("active");
 };
 
-//Add Product, Customer, Staff
 const addProductModal = document.getElementById("addProductModal");
 const addProductBtn = document.getElementById("btn-addproduct");
 const closeBtn = document.getElementsByClassName("close")[0];
-
-
-
 
 window.addEventListener("click", (event) => {
   if (event.target == addProductModal) {

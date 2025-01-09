@@ -1,20 +1,19 @@
 document.addEventListener("DOMContentLoaded", () => {
   const changePasswordBtn = document.getElementById("changePasswordBtn");
   const changePasswordPopup = document.getElementById("changePasswordPopup");
-  const closeChangePasswordBtn = document.getElementById("closeChangePasswordPopup");
+  const closeChangePasswordBtn = document.getElementById(
+    "closeChangePasswordPopup"
+  );
   const openChangePassword = document.getElementById("changePassword");
 
-  // Hiển thị popup
   openChangePassword.addEventListener("click", () => {
     changePasswordPopup.style.display = "flex";
   });
 
-  // Ẩn popup
   closeChangePasswordBtn.addEventListener("click", () => {
     changePasswordPopup.style.display = "none";
   });
 
-  // Gửi yêu cầu thay đổi mật khẩu
   changePasswordBtn.addEventListener("click", async () => {
     const oldPassword = document.getElementById("oldPassword").value;
     const newPassword = document.getElementById("newPassword").value;
@@ -33,14 +32,17 @@ document.addEventListener("DOMContentLoaded", () => {
         return;
       }
 
-      const response = await fetch("http://localhost:3000/staff/change-password", {
-        method: "PUT",
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: `Bearer ${token}`,
-        },
-        body: JSON.stringify({ oldPassword, newPassword, confirmPassword }),
-      });
+      const response = await fetch(
+        "http://localhost:3000/staff/change-password",
+        {
+          method: "PUT",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${token}`,
+          },
+          body: JSON.stringify({ oldPassword, newPassword, confirmPassword }),
+        }
+      );
 
       const result = await response.json();
 

@@ -3,7 +3,6 @@ const Discount = require("../../models/discounts.js");
 const Cart = require("../../models/cart.models.js");
 const Favorite = require("../../models/fav.models.js");
 
-// Hàm lấy danh sách các danh mục sách
 const getCategories = async (req, res) => {
   try {
     const categories = await Book.aggregate([
@@ -27,7 +26,6 @@ const getCategories = async (req, res) => {
   }
 };
 
-// Hàm lấy sách theo danh mục
 const getBooksByCategory = async (req, res) => {
   const category = req.params.category;
   try {
@@ -41,7 +39,6 @@ const getBooksByCategory = async (req, res) => {
   }
 };
 
-// Hàm lọc sách theo từ khóa và danh mục
 const getFilteredBooks = async (req, res) => {
   const { q, category } = req.query;
   try {
@@ -65,7 +62,6 @@ const getFilteredBooks = async (req, res) => {
   }
 };
 
-// Hàm lấy danh mục bán chạy nhất
 const getTopCategories = async (req, res) => {
   try {
     const categories = await Book.aggregate([
@@ -81,7 +77,6 @@ const getTopCategories = async (req, res) => {
   }
 };
 
-// Hàm lấy các khuyến mãi trong tuần
 const getDealsOfTheWeek = async (req, res) => {
   try {
     const currentDate = new Date();
@@ -139,13 +134,11 @@ const getDealsOfTheWeek = async (req, res) => {
   }
 };
 
-// phần sách
 const getBestSeller = async (req, res) => {
   try {
     const books = await Book.find({ deleted: false, bestSeller: true })
       .limit(8)
       .select("title author price percentDiscount rating thumbnail");
-    // Trả về danh sách sách với thông tin cần thiết
     res.status(200).json(books);
   } catch (err) {
     res.status(500).json({
@@ -156,13 +149,11 @@ const getBestSeller = async (req, res) => {
   }
 };
 
-// them san pham best seller vào giỏ hàng
 
 const addBookToCart = async (req, res) => {
   const { bookId, title, thumbnail, price, quantity } = req.body;
-  const userId = req.user?.id; // Giả sử bạn đã có user authentication
+  const userId = req.user?.id; 
   try {
-    // Lấy thông tin sách từ database để kiểm tra stock
     const book = await Book.findById(bookId);
 
     if (!book) {
@@ -175,22 +166,18 @@ const addBookToCart = async (req, res) => {
         availableStock: book.stock,
       });
     }
-    // Kiểm tra xem giỏ hàng đã có cho người dùng chưa
     let cart = await Cart.findOne({ userId });
 
     if (cart) {
-      // Kiểm tra xem sản phẩm đã có trong giỏ hàng chưa
       const existingItem = cart.items.find(
         (item) => item.bookId.toString() === bookId
       );
 
       if (existingItem) {
-        // Nếu có, cập nhật số lượng sản phẩm trong giỏ hàng
         existingItem.quantity += quantity;
         existingItem.totalPrice =
           existingItem.quantity * existingItem.price.toFixed(2);
       } else {
-        // Nếu chưa có, thêm sản phẩm mới vào giỏ hàng
         const newItem = {
           bookId,
           title,
@@ -202,7 +189,6 @@ const addBookToCart = async (req, res) => {
         cart.items.push(newItem);
       }
 
-      // Cập nhật lại tổng số tiền trong giỏ hàng
       cart.totalAmount = cart.items
         .reduce((total, item) => total + item.totalPrice, 0)
         .toFixed(2);
@@ -210,7 +196,6 @@ const addBookToCart = async (req, res) => {
       await cart.save();
       return res.status(200).json({ message: "Giỏ hàng đã được cập nhật" });
     } else {
-      // Nếu giỏ hàng chưa có, tạo giỏ hàng mới
       const newItem = {
         bookId,
         title,
@@ -223,7 +208,7 @@ const addBookToCart = async (req, res) => {
       const newCart = new Cart({
         userId,
         items: [newItem],
-        totalAmount: newItem.totalPrice, // Tổng tiền ban đầu là giá trị của sản phẩm vừa thêm
+        totalAmount: newItem.totalPrice, 
       });
 
       await newCart.save();
@@ -241,25 +226,21 @@ const addBookToCart = async (req, res) => {
 
 const addBookToFav = async (req, res) => {
   const { bookId, title, thumbnail, price, rating } = req.body;
-  const userId = req.user.id; // Giả sử bạn đã có user authentication
+  const userId = req.user.id; 
 
   try {
-    // Kiểm tra xem danh sách yêu thích đã có cho người dùng chưa
     let fav = await Favorite.findOne({ userId });
 
     if (fav) {
-      // Kiểm tra xem sản phẩm đã có trong danh sách yêu thích chưa
       const existingItem = fav.items.find(
         (item) => item.bookId.toString() === bookId
       );
 
       if (existingItem) {
-        // Nếu có, thông báo sản phẩm đã có trong danh sách yêu thích
         return res
           .status(400)
           .json({ message: "Sách đã có trong danh sách yêu thích" });
       } else {
-        // Nếu chưa có, thêm sản phẩm mới vào danh sách yêu thích
         const newItem = {
           bookId,
           title,
@@ -270,13 +251,11 @@ const addBookToFav = async (req, res) => {
         fav.items.push(newItem);
       }
 
-      // Lưu lại danh sách yêu thích sau khi thêm sản phẩm mới
       await fav.save();
       return res
         .status(200)
         .json({ message: "Sách đã được thêm vào danh sách yêu thích" });
     } else {
-      // Nếu danh sách yêu thích chưa có, tạo danh sách yêu thích mới
       const newItem = {
         bookId,
         title,
@@ -308,41 +287,38 @@ const Vendor = require("../../models/vendor.models.js");
 const getAllVendors = async (req, res) => {
   try {
     const vendors = await Vendor.find()
-      .populate("books") // Populate thông tin sách
+      .populate("books")
       .exec();
 
-    // Thêm thuộc tính số sách cho mỗi vendor
     const vendorsWithBookCount = vendors.map((vendor) => ({
-      ...vendor.toObject(), // Chuyển đổi vendor thành object để có thể thêm thuộc tính mới
-      bookCount: vendor.books.length, // Đếm số sách và thêm vào thuộc tính bookCount
+      ...vendor.toObject(),
+      bookCount: vendor.books.length,
     }));
 
-    res.status(200).json(vendorsWithBookCount); // Trả dữ liệu dưới dạng JSON
+    res.status(200).json(vendorsWithBookCount);
   } catch (error) {
     res.status(500).json({ message: "Error fetching vendors", error });
   }
 };
 
 const getVendorByName = async (req, res) => {
-  const { vendorName } = req.params; // Lấy vendorName từ tham số URL
+  const { vendorName } = req.params; 
 
   try {
-    // Tìm kiếm vendor theo tên (không phân biệt chữ hoa/thường)
     const vendor = await Vendor.findOne({
       vendor: new RegExp("^" + vendorName + "$", "i"),
-    }).populate("books"); // Populates thông tin sách của vendor
+    }).populate("books"); 
 
     if (!vendor) {
       return res.status(404).json({ message: "Vendor not found" });
     }
 
-    res.status(200).json(vendor); // Trả dữ liệu vendor
+    res.status(200).json(vendor); 
   } catch (error) {
     res.status(500).json({ message: "Error fetching vendor", error });
   }
 };
 
-// Hàm lấy danh sách tác giả
 const getAuthors = async (req, res) => {
   try {
     const authors = await Book.distinct("author", { deleted: false });

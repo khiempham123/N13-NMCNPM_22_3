@@ -1,19 +1,16 @@
 const API_BASE_URL = "http://localhost:3000";
 
 document.addEventListener("DOMContentLoaded", function () {
-  
-  // Essential Variables
-  const orderList = document.getElementById("order-list"); // Container for order rows
-  const orderSummaryModal = document.getElementById("orderSummaryModal"); // Modal for order summary
-  const closeModalBtn = document.querySelector(".modal .close"); // Close button for modal
-  const searchInput = document.getElementById("search-input"); // Search input field
-  const allOrdersTab = document.getElementById("all-orders-tab"); // "All Orders" tab
-  const pendingOrdersTab = document.getElementById("pending-orders-tab"); // "Pending" tab
-  const processingOrdersTab = document.getElementById("processing-orders-tab"); // "Processing" tab
-  const completedOrdersTab = document.getElementById("completed-orders-tab"); // "Completed" tab
-  const cancelledOrdersTab = document.getElementById("cancelled-orders-tab"); // "Cancelled" tab
+  const orderList = document.getElementById("order-list");
+  const orderSummaryModal = document.getElementById("orderSummaryModal");
+  const closeModalBtn = document.querySelector(".modal .close");
+  const searchInput = document.getElementById("search-input");
+  const allOrdersTab = document.getElementById("all-orders-tab");
+  const pendingOrdersTab = document.getElementById("pending-orders-tab");
+  const processingOrdersTab = document.getElementById("processing-orders-tab");
+  const completedOrdersTab = document.getElementById("completed-orders-tab");
+  const cancelledOrdersTab = document.getElementById("cancelled-orders-tab");
 
-  // Span Elements for Counts
   const allOrdersCount = document.getElementById("all-orders-count");
   const pendingOrdersCount = document.getElementById("pending-orders-count");
   const processingOrdersCount = document.getElementById(
@@ -26,17 +23,15 @@ document.addEventListener("DOMContentLoaded", function () {
     "cancelled-orders-count"
   );
 
-  let ordersData = []; // Temporary storage for fetched orders
+  let ordersData = [];
 
-  // Function to Fetch Order Counts from Server
   const fetchOrderCounts = async () => {
     try {
-      const url = `${API_BASE_URL}/order/order-counts`; // Endpoint for counts
-      const token = localStorage.getItem("token"); // Retrieve token from localStorage
+      const url = `${API_BASE_URL}/order/order-counts`;
+      const token = localStorage.getItem("token");
 
       if (!token) {
         console.error("No authorization token found.");
-        // Optionally, redirect to login page or show a message
         return;
       }
 
@@ -53,7 +48,6 @@ document.addEventListener("DOMContentLoaded", function () {
       }
 
       const data = await response.json();
-      // Update Count Elements
       allOrdersCount.textContent = data.total || 0;
       pendingOrdersCount.textContent = data.pending || 0;
       processingOrdersCount.textContent = data.processing || 0;
@@ -61,25 +55,21 @@ document.addEventListener("DOMContentLoaded", function () {
       cancelledOrdersCount.textContent = data.cancelled || 0;
     } catch (error) {
       console.error("Error fetching order counts:", error);
-      // Optionally, display an error message to the user here
     }
   };
 
-  // Function to Fetch Orders from Server
   const fetchOrders = async (status = "all") => {
     try {
-      let url = `${API_BASE_URL}/order`; // Base URL for fetching orders
+      let url = `${API_BASE_URL}/order`;
 
-      // Append status query parameter if provided and not 'all'
       if (status && status.toLowerCase() !== "all") {
         url += `?status=${status.toLowerCase()}`;
       }
 
-      const token = localStorage.getItem("token"); // Retrieve token from localStorage
+      const token = localStorage.getItem("token");
 
       if (!token) {
         console.error("No authorization token found.");
-        // Optionally, redirect to login page or show a message
         return;
       }
 
@@ -97,12 +87,11 @@ document.addEventListener("DOMContentLoaded", function () {
 
       const data = await response.json();
 
-      ordersData = data.orders; // Store fetched orders (assuming the response has an 'orders' field)
-  
-      displayOrders(ordersData); // Display orders in the table
+      ordersData = data.orders;
+
+      displayOrders(ordersData);
     } catch (error) {
       console.error("Error fetching orders:", error);
-      // Optionally, display an error message to the user here
       orderList.innerHTML = `<tr><td colspan="7" style="text-align: center; color: red;">Failed to load orders. Please try again later.</td></tr>`;
     }
   };
@@ -122,9 +111,8 @@ document.addEventListener("DOMContentLoaded", function () {
     }
   }
 
-  // Function to Display Orders in the Table
   const displayOrders = (orders) => {
-    orderList.innerHTML = ""; // Clear existing orders
+    orderList.innerHTML = "";
 
     if (orders.length === 0) {
       orderList.innerHTML = `<tr><td colspan="7" style="text-align: center;">No orders found.</td></tr>`;
@@ -158,7 +146,6 @@ document.addEventListener("DOMContentLoaded", function () {
       orderList.appendChild(orderRow);
     });
 
-    // Attach Event Listeners to Invoice Icons
     document.querySelectorAll(".invoice-icon").forEach((icon) => {
       icon.addEventListener("click", (e) => {
         e.preventDefault();
@@ -167,7 +154,6 @@ document.addEventListener("DOMContentLoaded", function () {
       });
     });
 
-    // Attach Event Listeners to Order Links
     document.querySelectorAll(".view-order").forEach((link) => {
       link.addEventListener("click", (e) => {
         e.preventDefault();
@@ -176,18 +162,15 @@ document.addEventListener("DOMContentLoaded", function () {
       });
     });
 
-    // Attach Event Listeners to Delete Buttons
     document.querySelectorAll(".delete-order-btn").forEach((button) => {
       button.addEventListener("click", handleDeleteOrder);
     });
   };
 
-  // Function to Show Order Summary in Modal
   const showOrderSummary = (orderId) => {
     const order = ordersData.find((order) => order._id === orderId);
     if (!order) return;
 
-    // Update Modal Content with Order Details
     document.getElementById(
       "product-cost"
     ).textContent = `$${order.totalAmount.toFixed(2)}`;
@@ -199,9 +182,8 @@ document.addEventListener("DOMContentLoaded", function () {
     ).textContent = `$${order.grandTotal.toFixed(2)}`;
 
     const productList = document.getElementById("product-list");
-    productList.innerHTML = ""; // Clear existing products
+    productList.innerHTML = "";
 
-    // Populate Product List in Modal
     order.items.forEach((item) => {
       const productDiv = document.createElement("div");
       productDiv.classList.add("product");
@@ -221,27 +203,22 @@ document.addEventListener("DOMContentLoaded", function () {
       productList.appendChild(productDiv);
     });
 
-    // Display the Modal
     orderSummaryModal.style.display = "block";
   };
 
-  // Close Modal When 'X' is Clicked
   closeModalBtn.addEventListener("click", () => {
     orderSummaryModal.style.display = "none";
   });
 
-  // Close Modal When Clicking Outside the Modal Content
   window.addEventListener("click", (event) => {
     if (event.target == orderSummaryModal) {
       orderSummaryModal.style.display = "none";
     }
   });
 
-  // Search Functionality to Filter Orders
   searchInput.addEventListener("input", () => {
     const searchQuery = searchInput.value.toLowerCase();
     const filteredOrders = ordersData.filter(
-      
       (order) =>
         order._id.toLowerCase().includes(searchQuery) ||
         order.items.some((item) =>
@@ -251,7 +228,6 @@ document.addEventListener("DOMContentLoaded", function () {
     displayOrders(filteredOrders);
   });
 
-  // Handle Tab Clicks to Filter Orders by Status
   allOrdersTab.addEventListener("click", (e) => {
     e.preventDefault();
     setActiveTab(allOrdersTab);
@@ -282,18 +258,14 @@ document.addEventListener("DOMContentLoaded", function () {
     fetchOrders("cancelled");
   });
 
-  // Initial Fetch to Load All Orders and Counts
   fetchOrderCounts();
   fetchOrders();
 
-  // Helper Function to Capitalize First Letter
   function capitalizeFirstLetter(string) {
     return string.charAt(0).toUpperCase() + string.slice(1);
   }
 
-  // Helper Function to Set Active Tab
   function setActiveTab(activeTab) {
-    // Remove 'active' class from all tabs
     [
       allOrdersTab,
       pendingOrdersTab,
@@ -303,11 +275,9 @@ document.addEventListener("DOMContentLoaded", function () {
     ].forEach((tab) => {
       tab.classList.remove("active");
     });
-    // Add 'active' class to the selected tab
     activeTab.classList.add("active");
   }
 
-  // Hàm xử lý khi nhấn nút xóa
   const handleDeleteOrder = async (event) => {
     const orderId = event.target.getAttribute("data-order-id");
     const confirmDelete = confirm("Bạn có chắc chắn muốn xóa đơn hàng này?");
@@ -327,7 +297,6 @@ document.addEventListener("DOMContentLoaded", function () {
 
       if (response.ok) {
         alert(result.message);
-        // Cập nhật lại danh sách đơn hàng và số lượng
         fetchOrderCounts();
         fetchOrders(getCurrentSelectedStatus());
       } else {
@@ -339,7 +308,6 @@ document.addEventListener("DOMContentLoaded", function () {
     }
   };
 
-  // Helper Function to Get Currently Selected Status Tab
   const getCurrentSelectedStatus = () => {
     if (pendingOrdersTab.classList.contains("active")) return "pending";
     if (processingOrdersTab.classList.contains("active")) return "processing";
@@ -350,8 +318,7 @@ document.addEventListener("DOMContentLoaded", function () {
   window.initializeProfileModals();
 });
 
-
 document.addEventListener("DOMContentLoaded", () => {
   page = "history";
-  window.setupPageWebSocket(page)
+  window.setupPageWebSocket(page);
 });

@@ -11,10 +11,8 @@ async function fetchCart() {
     });
 
     if (response.status === 404) {
-      // Xử lý trường hợp giỏ hàng trống
       const message = await response.json();
-      //alert(message.message); // Hiển thị "Giỏ hàng trống"
-      displayEmptyCart(); // Hàm xử lý giao diện khi giỏ hàng trống
+      displayEmptyCart(); 
       return;
     }
 
@@ -24,7 +22,6 @@ async function fetchCart() {
 
     const cartData = await response.json();
 
-    // Hiển thị sản phẩm trong giỏ hàng
     displayCartItems(cartData);
   } catch (err) {
     console.error(err);
@@ -32,11 +29,9 @@ async function fetchCart() {
   }
 }
 
-// Hàm hiển thị giao diện giỏ hàng trống
 function displayEmptyCart() {
   const cartItemsContainer = document.getElementById("cartItems");
   cartItemsContainer.innerHTML = '<p style="text-align: center; font-weight: bold; font-size: 1.25em; color : red">Your Cart is Empty.</p>';
-  // Cập nhật tổng giá trị giỏ hàng
   document.getElementById("totalPrice").textContent = "0 $";
   document.getElementById("totalAmount").textContent = "0 $";
   document.getElementById("totalWithVAT").textContent = "0 $";
@@ -44,19 +39,16 @@ function displayEmptyCart() {
   document.getElementById("total").textContent = "0 $";
 }
 
-// Hiển thị sản phẩm trong giỏ hàng
 function displayCartItems(cart) {
   const cartItemsContainer = document.getElementById("cartItems");
-  let totalPrice = 0; // Tổng giá trị giỏ hàng
+  let totalPrice = 0; 
 
-  // Làm sạch container trước khi thêm các sản phẩm mới
   cartItemsContainer.innerHTML = "";
 
   cart.items.forEach((item) => {
     const itemTotalPrice = item.totalPrice;
     totalPrice += itemTotalPrice;
 
-    // Tạo HTML cho mỗi sản phẩm trong giỏ hàng
     const cartItemHTML = `
         <div class="cart-item d-flex align-items-center mt-3" id="cart-item-${
           item._id
@@ -88,11 +80,9 @@ function displayCartItems(cart) {
         </div>
       `;
 
-    // Thêm HTML vào container
     cartItemsContainer.innerHTML += cartItemHTML;
   });
 
-  // Cập nhật tổng giá trị giỏ hàng
   const totalPriceElement = document.getElementById("totalPrice");
   totalPriceElement.innerHTML = `${totalPrice.toFixed(2)} $`;
 
@@ -109,7 +99,6 @@ function displayCartItems(cart) {
   totalCheckout.innerHTML = `${(cart.totalAmount * 1.1 + 10).toFixed(2)} $`;
 }
 
-// Cập nhật số lượng sản phẩm trong giỏ hàng
 function updateQuantity(itemId, change) {
   const quantityElement = document.getElementById(`quantity-${itemId}`);
   const totalPriceElement = document.getElementById(`total-price-${itemId}`);
@@ -118,26 +107,22 @@ function updateQuantity(itemId, change) {
   currentQuantity += change;
 
   if (currentQuantity == 0) {
-    currentQuantity = 1; // Giới hạn số lượng tối thiểu là 1
+    currentQuantity = 1; 
     alert("Đã tối thiểu là 1!");
     return;
   }
 
-  // Cập nhật số lượng trên UI
   quantityElement.textContent = currentQuantity;
 
-  // Cập nhật lại tổng giá trị của item
   const itemPrice =
     parseFloat(totalPriceElement.textContent) /
-    (parseInt(quantityElement.textContent) - change); // Tính giá từng sản phẩm
+    (parseInt(quantityElement.textContent) - change); 
   const newTotalPrice = (itemPrice * currentQuantity).toFixed(2);
   totalPriceElement.textContent = newTotalPrice + " $";
 
-  // Gửi yêu cầu API để cập nhật giỏ hàng trong cơ sở dữ liệu
   updateCartInDatabase(itemId, currentQuantity, newTotalPrice);
 }
 
-// Gửi yêu cầu tới backend để cập nhật giỏ hàng trong cơ sở dữ liệu
 function updateCartInDatabase(itemId, quantity, totalPrice) {
   fetch(`${API_BASE_URL}/update/${itemId}`, {
     method: "PATCH",
@@ -153,13 +138,11 @@ function updateCartInDatabase(itemId, quantity, totalPrice) {
   })
     .then((response) => response.json())
     .then((data) => {
-      // Cập nhật tổng giỏ hàng sau khi thay đổi
       updateTotalCartAmount(data.cart.totalAmount);
     })
     .catch((error) => console.error("Error updating cart:", error));
 }
 
-// Cập nhật tổng giá trị giỏ hàng
 function updateTotalCartAmount(totalAmount) {
   const totalAmountElement = document.getElementById("totalPrice");
   totalAmountElement.textContent = totalAmount.toFixed(2) + " $";
@@ -177,24 +160,19 @@ function updateTotalCartAmount(totalAmount) {
   totalCheckout.textContent = (totalAmount * 1.1 + 10).toFixed(2) + " $";
 }
 
-// Xóa sản phẩm khỏi giỏ hàng
 function removeItem(itemId) {
-  // Xóa item trong giỏ hàng (frontend)
   const isConfirmed = window.confirm(
     "Bạn có chắc chắn muốn xóa sản phẩm này khỏi giỏ hàng không?"
   );
 
-  // Nếu người dùng xác nhận, thực hiện xóa sản phẩm
   if (isConfirmed) {
     const itemElement = document.getElementById(`cart-item-${itemId}`);
     itemElement.remove();
-    // Gửi yêu cầu API để xóa sản phẩm khỏi giỏ hàng trong cơ sở dữ liệu
     deleteItemFromDatabase(itemId);
   }
   return;
 }
 
-// Gửi yêu cầu tới backend để xóa sản phẩm khỏi giỏ hàng trong cơ sở dữ liệu
 function deleteItemFromDatabase(itemId) {
   fetch(`${API_BASE_URL}/remove/${itemId}`, {
     method: "DELETE",
@@ -206,24 +184,18 @@ function deleteItemFromDatabase(itemId) {
   })
     .then((response) => response.json())
     .then((data) => {
-      // Cập nhật lại tổng giỏ hàng sau khi xóa
       updateTotalCartAmount(data.cart.totalAmount);
     })
     .catch((error) => console.error("Error deleting item:", error));
 }
 
-// Tải giỏ hàng khi trang được load
 document.addEventListener("DOMContentLoaded", () => {
   fetchCart();
   window.initializeProfileModals();
 });
 
-
-// complete checkout
-// Xử lý sự kiện khi nhấn nút "Complete Order"
 document.querySelector(".btn-complete").addEventListener("click", async () => {
   try {
-    // Lấy thông tin giỏ hàng và thông tin giao hàng từ form
     const firstName = document.getElementById("firstName").value.trim();
     const lastName = document.getElementById("lastName").value.trim();
     const address = document.getElementById("address").value.trim();
@@ -234,13 +206,11 @@ document.querySelector(".btn-complete").addEventListener("click", async () => {
     const city = citySelect.options[citySelect.selectedIndex].text;
     const district = districtSelect.options[districtSelect.selectedIndex].text;
     const ward = wardSelect.options[wardSelect.selectedIndex].text;
-    // Kiểm tra nếu thiếu thông tin
     if (!firstName || !lastName || !address || !city || !district || !ward) {
       alert("Vui lòng điền đầy đủ thông tin giao hàng!");
       return;
     }
 
-    // Gửi yêu cầu lấy giỏ hàng hiện tại từ backend
     const cartResponse = await fetch(`${API_BASE_URL}/get-cart`, {
       method: "GET",
       headers: {
@@ -254,12 +224,10 @@ document.querySelector(".btn-complete").addEventListener("click", async () => {
 
     const cartData = await cartResponse.json();
 
-    // Tính tổng giá trị và thông tin VAT
     const totalAmount = cartData.totalAmount;
-    const shippingFee = 10; // Phí ship cố định
+    const shippingFee = 10; 
     const totalWithVAT = (totalAmount * 1.1 + shippingFee).toFixed(2);
 
-    // Chuẩn bị dữ liệu để gửi đến backend
     const orderData = {
       userFullName: `${firstName} ${lastName}`,
       address: {
@@ -274,7 +242,6 @@ document.querySelector(".btn-complete").addEventListener("click", async () => {
       grandTotal: totalWithVAT,
     };
 
-    // Gửi yêu cầu lưu đơn hàng vào cơ sở dữ liệu
     const response = await fetch(`${API_BASE_URL}/order`, {
       method: "POST",
       headers: {
@@ -290,10 +257,8 @@ document.querySelector(".btn-complete").addEventListener("click", async () => {
 
     const result = await response.json();
 
-    // Hiển thị thông báo thành công
     alert("Đơn hàng của bạn đã được tạo thành công!");
 
-    // Điều hướng người dùng đến trang xác nhận đơn hàng
     window.location.href = "../history/history.html";
   } catch (error) {
     console.error(error);

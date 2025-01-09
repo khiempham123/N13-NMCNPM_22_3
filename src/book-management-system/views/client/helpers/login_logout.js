@@ -1,17 +1,14 @@
 window.initializeProfileModals = () => {
-    const userIcon = document.querySelector(".user-icon"); // Biểu tượng người dùng
-    const loggedOutProfile = document.querySelector("#logged-out-profile"); // Modal khi chưa đăng nhập
-    const loggedInProfile = document.querySelector("#logged-in-profile"); // Modal khi đã đăng nhập
-    const closeBtns = document.querySelectorAll(".close-btn"); // Nút đóng của modal
+    const userIcon = document.querySelector(".user-icon");
+    const loggedOutProfile = document.querySelector("#logged-out-profile");
+    const loggedInProfile = document.querySelector("#logged-in-profile");
+    const closeBtns = document.querySelectorAll(".close-btn");
   
-    // Kiểm tra token từ localStorage
     const token = localStorage.getItem("token");
   
-    // Ẩn modal khi mới tải trang
     loggedOutProfile.style.display = "none";
     loggedInProfile.style.display = "none";
   
-    // Function to toggle the profile modal visibility
     const toggleProfileModal = () => {
       if (token) {
         loggedInProfile.style.display =
@@ -30,13 +27,11 @@ window.initializeProfileModals = () => {
       }
     };
   
-    // Hiển thị modal khi người dùng bấm vào icon
     userIcon.addEventListener("click", (event) => {
       event.preventDefault();
       toggleProfileModal();
     });
   
-    // Đóng modal khi người dùng bấm vào nút đóng (x)
     closeBtns.forEach((btn) => {
       btn.addEventListener("click", () => {
         loggedOutProfile.style.display = "none";
@@ -44,7 +39,6 @@ window.initializeProfileModals = () => {
       });
     });
   
-    // Đóng modal khi người dùng bấm ra ngoài modal
     document.addEventListener("click", (event) => {
       if (
         !loggedOutProfile.contains(event.target) &&

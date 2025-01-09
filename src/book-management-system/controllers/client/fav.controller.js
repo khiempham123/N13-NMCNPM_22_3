@@ -4,14 +4,12 @@ const getFav = async (req, res) => {
   const userId = req.user.id;
 
   try {
-    // Tìm danh sách yêu thích của người dùng
     const fav = await Favorite.findOne({ userId }).populate("items.bookId");
 
     if (!fav) {
       return res.status(404).json({ message: "Danh sách yêu thích trống" });
     }
 
-    // Trả về danh sách yêu thích với thông tin các sản phẩm
     res.status(200).json(fav);
   } catch (error) {
     console.error(error);
@@ -24,7 +22,6 @@ const removeFavItem = async (req, res) => {
   const userId = req.user.id;
 
   try {
-    // Tìm danh sách yêu thích của người dùng
     const fav = await Favorite.findOne({ userId });
 
     if (!fav) {
@@ -33,7 +30,6 @@ const removeFavItem = async (req, res) => {
         .json({ message: "Danh sách yêu thích không tồn tại" });
     }
 
-    // Tìm và xóa sản phẩm khỏi danh sách yêu thích
     const itemIndex = fav.items.findIndex(
       (item) => item._id.toString() === itemId
     );
@@ -44,10 +40,8 @@ const removeFavItem = async (req, res) => {
         .json({ message: "Sản phẩm không tồn tại trong danh sách yêu thích" });
     }
 
-    // Xóa sản phẩm
     fav.items.splice(itemIndex, 1);
 
-    // Lưu lại danh sách yêu thích sau khi xóa sản phẩm
     await fav.save();
     res
       .status(200)

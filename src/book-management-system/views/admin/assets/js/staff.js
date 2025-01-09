@@ -1,9 +1,8 @@
 const API_BASEADMIN_URL = "http://localhost:3000/admin";
 
-let staffList = []; // Mảng dữ liệu staff từ API
-let editStaffId = null; // ID của staff đang được sửa
+let staffList = [];
+let editStaffId = null;
 
-// DOM Elements
 const staffTableBody = document.getElementById("staffTableBody");
 const modal = document.getElementById("addProductModal");
 const modalTitle = document.getElementById("modalTitle");
@@ -11,14 +10,11 @@ const closeModalBtn = document.querySelector(".close");
 const addStaffBtn = document.getElementById("btn-addproduct");
 const form = document.getElementById("staffForm");
 
-// Input Fields
 const nameInput = document.getElementById("name");
 const genderInput = document.getElementById("gender");
 const positionInput = document.getElementById("position");
 const salaryInput = document.getElementById("salary");
-// const avatarInput = document.getElementById("avatar");
 
-// Fetch Staff List
 const fetchStaffList = async () => {
   try {
     const response = await fetch(`${API_BASEADMIN_URL}/staff/`);
@@ -31,7 +27,6 @@ const fetchStaffList = async () => {
   }
 };
 
-// Render Staff List
 const renderStaffList = () => {
   staffTableBody.innerHTML = "";
   staffList.forEach((staff) => {
@@ -60,19 +55,17 @@ const renderStaffList = () => {
   });
 };
 
-
 const editStaffModal = document.getElementById("editStaffModal");
 const closeEditModal = document.getElementById("closeEditModal");
 const editStaffForm = document.getElementById("editStaffForm");
 
-// Open the Edit Modal
 async function editStaff(staffId) {
   try {
-    // Fetch staff details by ID
-    const response = await fetch(`http://localhost:3000/admin/staff/${staffId}`);
+    const response = await fetch(
+      `http://localhost:3000/admin/staff/${staffId}`
+    );
     const staff = await response.json();
 
-    // Populate modal with staff details
     document.getElementById("editUsername").value = staff.username;
     document.getElementById("editEmail").value = staff.email;
     document.getElementById("editPhone").value = staff.phone;
@@ -83,10 +76,8 @@ async function editStaff(staffId) {
     document.getElementById("editSalary").value = staff.salary;
     document.getElementById("editAddress").value = staff.address;
 
-    // Show modal
     editStaffModal.style.display = "block";
 
-    // Save staffId to a hidden input (optional for reference)
     editStaffForm.setAttribute("data-id", staffId);
   } catch (error) {
     console.error("Error fetching staff details:", error);
@@ -94,18 +85,15 @@ async function editStaff(staffId) {
   }
 }
 
-// Close the Edit Modal
 closeEditModal.addEventListener("click", () => {
   editStaffModal.style.display = "none";
 });
 
-// Submit the Edit Form
 editStaffForm.addEventListener("submit", async (event) => {
-  event.preventDefault(); // Prevent form from reloading page
+  event.preventDefault();
 
   const staffId = editStaffForm.getAttribute("data-id");
 
-  // Gather updated data
   const updatedStaff = {
     email: document.getElementById("editEmail").value,
     phone: document.getElementById("editPhone").value,
@@ -118,18 +106,21 @@ editStaffForm.addEventListener("submit", async (event) => {
   };
 
   try {
-    const response = await fetch(`http://localhost:3000/admin/staff/${staffId}`, {
-      method: "PUT",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(updatedStaff),
-    });
+    const response = await fetch(
+      `http://localhost:3000/admin/staff/${staffId}`,
+      {
+        method: "PUT",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(updatedStaff),
+      }
+    );
 
     if (response.ok) {
       alert("Staff updated successfully!");
-      editStaffModal.style.display = "none"; // Close the modal
-      location.reload(); // Refresh the page to show updated data
+      editStaffModal.style.display = "none";
+      location.reload();
     } else {
       throw new Error("Failed to update staff.");
     }
@@ -139,15 +130,12 @@ editStaffForm.addEventListener("submit", async (event) => {
   }
 });
 
-// Close modal when clicking outside
 window.addEventListener("click", (event) => {
   if (event.target === editStaffModal) {
     editStaffModal.style.display = "none";
   }
 });
 
-
-// Delete Staff
 const deleteStaff = async (id) => {
   if (confirm("Are you sure you want to delete this staff?")) {
     try {
@@ -156,14 +144,13 @@ const deleteStaff = async (id) => {
       });
       if (!response.ok) throw new Error("Failed to delete staff");
 
-      await fetchStaffList(); // Cập nhật lại danh sách
+      await fetchStaffList();
     } catch (error) {
       console.error("Error deleting staff:", error);
     }
   }
 };
 
-// Open and Close Modal
 const openModal = () => (modal.style.display = "block");
 const closeModal = () => {
   modal.style.display = "none";
@@ -172,35 +159,19 @@ const closeModal = () => {
   editStaffId = null;
 };
 
-// Event Listeners
 addStaffBtn.addEventListener("click", openModal);
 closeModalBtn.addEventListener("click", closeModal);
 window.addEventListener("click", (e) => {
   if (e.target === modal) closeModal();
 });
 
-// const submitAddStaff = document.querySelector(".form-buttons");
-// submitAddStaff.addEventListener("click", (e) => {
-//   addEventListener();
-// });
-
-// Fetch dữ liệu staff khi tải trang
 document.addEventListener("DOMContentLoaded", fetchStaffList);
-
-// DOM elements
-
 
 const staffForm = document.getElementById("staffForm");
 
-
-
-
-
-// Submit form
 staffForm.addEventListener("submit", async (event) => {
-  event.preventDefault(); // Prevent default form submission behavior
+  event.preventDefault();
 
-  // Gather form data
   const formData = new FormData(staffForm);
   const staffData = {
     username: formData.get("username"),
@@ -213,10 +184,8 @@ staffForm.addEventListener("submit", async (event) => {
     position: formData.get("position"),
     salary: parseFloat(formData.get("salary")),
     address: formData.get("address"),
-
   };
 
-  // API call to backend
   try {
     const response = await fetch("http://localhost:3000/admin/staff/add", {
       method: "POST",
@@ -230,8 +199,8 @@ staffForm.addEventListener("submit", async (event) => {
 
     if (response.ok) {
       alert("Staff added successfully!");
-      staffForm.reset(); // Clear the form
-      modal.style.display = "none"; // Close the modal
+      staffForm.reset();
+      modal.style.display = "none";
       fetchStaffList();
     } else {
       throw new Error(result.message || "Failed to add staff");
@@ -242,7 +211,6 @@ staffForm.addEventListener("submit", async (event) => {
   }
 });
 
-// Close modal when clicking outside of it
 window.addEventListener("click", (event) => {
   if (event.target === modal) {
     modal.style.display = "none";

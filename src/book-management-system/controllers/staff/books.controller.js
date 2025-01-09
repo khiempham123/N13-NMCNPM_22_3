@@ -1,6 +1,5 @@
 const Book = require("../../models/books");
 
-// Hàm lấy danh sách sách với phân trang
 const getAllBooks = async (req, res) => {
     try {
         const page = parseInt(req.query.page) || 1;
@@ -22,7 +21,6 @@ const getAllBooks = async (req, res) => {
 };
 
 
-// Thêm mới một sách
 const createBook = async (req, res) => {
     const { title, author, price, stock, category, publisher, publishDate } = req.body;
     try {
@@ -42,7 +40,6 @@ const createBook = async (req, res) => {
     }
 };
 
-// Cập nhật một sách bằng phương thức PATCH (chỉ cập nhật các trường cần thiết)
 const updateBook = async (req, res) => {
     try {
         // Tìm sách theo ID
@@ -51,17 +48,14 @@ const updateBook = async (req, res) => {
             return res.status(404).json({ message: "Book not found" });
         }
 
-        // Cập nhật các trường của sách với dữ liệu mới
         const updatedBook = await Book.findByIdAndUpdate(req.params.id, req.body, { new: true });
         
-        // Trả về sách đã được cập nhật
         res.status(200).json(updatedBook);
     } catch (error) {
         res.status(500).json({ message: "Error updating book" });
     }
 };
 
-// Xóa sách (soft delete)
 const deleteBook = async (req, res) => {
     try {
         const deletedBook = await Book.findByIdAndUpdate(req.params.id, { deleted: true }, { new: true });

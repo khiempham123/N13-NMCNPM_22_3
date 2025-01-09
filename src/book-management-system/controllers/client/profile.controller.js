@@ -1,9 +1,7 @@
 const User = require("../../models/user.models");
 
-// Lấy thông tin người dùng (dựa trên user đã xác thực từ middleware)
 const getInfo = async (req, res) => {
   try {
-    // Lấy thông tin người dùng từ request (được thêm vào từ middleware)
     const user = await User.findOne({ _id: req.user.id });
     if (!user) {
       return res.status(404).json({ message: "User not found" });
@@ -15,16 +13,14 @@ const getInfo = async (req, res) => {
   }
 };
 
-// Cập nhật thông tin người dùng
 const editInfo = async (req, res) => {
   try {
-    // Lấy thông tin mới từ body request
     const { fullName, dateOfBirth, gender, avatar, address, phone } = req.body;
 
     const updatedUser = await User.findByIdAndUpdate(
-      req.user.id, // Dùng _id người dùng từ token
+      req.user.id,
       { fullName, dateOfBirth, gender, avatar, address, phone },
-      { new: true } // Trả về đối tượng đã cập nhật
+      { new: true } 
     );
 
     if (!updatedUser) {
@@ -37,19 +33,17 @@ const editInfo = async (req, res) => {
   }
 };
 
-// Lấy danh sách tất cả người dùng và sắp xếp theo thời gian tạo
 const getUser = async (req, res) => {
   try {
-    const { page = 1, limit = 10 } = req.query; // Lấy tham số page và limit từ query
-    const skip = (page - 1) * limit; // Tính số bản ghi bỏ qua
+    const { page = 1, limit = 10 } = req.query; 
+    const skip = (page - 1) * limit;
 
-    // Lấy danh sách người dùng với phân trang
     const users = await User.find({role : "customer"})
-      .sort({ createdAt: -1 }) // Sắp xếp giảm dần theo createdAt
+      .sort({ createdAt: -1 }) 
       .skip(skip)
-      .limit(Number(limit)); // Giới hạn số lượng bản ghi trả về
+      .limit(Number(limit)); 
 
-    const totalUsers = await User.countDocuments(); // Tổng số người dùng
+    const totalUsers = await User.countDocuments();
 
     res.status(200).json({
       users,
@@ -61,24 +55,23 @@ const getUser = async (req, res) => {
     res.status(500).json({ message: "Error fetching users", error });
   }
 };
-// Hàm cập nhật thông tin khách hàng
+
 const updateCustomer = async (req, res) => {
     try {
-      const { id } = req.params; // Lấy ID từ URL params
-      const { name, birthDay, email } = req.body; // Lấy thông tin từ body request
+      const { id } = req.params; 
+      const { name, birthDay, email } = req.body; 
   
-      // Tìm và cập nhật thông tin khách hàng
       const updatedCustomer = await User.findByIdAndUpdate(
         id, // ID khách hàng
-        { fullName: name, dateOfBirth: birthDay, email }, // Các trường cần cập nhật
-        { new: true } // Trả về đối tượng đã cập nhật
+        { fullName: name, dateOfBirth: birthDay, email },
+        { new: true }
       );
   
       if (!updatedCustomer) {
         return res.status(404).json({ message: "Customer not found" });
       }
   
-      res.status(200).json(updatedCustomer); // Trả về thông tin khách hàng đã cập nhật
+      res.status(200).json(updatedCustomer); 
     } catch (error) {
       console.error("Error updating customer:", error);
       res.status(500).json({ message: "Error updating customer", error });
@@ -87,17 +80,14 @@ const updateCustomer = async (req, res) => {
 
   const deleteCustomer = async (req, res) => {
     try {
-      const { id } = req.params; // Lấy ID khách hàng từ URL params
+      const { id } = req.params; 
   
-      // Tìm và xóa khách hàng trong database
       const deletedCustomer = await User.findByIdAndDelete(id);
   
-      // Nếu không tìm thấy khách hàng, trả về lỗi 404
       if (!deletedCustomer) {
         return res.status(404).json({ message: "Customer not found" });
       }
   
-      // Trả về phản hồi thành công
       res.status(200).json({ message: "Customer deleted successfully", deletedCustomer });
     } catch (error) {
       console.error("Error deleting customer:", error);

@@ -1,9 +1,8 @@
 const API_BASEADMIN_URL = "http://localhost:3000/admin";
 
-// Hàm fetch dữ liệu từ API
 const fetchCustomers = async () => {
   try {
-    const response = await fetch(`${API_BASEADMIN_URL}/customer`); // Đường dẫn API lấy danh sách khách hàng
+    const response = await fetch(`${API_BASEADMIN_URL}/customer`);
     if (!response.ok) {
       throw new Error("Failed to fetch customer data");
     }
@@ -14,16 +13,13 @@ const fetchCustomers = async () => {
   }
 };
 
-// Hàm render dữ liệu vào bảng
 const renderCustomers = (customers) => {
   const tableBody = document.getElementById("customerTableBody");
-  tableBody.innerHTML = ""; // Xóa dữ liệu cũ trong bảng
+  tableBody.innerHTML = ""; 
 
   customers.forEach((customer) => {
-    // Tạo thẻ <tr>
     const tr = document.createElement("tr");
 
-    // Tạo từng <td> và gán class đúng như HTML mẫu
     tr.innerHTML = `
         <td>${customer.fullName || "N/A"}</td>
         <td>${customer.phone}</td>
@@ -40,12 +36,10 @@ const renderCustomers = (customers) => {
         </td>
       `;
 
-    // Thêm <tr> vào tbody
     tableBody.appendChild(tr);
   });
 };
 
-// Hàm Reset mật khẩu khách hàng
 const handleReset = async (id) => {
   const isConfirm = confirm(
     "Are you sure you want to reset the password for this customer?"
@@ -65,7 +59,7 @@ const handleReset = async (id) => {
     const result = await response.json();
     if (response.ok) {
       alert(result.message);
-      fetchCustomers(); // Cập nhật lại danh sách sau khi reset
+      fetchCustomers(); 
     } else {
       alert(`Error: ${result.message}`);
     }
@@ -75,7 +69,6 @@ const handleReset = async (id) => {
   }
 };
 
-// Hàm Delete tài khoản khách hàng
 const handleDelete = async (id) => {
   const isConfirm = confirm("Are you sure you want to delete this customer?");
   if (!isConfirm) return;
@@ -90,7 +83,7 @@ const handleDelete = async (id) => {
     const result = await response.json();
     if (response.ok) {
       alert(result.message);
-      fetchCustomers(); // Cập nhật lại danh sách sau khi xóa
+      fetchCustomers();
     } else {
       alert(`Error: ${result.message}`);
     }
@@ -100,7 +93,6 @@ const handleDelete = async (id) => {
   }
 };
 
-// Gọi hàm fetch dữ liệu khi trang load
 document.addEventListener("DOMContentLoaded", fetchCustomers);
 
 

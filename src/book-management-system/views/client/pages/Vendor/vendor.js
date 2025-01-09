@@ -6,7 +6,7 @@ async function fetchVendorsForSidebar() {
     const vendors = await response.json();
 
     const vendorListContainer = document.getElementById("sidebar-vendor-list");
-    vendorListContainer.innerHTML = ""; // Clear list hiện tại trước khi thêm mới
+    vendorListContainer.innerHTML = "";
 
     vendors.forEach((vendor) => {
       const vendorItem = document.createElement("div");
@@ -23,9 +23,6 @@ async function fetchVendorsForSidebar() {
                 </div>
             `;
       vendorItem.addEventListener("click", () => {
-        // window.location.href = `../Vendor/vendor.html?vendorName=${encodeURIComponent(
-        //   vendor.vendor
-        // )}`;
         event.preventDefault();
 
         const newUrl = `./vendor.html?vendorName=${encodeURIComponent(
@@ -41,20 +38,16 @@ async function fetchVendorsForSidebar() {
   }
 }
 
-// banner verndor
-
 async function fetchVendorInfo() {
   const urlParams = new URLSearchParams(window.location.search);
   const vendorName = decodeURIComponent(urlParams.get("vendorName"));
   try {
-    // Gọi API lấy thông tin vendor theo vendorName
     const response = await fetch(`${API_BASE_URL}/vendor/${vendorName}`);
     if (!response.ok) {
       throw new Error("Vendor not found");
     }
     const vendor = await response.json();
 
-    // Cập nhật thông tin lên HTML
     document.getElementById("vendor-logo").src = vendor.thumbnail;
     document.getElementById("vendor-name").innerText = vendor.vendor;
     document.getElementById("vendor-address").innerText = vendor.address;
@@ -63,9 +56,6 @@ async function fetchVendorInfo() {
       vendor.rating
     );
 
-    // Cập nhật background image nếu cần thiết
-    // document.querySelector(".background-image").src =
-    //   vendor.backgroundImage || document.querySelector(".background-image").src;
     fetchBookOfVendor(vendorName);
   } catch (error) {
     console.error("Error fetching vendor info:", error);
@@ -73,7 +63,6 @@ async function fetchVendorInfo() {
   }
 }
 
-// sách của vendor
 async function fetchBookOfVendor(vendorName) {
   try {
     const response = await fetch(`${API_BASE_URL}/vendor/${vendorName}`);
@@ -130,7 +119,6 @@ async function fetchBookOfVendor(vendorName) {
   }
 }
 
-// Hàm giúp tạo các ngôi sao cho rating
 function getStarRating(rating) {
   const stars = [];
   for (let i = 0; i < 5; i++) {
@@ -147,30 +135,23 @@ function renderStars(rating) {
   let stars = "";
   for (let i = 0; i < 5; i++) {
     if (i < Math.floor(rating)) {
-      // Hiển thị sao đầy
       stars += '<i class="fas fa-star"></i>';
     } else if (i < Math.floor(rating) + 0.5 && rating % 1 !== 0) {
-      // Hiển thị sao một nửa
       stars += '<i class="fas fa-star-half-alt"></i>';
     } else {
-      // Hiển thị sao rỗng
       stars += '<i class="far fa-star"></i>';
     }
   }
   return stars;
 }
-// đến trang detail
 function goToBookDetail(bookId) {
   window.location.href = `../detail/detail.html?id=${bookId}`;
 }
 
-// Chuyển hướng đến trang sách yêu thích
 async function addToFav(event, bookId, title, thumbnail, price, rating) {
-  // Ngừng sự kiện để không lan ra các phần tử cha
   event.stopPropagation();
 
   try {
-    // Gửi yêu cầu POST đến API để thêm sách vào danh sách yêu thích
     const response = await fetch(`${API_BASE_URL}/add-to-fav`, {
       method: "POST",
       headers: {
@@ -186,26 +167,21 @@ async function addToFav(event, bookId, title, thumbnail, price, rating) {
       }),
     });
 
-    // Phản hồi từ server
     const result = await response.json();
 
     if (response.ok) {
-      // Nếu thêm sách thành công
       alert("Sản phẩm đã được thêm vào danh sách yêu thích!");
     } else {
-      // Nếu có lỗi từ phía server
       console.error(result.message);
       alert("Sách đã tồn tại trong danh sách yêu thích của bạn!");
     }
   } catch (error) {
-    // Xử lý lỗi khi không thể kết nối tới API
     console.error("Error adding to fav:", error);
     alert("Có lỗi xảy ra khi thêm sản phẩm vào danh sách yêu thích.");
   }
 }
 
 async function addToCart(event, bookId, title, thumbnail, price) {
-  // Ngừng sự kiện để không lan ra các phần tử cha
   event.stopPropagation();
 
   try {
@@ -220,7 +196,7 @@ async function addToCart(event, bookId, title, thumbnail, price) {
         title,
         thumbnail,
         price,
-        quantity: 1, // Mặc định là 1, có thể điều chỉnh sau
+        quantity: 1,
       }),
     });
 
@@ -238,7 +214,6 @@ async function addToCart(event, bookId, title, thumbnail, price) {
   }
 }
 
-// Gọi hàm fetchVendorsForSidebar khi trang được tải
 document.addEventListener("DOMContentLoaded", fetchVendorsForSidebar);
 
 document.addEventListener("DOMContentLoaded", fetchVendorInfo);

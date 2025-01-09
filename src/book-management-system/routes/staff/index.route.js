@@ -7,9 +7,7 @@ const profileRouter =require("./staff.route")
 const { authenticateUser, authorize } = require("../../middleware/authenticateUser");
 const authRouter =require("./auth.route")
 module.exports = (app) =>{
-    //app.use('/', homeRouter);
     app.use("/staff", loginRoute);
-    
     app.use("/staff/customer",authenticateUser, authorize(["staff"]),customersRouter);
     app.use("/staff/order", orderRouter);
     app.use("/staff/books",bookRouter);
