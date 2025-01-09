@@ -87,6 +87,7 @@ document.addEventListener("DOMContentLoaded", () => {
   document.getElementById("book").addEventListener("click", () => {
     fetchBooks(currentPage);
   });
+
   document
     .getElementById("openAddBookModal")
     .addEventListener("click", function () {
@@ -142,6 +143,7 @@ document.addEventListener("DOMContentLoaded", () => {
       try {
         const uploadedImageUrl = await uploadImageWithSignature(file);
         document.getElementById("addBookImage").src = uploadedImageUrl;
+
         document.getElementById("editBookThumbnail").value = uploadedImageUrl;
       } catch (error) {
         console.error("Error uploading image:", error);

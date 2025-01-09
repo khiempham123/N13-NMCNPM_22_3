@@ -79,7 +79,7 @@ if (signInBtnLink) {
     e.preventDefault();
     wrapper.classList.add("active");
     wrapper.classList.remove("sign-up-active", "forgot-active", "reset-active");
-    wrapper.style.height = "460x";
+    wrapper.style.height = "460px";
   });
 }
 
@@ -198,7 +198,7 @@ if (signUpForm) {
       showSuccessModal();
       setTimeout(function () {
         window.location.href = "login.html";
-      }, 3000);
+      }, 700);
     } else {
       alert(responseData.message || "Registration failed, please try again. ");
       usernameError.style.display = "block";
@@ -233,8 +233,7 @@ if (signInForm) {
         localStorage.setItem("role", role);
         signInMessage.style.display = "block";
         signInMessage.className = "form-message success";
-        signInMessage.textContent =
-          "Login successful! Redirecting to the home page...";
+        signInMessage.textContent = "Login successful!";
 
         setTimeout(() => {
           if (role === "staff") {
@@ -489,8 +488,7 @@ if (resetPasswordForm) {
       if (response.ok) {
         resetPasswordMessage.style.display = "block";
         resetPasswordMessage.className = "form-message success";
-        resetPasswordMessage.textContent =
-          "Reset password successful! Redirecting to the login page...";
+        resetPasswordMessage.textContent = "Reset password successful!";
 
         setTimeout(() => {
           window.location.href = "login.html";

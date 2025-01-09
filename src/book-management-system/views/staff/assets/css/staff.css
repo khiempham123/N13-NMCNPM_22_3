@@ -197,35 +197,6 @@
   align-items: center;
 }
 
-/* .main .content .page .top-bar .search-container {
-  display: flex;
-  align-items: center;
-  background-color: rgba(255, 255, 255, 0.2);
-  border-radius: 20px;
-  padding: 5px 10px;
-  margin-right: 100px;
-}
-
-.main .content .page .top-bar .search-container input {
-  background: transparent;
-  border: none;
-  outline: none;
-  color: #fff;
-  font-size: 16px;
-  padding: 5px;
-  width: 200px;
-}
-
-.main .content .page .top-bar .search-container input::placeholder {
-  color: rgba(255, 255, 255, 0.7);
-}
-
-.main .content .page .top-bar .search-container i {
-  color: #fff;
-  margin: 0 10px;
-  cursor: pointer;
-} */
-
 .main .content .page .top-bar .icons {
   display: flex;
   align-items: center;
@@ -306,8 +277,20 @@
   margin-bottom: 30px;
 }
 
+.main .content .page .section-main table button:first-child {
+  background: rgba(76, 175, 80, 0.5);
+}
+
+.main .content .page .section-main table button:first-child:hover {
+  background: rgba(76, 175, 80, 1);
+}
+
+.main .content .page .section-main table button:last-child {
+  background: rgba(244, 67, 54, 0.5);
+}
+
 .main .content .page .section-main table button:last-child:hover {
-  background: #f44336;
+  background: rgba(244, 67, 54, 1);
 }
 
 .main .content .page .section-main table th,
@@ -322,11 +305,6 @@
   font-size: large;
 }
 
-/* làm sáng 1 dòng khi hover */
-/* .main .content .page .section-main table tbody tr:hover {
-        background-color: #f1f1f1;
-      } */
-
 /* page number */
 .main .content .page .section-main .page-number ul {
   display: flex;
@@ -338,7 +316,7 @@
 
 .main .content .page .section-main .page-number ul li {
   list-style: none;
-  padding: 5px 10px;
+  padding: 6px 10px;
   background-color: #a7a7a7;
   border-radius: 5px;
   cursor: pointer;
@@ -347,6 +325,10 @@
 
 .main .content .page .section-main .page-number ul .current {
   background-color: var(--color-one);
+}
+
+.main .content .page .section-main .page-number ul li a {
+  color: white;
 }
 
 .main .content .page .section-main .page-number ul li:hover {
