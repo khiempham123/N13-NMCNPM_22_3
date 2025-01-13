@@ -159,6 +159,7 @@
   background: white;
   transition: box-shadow 0.3s ease;
   margin: 10px 0;
+  max-height: 490px;
 }
 
 .section-three .listbook .inner-box:hover {
@@ -193,6 +194,8 @@
   font-size: 18px;
   font-weight: bold;
   margin: 5px 0;
+  height: 55px;
+  overflow: hidden;
 }
 
 .section-three .listbook .inner-box .inner-content .inner-author {

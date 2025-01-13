@@ -51,7 +51,7 @@ document.addEventListener("DOMContentLoaded", function () {
       allOrdersCount.textContent = data.total || 0;
       pendingOrdersCount.textContent = data.pending || 0;
       processingOrdersCount.textContent = data.processing || 0;
-      completedOrdersCount.textContent = data.completed || 0;
+      completedOrdersCount.textContent = data.shipped || 0;
       cancelledOrdersCount.textContent = data.cancelled || 0;
     } catch (error) {
       console.error("Error fetching order counts:", error);
@@ -102,7 +102,7 @@ document.addEventListener("DOMContentLoaded", function () {
         return "status-pending";
       case "processing":
         return "status-processing";
-      case "completed":
+      case "shipped":
         return "status-completed";
       case "cancelled":
         return "status-cancelled";
@@ -249,7 +249,7 @@ document.addEventListener("DOMContentLoaded", function () {
   completedOrdersTab.addEventListener("click", (e) => {
     e.preventDefault();
     setActiveTab(completedOrdersTab);
-    fetchOrders("completed");
+    fetchOrders("Shipped");
   });
 
   cancelledOrdersTab.addEventListener("click", (e) => {
@@ -286,7 +286,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
     try {
       const response = await fetch(`${API_BASE_URL}/order/${orderId}`, {
-        method: "DELETE",
+        method: "PATCH",
         headers: {
           authorization: `Bearer ${localStorage.getItem("token")}`,
           "Content-Type": "application/json",
@@ -311,7 +311,7 @@ document.addEventListener("DOMContentLoaded", function () {
   const getCurrentSelectedStatus = () => {
     if (pendingOrdersTab.classList.contains("active")) return "pending";
     if (processingOrdersTab.classList.contains("active")) return "processing";
-    if (completedOrdersTab.classList.contains("active")) return "completed";
+    if (completedOrdersTab.classList.contains("active")) return "Shipped";
     if (cancelledOrdersTab.classList.contains("active")) return "cancelled";
     return "all";
   };

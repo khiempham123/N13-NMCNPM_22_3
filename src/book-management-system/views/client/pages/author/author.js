@@ -2,44 +2,98 @@ const API_BASE_URL = "http://localhost:3000";
 
 document.addEventListener("DOMContentLoaded", function () {
   window.initializeProfileModals();
-  async function fetchAuthors() {
-    try {
-      const response = await fetch(`${API_BASE_URL}/author`);
-      if (!response.ok) {
-        throw new Error(`HTTP error! status: ${response.status}`);
-      }
-      const authors = await response.json();
+  let currentPage = 1;
+  const itemsPerPage = 8;
 
-      const authorListContainer = document.getElementById("author-list");
-      authorListContainer.innerHTML = "";
-
-      authors.forEach((author) => {
-        const authorDiv = document.createElement("div");
-        authorDiv.classList.add("col-xl-3");
-
-        authorDiv.innerHTML = `
-          <div class="author" data-id="${author._id}" style="cursor: pointer;">
-            <img src="${
-              author.photo ||
-              "https://cdn.24h.com.vn/upload/1-2021/images/2021-02-26/image50-1614333620-651-width500height800.jpg"
-            }" alt="${author.name}">
-            <div class="author-name">${author.name}</div>
-          </div>
-        `;
-
-        authorListContainer.appendChild(authorDiv);
-
-        authorDiv.addEventListener("click", function () {
-          showAuthorDetails(author._id);
-        });
-      });
-    } catch (error) {
-      console.error("Error fetching authors:", error);
-      const authorListContainer = document.getElementById("author-list");
-      authorListContainer.innerHTML =
-        "<p>Failed to load authors. Please try again later.</p>";
+async function fetchAuthors(page = 1) {
+  try {
+    const response = await fetch(
+      `${API_BASE_URL}/author?page=${page}&limit=${itemsPerPage}`
+    );
+    if (!response.ok) {
+      throw new Error(`HTTP error! status: ${response.status}`);
     }
+
+    const { authors, totalPages } = await response.json();
+
+    const authorListContainer = document.getElementById("author-list");
+    authorListContainer.innerHTML = "";
+
+    authors.forEach((author) => {
+      const authorDiv = document.createElement("div");
+      authorDiv.classList.add("col-xl-3");
+
+      authorDiv.innerHTML = `
+        <div class="author" data-id="${author._id}" style="cursor: pointer;">
+          <img src="${
+            author.photo ||
+            "https://cdn.24h.com.vn/upload/1-2021/images/2021-02-26/image50-1614333620-651-width500height800.jpg"
+          }" alt="${author.name}">
+          <div class="author-name">${author.name}</div>
+        </div>
+      `;
+
+      authorListContainer.appendChild(authorDiv);
+
+      authorDiv.addEventListener("click", function () {
+        showAuthorDetails(author._id);
+      });
+    });
+
+    setupPagination(totalPages, page);
+  } catch (error) {
+    console.error("Error fetching authors:", error);
+    const authorListContainer = document.getElementById("author-list");
+    authorListContainer.innerHTML =
+      "<p>Failed to load authors. Please try again later.</p>";
   }
+}
+
+function setupPagination(totalPages, currentPage) {
+  const pageWrap = document.querySelector(".page-wrap");
+  pageWrap.innerHTML = "";
+  if (currentPage > 1) {
+    const prevPage = document.createElement("li");
+    prevPage.innerHTML = `
+      <a href="#" class="page">
+        <i class="fa-solid fa-angle-left"></i>
+      </a>
+    `;
+    prevPage.addEventListener("click", (event) => {
+      event.preventDefault();
+      fetchAuthors(currentPage - 1);
+    });
+    pageWrap.appendChild(prevPage);
+  }
+  for (let i = 1; i <= totalPages; i++) {
+    const pageItem = document.createElement("li");
+    if (i === currentPage) {
+      pageItem.innerHTML = `<span class="page current">${i}</span>`;
+    } else {
+      pageItem.innerHTML = `<a href="#" class="page">${i}</a>`;
+      pageItem.addEventListener("click", (event) => {
+        event.preventDefault();
+        fetchAuthors(i);
+      });
+    }
+    pageWrap.appendChild(pageItem);
+  }
+
+  if (currentPage < totalPages) {
+    const nextPage = document.createElement("li");
+    nextPage.innerHTML = `
+      <a href="#">
+        <i class="fa-solid fa-angle-right page"></i>
+      </a>
+    `;
+    nextPage.addEventListener("click", (event) => {
+      event.preventDefault();
+      fetchAuthors(currentPage + 1);
+    });
+    pageWrap.appendChild(nextPage);
+  }
+}
+
 
   async function showAuthorDetails(authorId) {
     try {

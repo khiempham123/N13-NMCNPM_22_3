@@ -155,7 +155,7 @@ async function addToFav(event, bookId, title, thumbnail, price, rating) {
     const response = await fetch(`${API_BASE_URL}/add-to-fav`, {
       method: "POST",
       headers: {
-        authorization: localStorage.getItem("token"),
+        authorization: `Bearer ${localStorage.getItem("token")}`,
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
@@ -188,7 +188,7 @@ async function addToCart(event, bookId, title, thumbnail, price) {
     const response = await fetch(`${API_BASE_URL}/add-to-cart`, {
       method: "POST",
       headers: {
-        authorization: localStorage.getItem("token"),
+        authorization: `Bearer ${localStorage.getItem("token")}`,
         "Content-Type": "application/json",
       },
       body: JSON.stringify({

@@ -10,7 +10,7 @@ router.get("/order-counts", authenticateUser,authorize(["customer"]), controller
 
 router.post("/", authenticateUser,authorize(["customer"]), controller.createOrder);
 
-router.delete("/:orderId", authenticateUser,authorize(["customer"]), controller.deleteOrder);
+router.patch("/:orderId", authenticateUser,authorize(["customer"]), controller.deleteOrder);
 
 module.exports = router;
 

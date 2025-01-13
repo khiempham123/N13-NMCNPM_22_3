@@ -120,11 +120,11 @@ async function fetchAndRenderRelatedProducts(bookId) {
               <div class="inner-price-new">
                 ${finalPrice}
                 <div class="inner-price-old">${
-                  product.price ? `$${product.price}` : ""
+                  product.price ? `$${product.price}` : "0"
                 }</div>
               </div>
               <div class="inner-discount">${
-                product.percentDiscount ? `-${product.percentDiscount}%` : ""
+                product.percentDiscount ? `-${product.percentDiscount}%` : "-0%"
               }</div>
             </div>
           </div>

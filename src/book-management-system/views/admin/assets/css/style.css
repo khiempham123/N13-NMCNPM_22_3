@@ -412,9 +412,9 @@ body {
   font-size: 16px;
   font-weight: 500;
 }
-.status.packed {
+.status.processing {
   padding: 2px 4px;
-  background: #f00;
+  background: #8de02c;
   color: var(--white);
   border-radius: 4px;
   font-size: 16px;
@@ -430,7 +430,7 @@ body {
 }
 .status.canceled {
   padding: 2px 4px;
-  background: #bc17ce;
+  background: #ce1717;
   color: var(--white);
   border-radius: 4px;
   font-size: 16px;

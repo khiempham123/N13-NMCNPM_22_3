@@ -17,7 +17,7 @@ const getReport = async (req, res) => {
         const revenueData = await Order.aggregate([
           {
             $match: {
-              status: "Shipped",
+              status: "shipped",
               updatedAt: { $gte: start, $lte: end },
             },
           },

@@ -19,7 +19,7 @@ const getCart = async (req, res) => {
 const updateCartItemQuantity = async (req, res) => {
   const { itemId } = req.params;
   const { quantity } = req.body;
-  const userId = req.user._id;
+  const userId = req.user.id;
 
   try {
     const cart = await Cart.findOne({ userId });
@@ -56,7 +56,7 @@ const updateCartItemQuantity = async (req, res) => {
 
 const removeCartItem = async (req, res) => {
   const { itemId } = req.params;
-  const userId = req.user._id;
+  const userId = req.user.id;
 
   try {
     const cart = await Cart.findOne({ userId });

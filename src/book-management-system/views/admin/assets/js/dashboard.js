@@ -131,8 +131,7 @@ function getStatusClass(status) {
       return "pending";
     case "processing":
       return "processing";
-    case "packed":
-      return "packed";
+    
     case "shipped":
       return "shipped";
     case "canceled":
@@ -218,7 +217,7 @@ async function fetchTotalShipped() {
     const data = await response.json();
     document.getElementById(
       "totalShipped"
-    ).innerText = `${data.totalShipped} $`;
+    ).innerText = `${data.totalShipped.toFixed(2)} $`;
   } catch (error) {
     console.error("Error fetching total shipped:", error);
     document.getElementById("totalShipped").innerText =

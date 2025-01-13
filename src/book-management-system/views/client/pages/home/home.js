@@ -213,11 +213,12 @@ document.addEventListener("DOMContentLoaded", function () {
     .then((response) => response.json())
     .then((data) => {
       if (data.length === 0) {
+        
         dealsContainer.innerHTML = "<p>No deals available this week.</p>";
         countdownDisplay.textContent = "00:00:00:00";
         return;
       }
-
+      console.log(data)
       const endDates = data.map((deal) => new Date(deal.endDate));
       const earliestEndDate = new Date(Math.min(...endDates));
       startCountdown(earliestEndDate, countdownDisplay);

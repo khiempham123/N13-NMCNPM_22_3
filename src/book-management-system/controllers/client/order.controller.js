@@ -53,7 +53,7 @@ const getOrderCounts = async (req, res) => {
       return res.status(400).json({ message: "Invalid user ID format" });
     }
 
-    const statuses = ["pending", "processing", "completed", "cancelled"];
+    const statuses = ["pending", "processing", "completed", "cancelled","shipped"];
     const counts = {};
 
     for (const status of statuses) {
@@ -130,7 +130,7 @@ const deleteOrder = async (req, res) => {
         .status(400)
         .json({ message: "Only pending orders can be deleted" });
     }
-
+    
     await Order.deleteOne({ _id: orderId });
 
     res.status(200).json({ message: "Order deleted successfully" });
@@ -153,7 +153,7 @@ const countOrders = async (req, res) => {
 }
 const totalShiped = async (req, res) => {
   try {
-    const shippedOrders = await Order.find({  status: 'Shipped' } );
+    const shippedOrders = await Order.find({  status: 'shipped' } );
     const totalShipped = shippedOrders.reduce((sum, order) => sum + order.grandTotal, 0);
 
     res.json({ totalShipped });

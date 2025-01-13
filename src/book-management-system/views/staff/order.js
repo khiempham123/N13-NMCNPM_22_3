@@ -246,7 +246,7 @@ document.addEventListener("DOMContentLoaded", () => {
         const orderId = currentRow.dataset.id;
         const fullName = nameInput.value.trim();
         const addressText = addressInput.value.trim();
-        const status = statusSelect.value;
+        const status = statusSelect.value.toLowerCase();
 
         if (!fullName || !addressText || !status) {
           alert("Please fill in all fields before saving.");

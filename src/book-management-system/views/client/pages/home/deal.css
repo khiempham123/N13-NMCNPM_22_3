@@ -49,13 +49,16 @@
     display: flex;
     flex-direction: column;
     justify-content: space-between; /* Căn đều nội dung trong info */
-}
-
-.deal-info h2 {
+    height: 100%;
+  }
+  
+  .deal-info h2 {
     font-size: 18px;
     font-weight: 500;
     margin: 0;
-}
+    max-width: 140px;
+    overflow: hidden;
+  }
 
 .deal-info p {
     margin: 5px 0;

@@ -106,7 +106,7 @@ const getDealsOfTheWeek = async (req, res) => {
     const dealsResponse = deals
       .map((deal) => {
         if (!deal.bookId) {
-          console.warn(`Book not found for deal ID: ${deal._id}`);
+          
           return null;
         }
 
