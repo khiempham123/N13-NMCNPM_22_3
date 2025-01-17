@@ -96,7 +96,6 @@ const forgotPasswordSignInLink = document.querySelector(".backToSignIn-link");
 
 if (forgotPasswordSignInLink) {
   forgotPasswordSignInLink.addEventListener("click", (e) => {
-    console.log("click");
     e.preventDefault();
     wrapper.classList.add("active");
     wrapper.classList.remove("sign-up-active", "forgot-active", "reset-active");
